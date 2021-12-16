@@ -7,7 +7,7 @@ public class Pietanza {
     private int tipo;
     private String ingredienti;
     private String immagine;
-    private String numeroAcquisti;
+    private int numeroAcquisti;
 
 
     public String getNome() {return nome;}
@@ -30,7 +30,7 @@ public class Pietanza {
 
     public void setImmagine(String immagine) {this.immagine = immagine;}
 
-    public String getNumeroAcquisti() {return numeroAcquisti;}
+    public int getNumeroAcquisti() {return numeroAcquisti;}
 
-    public void setNumeroAcquisti(String numeroAcquisti) {this.numeroAcquisti = numeroAcquisti;}
+    public void setNumeroAcquisti(int numeroAcquisti) {this.numeroAcquisti = numeroAcquisti;}
 }
