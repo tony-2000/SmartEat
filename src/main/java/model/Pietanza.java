@@ -9,6 +9,7 @@ public class Pietanza {
     private String immagine;
     private String numeroAcquisti;
 
+
     public String getNome() {return nome;}
 
     public void setNome(String nome) {this.nome = nome;}
@@ -32,5 +33,4 @@ public class Pietanza {
     public String getNumeroAcquisti() {return numeroAcquisti;}
 
     public void setNumeroAcquisti(String numeroAcquisti) {this.numeroAcquisti = numeroAcquisti;}
-
 }
