@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Acquisto
 {
     /** La data di acquisto deve essere inferiore o uguale a quella attuale.
-     * @invariant dataAcquisto.compareTo(new Date(System.currentTimeMillis()))<=0
+     * @custom.invariant  dataAcquisto
      */
     private Date dataAcquisto;
 
@@ -16,7 +16,7 @@ public class Acquisto
     private String CF;
 
     /**
-     * codiceMenu indica univocamente un singolo menù.
+     * codiceMenu indica univocamente un singolo menu.
      */
     private int codiceMenu;
 
@@ -26,21 +26,53 @@ public class Acquisto
     private boolean postoMensa;
 
 
+    /**
+     * @return
+     * Restituisce la data di acquisto.
+     */
     public Date getDataAcquisto() { return dataAcquisto;}
 
+    /**
+     * Imposta la data di acquisto.
+     * @param dataAcquisto data di acquisto
+     */
     public void setDataAcquisto(Date dataAcquisto) {this.dataAcquisto = dataAcquisto;}
 
+    /**
+     * @return
+     * Restituisce il codice fiscale.
+     */
     public String getCF() {return CF;}
 
+    /**
+     * Imposta il codice fiscale.
+     * @param CF codice fiscale
+     */
     public void setCF(String CF) {this.CF = CF;}
 
+    /**
+     *@return
+     * Restituisce il codice del menu.
+     */
     public int getCodiceMenu() {return codiceMenu;}
 
+    /**
+     * Imposta il codice del menu.
+     * @param codiceMenu codice univoco del menu
+     */
     public void setCodiceMenu(int codiceMenu) {
         this.codiceMenu = codiceMenu;}
 
+    /**
+     * @return
+     * Verifica se si e' prenotato il posto in mensa.
+     */
     public boolean isPostoMensa() {return postoMensa;}
 
+    /**
+     * Imposta il posto in mensa.
+     * @param postoMensa Posto prenotato in mensa o meno
+     */
     public void setPostoMensa(boolean postoMensa) {this.postoMensa = postoMensa;}
 
 }
