@@ -2,10 +2,13 @@ package model;
 
 import java.sql.Date;
 
+/**
+ * La classe modella oggetti che rappresentano un acquisto di un menu.
+ */
 public class Acquisto
 {
     /** La data di acquisto deve essere inferiore o uguale a quella attuale.
-     * @custom.invariant  dataAcquisto
+     *  @invariant  CurrentDate - dataAcquisto {@literal >}=0.
      */
     private Date dataAcquisto;
 

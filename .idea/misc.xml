@@ -4,8 +4,9 @@
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/Desktop/s" />
+    <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/Desktop/javadoc prova" />
     <option name="OPTION_SCOPE" value="private" />
+    <option name="OTHER_OPTIONS" value="-tag invariant -tag pre -tag post" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
