@@ -3,7 +3,7 @@ package model;
 import java.sql.Date;
 
 /**
- * La classe modella oggetti che rappresentano un acquisto di un menu..
+ * La classe modella oggetti che rappresentano un acquisto di un menu.
  */
 public class Acquisto
 {
