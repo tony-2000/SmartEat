@@ -4,14 +4,29 @@ import java.sql.Date;
 
 public class Acquisto
 {
-
+    /** La data di acquisto deve essere inferiore o uguale a quella attuale.
+     * @invariant dataAcquisto.compareTo(new Date(System.currentTimeMillis()))<=0
+     */
     private Date dataAcquisto;
+
+    /**
+     * Il codice fiscale deve essere composto da 16 caratteri.
+     * @invariant CF.lenght==16
+     */
     private String CF;
-    private int CodiceMenu;
+
+    /**
+     * codiceMenu indica univocamente un singolo menù.
+     */
+    private int codiceMenu;
+
+    /**
+     * postoMensa indica se si vuole o meno prenotare un posto in mensa.
+     */
     private boolean postoMensa;
 
 
-    public Date getDataAcquisto() {return dataAcquisto;}
+    public Date getDataAcquisto() { return dataAcquisto;}
 
     public void setDataAcquisto(Date dataAcquisto) {this.dataAcquisto = dataAcquisto;}
 
@@ -19,9 +34,10 @@ public class Acquisto
 
     public void setCF(String CF) {this.CF = CF;}
 
-    public int getCodiceMenu() {return CodiceMenu;}
+    public int getCodiceMenu() {return codiceMenu;}
 
-    public void setCodiceMenu(int codiceMenu) {CodiceMenu = codiceMenu;}
+    public void setCodiceMenu(int codiceMenu) {
+        this.codiceMenu = codiceMenu;}
 
     public boolean isPostoMensa() {return postoMensa;}
 
