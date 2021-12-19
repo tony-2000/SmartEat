@@ -157,7 +157,7 @@ public class UtenteDAO {
         }
     }
 
-    public Utente doRetrievePietanzaByEmailPassword(String email, String password)
+    public Utente doRetrieveUtenteByEmailPassword(String email, String password)
     {
         Utente u = new Utente();
         try (Connection con = ConPool.getConnection())
