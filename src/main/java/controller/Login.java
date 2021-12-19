@@ -15,14 +15,14 @@ import java.io.IOException;
 
 @WebServlet(name="Login", value="/Login")
 public class Login extends HttpServlet {
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        HttpSession session=request.getSession();
         String resp="/Home.jsp";
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
-        UtenteDAO dao= new UtenteDAO();
-        Utente user=dao.doRetrieveUtenteByEmailPassword(mail,password);
-        HttpSession session=request.getSession();
+        Utente user=this.login(mail,password);
         if(user==null)
         {
             String err="Dati utente sbagliati.";
@@ -35,5 +35,11 @@ public class Login extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
+    public void doGet(HttpServletRequest request, HttpServletResponse response){}
+
+    public Utente login(String mail, String password)
+    {
+        UtenteDAO dao= new UtenteDAO();
+        return dao.doRetrieveUtenteByEmailPassword(mail,password);
+    }
 }
