@@ -5,7 +5,7 @@
   Time: 11:54
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Registrati</title>
@@ -22,7 +22,7 @@
         }
     %>
 
-    <form action="${pageContext.request.contextPath}/SignUp" method="post">
+    <form action="SignUp" method="post">
         <label for="CF">Codice Fiscale</label><br>
         <input type="text" id="CF" name="CF" minlength="16" maxlength="16" required><br>
 

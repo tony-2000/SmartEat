@@ -10,7 +10,13 @@ import java.util.List;
 public class MensaDAO implements MensaDAOInterface
 {
 
-    public Mensa doRetrieveMensaByKey(String nome) throws NumberFormatException
+    /**
+     * @pre {@literal nome!=null}
+     * @post {@literal mensa->select(m|m.nome=nome)}
+     * @param nome Il della mensa. La indentifica univocamente.
+     * @return La mensa con la chiave richiesta
+     */
+    public Mensa doRetrieveMensaByKey(String nome)
     {
         Mensa cat = new Mensa();
         try (Connection con = ConPool.getConnection())
@@ -32,6 +38,12 @@ public class MensaDAO implements MensaDAOInterface
         }
     }
 
+    /**
+     * @pre {@literal temp.nome!=null && temp.postiDisponibili!=null && temp.orarioApertura!=null && temp.orarioChiusura!=null
+     * && mensa->exists(m|m.nome=temp.nome)}
+     * @post {@literal mensa->includes(temp)}
+     * @param temp Mensa con nuove informazioni da aggiornare.
+     */
     public void doUpdate(Mensa temp)
     {
         try (Connection con = ConPool.getConnection())

@@ -31,9 +31,9 @@ public class Mensa
     private static  Mensa mensa=new Mensa();
 
     /**
-     *Costruttore privato per Singleton Pattern
+     *Costruttore privato per realizzare il Singleton Pattern
      */
-    private Mensa(){};
+    private Mensa(){}
 
 
     /** Restituisce il nome della mensa.

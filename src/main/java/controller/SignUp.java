@@ -40,7 +40,9 @@ public class SignUp extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response){}
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
 
 
     public String registrazione(String CF, String nome, String cognome, char gender, Date nascita,String luogo, String mail, String residenza, String password, String passwordCheck)

@@ -10,7 +10,7 @@ import java.util.List;
 public class AcquistoDAO implements AcquistoDAOInterface
 {
 
-    /** Restituisce tutti gli acquisti salvati.
+    /** Restituisce una lista con tutti gli acquisti salvati.
      * @post {@literal List=acquisto->asSet()}
      * @return Lista di tutti gli acquisti salvati
      */
@@ -41,7 +41,7 @@ public class AcquistoDAO implements AcquistoDAOInterface
      * @post {@literal Acquisto (empty) || acquisto->select(Acquisto|Acquisto.dataAcquisto==dataAcquisto && Acquisto.codiceFiscale==codiceFiscale && Acquisto.codiceMenu==codiceMenu)}
      * @return Acquisto con la chiave richiesta, se presente
      */
-    public Acquisto doRetrieveAcquistoByKey(Date dataAcquisto, String CF, int codiceMenu) throws NumberFormatException
+    public Acquisto doRetrieveAcquistoByKey(Date dataAcquisto, String CF, int codiceMenu)
     {
         Acquisto cat = new Acquisto();
         try (Connection con = ConPool.getConnection())
@@ -67,7 +67,7 @@ public class AcquistoDAO implements AcquistoDAOInterface
 
     /** Salva l'acquisto in database.
      * @pre {@literal acq.dataAcquisto!=null && acq.codiceFiscale!=null && acq.codiceMenu!=null && acq.postoMensa!=null &&
-     * !(acquisto->include(acq))}
+     * !(acquisto->includes(acq))}
      * @post {@literal acquisto->include(acq)}
      * @param acq Acquisto da salvare in database
      */
@@ -121,7 +121,7 @@ public class AcquistoDAO implements AcquistoDAOInterface
     /** Aggiorna il menu con quella chiave.
      * @pre {@literal temp.dataAcquisto!=null && temp.codiceFiscale!=null && temp.codiceMenu!=null
      * && acquisto->exists(a|a.dataAcquisto==temp.dataAcquisto && a.codiceFiscale==temp.codiceFiscale && a.codiceMenu==temp.codiceMenu)}
-     * @post {@literal acquisto->include(temp)}
+     * @post {@literal acquisto->includes(temp)}
      * @param temp Acquisto con la stessa chiave da quello da aggiornare e le nuove informazioni
      */
     public void doUpdate(Acquisto temp)
