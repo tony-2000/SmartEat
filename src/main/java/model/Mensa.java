@@ -3,7 +3,7 @@ package model;
 import java.sql.Time;
 
 /**
- * La classe modella gli oggeti mensa
+ * La classe modella gli oggeti mensa ed utilizza il Singleton Pattern
  * @invariant orarioApertura.getTime()-orarioChiusura.getTime(){@literal <}0
  */
 public class Mensa
@@ -24,6 +24,16 @@ public class Mensa
      * L'orario di chiusura della mensa.
      */
     private Time orarioChiusura;
+
+    /**
+     * Instanza privata del Singleton Mensa
+     */
+    private static  Mensa mensa=new Mensa();
+
+    /**
+     *Costruttore privato per Singleton Pattern
+     */
+    private Mensa(){};
 
 
     /** Restituisce il nome della mensa.
