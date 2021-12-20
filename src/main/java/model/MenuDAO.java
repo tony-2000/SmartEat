@@ -79,7 +79,7 @@ public class MenuDAO implements MenuDAOInterface
      * @pre {@literal menu.codiceMenu!=null && menu.nome!=null && menu.primo!=null && menu.secondo!=null && menu.dessert!=null
      * && menu.descrizione!=null && menu.immagine!=null && menu.prezzo!=null && menu.available!=null
      * && !(menu->includes(menu))}
-     * @post {@literal menu->includes(menu)}
+     * @post {@literal Menu (empty) || menu->includes(menu)}
      * @param menu il menu da salvare in database
      */
     public void doSave(Menu menu)

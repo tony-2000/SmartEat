@@ -4,15 +4,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Questa classe DAO implementa un'interfaccia per l'interrogazione al database per i metodi maggiormente usati di Tessera
+ */
 public class TesseraDAO implements TesseraDAOInterface
 {
 
-    //doRetrieveAll
-    //doRetrieveByKey
-    //doSave
-    //doDelete
-    //doUpdate
-
+    /** Restituisce tutte le tessere salvate
+     * @post {@literal List=tessera->asSet()}
+     * @return Lista contenente tutte le tessere salvate
+     */
     public List<Tessera> doRetrieveAllTessera()
     {
         List<Tessera> list = new ArrayList<>();
@@ -32,6 +33,12 @@ public class TesseraDAO implements TesseraDAOInterface
         }
     }
 
+    /** Restituisce la tessera con la chiave richiesta.
+     * @pre {@literal CF!=null}
+     * @post {@literal Tessera (empty) || tessera->select(t|t.codiceFiscale==CF)}
+     * @param CF Codice fiscale. Identifica univocamente una tessera.
+     * @return Tessera con la chiave richiesta
+     */
     public Tessera doRetrieveTesseraByKey(String CF)
     {
         Tessera t = new Tessera();
@@ -50,6 +57,11 @@ public class TesseraDAO implements TesseraDAOInterface
         }
     }
 
+    /** Salva una tessera in database
+     * @pre {@literal t.codiceFiscale!=null && t.saldo!=null && !(tessera->includes(t))}
+     * @post {@literal tessera->includes(t)}
+     * @param t Tessera da salvare in database
+     */
     public void doSave(Tessera t)
     {
         try (Connection con = ConPool.getConnection())
@@ -68,6 +80,11 @@ public class TesseraDAO implements TesseraDAOInterface
         }
     }
 
+    /** Elimina la tessera con una chiave
+     * @pre {@literal CF!=null && tessera->exists(t|t.codiceFiscale==CF)}
+     * @post {@literal !(tessera->exists(t|t.codiceFiscale==CF))}
+     * @param CF codice fiscale della tessera da eliminare
+     */
     public void doDelete(String CF)
     {
         try (Connection con = ConPool.getConnection())
@@ -85,6 +102,11 @@ public class TesseraDAO implements TesseraDAOInterface
         }
     }
 
+    /** Aggiorna le informazioni di una tessera
+     * @pre {@literal t.codiceFiscale!=null && t.saldo!=null && tessera->exists(tes|tes.codiceFiscale==t.codiceFiscale)}
+     * @post {@literal tessera->includes(t)}
+     * @param t tessera con le informazioni aggiornate
+     */
     public void doUpdate(Tessera t)
     {
         try (Connection con = ConPool.getConnection())
