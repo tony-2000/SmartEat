@@ -23,17 +23,10 @@ public class Login extends HttpServlet {
         String resp="/Home.jsp";
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
-        String error = null;
-        Utente user=this.login(mail,password,error);
-        if(error==null)  //corretto
+        Utente user=this.login(mail,password);
+        if(user==null)
         {
-            error="Dati utente sbagliati.";
-            resp="Login.jsp";
-            request.setAttribute("logError",error);
-        }
-        else if(user==null)
-        {
-            String err="Dati utente non trovati.";
+            String err="Dati utente scorretti";
             resp="Login.jsp";
             request.setAttribute("logError",err);
         }
@@ -45,7 +38,7 @@ public class Login extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response){}
 
-    public Utente login(String mail, String password,String error)
+    public Utente login(String mail, String password)
     {
         try
         {
@@ -54,7 +47,7 @@ public class Login extends HttpServlet {
         }
         catch (Exception e)
         {
-            error=e.getMessage();
+            return new Utente();
         }
         UtenteDAO dao= new UtenteDAO();
         return dao.doRetrieveUtenteByEmailPassword(mail,password);

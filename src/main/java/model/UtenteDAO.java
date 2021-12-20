@@ -8,7 +8,7 @@ public class UtenteDAO {
 
     public List<Utente> doRetrieveAllUtente()
     {
-        List<Utente> list = new ArrayList<Utente>();
+        List<Utente> list = new ArrayList<>();
         try (Connection con = ConPool.getConnection())
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM utente");
@@ -34,7 +34,7 @@ public class UtenteDAO {
         }
     }
 
-    public Utente doRetrievePietanzaByKey(String CF)
+    public Utente doRetrieveUtenteByKey(String CF)
     {
         Utente u = new Utente();
         try (Connection con = ConPool.getConnection())
