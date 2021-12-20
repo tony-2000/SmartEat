@@ -4,7 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PietanzaDAO {
+public class PietanzaDAO implements PietanzaDAOInterface
+{
 
     public List<Pietanza> doRetrieveAllPietanza()
     {
@@ -103,6 +104,22 @@ public class PietanzaDAO {
             ps.setString(4, p.getImmagine());
             ps.setInt(5, p.getNumeroAcquisti());
             ps.setString(6, p.getNome());
+
+            ps.executeUpdate();
+
+        } catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void doUpdateNumeroAcquisti(int na)
+    {
+        try (Connection con = ConPool.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement("UPDATE pietanza SET numeroAcquisti=? WHERE nome=?",
+                    Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, na);
 
             ps.executeUpdate();
 

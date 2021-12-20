@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Questa classe DAO fornisce un'interfaccia per l'interrogazione al database per i metodi più usati di Acquisto.
+ * Questa classe DAO implementa un'interfaccia per l'interrogazione al database per i metodi più usati di Acquisto.
  */
-public class AcquistoDAO
+public class AcquistoDAO implements AcquistoDAOInterface
 {
 
     /** Restituisce tutti gli acquisti salvati.
@@ -37,8 +37,8 @@ public class AcquistoDAO
     }
 
     /** Restituisce l'acquisto con una chiave specifica, se presente, altrimenti restituisce un oggetto Acquisto vuoto.
-     * @pre {@literal dataAcquisto!=null && codiceFiscale!=null && codiceMenu!=null}
-     * @post {@literal Acquisto (oggetto vuoto) || acquisto->select(Acquisto.dataAcquisto==dataAcquisto && Acquisto.codiceFiscale==codiceFiscale && Acquisto.codiceMenu==codiceMenu)}
+     * @pre {@literal dataAcquisto!=null && CF!=null && codiceMenu!=null}
+     * @post {@literal Acquisto (empty) || acquisto->select(Acquisto|Acquisto.dataAcquisto==dataAcquisto && Acquisto.codiceFiscale==codiceFiscale && Acquisto.codiceMenu==codiceMenu)}
      * @return Acquisto con la chiave richiesta, se presente
      */
     public Acquisto doRetrieveAcquistoByKey(Date dataAcquisto, String CF, int codiceMenu) throws NumberFormatException

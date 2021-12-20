@@ -4,7 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TesseraDAO {
+public class TesseraDAO implements TesseraDAOInterface
+{
 
     //doRetrieveAll
     //doRetrieveByKey
@@ -14,7 +15,7 @@ public class TesseraDAO {
 
     public List<Tessera> doRetrieveAllTessera()
     {
-        List<Tessera> list = new ArrayList<Tessera>();
+        List<Tessera> list = new ArrayList<>();
         try (Connection con = ConPool.getConnection())
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM tessera");

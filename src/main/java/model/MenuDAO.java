@@ -4,11 +4,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuDAO
+public class MenuDAO implements MenuDAOInterface
 {
     public List<Menu> doRetrieveAllmenu()
     {
-        List<Menu> list = new ArrayList<Menu>();
+        List<Menu> list = new ArrayList<>();
         try (Connection con = ConPool.getConnection())
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM menu");
@@ -108,22 +108,16 @@ public class MenuDAO
     }
 
 
-    public void doUpdate(Menu temp)
+
+    public void doUpdateAvailable(int codiceMenu, Boolean bool)
     {
         try (Connection con = ConPool.getConnection())
         {
             PreparedStatement ps = con.prepareStatement
-                    ("UPDATE menu SET nome=?, primo=?, secondo=?, dessert=?, descrizione=?, immagine=?, prezzo=?, available=? WHERE codiceMenu=?",
+                    ("UPDATE menu SET available=? WHERE codiceMenu=?",
                             Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, temp.getNome());
-            ps.setString(2, temp.getPrimo());
-            ps.setString(3, temp.getSecondo());
-            ps.setString(4, temp.getDessert());
-            ps.setString(1, temp.getDescrizione());
-            ps.setString(2, temp.getImmagine());
-            ps.setFloat(3, temp.getPrezzo());
-            ps.setBoolean(4, temp.isAvailable());
-            ps.setInt(4, temp.getCodiceMenu());
+            ps.setBoolean(1, bool);
+            ps.setInt(2, codiceMenu);
             ps.executeUpdate();
 
         } catch (SQLException e)

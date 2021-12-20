@@ -4,7 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtenteDAO {
+public class UtenteDAO implements UtenteDAOInterface
+{
 
     public List<Utente> doRetrieveAllUtente()
     {
