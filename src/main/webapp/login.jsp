@@ -69,6 +69,6 @@
 
         <input type="submit" value="Login">
     </form>
-    <p><a href="signUp.jsp">Oppure registrati</a></p>
+    <p><a href="${pageContext.request.contextPath}/toSignUp">Oppure registrati</a></p>
 </body>
 </html>
