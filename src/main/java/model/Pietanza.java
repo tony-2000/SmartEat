@@ -19,7 +19,7 @@ public class Pietanza {
     /**
      * tipo della pietanza.
      */
-    private int tipo;
+    private char tipo;
 
     /**
      * ingredienti della pietanza.
@@ -69,14 +69,14 @@ public class Pietanza {
      * @return
      * Restituisce il tipo della pietanza.
      */
-    public int getTipo() {return tipo;}
+    public char getTipo() {return tipo;}
 
 
     /**
      * Imposta il tipo di piatto della pietanza.
      * @param tipo tipo di piatto della pietanza.
      */
-    public void setTipo(int tipo) {this.tipo = tipo;}
+    public void setTipo(char tipo) {this.tipo = tipo;}
 
 
     /** Restituisce gli ingredienti della pietanza.

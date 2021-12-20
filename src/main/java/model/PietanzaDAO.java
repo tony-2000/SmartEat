@@ -8,7 +8,7 @@ public class PietanzaDAO {
 
     public List<Pietanza> doRetrieveAllPietanza()
     {
-        List<Pietanza> list = new ArrayList<Pietanza>();
+        List<Pietanza> list = new ArrayList<>();
         try (Connection con = ConPool.getConnection())
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM pietanza");
@@ -17,7 +17,7 @@ public class PietanzaDAO {
                 Pietanza p = new Pietanza();
                 p.setNome(rs.getString(1));
                 p.setDescrizione(rs.getString(2));
-                p.setTipo(rs.getInt(3));
+                p.setTipo(rs.getString(3).charAt(0));
                 p.setIngredienti(rs.getString(4));
                 p.setImmagine(rs.getString(5));
                 p.setNumeroAcquisti(rs.getInt(6));
@@ -40,7 +40,7 @@ public class PietanzaDAO {
             while (rs.next()) {
                 pi.setNome(rs.getString(1));
                 pi.setDescrizione(rs.getString(2));
-                pi.setTipo(rs.getInt(3));
+                pi.setTipo(rs.getString(3).charAt(0));
                 pi.setIngredienti(rs.getString(4));
                 pi.setImmagine(rs.getString(5));
                 pi.setNumeroAcquisti(rs.getInt(6));
@@ -60,7 +60,7 @@ public class PietanzaDAO {
                             Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, p.getNome());
             ps.setString(2,p.getDescrizione());
-            ps.setInt(3, p.getTipo());
+            ps.setString(3, Character.toString(p.getTipo()));
             ps.setString(4,p.getIngredienti());
             ps.setString(5, p.getImmagine());
             ps.setInt(6,p.getNumeroAcquisti());
@@ -98,7 +98,7 @@ public class PietanzaDAO {
                             "ingredienti=?, immagine=?, numeroAcquisti=? WHERE nome=?",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, p.getDescrizione());
-            ps.setInt(2, p.getTipo());
+            ps.setString(2, Character.toString(p.getTipo()));
             ps.setString(3, p.getIngredienti());
             ps.setString(4, p.getImmagine());
             ps.setInt(5, p.getNumeroAcquisti());
