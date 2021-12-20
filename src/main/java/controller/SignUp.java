@@ -1,10 +1,7 @@
 package controller;
 
 
-import model.Check;
-import model.Utente;
-import model.UtenteDAO;
-import model.UtenteDAOInterface;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -76,7 +73,8 @@ public class SignUp extends HttpServlet {
         user.setEmail(mail);
         user.setResidenza(residenza);
         user.setPasswordHash(password);
-        user.setAmministratore(false);
+        RuoloUtente standard= new RuoloStandard();
+        user.setAmministratore(standard);
         user.setAccepted(false);
         dao.doSave(user);
         return error;

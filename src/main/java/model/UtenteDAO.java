@@ -25,7 +25,11 @@ public class UtenteDAO implements UtenteDAOInterface
                 u.setEmail(rs.getString(7));
                 u.setResidenza(rs.getString(8));
                 u.setPasswordHash(rs.getString(9));
-                u.setAmministratore(rs.getBoolean(10));
+                boolean us=(rs.getBoolean(10));
+                if(us)
+                    u.setAmministratore(new RuoloAdmin());
+                else
+                    u.setAmministratore(new RuoloStandard());
                 u.setAccepted(rs.getBoolean(11));
                 list.add(u);
             }
@@ -53,7 +57,11 @@ public class UtenteDAO implements UtenteDAOInterface
                 u.setEmail(rs.getString(7));
                 u.setResidenza(rs.getString(8));
                 u.setPasswordHash(rs.getString(9));
-                u.setAmministratore(rs.getBoolean(10));
+                boolean us=(rs.getBoolean(10));
+                if(us)
+                    u.setAmministratore(new RuoloAdmin());
+                else
+                    u.setAmministratore(new RuoloStandard());
                 u.setAccepted(rs.getBoolean(11));
             }
             return u;
@@ -79,7 +87,8 @@ public class UtenteDAO implements UtenteDAOInterface
             ps.setString(7, u.getEmail());
             ps.setString(8,u.getResidenza());
             ps.setString(9, u.getPassword());
-            ps.setBoolean(10,u.isAmministratore());
+            RuoloUtente us=u.isAmministratore();
+            ps.setBoolean(10,us.isAdmin());
             ps.setBoolean(11, u.isAccepted());
             if (ps.executeUpdate() != 1)
             {
@@ -122,7 +131,8 @@ public class UtenteDAO implements UtenteDAOInterface
             ps.setString(6, u.getEmail());
             ps.setString(7,u.getResidenza());
             ps.setString(8, u.getPassword());
-            ps.setBoolean(9,u.isAmministratore());
+            RuoloUtente us=u.isAmministratore();
+            ps.setBoolean(9,us.isAdmin());
             ps.setBoolean(10, u.isAccepted());
             ps.setString(11, u.getCF());
 
@@ -165,7 +175,7 @@ public class UtenteDAO implements UtenteDAOInterface
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM utente WHERE email=? AND password=?");
             ps.setString(1, email);
-            ps.setString(1, password);
+            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 u.setCF(rs.getString(1));
@@ -177,7 +187,11 @@ public class UtenteDAO implements UtenteDAOInterface
                 u.setEmail(rs.getString(7));
                 u.setResidenza(rs.getString(8));
                 u.setPasswordHash(rs.getString(9));
-                u.setAmministratore(rs.getBoolean(10));
+                boolean us=(rs.getBoolean(10));
+                if(us)
+                    u.setAmministratore(new RuoloAdmin());
+                else
+                    u.setAmministratore(new RuoloStandard());
                 u.setAccepted(rs.getBoolean(11));
             }
             return u;

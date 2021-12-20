@@ -60,7 +60,7 @@ public class Utente {
     /**
      * Se l'utente amministratore.
      */
-    private boolean amministratore;
+    private RuoloUtente amministratore;
 
     /**
      * Se l'utente è stato accettato sulla piattaforma.
@@ -210,14 +210,14 @@ public class Utente {
      * @return
      * Restituisce il valore che verifica se l'utente è amministratore .
      */
-    public boolean isAmministratore() {return amministratore;}
+    public RuoloUtente isAmministratore() {return amministratore;}
 
 
     /**
      * Imposta il ruolo di amministratore dell'utente.
      * @param amministratore ruolo di amministratore dell'utente.
      */
-    public void setAmministratore(boolean amministratore) {this.amministratore = amministratore;}
+    public void setAmministratore(RuoloUtente amministratore) {this.amministratore = amministratore;}
 
 
     /** Verifica se l'utente è stato accettato sulla piattaforma.
