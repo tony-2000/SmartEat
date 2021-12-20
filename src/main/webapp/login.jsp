@@ -14,9 +14,11 @@
     <h2>Effettua l'accesso a SmartEat</h2>
     <form action="${pageContext.request.contextPath}/Login" method="post">
         <label for="mail">Indirizzo e-mail</label><br>
-        <input type="email" id="mail" name="mail"><br>
+        <input type="email" id="mail" name="mail" minlength="5" maxlength="35" required><br>
+
         <label for="password">Password</label><br>
-        <input type="password" id="password" name="password"><br><br>
+        <input type="password" id="password" name="password" minlength="8" maxlength="16" required><br><br>
+
         <input type="submit" value="Login">
     </form>
     <p><a href="signUp.jsp">Oppure registrati</a></p>
