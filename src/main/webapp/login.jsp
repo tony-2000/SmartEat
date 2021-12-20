@@ -12,6 +12,16 @@
 </head>
 <body>
     <h2>Effettua l'accesso a SmartEat</h2>
+
+    <%
+        String message = (String) request.getAttribute("message");
+        if (message != null && message.length() > 0) {
+    %>
+        <p style="color: green"><%=message%></p>
+    <%
+        }
+    %>
+
     <form action="${pageContext.request.contextPath}/Login" method="post">
         <label for="mail">Indirizzo e-mail</label><br>
         <input type="email" id="mail" name="mail" minlength="5" maxlength="35" required><br>

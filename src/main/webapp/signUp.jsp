@@ -12,6 +12,16 @@
 </head>
 <body>
     <h2>Registrati a SmartEat</h2>
+
+    <%
+        String message = (String) request.getAttribute("message");
+        if (message != null && message.length() > 0) {
+    %>
+        <p style="color: red"><%=message%></p>
+    <%
+        }
+    %>
+
     <form action="${pageContext.request.contextPath}/SignUp" method="post">
         <label for="CF">Codice Fiscale</label><br>
         <input type="text" id="CF" name="CF" minlength="16" maxlength="16" required><br>
