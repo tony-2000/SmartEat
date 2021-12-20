@@ -6,12 +6,19 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 
+/**
+ * La classe modella oggetti che rappresentano un utente.
+ */
 public class Utente {
 
     private String CF;
     private String nome;
     private String cognome;
     private char sesso;
+    /**
+     * La data di nascita dell'utente
+     * @invariant CurrentDate - dataDiNascita {@literal >}=0.
+     */
     private Date dataDiNascita;
     private String luogoDiNascita;
     private String email;

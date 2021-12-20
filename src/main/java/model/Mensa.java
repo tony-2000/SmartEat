@@ -4,7 +4,7 @@ import java.sql.Time;
 
 /**
  * La classe modella gli oggeti mensa
- * @invariant orarioApertura.getTime()-orarioChiusura.getTime()<0
+ * @invariant orarioApertura.getTime()-orarioChiusura.getTime(){@literal <}0
  */
 public class Mensa
 {

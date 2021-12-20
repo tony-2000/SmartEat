@@ -2,6 +2,9 @@ package model;
 
 public class Pietanza {
 
+    /**
+     * La classe modella le pietanze.
+     */
     private String nome;
     private String descrizione;
     private int tipo;

@@ -2,6 +2,9 @@ package model;
 
 public class Menu
 {
+    /**
+     * La classe modella i menu.
+     */
     private int codiceMenu;
     private String nome;
     private String primo;

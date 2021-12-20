@@ -2,6 +2,9 @@ package model;
 
 public class Tessera {
 
+    /**
+     * La classe modella le tessere prepagate degli utenti.
+     */
     private String CF;
     private float saldo;
 
