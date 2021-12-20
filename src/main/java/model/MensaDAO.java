@@ -4,14 +4,14 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * Questa classe DAO implementa un'interfaccia per l'interrogazione al database per i metodi più usati di Mensa
+ * Questa classe DAO implementa un'interfaccia per l'interrogazione al database per i metodi maggiormente usati di Mensa
  */
 public class MensaDAO implements MensaDAOInterface
 {
 
     /**
      * @pre {@literal nome!=null}
-     * @post {@literal cat=mensa->select(m|m.nome=nome)->asSet()}
+     * @post {@literal List=mensa->select(m|m.nome=nome)->asSet()}
      * @param nome Il nome della mensa. La indentifica univocamente.
      * @return Una lista con, in ordine, nome, posti disponibili, orario apertura e orario chiusura.
      */

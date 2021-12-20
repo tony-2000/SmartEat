@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Questa classe DAO implementa un'interfaccia per l'interrogazione al database per i metodi più usati di Acquisto.
+ * Questa classe DAO implementa un'interfaccia per l'interrogazione al database per i metodi maggiormente usati di Acquisto.
  */
 public class AcquistoDAO implements AcquistoDAOInterface
 {

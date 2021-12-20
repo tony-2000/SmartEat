@@ -9,6 +9,6 @@ public interface PietanzaDAOInterface
      void doSave(Pietanza p);
      void doDelete(String Nome);
      void doUpdate(Pietanza p);
-     void doUpdateNumeroAcquisti(int na);
+     void doUpdateNumeroAcquisti(String nome, int na);
 
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Questa classe DAO implementa un'interfaccia per l'interrogazione al database per i metodi più usati di Menu
+ * Questa classe DAO implementa un'interfaccia per l'interrogazione al database per i metodi maggiormente usati di Menu
  */
 public class MenuDAO implements MenuDAOInterface
 {
