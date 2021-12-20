@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
         }
         else
             session.setAttribute("utenteSessione",user);
-        MensaDAO mensadao=new MensaDAO();
+        MensaDAOInterface mensadao=new MensaDAO();
         Mensa mensa=mensadao.doRetrieveMensaByKey("mensa1");
         request.setAttribute("mensa",mensa);
         RequestDispatcher dispatcher = request.getRequestDispatcher(resp);
@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
         {
             return new Utente();
         }
-        UtenteDAO dao= new UtenteDAO();
+        UtenteDAOInterface dao= new UtenteDAO();
         return dao.doRetrieveUtenteByEmailPassword(mail,password);
     }
 }

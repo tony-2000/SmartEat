@@ -4,6 +4,7 @@ package controller;
 import model.Check;
 import model.Utente;
 import model.UtenteDAO;
+import model.UtenteDAOInterface;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -63,7 +64,7 @@ public class SignUp extends HttpServlet {
              return error;
         }
         Utente user=new Utente();
-        UtenteDAO dao=new UtenteDAO();
+        UtenteDAOInterface dao=new UtenteDAO();
         user.setCF(CF);
         user.setNome(nome);
         user.setCognome(cognome);
