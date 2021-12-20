@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class MensaDAO implements MensaDAOInterface
 {
-//commento per passare ad Antonio
+
     /**
      * @pre {@literal nome!=null}
      * @post {@literal mensa->select(m|m.nome=nome)}
