@@ -1,6 +1,5 @@
 package model;
 
-import java.nio.charset.MalformedInputException;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -16,7 +15,7 @@ public class Check
         for(int i=0;i<16;i++)
            if (!Character.isLetterOrDigit(CF.charAt(i)))
                throw new Exception("Il CF può contenere solo lettere o numeri");
-        ArrayList<Utente> array = new ArrayList<>();
+        ArrayList<Utente> array;
         UtenteDAO users = new UtenteDAO();
         array= (ArrayList<Utente>) users.doRetrieveAllUtente();
         for(Utente x: array)
@@ -57,12 +56,12 @@ public class Check
 
 
    public static void mailIsValid(String mail) throws Exception {
-        if(mail=="" || mail==null) throw new Exception("Il campo mail non può essere vuoto");
+        if(mail.equals("")) throw new Exception("Il campo mail non può essere vuoto");
         if(!(mail.contains("@"))) throw new Exception("Il campo mail non può essere vuoto");
         if(!(mail.contains("."))) throw new Exception("Il campo mail non rispetta il formato");
         if(mail.length()<6) throw new Exception("Il campo mail non contiene abbastanza caratteri");
         if(mail.length()>35) throw new Exception("Il campo mail contiene più di 35 caratteri");
-        ArrayList<Utente> array = new ArrayList<>();
+        ArrayList<Utente> array;
         UtenteDAO users = new UtenteDAO();
         array= (ArrayList<Utente>) users.doRetrieveAllUtente();
         for(Utente x: array)

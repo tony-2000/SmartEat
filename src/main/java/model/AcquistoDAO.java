@@ -4,12 +4,19 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Questa classe DAO fornisce un'interfaccia per l'interrogazione al database per i metodi più usati di Acquisto.
+ */
 public class AcquistoDAO
 {
 
+    /** Restituisce tutti gli acquisti salvati.
+     * @post {@literal List=acquisto->asSet()}
+     * @return Lista di tutti gli acquisti salvati
+     */
     public List<Acquisto> doRetrieveAllAcquisto()
     {
-        List<Acquisto> list = new ArrayList<Acquisto>();
+        List<Acquisto> list = new ArrayList<>();
         try (Connection con = ConPool.getConnection())
         {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM acquisto");
@@ -29,7 +36,11 @@ public class AcquistoDAO
         }
     }
 
-
+    /** Restituisce l'acquisto con una chiave specifica, se presente, altrimenti restituisce un oggetto Acquisto vuoto.
+     * @pre {@literal dataAcquisto!=null && codiceFiscale!=null && codiceMenu!=null}
+     * @post {@literal Acquisto (oggetto vuoto) || acquisto->select(Acquisto.dataAcquisto==dataAcquisto && Acquisto.codiceFiscale==codiceFiscale && Acquisto.codiceMenu==codiceMenu)}
+     * @return Acquisto con la chiave richiesta, se presente
+     */
     public Acquisto doRetrieveAcquistoByKey(Date dataAcquisto, String CF, int codiceMenu) throws NumberFormatException
     {
         Acquisto cat = new Acquisto();
@@ -54,18 +65,23 @@ public class AcquistoDAO
     }
 
 
-
-    public void doSave(Acquisto cat)
+    /** Salva l'acquisto in database.
+     * @pre {@literal acq.dataAcquisto!=null && acq.codiceFiscale!=null && acq.codiceMenu!=null && acq.postoMensa!=null &&
+     * !(acquisto->include(acq))}
+     * @post {@literal acquisto->include(acq)}
+     * @param acq Acquisto da salvare in database
+     */
+    public void doSave(Acquisto acq)
     {
         try (Connection con = ConPool.getConnection())
         {
             PreparedStatement ps = con.prepareStatement
                     ("INSERT INTO acquisto (dataAcquisto,codiceFiscale,codiceMenu,postoMensa) VALUES(?,?,?,?)",
                             Statement.RETURN_GENERATED_KEYS);
-            ps.setDate(1, cat.getDataAcquisto());
-            ps.setString(2,cat.getCF());
-            ps.setInt(3, cat.getCodiceMenu());
-            ps.setBoolean(4,cat.isPostoMensa());
+            ps.setDate(1, acq.getDataAcquisto());
+            ps.setString(2,acq.getCF());
+            ps.setInt(3, acq.getCodiceMenu());
+            ps.setBoolean(4,acq.isPostoMensa());
             if (ps.executeUpdate() != 1)
             {
                 throw new RuntimeException("INSERT error.");
@@ -75,8 +91,14 @@ public class AcquistoDAO
         }
     }
 
-
-
+    /** Elimina l'acquisto dal database.
+     * @pre {@literal dataAcquisto!=null && CF!=null && codiceMenu!=null
+     * && acquisto->exists(a|a.dataAcquisto==dataAcquisto && a.codiceFiscale==CF && a.codiceMenu==codiceMenu)}
+     * @post {@literal !acquisto->exists(a|a.dataAcquisto==dataAcquisto && a.codiceFiscale==CF && a.codiceMenu==codiceMenu)}
+     * @param dataAcquisto Data di acquisto
+     * @param CF Codice fiscale
+     * @param codiceMenu chiave che identifica il menu
+     */
     public void doDelete(Date dataAcquisto, String CF, int codiceMenu)
     {
         try (Connection con = ConPool.getConnection())
@@ -96,7 +118,12 @@ public class AcquistoDAO
         }
     }
 
-
+    /** Aggiorna il menu con quella chiave.
+     * @pre {@literal temp.dataAcquisto!=null && temp.codiceFiscale!=null && temp.codiceMenu!=null
+     * && acquisto->exists(a|a.dataAcquisto==temp.dataAcquisto && a.codiceFiscale==temp.codiceFiscale && a.codiceMenu==temp.codiceMenu)}
+     * @post {@literal acquisto->include(temp)}
+     * @param temp Acquisto con la stessa chiave da quello da aggiornare e le nuove informazioni
+     */
     public void doUpdate(Acquisto temp)
     {
         try (Connection con = ConPool.getConnection())
@@ -116,5 +143,33 @@ public class AcquistoDAO
         }
     }
 
+    /** Restituisce tutti gli acquisti fatti dall'utente.
+     * @pre {@literal CF!=null}
+     * @post {@literal List=acquisto->select(a|a.CF=CF)}
+     * @param CF codice fiscale dell'utente di cui si vogliono gli acquisti
+     * @return Lista di acquisti fatti dall'utente
+     */
+    public List<Acquisto> doRetrieveAllAcquistoByCF(String CF)
+    {
+        List<Acquisto> list = new ArrayList<>();
+        try (Connection con = ConPool.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM acquisto where codiceFiscale=?");
+            ps.setString(1, CF);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Acquisto p = new Acquisto();
+                p.setDataAcquisto(rs.getDate(1));
+                p.setCF(rs.getString(2));
+                p.setCodiceMenu(rs.getInt(3));
+                p.setPostoMensa(rs.getBoolean(4));
+                list.add(p);
+            }
+            return list;
+        } catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
