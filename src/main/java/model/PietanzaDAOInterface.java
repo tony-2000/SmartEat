@@ -1,4 +1,4 @@
 package model;
 
-public class PietanzaDAOInterface {
+public interface PietanzaDAOInterface {
 }

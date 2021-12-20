@@ -1,4 +1,4 @@
 package model;
 
-public class UtenteDAOInterface {
+public interface UtenteDAOInterface {
 }
