@@ -11,9 +11,9 @@ public class MensaDAO implements MensaDAOInterface
 
     /**
      * @pre {@literal nome!=null}
-     * @post {@literal mensa->select(m|m.nome=nome)}
-     * @param nome Il della mensa. La indentifica univocamente.
-     * @return La mensa con la chiave richiesta
+     * @post {@literal cat=mensa->select(m|m.nome=nome)->asSet()}
+     * @param nome Il nome della mensa. La indentifica univocamente.
+     * @return Una lista con, in ordine, nome, posti disponibili, orario apertura e orario chiusura.
      */
     public ArrayList<String> doRetrieveMensaByKey(String nome)
     {
@@ -42,6 +42,10 @@ public class MensaDAO implements MensaDAOInterface
      * && mensa->exists(m|m.nome=temp.nome)}
      * @post {@literal mensa->includes(temp)}
      * Mensa con nuove informazioni da aggiornare.
+     * @param nome Il nome della mensa.
+     * @param postiDisponibili Il numero di posti disponibili in mensa.
+     * @param orarioApertura L'orario di apertura della mensa.
+     * @param orarioChiusura L'orario di chiusura della mensa.
      */
 
     public void doUpdate(String nome, int postiDisponibili, Time orarioApertura, Time orarioChiusura)
