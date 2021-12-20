@@ -2,7 +2,6 @@ package model;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Questa classe DAO implementa un'interfaccia per l'interrogazione al database per i metodi più usati di Mensa
@@ -16,9 +15,9 @@ public class MensaDAO implements MensaDAOInterface
      * @param nome Il della mensa. La indentifica univocamente.
      * @return La mensa con la chiave richiesta
      */
-    public Mensa doRetrieveMensaByKey(String nome)
+    public ArrayList<String> doRetrieveMensaByKey(String nome)
     {
-        Mensa cat = new Mensa();
+        ArrayList<String> cat = new ArrayList<>();
         try (Connection con = ConPool.getConnection())
         {
             PreparedStatement ps = con.prepareStatement
@@ -27,10 +26,10 @@ public class MensaDAO implements MensaDAOInterface
             ResultSet rs = ps.executeQuery();
             while (rs.next())
             {
-                cat.setNome(rs.getString(1));
-                cat.setPostiDisponibili(rs.getInt(2));
-                cat.setOrarioApertura(rs.getTime(3));
-                cat.setOrarioChiusura(rs.getTime(4));
+                cat.add(rs.getString(1));
+                cat.add(String.valueOf(rs.getInt(2)));
+                cat.add(String.valueOf(rs.getTime(3)));
+                cat.add(String.valueOf(rs.getTime(4)));
             }
             return cat;
         } catch (SQLException e) {
@@ -42,19 +41,20 @@ public class MensaDAO implements MensaDAOInterface
      * @pre {@literal temp.nome!=null && temp.postiDisponibili!=null && temp.orarioApertura!=null && temp.orarioChiusura!=null
      * && mensa->exists(m|m.nome=temp.nome)}
      * @post {@literal mensa->includes(temp)}
-     * @param temp Mensa con nuove informazioni da aggiornare.
+     * Mensa con nuove informazioni da aggiornare.
      */
-    public void doUpdate(Mensa temp)
+
+    public void doUpdate(String nome, int postiDisponibili, Time orarioApertura, Time orarioChiusura)
     {
         try (Connection con = ConPool.getConnection())
         {
             PreparedStatement ps = con.prepareStatement
                     ("UPDATE mensa SET postiDisponibili=?, orarioApertura=?, orarioChiusura=? WHERE nome=?",
                             Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, temp.getPostiDisponibili());
-            ps.setTime(2, temp.getOrarioApertura());
-            ps.setTime(3, temp.getOrarioChiusura());
-            ps.setString(4, temp.getNome());
+            ps.setInt(1, postiDisponibili);
+            ps.setTime(2, orarioApertura);
+            ps.setTime(3, orarioChiusura);
+            ps.setString(4,nome);
             ps.executeUpdate();
 
         } catch (SQLException e)
