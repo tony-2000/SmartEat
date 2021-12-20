@@ -13,8 +13,7 @@ public class Acquisto
     private Date dataAcquisto;
 
     /**
-     * Il codice fiscale deve essere composto da 16 caratteri.
-     * @invariant CF.lenght==16
+     * Il codice fiscale identifica un singolo cliente.
      */
     private String CF;
 
@@ -24,12 +23,12 @@ public class Acquisto
     private int codiceMenu;
 
     /**
-     * postoMensa indica se si vuole o meno prenotare un posto in mensa.
+     * postoMensa indica se un acquisto comprende o meno la prenotazione di un posto in mensa.
      */
     private boolean postoMensa;
 
 
-    /**
+    /** Restituisce la data di acquisto.
      * @return
      * Restituisce la data di acquisto.
      */
@@ -73,7 +72,7 @@ public class Acquisto
     public boolean isPostoMensa() {return postoMensa;}
 
     /**
-     * Imposta il posto in mensa.
+     * Imposta la prenotazione di un posto in mensa.
      * @param postoMensa Posto prenotato in mensa o meno
      */
     public void setPostoMensa(boolean postoMensa) {this.postoMensa = postoMensa;}
