@@ -5,9 +5,9 @@
     <title>Smart Eat</title>
 </head>
 <body>
-<h1><%= "Smart Eat!" %>
-</h1>
-<br/>
-Smart Eat
+    <h1><%= "Smart Eat!" %></h1>
+    <br/>
+    Smart Eat
+    <p><a href="login.jsp">Effettua l'accesso.</a></p>
 </body>
 </html>
