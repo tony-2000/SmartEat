@@ -1,8 +1,6 @@
 package controller;
 
-import model.Check;
-import model.Utente;
-import model.UtenteDAO;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,6 +30,9 @@ public class Login extends HttpServlet {
         }
         else
             session.setAttribute("utenteSessione",user);
+        MensaDAO mensadao=new MensaDAO();
+        Mensa mensa=mensadao.doRetrieveMensaByKey("mensa1");
+        request.setAttribute("mensa",mensa);
         RequestDispatcher dispatcher = request.getRequestDispatcher(resp);
         dispatcher.forward(request, response);
     }
