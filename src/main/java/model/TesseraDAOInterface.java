@@ -2,6 +2,10 @@ package model;
 
 import java.util.List;
 
+
+/**
+ * Questa interfaccia realizza il Pattern DAO per la classe TesseraDAO
+ */
 public interface TesseraDAOInterface
 {
      List<Tessera> doRetrieveAllTessera();

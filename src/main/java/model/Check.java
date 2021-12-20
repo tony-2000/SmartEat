@@ -3,8 +3,9 @@ package model;
 import java.sql.Date;
 import java.util.ArrayList;
 
-/*Controlli vari agli input*/
-
+/**
+ * Questa classe di servizio realizza la convalida degli input
+ */
 public class Check
 {
 

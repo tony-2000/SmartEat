@@ -215,14 +215,14 @@ public class Utente {
 
     /**
      * Imposta il ruolo di amministratore dell'utente.
-     * @param amministratore ruolo di amministratore dell'utente.
+     * @param amministratore stabilisce se l'utente è amministratore.
      */
     public void setAmministratore(RuoloUtente amministratore) {this.amministratore = amministratore;}
 
 
     /** Verifica se l'utente è stato accettato sulla piattaforma.
      * @return
-     * Restituisce il valore che verifica se l'utente è stato accettato sulla piattaforma. .
+     * Restituisce il valore che verifica se l'utente è stato accettato sulla piattaforma.
      */
     public boolean isAccepted() {return accepted;}
 

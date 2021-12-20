@@ -3,6 +3,9 @@ package model;
 import java.sql.Date;
 import java.util.List;
 
+/**
+ * Questa interfaccia realizza il Pattern DAO per la classe AcquistoDAO
+ */
 public interface AcquistoDAOInterface
 {
     List<Acquisto> doRetrieveAllAcquisto();
