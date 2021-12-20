@@ -24,7 +24,7 @@ public class SignUp extends HttpServlet {
         String cognome = request.getParameter("cognome");
         String g = request.getParameter("gender");
         char gender=g.charAt(0);
-        Date nascita = Date.valueOf(request.getParameter("dataDiNascita"));
+        Date nascita = Date.valueOf((request.getParameter("dataDiNascita")));
         String luogo = request.getParameter("luogoDiNascita");
         String mail = request.getParameter("mail");
         String residenza = request.getParameter("residenza");
