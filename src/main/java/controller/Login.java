@@ -25,7 +25,7 @@ public class Login extends HttpServlet {
         if(user==null)
         {
             String err="Dati utente scorretti";
-            resp="Login.jsp";
+            resp="login.jsp";
             request.setAttribute("logError",err);
         }
         else

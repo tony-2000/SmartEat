@@ -18,7 +18,7 @@ import java.sql.Date;
 public class SignUp extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String url="Login.jsp";
+        String url="login.jsp";
         String CF = request.getParameter("CF");
         String nome = request.getParameter("nome_utente");
         String cognome = request.getParameter("cognome");
@@ -32,14 +32,14 @@ public class SignUp extends HttpServlet {
         String passwordCheck = request.getParameter("passwordCheck");
         String message=this.registrazione(CF,nome,cognome,gender,nascita,luogo,mail,residenza,password,passwordCheck);
         if(!message.equals(""))
-            url="SignUp.jsp";
+            url="signUp.jsp";
         else message="Richiesta di registrazione avvenuta con successo";
         request.setAttribute("message",message);
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
+    public void doGet(HttpServletRequest request, HttpServletResponse response){}
 
 
     public String registrazione(String CF, String nome, String cognome, char gender, Date nascita,String luogo, String mail, String residenza, String password, String passwordCheck)
