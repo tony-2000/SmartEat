@@ -40,7 +40,7 @@ public class Acquisto
      */
     public void setDataAcquisto(Date dataAcquisto) {this.dataAcquisto = dataAcquisto;}
 
-    /**
+    /**Restituisce il codice fiscale.
      * @return
      * Restituisce il codice fiscale.
      */
@@ -52,7 +52,7 @@ public class Acquisto
      */
     public void setCF(String CF) {this.CF = CF;}
 
-    /**
+    /**Restituisce il codice del menu.
      *@return
      * Restituisce il codice del menu.
      */
@@ -65,7 +65,7 @@ public class Acquisto
     public void setCodiceMenu(int codiceMenu) {
         this.codiceMenu = codiceMenu;}
 
-    /**
+    /**Verifica se si e' prenotato il posto in mensa.
      * @return
      * Verifica se si e' prenotato il posto in mensa.
      */

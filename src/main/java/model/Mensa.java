@@ -3,7 +3,7 @@ package model;
 import java.sql.Time;
 
 /**
- * La classe modella oggetti che la mensa
+ * La classe modella gli oggeti mensa
  * @invariant orarioApertura.getTime()-orarioChiusura.getTime()<0
  */
 public class Mensa
@@ -25,22 +25,59 @@ public class Mensa
      */
     private Time orarioChiusura;
 
-    /**
+
+    /** Restituisce il nome della mensa.
+     * @return
      * Restituisce il nome della mensa.
      */
     public String getNome() {return nome;}
 
+
+    /**
+     * Imposta il nome della mensa.
+     * @param nome nome della mensa
+     */
     public void setNome(String nome) {this.nome = nome;}
 
+
+    /** Restituisce il numero di posti disponibili.
+     * @return
+     *Restituisce il numero di posti disponibili.
+     */
     public int getPostiDisponibili() {return postiDisponibili;}
 
+
+    /**
+     * Imposta il numero di posti disponibili.
+     * @param postiDisponibili numero di posti disponibili.
+     */
     public void setPostiDisponibili(int postiDisponibili) {this.postiDisponibili = postiDisponibili;}
 
+
+    /** Restituisce l'orario di apertura.
+     * @return
+     * Restituisce l'orario di apertura.
+     */
     public Time getOrarioApertura() {return orarioApertura;}
 
+
+    /**
+     * Imposta l'orario di apertura.
+     * @param orarioApertura orario di apertura.
+     */
     public void setOrarioApertura(Time orarioApertura) {this.orarioApertura = orarioApertura;}
 
+
+    /** Restituisce l'orario di chiusura.
+     * @return
+     * Restituisce l'orario di chiusura.
+     */
     public Time getOrarioChiusura() {return orarioChiusura;}
 
+
+    /**
+     * Imposta l'orario di chiusura.
+     * @param orarioChiusura orario di chiusura.
+     */
     public void setOrarioChiusura(Time orarioChiusura) {this.orarioChiusura = orarioChiusura;}
 }
