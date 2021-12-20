@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 
@@ -33,7 +34,10 @@ public class Login extends HttpServlet {
             session.setAttribute("utenteSessione",user);
         MensaDAOInterface mensadao=new MensaDAO();
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
-        request.setAttribute("mensa",mensa);
+        request.setAttribute("nomeMensa",mensa.get(0));
+        request.setAttribute("postiMensa",Integer.valueOf(mensa.get(1)));
+        request.setAttribute("aperturaMensa", Time.valueOf(mensa.get(2)));
+        request.setAttribute("chiusuraMensa",Time.valueOf(mensa.get(3)));
         RequestDispatcher dispatcher = request.getRequestDispatcher(resp);
         dispatcher.forward(request, response);
     }
