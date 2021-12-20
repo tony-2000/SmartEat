@@ -81,7 +81,8 @@ public class Check
 
 
 
-    public static void passwordIsValid(String password, String passwordCheck) throws Exception {
+    public static void passwordIsValid(String password, String passwordCheck) throws Exception
+    {
         if(!password.equals(passwordCheck)) throw new Exception("Le due password non coincidono");
         if(password.equals("")) throw new Exception("Il campo password è vuoto");
         if(password.length()<8) throw new Exception("Il campo password ha meno di 8 caratteri");

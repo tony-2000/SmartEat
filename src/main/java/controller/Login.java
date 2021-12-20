@@ -1,5 +1,6 @@
 package controller;
 
+import model.Check;
 import model.Utente;
 import model.UtenteDAO;
 
@@ -22,10 +23,17 @@ public class Login extends HttpServlet {
         String resp="/Home.jsp";
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
-        Utente user=this.login(mail,password);
-        if(user==null)
+        String error = null;
+        Utente user=this.login(mail,password,error);
+        if(error==null)  //corretto
         {
-            String err="Dati utente sbagliati.";
+            error="Dati utente sbagliati.";
+            resp="Login.jsp";
+            request.setAttribute("logError",error);
+        }
+        else if(user==null)
+        {
+            String err="Dati utente non trovati.";
             resp="Login.jsp";
             request.setAttribute("logError",err);
         }
@@ -37,8 +45,17 @@ public class Login extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response){}
 
-    public Utente login(String mail, String password)
+    public Utente login(String mail, String password,String error)
     {
+        try
+        {
+            Check.mailIsValid(mail);
+            Check.passwordIsValid(password,password);
+        }
+        catch (Exception e)
+        {
+            error=e.getMessage();
+        }
         UtenteDAO dao= new UtenteDAO();
         return dao.doRetrieveUtenteByEmailPassword(mail,password);
     }
