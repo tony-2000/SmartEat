@@ -43,7 +43,7 @@ public class Check
 
 
     public static void nascitaIsValid(Date data) throws Exception {
-         if(data.compareTo(new Date(System.currentTimeMillis()))<=0)
+         if(data.compareTo(new Date(System.currentTimeMillis()))>=0)
         throw new Exception("Data di nascita non valida");
     }
 
