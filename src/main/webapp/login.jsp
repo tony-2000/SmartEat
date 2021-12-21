@@ -52,7 +52,7 @@
     <h2>Effettua l'accesso a SmartEat</h2>
 
     <%
-        String message = (String) request.getAttribute("message");
+        String message = (String) request.getAttribute("logError");
         if (message != null && message.length() > 0) {
     %>
         <p style="color: green"><%=message%></p>
