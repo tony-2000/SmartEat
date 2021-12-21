@@ -32,6 +32,9 @@ public class UpdateProfile extends HttpServlet {
             url="/WEB-INF/results/utente/updateProfile.jsp";
         else message="Aggiornamento dei dati avvenuto con successo";
         request.setAttribute("message",message);
+        UtenteDAO udao=new UtenteDAO();
+        Utente user= udao.doRetrieveUtenteByKey(oldUser.getCF());
+        session.setAttribute("utenteSessione",user);
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
