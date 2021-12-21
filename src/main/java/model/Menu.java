@@ -48,7 +48,7 @@ public class Menu
     private float prezzo;
 
     /**
-     *Indica se il menu è disponibile .
+     *Indica se il menu e' disponibile.
      */
     private boolean available;
 
@@ -168,7 +168,7 @@ public class Menu
     public void setPrezzo(float prezzo) {this.prezzo = prezzo;}
 
 
-    /** Verifica se il menu è disponibile.
+    /** Verifica se il menu e' disponibile.
      * @return
      * Restituisce il valore che verifica se il menu è disponibile.
      */
@@ -176,7 +176,7 @@ public class Menu
 
 
     /**
-     * Imposta se il menu è disponibile.
+     * Imposta se il menu e' disponibile.
      * @param available disponibilita del menu.
      */
     public void setAvailable(boolean available) {this.available = available;}
