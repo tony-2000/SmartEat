@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 
+/**
+ * Classe che permette all'utente di inviare una richiesta di registrazione.
+ */
 @WebServlet(name="SignUp", value="/SignUp")
 public class SignUp extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -41,7 +44,20 @@ public class SignUp extends HttpServlet {
         doPost(request, response);
     }
 
-
+    /** Metodo che o salva una richiesta di registrazione in database e restituisce una stringa di conferma,
+     * oppure restituisce una stringa di errore nel caso di input errato.
+     * @param CF Codice fiscale dell'utente
+     * @param nome Nome dell'utente
+     * @param cognome Cognome dell'utente
+     * @param gender sesso dell'utente
+     * @param nascita data di nascita dell'utente
+     * @param luogo luogo di nascita dell'utente
+     * @param mail mail dell'utente
+     * @param residenza residenza dell'utente
+     * @param password password dell'utente
+     * @param passwordCheck campo Conferma password
+     * @return Stringa di conferma di avvenuto salvataggio o di errore.
+     */
     public String registrazione(String CF, String nome, String cognome, char gender, Date nascita,String luogo, String mail, String residenza, String password, String passwordCheck)
     {
         String error="";
@@ -53,7 +69,7 @@ public class SignUp extends HttpServlet {
             Check.sessoIsValid(gender);
             Check.nascitaIsValid(nascita);
             Check.luogoDNIsValid(luogo);
-            Check.mailIsValid(mail);
+            Check.mailIsValidReg(mail);
             Check.residenzaIsValid(residenza);
             Check.passwordIsValid(password,passwordCheck);
         }

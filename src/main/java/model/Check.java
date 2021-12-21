@@ -56,7 +56,7 @@ public class Check
 
 
 
-   public static void mailIsValid(String mail) throws Exception {
+   public static void mailIsValidReg(String mail) throws Exception {
         if(mail.equals("")) throw new Exception("Il campo mail non può essere vuoto");
         if(!(mail.contains("@"))) throw new Exception("Il campo mail non può essere vuoto");
         if(!(mail.contains("."))) throw new Exception("Il campo mail non rispetta il formato");
@@ -72,6 +72,13 @@ public class Check
         }
     }
 
+    public static void mailIsValidLogin(String mail) throws Exception {
+        if(mail.equals("")) throw new Exception("Il campo mail non può essere vuoto");
+        if(!(mail.contains("@"))) throw new Exception("Il campo mail non può essere vuoto");
+        if(!(mail.contains("."))) throw new Exception("Il campo mail non rispetta il formato");
+        if(mail.length()<6) throw new Exception("Il campo mail non contiene abbastanza caratteri");
+        if(mail.length()>35) throw new Exception("Il campo mail contiene più di 35 caratteri");
+    }
 
 
     public static void residenzaIsValid(String res) throws Exception {

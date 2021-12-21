@@ -40,6 +40,18 @@ public class UpdateProfile extends HttpServlet {
     {
     }
 
+    /** Metodo che aggiorna i dati del profilo utente nel database e restituisce una stringa di conferma, oppure restituisce solo una stringa di errore
+     * @param oldUser Dati dell'utente da aggiornare
+     * @param nome Nome dell'utente
+     * @param cognome Cognome dell'utente
+     * @param gender sesso dell'utente
+     * @param nascita data di nascita dell'utente
+     * @param luogo luogo di nascita dell'utente
+     * @param residenza residenza dell'utente
+     * @param password password dell'utente
+     * @param passwordCheck campo Conferma password
+     * @return Stringa di conferma di avvenuto salvataggio o di errore.
+     */
     public String updateProfile(Utente oldUser,String nome,String cognome,char gender, Date nascita,String luogo,
                                 String residenza,String password,String passwordCheck)
     {

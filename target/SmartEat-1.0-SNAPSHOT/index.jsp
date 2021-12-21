@@ -1,3 +1,4 @@
+<%@ page import="model.Utente" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -5,9 +6,13 @@
     <title>Smart Eat</title>
 </head>
 <body>
-    <h1><%= "Smart Eat!" %></h1>
-    <br/>
-    Smart Eat
-    <p><a href="login.jsp">Effettua l'accesso.</a></p>
+<%
+    Utente utente = (Utente) session.getAttribute("utenteSessione");
+    if (utente == null) {
+        response.sendRedirect(request.getContextPath() + "/login.jsp");
+    } else {
+        response.sendRedirect(request.getContextPath() + "/toHome");
+    }
+%>
 </body>
 </html>

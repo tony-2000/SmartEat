@@ -17,6 +17,5 @@ public class ShowAllMenus extends HttpServlet
     {
         RequestDispatcher dispatcher = request.getRequestDispatcher("");
         dispatcher.forward(request, response);
-        ..
     }
 }

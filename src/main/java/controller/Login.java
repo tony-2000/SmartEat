@@ -13,22 +13,36 @@ import java.io.IOException;
 import java.sql.Time;
 import java.util.ArrayList;
 
-
+/**
+ * Classe che implementa il login al sistema.
+ */
 @WebServlet(name="Login", value="/Login")
 public class Login extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        String[] strings=new String[2];
+
+
+
         HttpSession session=request.getSession();
         String resp="/WEB-INF/results/mensa/home.jsp";
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
-        Utente user=this.login(mail,password);
-        if(user==null)
+        Utente user=this.login(mail,password, strings);
+
+        if(user.getCF()==null)
         {
             String err="Dati utente scorretti";
+                    if(strings[1]!=null)
+                        err=err+": "+strings[1];
             resp="login.jsp";
             request.setAttribute("logError",err);
+        }
+        else if(!(strings[0]==null))
+        {
+            resp="login.jsp";
+            request.setAttribute("logError",strings[0]);
         }
         else
             session.setAttribute("utenteSessione",user);
@@ -42,20 +56,34 @@ public class Login extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response){}
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        doPost(request, response);
+    }
 
-    public Utente login(String mail, String password)
+    /** Questa servlet verifica che l'utente sia salvato nel database.
+     * @post {@literal Utente (empty) || utente->select(u|u.email=email && u.password==password}
+     * @param mail Mail dell'utente
+     * @param password Password dell'utente
+     * @return Utente (empty) se vi sono errori nella richiesta login oppure l'utente non esiste,
+     * altrimenti restituisce le informazioni dell'Utente
+     */
+    public Utente login(String mail, String password, String[] strings)
     {
         try
         {
-            Check.mailIsValid(mail);
+            Check.mailIsValidLogin(mail);
             Check.passwordIsValid(password,password);
         }
         catch (Exception e)
         {
+            strings[1]=e.getMessage();
             return new Utente();
         }
         UtenteDAOInterface dao= new UtenteDAO();
-        return dao.doRetrieveUtenteByEmailPassword(mail,password);
+        Utente u= dao.doRetrieveUtenteByEmailPassword(mail,password);
+        if(!u.isAccepted())
+            strings[0]="L'amministratore non ha ancora accettato la tua richiesta di registrazione.";
+        return u;
     }
 }

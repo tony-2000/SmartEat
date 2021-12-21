@@ -14,9 +14,13 @@ import java.io.IOException;
 import java.sql.Time;
 import java.util.ArrayList;
 
+/**
+ * Classe che reindirizza alla Home
+ */
 @WebServlet(name="toHome", value="/toHome")
 public class toHome extends HttpServlet {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

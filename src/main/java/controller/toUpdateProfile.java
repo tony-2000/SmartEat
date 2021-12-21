@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Classe che reindirizza al form di aggiornamento dati utente.
+ */
 @WebServlet(name="toUpdateProfile", value="/toUpdateProfile")
 public class toUpdateProfile extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
