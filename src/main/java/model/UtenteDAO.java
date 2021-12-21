@@ -219,7 +219,7 @@ public class UtenteDAO implements UtenteDAOInterface
         Utente u = new Utente();
         try (Connection con = ConPool.getConnection())
         {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM utente WHERE email=? AND password=?");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM utente WHERE email=? AND password=SHA1(?)");
             ps.setString(1, email);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
