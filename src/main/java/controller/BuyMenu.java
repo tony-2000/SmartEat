@@ -13,6 +13,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 
+
+//Se non ci sono posti vuoti non fa comparire la checkbox e rimanda "postoMensa" a false
+BLABLABLA
+
+
 /**
  * Classe che implementa l'acquisto di un menu
  */
@@ -74,10 +79,12 @@ public class BuyMenu extends HttpServlet
             {
                 if(posto)
                 {
-                    ServletContext ctx=getServletContext();
-                    int posti = (int )ctx.getAttribute("postiDisponibiliMensa");
-                    posti--;
-                    ctx.setAttribute("postiDisponibiliMensa",posti);
+                    if(Mensa.getPostiVuoti()==0)
+                    {
+                        message[0]="Posto non disponibile, l'operazione non ha avuto successo";
+                        return false;
+                    }
+                    Mensa.setPostiVuoti(Mensa.getPostiVuoti()-1);
                 }
                 acquistodao.doSave(acquisto);
                 tessera.setSaldo(tessera.getSaldo()-prezzo);

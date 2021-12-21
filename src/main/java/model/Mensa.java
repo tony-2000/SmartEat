@@ -25,6 +25,10 @@ public class Mensa
      * L'orario di chiusura della mensa.
      */
     private Time orarioChiusura;
+    /**
+     * Posti attualmente vuoti in mensa.
+     */
+    private static int postiVuoti;
 
     /**
      * Instanza privata del Singleton Mensa
@@ -91,6 +95,22 @@ public class Mensa
      * @param orarioChiusura orario di chiusura.
      */
     public void setOrarioChiusura(Time orarioChiusura) {this.orarioChiusura = orarioChiusura;}
+
+    /** Restituisce i posti attualmente vuoti in mensa
+     *
+     * @return posti ancora vuoti in mensa
+     */
+    public static int getPostiVuoti() {
+        return postiVuoti;
+    }
+
+    /** Imposta i posti attualmente vuoti in mensa
+     *
+     * @param postiVuoti posti ancora vuoti in mensa
+     */
+    public static void setPostiVuoti(int postiVuoti) {
+        Mensa.postiVuoti = postiVuoti;
+    }
 
     /** Verifica se la mensa e' aperta.
      * @return true se la mensa e' aperta, altrimenti false
