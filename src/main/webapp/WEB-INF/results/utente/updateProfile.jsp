@@ -159,13 +159,13 @@
 
                 <label for="gender">Sesso</label><br>
                 <select id="gender" name="gender" required>
-                    <option value="M">Maschio</option>
-                    <option value="F">Femmina</option>
-                    <option value="N">Altro</option>
+                    <option value="M" <%if (utente.getSesso() == 'M') {%>selected<%}%>>Maschio</option>
+                    <option value="F" <%if (utente.getSesso() == 'F') {%>selected<%}%>>Femmina</option>
+                    <option value="N" <%if (utente.getSesso() == 'N') {%>selected<%}%>>Altro</option>
                 </select><a id="genderAlert" style="color: red"></a><br>
 
                 <label for="dataDiNascita">Data di nascita</label><br>
-                <input type="date" id="dataDiNascita" name="dataDiNascita" required><a id="ddnAlert" style="color: red"></a><br>
+                <input type="date" id="dataDiNascita" name="dataDiNascita" value="<%=utente.getDataDiNascita()%>" required><a id="ddnAlert" style="color: red"></a><br>
 
                 <label for="luogoDiNascita">Luogo di nascita</label><br>
                 <input type="text" id="luogoDiNascita" name="luogoDiNascita" maxlength="25" value="<%=utente.getLuogoDiNascita()%>" required><a id="ldnAlert" style="color: red"></a><br>

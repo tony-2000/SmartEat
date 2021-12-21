@@ -65,6 +65,12 @@
         <p style="color: red"><%=message%></p>
     <%
         }
+        message = (String) request.getAttribute("message");
+        if (message != null && message.length() > 0) {
+    %>
+    <p style="color: green"><%=message%></p>
+    <%
+        }
     %>
 
     <form name="login" onsubmit="return validateForm()" action="${pageContext.request.contextPath}/Login" method="post">
