@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class MensaDAO implements MensaDAOInterface
 {
 
-    /**
+    /** Restituisce la mensa con la chiave specificata, se presente, altrimenti restituisce un oggetto lista vuoto.
      * @pre {@literal nome!=null}
      * @post {@literal List=mensa->select(m|m.nome=nome)->asSet()}
      * @param nome Il nome della mensa. La indentifica univocamente.

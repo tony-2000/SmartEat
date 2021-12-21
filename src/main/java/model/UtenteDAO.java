@@ -4,9 +4,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Questa classe DAO implementa un'interfaccia per l'interrogazione al database per i metodi maggiormente usati di Utente.
+ */
 public class UtenteDAO implements UtenteDAOInterface
 {
 
+    /** Restituisce una lista con tutti gli utenti salvati.
+     * @post {@literal List=utente->asSet()}
+     * @return Lista di tutti gli utenti salvati
+     */
     public List<Utente> doRetrieveAllUtente()
     {
         List<Utente> list = new ArrayList<>();
@@ -39,6 +46,12 @@ public class UtenteDAO implements UtenteDAOInterface
         }
     }
 
+    /** Restituisce l'utente con la chiave specificata, se presente, altrimenti restituisce un oggetto Utente vuoto.
+     * @pre {@literal CF!=null}
+     * @post {@literal Utente (empty) || utente->select(u|u.codiceFiscale==CF)}
+     * @param CF Codice fiscale dell'utente. Lo identifica univocamente.
+     * @return Utente con la chiave specificata.
+     */
     public Utente doRetrieveUtenteByKey(String CF)
     {
         Utente u = new Utente();
@@ -70,6 +83,13 @@ public class UtenteDAO implements UtenteDAOInterface
         }
     }
 
+    /** Salva un utente in database.
+     * @pre {@literal u.codiceFiscale!=null && u.nome!=null && u.cognome!=null && u.sesso!=null && u.dataDiNascita!=null, u.luogoDiNascita!=null
+     * && u.email!=null && u.residenza!=null && u.password!=null && u.amministratore!=null && u.accepted!=null
+     * && !(utente->includes(u))}
+     * @post {@literal utente->includes(u)}
+     * @param u Utente da salvare in database.
+     */
     public void doSave(Utente u)
     {
         try (Connection con = ConPool.getConnection())
@@ -99,6 +119,11 @@ public class UtenteDAO implements UtenteDAOInterface
         }
     }
 
+    /** Elimina un utente.
+     * @pre {@literal CF!=null && utente->exists(u|u.codiceFiscale==CF)}
+     * @post {@literal !(utente->exists(u|u.codiceFiscale==CF))}
+     * @param CF Codice fiscale dell'utente da eliminare.
+     */
     public void doDelete(String CF)
     {
         try (Connection con = ConPool.getConnection())
@@ -116,6 +141,13 @@ public class UtenteDAO implements UtenteDAOInterface
         }
     }
 
+    /** Aggiorna tutte le informazioni dell'utente
+     * @pre {@literal u.codiceFiscale!=null && u.nome!=null && u.cognome!=null && u.sesso!=null && u.dataDiNascita!=null, u.luogoDiNascita!=null
+     * && u.email!=null && u.residenza!=null && u.password!=null && u.amministratore!=null && u.accepted!=null
+     * && utente->exists(ut|ut.codiceFiscale==u.codiceFiscale)}
+     * @post {@literal utente->includes(u)}
+     * @param u Utente con la stessa chiave di quello da aggiornare e le nuove informazioni
+     */
     public void doUpdate(Utente u)
     {
         try (Connection con = ConPool.getConnection())
@@ -144,6 +176,13 @@ public class UtenteDAO implements UtenteDAOInterface
         }
     }
 
+    /** Aggiorna tutte e sole le informazioni dell'utente che questi può modificare.
+     * @pre {@literal u.codiceFiscale!=null && u.nome!=null && u.cognome!=null && u.sesso!=null && u.dataDiNascita!=null, u.luogoDiNascita!=null
+     * && && u.residenza!=null && u.password!=null && utente->exists(ut|ut.codiceFiscale==u.codiceFiscale)}
+     * @post {@literal utente->exists(ut|ut.nome==u.nome && ut.cognome==u.cognome && ut.sesso==u.sesso && ut.codiceFiscale==u.codiceFiscale && ut.dataDiNascita==u.dataDiNascita
+     * && ut.luogoDiNascita==u.luogoDiNascita && ut.residenza==u.residenza && ut.password==u.password)}
+     * @param u Utente con la stessa chiave di quello da aggiornare e le nuove informazioni.
+     */
     public void doUpdateUtenteInfo(Utente u)
     {
         try (Connection con = ConPool.getConnection())
@@ -168,6 +207,13 @@ public class UtenteDAO implements UtenteDAOInterface
         }
     }
 
+    /** Restituisce un utente con email e password specificate, se presente, altrimenti restituisce un oggetto Utente vuoto.
+     * @pre {@literal email!=null && password!=null}
+     * @post {@literal Utente (empty) || utente->select(u|u.email=email && u.password==password)}
+     * @param email Email dell'utente
+     * @param password Password dell'utente
+     * @return Utente con email e password specificate.
+     */
     public Utente doRetrieveUtenteByEmailPassword(String email, String password)
     {
         Utente u = new Utente();

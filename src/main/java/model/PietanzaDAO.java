@@ -37,7 +37,7 @@ public class PietanzaDAO implements PietanzaDAOInterface
         }
     }
 
-    /** Restituisce una pietanza con la chiave inserita.
+    /** Restituisce una pietanza con la chiave inserita, se presente, altrimenti restituisce un oggetto Pietanza vuoto.
      * @pre {@literal nome!=null}
      * @post {@literal pietanza->select(p|p.nome=nome)}
      * @param Nome Il nome della pietanza. La identifica univocamente.

@@ -41,7 +41,7 @@ public class MenuDAO implements MenuDAOInterface
         }
     }
 
-    /** Restituisce il menu con la chiave inserita
+    /** Restituisce il menu con la chiave inserita, se presente, altrimenti restituisce un oggetto Menu vuoto.
      * @pre {@literal codiceMenu!=null}
      * @post {@literal menu->select(m|m.codiceMenu=codiceMenu)}
      * @param codiceMenu Codice che identifica univocamente un menu

@@ -33,7 +33,7 @@ public class TesseraDAO implements TesseraDAOInterface
         }
     }
 
-    /** Restituisce la tessera con la chiave richiesta.
+    /** Restituisce la tessera con la chiave richiesta, se presente, altrimenti restituisce un oggetto Tessera vuoto.
      * @pre {@literal CF!=null}
      * @post {@literal Tessera (empty) || tessera->select(t|t.codiceFiscale==CF)}
      * @param CF Codice fiscale. Identifica univocamente una tessera.

@@ -119,10 +119,10 @@ public class AcquistoDAO implements AcquistoDAOInterface
     }
 
     /** Aggiorna il menu con quella chiave.
-     * @pre {@literal temp.dataAcquisto!=null && temp.codiceFiscale!=null && temp.codiceMenu!=null
+     * @pre {@literal temp.dataAcquisto!=null && temp.codiceFiscale!=null && temp.codiceMenu!=null && temp.postoMensa!=null
      * && acquisto->exists(a|a.dataAcquisto==temp.dataAcquisto && a.codiceFiscale==temp.codiceFiscale && a.codiceMenu==temp.codiceMenu)}
      * @post {@literal acquisto->includes(temp)}
-     * @param temp Acquisto con la stessa chiave da quello da aggiornare e le nuove informazioni
+     * @param temp Acquisto con la stessa chiave di quello da aggiornare e le nuove informazioni
      */
     public void doUpdate(Acquisto temp)
     {
