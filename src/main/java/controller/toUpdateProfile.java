@@ -15,7 +15,7 @@ public class toUpdateProfile extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("UpdateProfile.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/updateProfile.jsp");
         dispatcher.forward(request, response);
     }
 }

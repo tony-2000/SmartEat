@@ -15,7 +15,8 @@ public class ShowAllMenus extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("UserProfile.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("");
         dispatcher.forward(request, response);
+        ..
     }
 }

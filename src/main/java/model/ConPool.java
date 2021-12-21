@@ -7,6 +7,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.TimeZone;
 
+
+/**
+ * Questa classe di servizio collega il Sistema al Database
+ */
 public class ConPool
 {
     private static DataSource datasource;

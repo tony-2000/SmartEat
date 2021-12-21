@@ -28,7 +28,7 @@ public class toHome extends HttpServlet {
         session.setAttribute("postiMensa",Integer.valueOf(mensa.get(1)));
         session.setAttribute("aperturaMensa", Time.valueOf(mensa.get(2)));
         session.setAttribute("chiusuraMensa",Time.valueOf(mensa.get(3)));
-        RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/home.jsp");
         dispatcher.forward(request, response);
     }
 }

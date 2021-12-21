@@ -2,12 +2,12 @@ package model;
 
 
 /**
- * Questa classe specifica che il ruolo dell'utente è di amministratore
+ * Questa classe specifica che il ruolo dell'utente e' di amministratore
  */
 public class RuoloAdmin implements RuoloUtente
 {
     /**
-     * Specifica che l'utente è un amministratore
+     * Specifica che l'utente e' un amministratore
      * @return true
      */
     public boolean isAdmin() {return true;}
