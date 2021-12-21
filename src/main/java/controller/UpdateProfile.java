@@ -16,7 +16,7 @@ import java.sql.Date;
 public class UpdateProfile extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
-        String url="/WEB-INF/results/showProfile.jsp";
+        String url="/WEB-INF/results/utente/showProfile.jsp";
         Utente oldUser= (Utente) session.getAttribute("utenteSessione");
         String nome = request.getParameter("nome_utente");
         String cognome = request.getParameter("cognome");
@@ -29,7 +29,7 @@ public class UpdateProfile extends HttpServlet {
         String passwordCheck = request.getParameter("passwordCheck");
         String message=this.updateProfile(oldUser, nome,cognome,gender,nascita,luogo,residenza,password,passwordCheck);
         if(!message.equals(""))
-            url="/WEB-INF/results/updateProfile.jsp";
+            url="/WEB-INF/results/utente/updateProfile.jsp";
         else message="Aggiornamento dei dati avvenuto con successo";
         request.setAttribute("message",message);
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);

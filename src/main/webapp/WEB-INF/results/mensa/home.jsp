@@ -19,7 +19,7 @@
     %>
 
     <header>
-        <%@include file="../../partials/navbar.jsp"%>
+        <%@include file="/WEB-INF/partials/navbar.jsp"%>
     </header>
 
     <main></main>

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.Utente" %><%--
   Created by IntelliJ IDEA.
   User: simon
   Date: 20/12/2021
@@ -49,13 +49,20 @@
     </script>
 </head>
 <body>
+    <%
+        Utente utente = (Utente) session.getAttribute("utenteSessione");
+        if (utente != null)  {
+            response.sendRedirect(request.getContextPath() + "/toHome");
+        }
+    %>
+
     <h2>Effettua l'accesso a SmartEat</h2>
 
     <%
         String message = (String) request.getAttribute("logError");
         if (message != null && message.length() > 0) {
     %>
-        <p style="color: green"><%=message%></p>
+        <p style="color: red"><%=message%></p>
     <%
         }
     %>

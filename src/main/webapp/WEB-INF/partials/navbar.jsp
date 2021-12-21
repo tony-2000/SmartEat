@@ -7,20 +7,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <style>
-    ul {
+    ul.navbar {
         list-style-type: none;
     }
 
-    li {
+    ul.navbar li {
         float: left;
         margin: 0 0.5vw;
     }
 </style>
 
 <div>
-    <ul>
-        <li><a href="">Home</a></li>
+    <ul class="navbar">
+        <li><a href="${pageContext.request.contextPath}/toHome">Home</a></li>
         <li><a href="">Lista menù</a></li>
-        <li><a href="">Profilo</a></li>
+        <li><a href="${pageContext.request.contextPath}/ShowProfile">Profilo</a></li>
     </ul>
 </div>
