@@ -39,8 +39,8 @@ public class UpdateProfile extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-    {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 
     /** Metodo che aggiorna i dati del profilo utente nel database e restituisce una stringa di conferma, oppure restituisce solo una stringa di errore

@@ -13,7 +13,8 @@ import java.io.IOException;
  */
 @WebServlet(name="toUpdateProfile", value="/toUpdateProfile")
 public class toUpdateProfile extends HttpServlet {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

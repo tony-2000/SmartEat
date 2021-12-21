@@ -13,10 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Classe che implementa la visualizzazione di tutti i menu disponibili all'acquisto.
+ */
 @WebServlet(name="ShowAllMenus", value="/ShowAllMenus")
 public class ShowAllMenus extends HttpServlet
 {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {}
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -26,6 +31,10 @@ public class ShowAllMenus extends HttpServlet
         dispatcher.forward(request, response);
     }
 
+    /** Restituisce una lista con tutti i menu disponibili.
+     * @post {@literal menu->select(m|m.available==true)}
+     * @return lista con tutti i menu disponibili.
+     */
     public ArrayList<Menu> ShowAllMenu()
     {
         MenuDAOInterface mdao=new MenuDAO();

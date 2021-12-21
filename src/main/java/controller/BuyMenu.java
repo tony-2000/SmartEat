@@ -3,6 +3,7 @@ package controller;
 import model.*;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,10 +13,15 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 
+/**
+ * Classe che implementa l'acquisto di un menu
+ */
 @WebServlet(name="BuyMenu", value="/BuyMenu")
 public class BuyMenu extends HttpServlet
 {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {}
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -38,6 +44,18 @@ public class BuyMenu extends HttpServlet
 
     }
 
+    /** La classe effettua l'acquisto di un menu, se possibile.
+     *
+     * @pre {@literal codiceMenu!=null && actual!=null && posto!=null && CF!=null && tessera.codiceFiscale!=null && tessera.saldo!=null
+     * && tessera->exists(t|t.codiceFiscale==tessera.codiceFiscale)}
+     * @param codiceMenu codice del menu acquistato.
+     * @param actual data del giorno.
+     * @param posto stabilisce se si è prenotato un posto in mensa.
+     * @param CF codice fiscale dell'utente.
+     * @param tessera tessera dell'utente.
+     * @param message array di stringhe con messaggi di successo o errore.
+     * @return true se l'acquisto è andato a buon fine, false altrimenti.
+     */
     public boolean buy(int codiceMenu,Date actual, boolean posto, String CF,Tessera tessera,String[] message)
     {
         TesseraDAOInterface tesseradao=new TesseraDAO();
@@ -54,22 +72,29 @@ public class BuyMenu extends HttpServlet
         {
             if(tessera.getSaldo()-prezzo>=0)
             {
+                if(posto)
+                {
+                    ServletContext ctx=getServletContext();
+                    int posti = (int )ctx.getAttribute("postiDisponibiliMensa");
+                    posti--;
+                    ctx.setAttribute("postiDisponibiliMensa",posti);
+                }
                 acquistodao.doSave(acquisto);
                 tessera.setSaldo(tessera.getSaldo()-prezzo);
                 tesseradao.doUpdate(tessera);
             }
             else
             {
-                message[0]="Saldo insufficiente, l'operazione non ha avuto successo";
+                message[0]="Saldo insufficiente, l'operazione non ha avuto successo.";
                 return false;
             }
         }
         else
         {
-            message[0]="Il periodo per effettuare acquisti è terminato, ritorni nella fascia d'orario consentita";
+            message[0]="Il periodo per effettuare acquisti è terminato, ritorni nella fascia d'orario consentita.";
             return false;
         }
-        message[1]="Operazione di acquisto completata con successo";
+        message[1]="Operazione di acquisto completata con successo.";
         return true;
     }
 }

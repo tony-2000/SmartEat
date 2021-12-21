@@ -11,10 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * Classe che reindirizza al form di acquisto di un menu
+ */
 @WebServlet(name="toBuyMenu", value="/toBuyMenu")
 public class toBuyMenu extends HttpServlet
 {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {}
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {

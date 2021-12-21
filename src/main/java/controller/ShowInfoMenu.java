@@ -12,11 +12,15 @@ import java.io.IOException;
 import java.sql.Time;
 import java.util.ArrayList;
 
-
+/**
+ * Classe che implementa la visualizzazione di tutte le informazioni di un menu.
+ */
 @WebServlet(name="ShowInfoMenu", value="/ShowInfoMenu")
 public class ShowInfoMenu extends HttpServlet
 {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {}
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -33,6 +37,12 @@ public class ShowInfoMenu extends HttpServlet
         dispatcher.forward(request, response);
     }
 
+    /** Restituisce un menu con chiave specificata
+     * @pre {@literal codiceMenu!=null}
+     * @post {@literal menu->select(m|m.codiceMenu==codiceMenu)}
+     * @param codiceMenu codice del menu da selezionare
+     * @return menu con codice specificato
+     */
     public Menu showMenuInfo(int codiceMenu)
     {
         MenuDAOInterface mdao=new MenuDAO();

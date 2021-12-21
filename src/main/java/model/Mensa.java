@@ -92,6 +92,9 @@ public class Mensa
      */
     public void setOrarioChiusura(Time orarioChiusura) {this.orarioChiusura = orarioChiusura;}
 
+    /** Verifica se la mensa e' aperta.
+     * @return true se la mensa e' aperta, altrimenti false
+     */
     public static boolean mensaAperta()
     {
         MensaDAOInterface mensadao=new MensaDAO();
