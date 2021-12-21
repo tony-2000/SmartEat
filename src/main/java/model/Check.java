@@ -39,7 +39,7 @@ public class Check
 
     public static void sessoIsValid(char g) throws Exception {
        if(!(Character.toString(g).equals("M")) && !(Character.toString(g).equals("F")) && !(Character.toString(g).equals("N")))
-           throw new Exception("Formato non valido, inserire uno tra i segueti caratteri: M, F, N");
+           throw new Exception("Formato non valido, inserire uno tra i seguenti caratteri: M, F, N");
     }
 
 
