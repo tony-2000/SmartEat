@@ -18,5 +18,4 @@ public class ShowAllMenus extends HttpServlet
         RequestDispatcher dispatcher = request.getRequestDispatcher("UserProfile.jsp");
         dispatcher.forward(request, response);
     }
-    }
 }
