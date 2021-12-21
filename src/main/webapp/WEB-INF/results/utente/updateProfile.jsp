@@ -142,7 +142,14 @@
     <main>
         <div>
             <h1>Modifica Info Utente</h1>
-            <!-- TODO aggiungere messaggio di errore -->
+            <%
+                String message = (String) request.getAttribute("message");
+                if (message != null && message.length() > 0) {
+            %>
+            <p style="color: red"><%=message%></p>
+            <%
+                }
+            %>
             <form name="updateProfile" onsubmit="return validateForm()" action="UpdateProfile" method="post">
                 <label for="nome_utente">Nome</label><br>
                 <input type="text" id="nome_utente" name="nome_utente" maxlength="20" value="<%=utente.getNome()%>" required><a id="nomeAlert" style="color: red"></a><br>
