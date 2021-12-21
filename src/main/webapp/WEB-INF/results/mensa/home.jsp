@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.Utente" %><%--
   Created by IntelliJ IDEA.
   User: simon
   Date: 21/12/2021
@@ -11,6 +11,19 @@
     <title>Home</title>
 </head>
 <body>
-    <p>prova</p>
+    <%
+        Utente utente = (Utente) session.getAttribute("utenteSessione");
+        if (utente == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+        }
+    %>
+
+    <header>
+        <%@include file="../../partials/navbar.jsp"%>
+    </header>
+
+    <main></main>
+
+    <footer></footer>
 </body>
 </html>
