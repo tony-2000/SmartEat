@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Time;
+import java.util.ArrayList;
 
 /**
  * La classe modella gli oggeti mensa ed utilizza il Singleton Pattern
@@ -90,4 +91,16 @@ public class Mensa
      * @param orarioChiusura orario di chiusura.
      */
     public void setOrarioChiusura(Time orarioChiusura) {this.orarioChiusura = orarioChiusura;}
+
+    public static boolean mensaAperta()
+    {
+        MensaDAOInterface mensadao=new MensaDAO();
+        ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
+        Time apertura= Time.valueOf(mensa.get(2));
+        Time chiusura= Time.valueOf(mensa.get(3));
+        long attuale=System.currentTimeMillis();
+        long aperturaMillis=apertura.getTime();
+        long chiusuraMillis=chiusura.getTime();
+        return attuale >= aperturaMillis && attuale <= chiusuraMillis;
+    }
 }
