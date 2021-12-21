@@ -58,12 +58,12 @@ public class Utente {
     private String password;
 
     /**
-     * Se l'utente amministratore.
+     * Se l'utente e' amministratore.
      */
     private RuoloUtente amministratore;
 
     /**
-     * Se l'utente è stato accettato sulla piattaforma.
+     * Se l'utente e' stato accettato sulla piattaforma.
      */
     private boolean accepted;
 
@@ -206,29 +206,29 @@ public class Utente {
     }
 
 
-    /** Verifica se l'utente è amministratore.
+    /** Verifica se l'utente e' amministratore.
      * @return
-     * Restituisce il valore che verifica se l'utente è amministratore .
+     * Restituisce il valore che verifica se l'utente e' amministratore .
      */
     public RuoloUtente isAmministratore() {return amministratore;}
 
 
     /**
      * Imposta il ruolo di amministratore dell'utente.
-     * @param amministratore stabilisce se l'utente è amministratore.
+     * @param amministratore stabilisce se l'utente e' amministratore.
      */
     public void setAmministratore(RuoloUtente amministratore) {this.amministratore = amministratore;}
 
 
-    /** Verifica se l'utente è stato accettato sulla piattaforma.
+    /** Verifica se l'utente e' stato accettato sulla piattaforma.
      * @return
-     * Restituisce il valore che verifica se l'utente è stato accettato sulla piattaforma.
+     * Restituisce il valore che verifica se l'utente e' stato accettato sulla piattaforma.
      */
     public boolean isAccepted() {return accepted;}
 
 
     /**
-     * Imposta se l'utente è stato accettato.
+     * Imposta se l'utente e' stato accettato.
      * @param accepted utente accettato.
      */
     public void setAccepted(boolean accepted) {this.accepted = accepted;}
