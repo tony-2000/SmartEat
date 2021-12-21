@@ -3,6 +3,7 @@ package controller;
 
 import model.Tessera;
 import model.TesseraDAO;
+import model.TesseraDAOInterface;
 import model.Utente;
 
 import javax.servlet.RequestDispatcher;
@@ -25,7 +26,7 @@ public class ShowProfile extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        TesseraDAO tdao=new TesseraDAO();
+        TesseraDAOInterface tdao=new TesseraDAO();
         HttpSession session=request.getSession();
         Utente user= (Utente) session.getAttribute("utenteSessione");
         String CF=user.getCF();

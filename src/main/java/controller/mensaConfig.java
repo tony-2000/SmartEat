@@ -1,6 +1,5 @@
 package controller;
 
-import model.Mensa;
 import model.MensaDAO;
 
 import javax.servlet.ServletConfig;
