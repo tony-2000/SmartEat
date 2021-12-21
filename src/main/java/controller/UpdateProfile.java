@@ -16,7 +16,7 @@ import java.sql.Date;
 public class UpdateProfile extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
-        String url="UserProfile.jsp";
+        String url="ShowProfile.jsp";
         Utente oldUser= (Utente) session.getAttribute("utenteSessione");
         String nome = request.getParameter("nome_utente");
         String cognome = request.getParameter("cognome");
