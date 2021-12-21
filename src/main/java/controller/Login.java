@@ -20,7 +20,7 @@ public class Login extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         HttpSession session=request.getSession();
-        String resp="/WEB-INF/results/home.jsp";
+        String resp="/WEB-INF/results/mensa/home.jsp";
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
         Utente user=this.login(mail,password);
