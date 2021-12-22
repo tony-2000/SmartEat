@@ -43,7 +43,7 @@ public class BuyMenu extends HttpServlet
             request.setAttribute("message",message[0]);
         else
             request.setAttribute("message",message[1]);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/home.jsp");
         dispatcher.forward(request, response);
 
     }

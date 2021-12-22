@@ -149,6 +149,8 @@ public class Mensa
         Time apertura= Time.valueOf(mensa.get(2));
         Time due=Time.valueOf("02:00:00");
         Time attuale= new Time(System.currentTimeMillis());
+        System.out.println(attuale.after(due));
+        System.out.println(attuale.before(apertura));
         return attuale.after(due) && attuale.before(apertura);
     }
 

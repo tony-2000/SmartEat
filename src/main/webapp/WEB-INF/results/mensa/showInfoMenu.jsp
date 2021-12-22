@@ -33,6 +33,10 @@
             <li><%=menu.getSecondo()%></li>
             <li><%=menu.getDessert()%></li>
         </ul>
+        <form action="BuyMenu" method="post">
+            <input type="hidden" id="codiceMenu" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
+            <input type="submit" value="Acquista">
+        </form>
     </main>
 
     <footer></footer>
