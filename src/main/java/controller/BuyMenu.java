@@ -32,6 +32,7 @@ public class BuyMenu extends HttpServlet
         int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
         HttpSession session=request.getSession();
         Utente user= (Utente) session.getAttribute("utenteSessione");
+
         Date actual=new Date(System.currentTimeMillis());
         boolean posto= Boolean.parseBoolean(request.getParameter("postoMensa"));
         TesseraDAOInterface tdao=new TesseraDAO();

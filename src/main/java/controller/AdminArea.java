@@ -21,8 +21,11 @@ public class AdminArea extends HttpServlet {
         RuoloUtente ruoloUtente = u.isAmministratore();
         if(!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath()+"/toHome");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("adminArea.jsp");
-        dispatcher.forward(request, response);
+        else
+        {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("adminArea.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     @Override

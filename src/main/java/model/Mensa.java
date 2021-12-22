@@ -152,10 +152,8 @@ public class Mensa
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
         Time apertura= Time.valueOf(mensa.get(2));
         Time due=Time.valueOf("02:00:00");
-        long attuale=System.currentTimeMillis();
-        long dueMillis=due.getTime();
-        long aperturaMillis=apertura.getTime();
-        return attuale>dueMillis && attuale<aperturaMillis;
+        Time attuale= new Time(System.currentTimeMillis());
+        return attuale.before(due) && attuale.before(apertura);
     }
 
 }
