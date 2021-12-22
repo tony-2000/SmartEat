@@ -28,10 +28,14 @@ public class ShowPurchases extends HttpServlet
     {
         HttpSession session=request.getSession();
         Utente user= (Utente) session.getAttribute("utenteSessione");
-        ArrayList<Acquisto> acquisti=this.showAllAcquisti(user);
-        request.setAttribute("listaAcquisti",acquisti);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("showPurchases.jsp");
-        dispatcher.forward(request, response);
+        if(user==null)
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
+        else {
+            ArrayList<Acquisto> acquisti = this.showAllAcquisti(user);
+            request.setAttribute("listaAcquisti", acquisti);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("showPurchases.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /** Restituisce tutti gli acquisti effettuati da un utente.

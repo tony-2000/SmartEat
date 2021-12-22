@@ -29,11 +29,16 @@ public class ShowProfile extends HttpServlet {
         TesseraDAOInterface tdao=new TesseraDAO();
         HttpSession session=request.getSession();
         Utente user= (Utente) session.getAttribute("utenteSessione");
-        String CF=user.getCF();
-        Tessera tessera= tdao.doRetrieveTesseraByKey("CF");
-        request.setAttribute("tessera",tessera);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/utente/showProfile.jsp");
-        dispatcher.forward(request, response);
+        if(user==null)
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
+        else
+        {
+            String CF = user.getCF();
+            Tessera tessera = tdao.doRetrieveTesseraByKey("CF");
+            request.setAttribute("tessera", tessera);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/utente/showProfile.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 }
 

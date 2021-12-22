@@ -22,9 +22,6 @@ public class Login extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String[] strings=new String[2];
-
-
-
         HttpSession session=request.getSession();
         String resp="/WEB-INF/results/mensa/home.jsp";
         String mail = request.getParameter("mail");

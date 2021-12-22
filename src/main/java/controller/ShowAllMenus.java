@@ -3,6 +3,7 @@ package controller;
 import model.Menu;
 import model.MenuDAO;
 import model.MenuDAOInterface;
+import model.Utente;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -25,10 +27,17 @@ public class ShowAllMenus extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        ArrayList<Menu> listMenu=this.ShowAllMenu();
-        request.setAttribute("listaMenu",listMenu);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/showAllMenus.jsp");
-        dispatcher.forward(request, response);
+        HttpSession session=request.getSession();
+        Utente u= (Utente) session.getAttribute("utenteSessione");
+        if(u==null)
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
+        else
+        {
+            ArrayList<Menu> listMenu = this.ShowAllMenu();
+            request.setAttribute("listaMenu", listMenu);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/showAllMenus.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /** Restituisce una lista con tutti i menu disponibili.

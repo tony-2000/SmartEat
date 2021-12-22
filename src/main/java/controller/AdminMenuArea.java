@@ -18,14 +18,18 @@ public class AdminMenuArea extends HttpServlet {
 
         HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
-        RuoloUtente ruoloUtente = u.isAmministratore();
-        String url="AdminArea.jsp";
-        if(!ruoloUtente.isAdmin())
-            response.sendRedirect(request.getContextPath()+"/toHome");
-        ArrayList<Menu> menus=AdminShowMenu();
-        request.setAttribute("listaMenu",menus);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("adminListMenu.jsp");
-        dispatcher.forward(request, response);
+        if(u==null)
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
+        else {
+            RuoloUtente ruoloUtente = u.isAmministratore();
+            String url = "AdminArea.jsp";
+            if (!ruoloUtente.isAdmin())
+                response.sendRedirect(request.getContextPath() + "/toHome");
+            ArrayList<Menu> menus = AdminShowMenu();
+            request.setAttribute("listaMenu", menus);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("adminListMenu.jsp");
+            dispatcher.forward(request, response);
+        }
 
     }
 
