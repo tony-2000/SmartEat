@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Time;
-import java.util.ArrayList;
 
 /**
  * Classe che implementa la visualizzazione di tutte le informazioni di un menu.
@@ -29,10 +27,9 @@ public class ShowInfoMenu extends HttpServlet
         request.setAttribute("menu",menu);
         String message="Acquisto non consentito, la mensa è attualmente chiusa all'acquisto, si prega di riprovare nei tempi " +
                          "concessi all'acquisto dei pasti";
-        boolean mensaPurchase=Mensa.isMensaPurchase();
-        if(mensaPurchase)
+        if(Mensa.isMensaAperta())
             request.setAttribute("message",message);
-        request.setAttribute("mensaPurchase",mensaPurchase);
+        request.setAttribute("mensaAperta",Mensa.isMensaAperta());
         RequestDispatcher dispatcher = request.getRequestDispatcher("showInfoMenu.jsp");
         dispatcher.forward(request, response);
     }
