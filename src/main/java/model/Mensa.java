@@ -122,10 +122,8 @@ public class Mensa
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
         Time apertura= Time.valueOf(mensa.get(2));
         Time chiusura= Time.valueOf(mensa.get(3));
-        long attuale=System.currentTimeMillis();
-        long aperturaMillis=apertura.getTime();
-        long chiusuraMillis=chiusura.getTime();
-        return attuale > aperturaMillis && attuale < chiusuraMillis;
+        Time attuale= new Time(System.currentTimeMillis());
+        return attuale.after(apertura) && attuale.before(chiusura);
     }
 
     /** Verifica se è possibile effettuare modifiche al sistema.
@@ -137,10 +135,8 @@ public class Mensa
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
         Time chiusura= Time.valueOf(mensa.get(3));
         Time due=Time.valueOf("02:00:00");
-        long attuale=System.currentTimeMillis();
-        long dueMillis=due.getTime();
-        long chiusuraMillis=chiusura.getTime();
-        return attuale>chiusuraMillis && attuale<dueMillis;
+        Time attuale= new Time(System.currentTimeMillis());
+        return attuale.after(chiusura) && attuale.before(due);
     }
 
     /** Verifica se è possibile effettuare acquisti o rimborsi.
@@ -153,7 +149,7 @@ public class Mensa
         Time apertura= Time.valueOf(mensa.get(2));
         Time due=Time.valueOf("02:00:00");
         Time attuale= new Time(System.currentTimeMillis());
-        return attuale.before(due) && attuale.before(apertura);
+        return attuale.after(due) && attuale.before(apertura);
     }
 
 }
