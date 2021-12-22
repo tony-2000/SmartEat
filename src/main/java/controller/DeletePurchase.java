@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 
+/**
+ * Questa classe elimina un acquisto ed effettua il rimborso se possibile.
+ */
 @WebServlet(name="DeletePurchase", value="/DeletePurchase")
 public class DeletePurchase extends HttpServlet
 {
@@ -30,10 +33,18 @@ public class DeletePurchase extends HttpServlet
             request.setAttribute("message",message[1]);
         else
             request.setAttribute("message",message[0]);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath()+"/toHome");
     }
 
+    /** Restituisce un booleano che conferma l'eliminazione dell'acquisto e rimborso oppure segnala un errore.
+     * @pre {@literal codiceMenu!=null && CF!=null && data!=null}
+     * @post {@literal !acquisto->exists(a|a.dataAcquisto==dataAcquisto && a.codiceFiscale==CF && a.codiceMenu==codiceMenu)}
+     * @param codiceMenu codice del menu
+     * @param CF codice fiscale
+     * @param data data dell'acquisto
+     * @param message array di stringhe con messaggi di errore o conferma.
+     * @return booleano di conferma rimborso o errore.
+     */
     public boolean Rimborso(int codiceMenu, String CF, Date data, String[] message )
     {
         MenuDAOInterface menudao=new MenuDAO();
@@ -42,9 +53,7 @@ public class DeletePurchase extends HttpServlet
         Acquisto acquisto= acquistodao.doRetrieveAcquistoByKey(data,CF,codiceMenu);
 
         long actual=System.currentTimeMillis();
-        Date actualDate = null;
-        assert false;
-        actualDate.setTime(actual);
+        Date actualDate = new Date(actual);
 
         if(Mensa.isMensaPurchase()&&acquisto.getDataAcquisto().equals(actualDate))
             acquisto.setRefund(true);

@@ -23,8 +23,11 @@ public class mensaConfig extends HttpServlet
     public void init(ServletConfig config) throws ServletException
     {
         super.init(config);
+        MensaDAO dao=new MensaDAO();
+        ArrayList<String> mensa=dao.doRetrieveMensaByKey("mensa1");
+        Mensa.setPostiVuoti(Integer.parseInt(mensa.get(1)));
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new MensaTimer(), 0, 4*1000*60*60);
+        timer.scheduleAtFixedRate(new MensaTimer(), 4*1000*60*60, 4*1000*60*60);
     }
 
 

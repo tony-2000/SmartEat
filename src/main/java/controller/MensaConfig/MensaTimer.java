@@ -20,7 +20,6 @@ public class MensaTimer extends TimerTask {
             MensaDAO dao=new MensaDAO();
             ArrayList<String> mensa=dao.doRetrieveMensaByKey("mensa1");
             Mensa.setPostiVuoti(Integer.parseInt(mensa.get(1)));
-            System.out.println(Mensa.getPostiVuoti());
         }
     }
 }

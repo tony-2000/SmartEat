@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 
+/**
+ * Classe che mostra tutti gli acquisti effettuati da un utente.
+ */
 @WebServlet(name="ShowPurchases", value="/ShowPurchases")
 public class ShowPurchases extends HttpServlet
 {
@@ -31,6 +34,12 @@ public class ShowPurchases extends HttpServlet
         dispatcher.forward(request, response);
     }
 
+    /** Restituisce tutti gli acquisti effettuati da un utente.
+     * @pre {@literal user.CF!=null}
+     * @post {@literal Utente (empty) || utente->select(u|u.codiceFiscale==CF)}}
+     * @param user Utente
+     * @return lista con tutti gli acquisti effettuati dall'utente
+     */
     public ArrayList<Acquisto> showAllAcquisti(Utente user)
     {
         AcquistoDAOInterface acquistodao=new AcquistoDAO();
