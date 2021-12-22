@@ -7,13 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%
-    Utente utente = (Utente) session.getAttribute("utenteSessione");
-    if (utente == null) {
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
-    }
-%>
-
 <style>
     ul.navbar {
         list-style-type: none;
