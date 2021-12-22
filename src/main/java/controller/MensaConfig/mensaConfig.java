@@ -24,7 +24,7 @@ public class mensaConfig extends HttpServlet
     {
         super.init(config);
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new MensaTimer(), 0, 1000*60*60);
+        timer.scheduleAtFixedRate(new MensaTimer(), 0, 4*1000*60*60);
     }
 
 

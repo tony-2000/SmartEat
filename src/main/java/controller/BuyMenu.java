@@ -15,8 +15,6 @@ import java.sql.Date;
 
 
 //Se non ci sono posti vuoti non fa comparire la checkbox e rimanda "postoMensa" a false
-BLABLABLA
-
 
 /**
  * Classe che implementa l'acquisto di un menu
@@ -73,7 +71,7 @@ public class BuyMenu extends HttpServlet
         MenuDAOInterface menudao=new MenuDAO();
         Menu menu=menudao.doRetrieveMenuByKey(codiceMenu);
         float prezzo=menu.getPrezzo();
-        if(Mensa.mensaAperta())
+        if(Mensa.isMensaPurchase())
         {
             if(tessera.getSaldo()-prezzo>=0)
             {

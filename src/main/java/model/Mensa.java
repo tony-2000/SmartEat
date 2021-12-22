@@ -115,7 +115,7 @@ public class Mensa
     /** Verifica se la mensa e' aperta.
      * @return true se la mensa e' aperta, altrimenti false
      */
-    public static boolean mensaAperta()
+    public static boolean isMensaAperta()
     {
         MensaDAOInterface mensadao=new MensaDAO();
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
@@ -124,6 +124,31 @@ public class Mensa
         long attuale=System.currentTimeMillis();
         long aperturaMillis=apertura.getTime();
         long chiusuraMillis=chiusura.getTime();
-        return attuale >= aperturaMillis && attuale <= chiusuraMillis;
+        return attuale > aperturaMillis && attuale < chiusuraMillis;
     }
+
+    public static boolean isMensaConfig()
+    {
+        MensaDAOInterface mensadao=new MensaDAO();
+        ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
+        Time chiusura= Time.valueOf(mensa.get(3));
+        Time due=Time.valueOf("02:00:00");
+        long attuale=System.currentTimeMillis();
+        long dueMillis=due.getTime();
+        long chiusuraMillis=chiusura.getTime();
+        return attuale>chiusuraMillis && attuale<dueMillis;
+    }
+
+    public static boolean isMensaPurchase()
+    {
+        MensaDAOInterface mensadao=new MensaDAO();
+        ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
+        Time apertura= Time.valueOf(mensa.get(2));
+        Time due=Time.valueOf("02:00:00");
+        long attuale=System.currentTimeMillis();
+        long dueMillis=due.getTime();
+        long aperturaMillis=apertura.getTime();
+        return attuale>dueMillis && attuale<aperturaMillis;
+    }
+
 }

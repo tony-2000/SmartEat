@@ -15,7 +15,7 @@ public class MensaTimer extends TimerTask {
      * Metodo che resetta la variabile postiVuoti in mensa su quella postiDisponibili in database
      */
     public void run(){
-        if(!Mensa.mensaAperta())
+        if(Mensa.isMensaConfig())
         {
             MensaDAO dao=new MensaDAO();
             ArrayList<String> mensa=dao.doRetrieveMensaByKey("mensa1");
