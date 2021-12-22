@@ -27,9 +27,9 @@ public class ShowInfoMenu extends HttpServlet
         request.setAttribute("menu",menu);
         String message="Acquisto non consentito, la mensa è attualmente chiusa all'acquisto, si prega di riprovare nei tempi " +
                          "concessi all'acquisto dei pasti";
-        if(Mensa.isMensaAperta())
+        if(!Mensa.isMensaPurchase())
             request.setAttribute("message",message);
-        request.setAttribute("mensaAperta",Mensa.isMensaAperta());
+        request.setAttribute("mensaAperta",Mensa.isMensaPurchase());
         RequestDispatcher dispatcher = request.getRequestDispatcher("showInfoMenu.jsp");
         dispatcher.forward(request, response);
     }
