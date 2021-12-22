@@ -27,6 +27,10 @@ public class Acquisto
      */
     private boolean postoMensa;
 
+    /**
+     * refund indica se un acquisto può essere cancellato per ottenere un riborso.
+     */
+    private boolean refund;
 
     /** Restituisce la data di acquisto.
      * @return
@@ -76,5 +80,18 @@ public class Acquisto
      * @param postoMensa Posto prenotato in mensa o meno
      */
     public void setPostoMensa(boolean postoMensa) {this.postoMensa = postoMensa;}
+
+
+    /**Verifica se il rimborso è disponibile per questo acquisto.
+     * @return
+     *Verifica se il rimborso è disponibile per questo acquisto.
+     */
+    public boolean isRefund() {return refund;}
+
+    /**
+     * Imposta la possibilità di rimborso.
+     * @param refund Rimborsso possibile o meno
+     */
+    public void setRefund(boolean refund) {this.refund = refund;}
 
 }

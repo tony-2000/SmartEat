@@ -112,6 +112,7 @@ public class Mensa
         Mensa.postiVuoti = postiVuoti;
     }
 
+
     /** Verifica se la mensa e' aperta.
      * @return true se la mensa e' aperta, altrimenti false
      */
@@ -127,6 +128,9 @@ public class Mensa
         return attuale > aperturaMillis && attuale < chiusuraMillis;
     }
 
+    /** Verifica se è possibile effettuare modifiche al sistema.
+     * @return true se è possibile modificare il sistema, altrimenti false
+     */
     public static boolean isMensaConfig()
     {
         MensaDAOInterface mensadao=new MensaDAO();
@@ -139,6 +143,9 @@ public class Mensa
         return attuale>chiusuraMillis && attuale<dueMillis;
     }
 
+    /** Verifica se è possibile effettuare acquisti o rimborsi.
+     * @return true se è possibile effettuare acquisti o rimborsi, altrimenti false
+     */
     public static boolean isMensaPurchase()
     {
         MensaDAOInterface mensadao=new MensaDAO();
