@@ -1,4 +1,4 @@
-package controller.MensaConfig;
+package controller;
 
 
 import model.*;

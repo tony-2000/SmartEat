@@ -26,8 +26,11 @@ public class DeletePurchase extends HttpServlet
         String CF=request.getParameter("CF");
         int codiceMenu= Integer.parseInt(request.getParameter("codiceMenu"));
         boolean refund=this.Rimborso(codiceMenu,CF,data,message);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("showInfoPurchase.jsp");
+        if(refund)
+            request.setAttribute("message",message[1]);
+        else
+            request.setAttribute("message",message[0]);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -46,6 +49,7 @@ public class DeletePurchase extends HttpServlet
         if(Mensa.isMensaPurchase()&&acquisto.getDataAcquisto().equals(actualDate))
             acquisto.setRefund(true);
         else acquisto.setRefund(false);
+
         TesseraDAOInterface tdao=new TesseraDAO();
         Tessera tessera=tdao.doRetrieveTesseraByKey(CF);
 
@@ -53,12 +57,14 @@ public class DeletePurchase extends HttpServlet
         {
             tessera.setSaldo(tessera.getSaldo()+menu.getPrezzo());
             acquistodao.doDelete(data,CF,codiceMenu);
+            message[1]="Rimborso effettuato con successo";
+            return true;
         }
         else
         {
-
+            message[0]="Rimborso non effettuato, si prega di riprovare.";
+            return false;
         }
-
     }
 
 }
