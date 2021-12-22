@@ -26,6 +26,12 @@
     </style>
 </head>
 <body>
+    <%
+        Utente utente = (Utente) session.getAttribute("utenteSessione");
+        if (utente == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+        }
+    %>
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
     </header> <br>
