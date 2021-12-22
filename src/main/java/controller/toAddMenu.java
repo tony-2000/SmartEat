@@ -1,7 +1,6 @@
 package controller;
 
-import model.RuoloUtente;
-import model.Utente;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Classe che reindirizza al form di creazione del menu.
@@ -30,6 +30,9 @@ public class toAddMenu extends HttpServlet {
             response.sendRedirect(request.getContextPath()+"/toHome");
         else
         {
+            PietanzaDAOInterface pdao=new PietanzaDAO();
+            ArrayList<Pietanza> pietanze= (ArrayList<Pietanza>) pdao.doRetrieveAllPietanza();
+            request.setAttribute("pietanze",pietanze);
             RequestDispatcher dispatcher = request.getRequestDispatcher("addMenu.jsp");
             dispatcher.forward(request, response);
         }
