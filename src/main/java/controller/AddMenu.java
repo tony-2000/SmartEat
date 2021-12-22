@@ -59,6 +59,7 @@ public class AddMenu extends HttpServlet {
             if(Mensa.isMensaConfig())
             {
                 menudao.doSave(menu);
+                System.out.println("Aggiunta effettuata");
             }
             else
             {
@@ -66,6 +67,7 @@ public class AddMenu extends HttpServlet {
                 tam.start();
                 tam.join();
                 menudao.doSave(menu);
+                System.out.println("Aggiunta effettuata");
             }
         }
 }

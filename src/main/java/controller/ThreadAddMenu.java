@@ -16,10 +16,13 @@ public class ThreadAddMenu extends Thread
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
         Time chiusura= Time.valueOf(mensa.get(3));
         long attesa=chiusura.getTime()-actualtime.getTime();
+        System.out.println(new Time(attesa));
         try
         {
-
-            Thread.sleep(attesa+10000);
+            System.out.println("Attesa per aggiungere il menu");
+           // Thread.sleep(attesa+10000);
+            Thread.sleep(3000);
+            System.out.println("Attesa Terminata, aggiunta in corso");
 
         }
             catch (InterruptedException ignored)

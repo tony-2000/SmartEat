@@ -123,7 +123,12 @@ public class Mensa
         Time apertura= Time.valueOf(mensa.get(2));
         Time chiusura= Time.valueOf(mensa.get(3));
         Time attuale= new Time(System.currentTimeMillis());
-        return attuale.after(apertura) && attuale.before(chiusura);
+
+        String chiusuraString=chiusura.toString();
+        String aperturaString=apertura.toString();
+        String attualeString=attuale.toString();
+
+        return attualeString.compareTo(aperturaString)>0 && attualeString.compareTo(chiusuraString)<0;
     }
 
     /** Verifica se è possibile effettuare modifiche al sistema.
@@ -136,7 +141,12 @@ public class Mensa
         Time chiusura= Time.valueOf(mensa.get(3));
         Time due=Time.valueOf("02:00:00");
         Time attuale= new Time(System.currentTimeMillis());
-        return attuale.after(chiusura) && attuale.before(due);
+
+        String chiusuraString=chiusura.toString();
+        String dueString=due.toString();
+        String attualeString=attuale.toString();
+
+        return attualeString.compareTo(chiusuraString)>0 && attualeString.compareTo(dueString)<0;
     }
 
     /** Verifica se è possibile effettuare acquisti o rimborsi.
@@ -149,9 +159,12 @@ public class Mensa
         Time apertura= Time.valueOf(mensa.get(2));
         Time due=Time.valueOf("02:00:00");
         Time attuale= new Time(System.currentTimeMillis());
-        System.out.println(attuale.after(due));
-        System.out.println(attuale.before(apertura));
-        return attuale.after(due) && attuale.before(apertura);
+
+        String aperturaString=apertura.toString();
+        String dueString=due.toString();
+        String attualeString=attuale.toString();
+
+        return attualeString.compareTo(dueString)>0 && attualeString.compareTo(aperturaString)<0;
     }
 
 }
