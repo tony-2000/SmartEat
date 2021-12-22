@@ -76,10 +76,10 @@ public class MenuDAO implements MenuDAOInterface
 
 
     /** Salva nel database un menu
-     * @pre {@literal menu.codiceMenu!=null && menu.nome!=null && menu.primo!=null && menu.secondo!=null && menu.dessert!=null
+     * @pre {@literal menu.nome!=null && menu.primo!=null && menu.secondo!=null && menu.dessert!=null
      * && menu.descrizione!=null && menu.immagine!=null && menu.prezzo!=null && menu.available!=null
      * && !(menu->includes(menu))}
-     * @post {@literal Menu (empty) || menu->includes(menu)}
+     * @post {@literal menu->includes(menu)}
      * @param menu il menu da salvare in database
      */
     public void doSave(Menu menu)
@@ -87,17 +87,16 @@ public class MenuDAO implements MenuDAOInterface
         try (Connection con = ConPool.getConnection())
         {
             PreparedStatement ps = con.prepareStatement
-                    ("INSERT INTO menu (codiceMenu,nome,primo,secondo,dessert,descrizione,immagine,prezzo,available) VALUES(?,?,?,?,?,?,?,?,?)",
+                    ("INSERT INTO menu (nome,primo,secondo,dessert,descrizione,immagine,prezzo,available) VALUES(?,?,?,?,?,?,?,?)",
                             Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, menu.getCodiceMenu());
-            ps.setString(2,menu.getNome());
-            ps.setString(3, menu.getPrimo());
-            ps.setString(4,menu.getSecondo());
-            ps.setString(5, menu.getDessert());
-            ps.setString(6,menu.getDescrizione());
-            ps.setString(7, menu.getImmagine());
-            ps.setFloat(8,menu.getPrezzo());
-            ps.setBoolean(9,menu.isAvailable());
+            ps.setString(1,menu.getNome());
+            ps.setString(2, menu.getPrimo());
+            ps.setString(3,menu.getSecondo());
+            ps.setString(4, menu.getDessert());
+            ps.setString(5,menu.getDescrizione());
+            ps.setString(6, menu.getImmagine());
+            ps.setFloat(7, menu.getPrezzo());
+            ps.setBoolean(8, menu.isAvailable());
             if (ps.executeUpdate() != 1)
             {
                 throw new RuntimeException("INSERT error.");

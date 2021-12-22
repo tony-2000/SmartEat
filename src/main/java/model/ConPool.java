@@ -23,7 +23,7 @@ public class ConPool
             p.setUrl("jdbc:mysql://localhost:3306/SmartEat?serverTimezone=" + TimeZone.getDefault().getID());
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");
             p.setUsername("root");
-            p.setPassword("");
+            p.setPassword("RootPass");
             p.setMaxActive(100);
             p.setInitialSize(10);
             p.setMinIdle(10);

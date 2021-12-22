@@ -68,7 +68,7 @@ public class PietanzaDAO implements PietanzaDAOInterface
     /** Salva una pietanza in database.
      * @pre {@literal p.nome!=null && p.descrizione!=null && p.tipo!=null && p.ingredienti!=null && p.immagine!=null && p.numeroAcquisti!=null
      * && !(pietanza->includes(p))}
-     * @post {@literal Pietanza (empty) || pietanza->includes(p)}
+     * @post {@literal pietanza->includes(p)}
      * @param p Pietanza da salvare in database
      */
     public void doSave(Pietanza p)
