@@ -33,7 +33,7 @@ public class toAddMenu extends HttpServlet {
             PietanzaDAOInterface pdao=new PietanzaDAO();
             ArrayList<Pietanza> pietanze= (ArrayList<Pietanza>) pdao.doRetrieveAllPietanza();
             request.setAttribute("pietanze",pietanze);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("addMenu.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/addMenu.jsp");
             dispatcher.forward(request, response);
         }
     }

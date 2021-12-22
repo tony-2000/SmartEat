@@ -27,7 +27,7 @@ public class AdminMenuArea extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/toHome");
             ArrayList<Menu> menus = AdminShowMenu();
             request.setAttribute("listaMenu", menus);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("adminListMenu.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListMenu.jsp");
             dispatcher.forward(request, response);
         }
 

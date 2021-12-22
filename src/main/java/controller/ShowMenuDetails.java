@@ -24,7 +24,7 @@ public class ShowMenuDetails extends HttpServlet {
         int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
         Menu menu=getMenu(codiceMenu);
         request.setAttribute("menu",menu);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("showMenuDetails.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/showMenuDetails.jsp");
         dispatcher.forward(request, response);
     }
 

@@ -51,8 +51,11 @@ public class AddMenu extends HttpServlet {
             catch (InterruptedException ignored)
             {}
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("addMenu.jsp");
+            /*
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListMenu.jsp");
             dispatcher.forward(request, response);
+            */
+            response.sendRedirect(request.getContextPath() + "/AdminMenuArea");
         }
     }
         public void addMenu(Menu menu, MenuDAOInterface menudao) throws InterruptedException {

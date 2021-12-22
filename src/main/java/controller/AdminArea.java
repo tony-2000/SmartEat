@@ -23,7 +23,7 @@ public class AdminArea extends HttpServlet {
             response.sendRedirect(request.getContextPath()+"/toHome");
         else
         {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("adminArea.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminArea.jsp");
             dispatcher.forward(request, response);
         }
     }
