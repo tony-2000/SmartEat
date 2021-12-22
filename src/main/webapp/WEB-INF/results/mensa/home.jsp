@@ -1,4 +1,5 @@
-<%@ page import="model.Utente" %><%--
+<%@ page import="model.Utente" %>
+<%@ page import="model.Mensa" %><%--
   Created by IntelliJ IDEA.
   User: simon
   Date: 21/12/2021
@@ -11,18 +12,14 @@
     <title>Home</title>
 </head>
 <body>
-    <%
-        Utente utente = (Utente) session.getAttribute("utenteSessione");
-        if (utente == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
-        }
-    %>
-
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
-    </header>
+    </header> <br>
 
-    <main></main>
+    <main>
+        <h1><%=(String) session.getAttribute("nomeMensa")%></h1>
+        <p>Sono attualmente disponibili <%=Mensa.getPostiVuoti()%> posti.</p>
+    </main>
 
     <footer></footer>
 </body>

@@ -27,7 +27,7 @@ public class ShowAllMenus extends HttpServlet
     {
         ArrayList<Menu> listMenu=this.ShowAllMenu();
         request.setAttribute("listaMenu",listMenu);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("showAllMenus.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/showAllMenus.jsp");
         dispatcher.forward(request, response);
     }
 

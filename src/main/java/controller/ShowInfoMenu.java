@@ -30,7 +30,7 @@ public class ShowInfoMenu extends HttpServlet
         if(!Mensa.isMensaPurchase())
             request.setAttribute("message",message);
         request.setAttribute("mensaAperta",Mensa.isMensaPurchase());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("showInfoMenu.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/showInfoMenu.jsp");
         dispatcher.forward(request, response);
     }
 
