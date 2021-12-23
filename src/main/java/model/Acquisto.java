@@ -90,7 +90,7 @@ public class Acquisto
 
     /**
      * Imposta la possibilità di rimborso.
-     * @param refund Rimborsso possibile o meno
+     * @param refund Rimborso possibile o meno
      */
     public void setRefund(boolean refund) {this.refund = refund;}
 

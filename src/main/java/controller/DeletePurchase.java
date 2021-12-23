@@ -55,7 +55,7 @@ public class DeletePurchase extends HttpServlet
         long actual=System.currentTimeMillis();
         Date actualDate = new Date(actual);
 
-        if(Mensa.isMensaPurchase()&&acquisto.getDataAcquisto().equals(actualDate))
+        if(Mensa.isMensaPurchase() && acquisto.getDataAcquisto().compareTo(actualDate)==0)
             acquisto.setRefund(true);
         else acquisto.setRefund(false);
 
