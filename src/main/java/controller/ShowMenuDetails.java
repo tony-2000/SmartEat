@@ -17,8 +17,10 @@ public class ShowMenuDetails extends HttpServlet {
 
         HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
+        if(u==null)
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
+        assert u != null;
         RuoloUtente ruoloUtente = u.isAmministratore();
-        String url="AdminArea.jsp";
         if(!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath()+"/toHome");
         int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));

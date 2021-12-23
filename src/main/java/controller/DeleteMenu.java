@@ -26,6 +26,9 @@ public class DeleteMenu extends HttpServlet
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
+        if(u==null)
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
+        assert u != null;
         RuoloUtente ruoloUtente = u.isAmministratore();
         if (!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath() + "/toHome");

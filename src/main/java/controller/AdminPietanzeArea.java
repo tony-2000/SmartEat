@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Classe che implementa la parte dell'area admin che riguarda i menu.
+ * Classe che implementa la parte dell'area admin che riguarda le pietanze.
  */
-@WebServlet(name = "AdminMenuArea", value = "/AdminMenuArea")
-public class AdminMenuArea extends HttpServlet {
+@WebServlet(name = "AdminPietanzeArea", value = "/AdminPietanzeArea")
+public class AdminPietanzeArea extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -24,26 +24,24 @@ public class AdminMenuArea extends HttpServlet {
             RuoloUtente ruoloUtente = u.isAmministratore();
             if (!ruoloUtente.isAdmin())
                 response.sendRedirect(request.getContextPath() + "/toHome");
-            ArrayList<Menu> menus = AdminShowMenu();
-            request.setAttribute("listaMenu", menus);
+            ArrayList<Pietanza> pietanzas = AdminShowPietanze();
+            request.setAttribute("listaPietanze", pietanzas);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListMenu.jsp");
             dispatcher.forward(request, response);
         }
-
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
-    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {doGet(request,response);}
 
-    /** Restituisce la lista con tutti i menu.
-     * @post {@literal menu->asSet()}
-     * @return lista con tutti i menu
+    /** Restituisce la lista con tutte le pietanze.
+     * @post {@literal pietanza->asSet()}
+     * @return lista con tutte le pietanze.
      */
-    public ArrayList<Menu> AdminShowMenu()
+    public ArrayList<Pietanza> AdminShowPietanze()
     {
-        MenuDAOInterface mdao=new MenuDAO();
-        return (ArrayList<Menu>) mdao.doRetrieveAllmenu();
+        PietanzaDAOInterface pdao=new PietanzaDAO();
+        return (ArrayList<Pietanza>) pdao.doRetrieveAllPietanza();
     }
 }
+

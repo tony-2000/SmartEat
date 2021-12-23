@@ -9,10 +9,10 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 /**
- * Classe che porta all'Area Admin
+ * Classe che reindirizza al form di creazione della pietanza.
  */
-@WebServlet(name = "AdminArea", value = "/AdminArea")
-public class AdminArea extends HttpServlet {
+@WebServlet(name = "toAddPietanza", value = "/toAddPietanza")
+public class toAddPietanza extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -26,14 +26,14 @@ public class AdminArea extends HttpServlet {
             response.sendRedirect(request.getContextPath()+"/toHome");
         else
         {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminArea.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/addPietanza.jsp");
             dispatcher.forward(request, response);
         }
+
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 }

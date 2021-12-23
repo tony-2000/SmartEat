@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +26,9 @@ public class AddMenu extends HttpServlet {
         Utente u = (Utente) session.getAttribute("utenteSessione");
         Menu menu = new Menu();
         MenuDAOInterface menudao = new MenuDAO();
+        if(u==null)
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
+        assert u != null;
         RuoloUtente ruoloUtente = u.isAmministratore();
         if (!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath() + "/toHome");
@@ -51,11 +55,10 @@ public class AddMenu extends HttpServlet {
             else
                 message="Il menu verrà aggiunto dopo l'orario di chiusura";
             request.setAttribute("message",message);
-            response.sendRedirect(request.getContextPath() + "/AdminMenuArea");
-            /*
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListMenu.jsp");
             dispatcher.forward(request, response);
-            */
+
         }
     }
 
