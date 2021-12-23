@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 
+/**
+ * Classe che implementa l'aggiornamento dei dati utente.
+ */
 @WebServlet(name="UpdateProfile", value="/UpdateProfile")
 public class UpdateProfile extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
