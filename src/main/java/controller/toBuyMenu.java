@@ -33,7 +33,7 @@ public class toBuyMenu extends HttpServlet
         Tessera tessera=tdao.doRetrieveTesseraByKey(user.getCF());
         request.setAttribute("tessera",tessera);
         request.setAttribute("postiVuoti", Mensa.getPostiVuoti());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("buyMenu.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/buyMenu.jsp");
         dispatcher.forward(request, response);
     }
 }
