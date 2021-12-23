@@ -33,7 +33,9 @@ public class DeletePurchase extends HttpServlet
             request.setAttribute("message",message[1]);
         else
             request.setAttribute("message",message[0]);
-        response.sendRedirect(request.getContextPath()+"/toHome");
+        //response.sendRedirect(request.getContextPath()+"/toHome");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/home.jsp");
+        dispatcher.forward(request, response);
     }
 
     /** Restituisce un booleano che conferma l'eliminazione dell'acquisto e rimborso oppure segnala un errore.

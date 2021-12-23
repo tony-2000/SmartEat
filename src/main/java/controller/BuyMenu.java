@@ -78,7 +78,7 @@ public class BuyMenu extends HttpServlet
         List<Acquisto> acquistos =acquistodao.doRetrieveAllAcquistoByCF(CF);
         for(int i=0;i<acquistos.size();i++)
         {
-            if (acquistos.get(i).getDataAcquisto().compareTo(actual) == 0) {
+            if (acquistos.get(i).getDataAcquisto().toString().equals(actual.toString())) {
                 hasPurchase = true;
                 break;
             }
@@ -88,7 +88,7 @@ public class BuyMenu extends HttpServlet
         {
             if(tessera.getSaldo()-prezzo>=0)
             {
-                if(hasPurchase)
+                if(!hasPurchase)
                 {
                     if(posto)
                     {

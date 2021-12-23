@@ -18,13 +18,13 @@
             response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
     %>
-    <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
     </header> <br>
 
     <main>
+        <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
         <h1><%=(String) session.getAttribute("nomeMensa")%></h1>
         <p>Sono attualmente disponibili <%=Mensa.getPostiVuoti()%> posti.</p>
     </main>

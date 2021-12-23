@@ -18,6 +18,8 @@
         if (utente == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
+        Acquisto acquisto = (Acquisto) request.getAttribute("acquisto");
+        Menu menu = (Menu) request.getAttribute("menu");
     %>
 
     <header>
@@ -25,12 +27,6 @@
     </header> <br>
 
     <main>
-        <%
-            Acquisto acquisto = (Acquisto) session.getAttribute("acquisto");
-            System.out.println("acquisto (nella jsp) " + (acquisto == null)); //DEBUG
-            Menu menu = (Menu) session.getAttribute("menu");
-            System.out.println("menu (nella jsp) " + (menu == null)); //DEBUG
-        %>
         <h1>Info acquisto</h1>
         <h2><%=menu.getNome()%></h2>
         <p><%=menu.getDescrizione()%></p>
@@ -40,18 +36,12 @@
             <li><%=menu.getDessert()%></li>
         </ul>
         <p><%=acquisto.getDataAcquisto()%>, €<%=menu.getPrezzo()%></p>
-        <%
-            if (acquisto.isRefund()) {
-        %>
-            <form action="DeletePurchase" method="post">
-                <input type="hidden" name="dataAcquisto" value="<%=acquisto.getDataAcquisto()%>">
-                <input type="hidden" name="CF" value="<%=acquisto.getCF()%>">
-                <input type="hidden" name="codiceMenu" value="<%=acquisto.getCodiceMenu()%>">
-                <input type="submit" value="Rimborsa">
-            </form>
-        <%
-            }
-        %>
+        <form action="DeletePurchase" method="post">
+            <input type="hidden" name="dataAcquisto" value="<%=acquisto.getDataAcquisto()%>">
+            <input type="hidden" name="CF" value="<%=acquisto.getCF()%>">
+            <input type="hidden" name="codiceMenu" value="<%=acquisto.getCodiceMenu()%>">
+            <input type="submit" value="Rimborsa">
+        </form>
     </main>
 
     <footer></footer>
