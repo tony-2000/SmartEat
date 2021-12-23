@@ -1,6 +1,8 @@
 package model;
 
 
+import java.util.ArrayList;
+
 /**
  * La classe modella i menu.
  */
@@ -52,6 +54,10 @@ public class Menu
      */
     private boolean available;
 
+    /**
+     * ArrayList di servizio per aggiungere menu.
+     */
+    private static ArrayList<Menu> listAddMenu=new ArrayList<>();
 
 
     /** Restituisce il codice del menu.
@@ -180,4 +186,11 @@ public class Menu
      * @param available disponibilita del menu.
      */
     public void setAvailable(boolean available) {this.available = available;}
+
+    /**
+     * Restituisce i menu da aggiungere
+     * @return Lista di menu da aggiungere
+     */
+    public static ArrayList<Menu> getListAddMenu() {return listAddMenu;}
+
 }

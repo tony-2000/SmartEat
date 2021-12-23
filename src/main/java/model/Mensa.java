@@ -139,14 +139,14 @@ public class Mensa
         MensaDAOInterface mensadao=new MensaDAO();
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
         Time chiusura= Time.valueOf(mensa.get(3));
-        Time due=Time.valueOf("02:00:00");
+        Time config=Time.valueOf("23:59:59");
         Time attuale= new Time(System.currentTimeMillis());
 
         String chiusuraString=chiusura.toString();
-        String dueString=due.toString();
+        String confiString=config.toString();
         String attualeString=attuale.toString();
 
-        return attualeString.compareTo(chiusuraString)>0 && attualeString.compareTo(dueString)<0;
+        return attualeString.compareTo(chiusuraString)>0 && attualeString.compareTo(confiString)<0;
     }
 
     /** Verifica se è possibile effettuare acquisti o rimborsi.
@@ -157,14 +157,14 @@ public class Mensa
         MensaDAOInterface mensadao=new MensaDAO();
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
         Time apertura= Time.valueOf(mensa.get(2));
-        Time due=Time.valueOf("02:00:00");
+        Time config=Time.valueOf("23:59:59");
         Time attuale= new Time(System.currentTimeMillis());
 
         String aperturaString=apertura.toString();
-        String dueString=due.toString();
+        String configString=config.toString();
         String attualeString=attuale.toString();
 
-        return attualeString.compareTo(dueString)>0 && attualeString.compareTo(aperturaString)<0;
+        return attualeString.compareTo(configString)>0 && attualeString.compareTo(aperturaString)<0;
     }
 
 }
