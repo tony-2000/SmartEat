@@ -1,4 +1,4 @@
-package controller.MensaConfig;
+package controller.SmartEatConfig;
 
 import model.*;
 
