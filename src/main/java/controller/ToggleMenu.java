@@ -3,6 +3,7 @@ package controller;
 
 import model.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +41,9 @@ public class ToggleMenu extends HttpServlet {
             else
                 message="La disponibilita' del menu verra' aggiornata dopo l'orario di chiusura";
             request.setAttribute("message",message);
-            response.sendRedirect(request.getContextPath() + "/ShowMenuDetails");
+            //dispatcher
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/ShowMenuDetails");
+            dispatcher.forward(request, response);
         }
     }
 

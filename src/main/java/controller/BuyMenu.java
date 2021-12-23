@@ -75,18 +75,26 @@ public class BuyMenu extends HttpServlet
         {
             if(tessera.getSaldo()-prezzo>=0)
             {
-                if(posto)
+                if(!(acquistodao.doRetrieveAcquistoByKey(actual, CF, codiceMenu).getDataAcquisto()==null))
                 {
-                    if(Mensa.getPostiVuoti()==0)
+                    if(posto)
                     {
-                        message[0]="Posto non disponibile, l'operazione non ha avuto successo";
-                        return false;
+                        if(Mensa.getPostiVuoti()==0)
+                        {
+                            message[0]="Posto non disponibile, l'operazione non ha avuto successo";
+                            return false;
+                        }
+                        Mensa.setPostiVuoti(Mensa.getPostiVuoti()-1);
                     }
-                    Mensa.setPostiVuoti(Mensa.getPostiVuoti()-1);
+                    acquistodao.doSave(acquisto);
+                    tessera.setSaldo(tessera.getSaldo()-prezzo);
+                    tesseradao.doUpdate(tessera);
                 }
-                acquistodao.doSave(acquisto);
-                tessera.setSaldo(tessera.getSaldo()-prezzo);
-                tesseradao.doUpdate(tessera);
+                else
+                {
+                    message[0]="Limite acquisto giornaliero raggiunto, l'operazione non ha avuto successo.";
+                    return false;
+                }
             }
             else
             {
