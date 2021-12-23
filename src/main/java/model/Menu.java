@@ -59,6 +59,17 @@ public class Menu
      */
     private static ArrayList<Menu> listAddMenu=new ArrayList<>();
 
+    /**
+     * ArrayList di servizio per modificare la disponibilita' di un menu.
+     */
+    private static ArrayList<Integer> listToggleMenu=new ArrayList<>();
+
+
+    /**
+     * ArrayList di servizio per eliminare un menu.
+     */
+    private static ArrayList<Integer> listDeleteMenu=new ArrayList<>();
+
 
     /** Restituisce il codice del menu.
      * @return
@@ -192,5 +203,20 @@ public class Menu
      * @return Lista di menu da aggiungere
      */
     public static ArrayList<Menu> getListAddMenu() {return listAddMenu;}
+
+
+    /**
+     * Restituisce i codici dei menu a cui cambiare la disponibilita'
+     * @return Lista di codici di menu
+     */
+    public static ArrayList<Integer> getListToggleMenu() {return listToggleMenu;}
+
+
+
+    /**
+     *  Restituisce i codici dei menu da eliminare
+     * @return Lista di codici di menu
+     */
+    public static ArrayList<Integer> getListDeleteMenu() {return listDeleteMenu;}
 
 }

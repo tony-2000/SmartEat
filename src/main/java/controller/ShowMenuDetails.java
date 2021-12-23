@@ -22,7 +22,7 @@ public class ShowMenuDetails extends HttpServlet {
         if(!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath()+"/toHome");
         int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
-        Menu menu=getMenu(codiceMenu);
+        Menu menu=this.getMenu(codiceMenu);
         request.setAttribute("menu",menu);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/showMenuDetails.jsp");
         dispatcher.forward(request, response);
