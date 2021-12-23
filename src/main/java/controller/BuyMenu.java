@@ -101,6 +101,5 @@ public class BuyMenu extends HttpServlet
         }
         message[1]="Operazione di acquisto completata con successo.";
         return true;
-        ...testare
     }
 }

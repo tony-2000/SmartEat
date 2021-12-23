@@ -131,8 +131,8 @@ public class Mensa
         return attualeString.compareTo(aperturaString)>0 && attualeString.compareTo(chiusuraString)<0;
     }
 
-    /** Verifica se è possibile effettuare modifiche al sistema.
-     * @return true se è possibile modificare il sistema, altrimenti false
+    /** Verifica se e' possibile effettuare modifiche al sistema.
+     * @return true se e' possibile modificare il sistema, altrimenti false
      */
     public static boolean isMensaConfig()
     {
@@ -146,25 +146,27 @@ public class Mensa
         String confiString=config.toString();
         String attualeString=attuale.toString();
 
-        return attualeString.compareTo(chiusuraString)>0 && attualeString.compareTo(confiString)<0;
+        //uguale???
+        return attualeString.compareTo(chiusuraString)>0 && attualeString.compareTo(confiString)<=0;
     }
 
-    /** Verifica se è possibile effettuare acquisti o rimborsi.
-     * @return true se è possibile effettuare acquisti o rimborsi, altrimenti false
+    /** Verifica se e' possibile effettuare acquisti o rimborsi.
+     * @return true se e' possibile effettuare acquisti o rimborsi, altrimenti false
      */
     public static boolean isMensaPurchase()
     {
         MensaDAOInterface mensadao=new MensaDAO();
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
         Time apertura= Time.valueOf(mensa.get(2));
-        Time config=Time.valueOf("23:59:59");
+        //Time config=Time.valueOf("23:59:59");
         Time attuale= new Time(System.currentTimeMillis());
 
         String aperturaString=apertura.toString();
-        String configString=config.toString();
+        //String configString=config.toString();
         String attualeString=attuale.toString();
 
-        return attualeString.compareTo(configString)>0 && attualeString.compareTo(aperturaString)<0;
+        //attualeString.compareTo(configString)>0 && attualeString.compareTo(aperturaString)<0;
+        return attualeString.compareTo(aperturaString)<0;
     }
 
 }
