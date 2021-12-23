@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Config è una servlet che setta un timer per aggiornamenti vari.
+ * Config e' una servlet che setta un timer per aggiornamenti vari.
  */
 @WebServlet(name="Config", value="/Config",loadOnStartup = 0)
 public class Config extends HttpServlet
