@@ -22,6 +22,7 @@
     <ul class="navbar">
         <li><a href="${pageContext.request.contextPath}/toHome">Home</a></li>
         <li><a href="${pageContext.request.contextPath}/ShowAllMenus">Lista menù</a></li>
+        <li><a href="${pageContext.request.contextPath}/ShowPurchases">Acquisti</a></li>
         <li><a href="${pageContext.request.contextPath}/ShowProfile">Profilo</a></li>
         <%
             Utente u = (Utente) session.getAttribute("utenteSessione");

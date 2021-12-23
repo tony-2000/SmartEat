@@ -75,7 +75,7 @@ public class BuyMenu extends HttpServlet
         {
             if(tessera.getSaldo()-prezzo>=0)
             {
-                if(!(acquistodao.doRetrieveAcquistoByKey(actual, CF, codiceMenu).getDataAcquisto()==null))
+                if(acquistodao.doRetrieveAcquistoByKey(actual, CF, codiceMenu).getDataAcquisto()==null)
                 {
                     if(posto)
                     {

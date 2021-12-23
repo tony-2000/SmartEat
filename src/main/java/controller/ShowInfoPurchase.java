@@ -42,9 +42,13 @@ public class ShowInfoPurchase extends HttpServlet
         Tessera tessera=tdao.doRetrieveTesseraByKey(CF);
 
         request.setAttribute("tessera",tessera);
+        System.out.println("menu (nella servlet)" + (menu == null)); //DEBUG
         request.setAttribute("menu",menu);
+        System.out.println("menu (nella servlet, estratto dalla request)" + ((Menu) request.getAttribute("menu") == null)); //DEBUG
+        System.out.println("acquisto (nella servlet)" + (acquisto == null)); //DEBUG
         request.setAttribute("acquisto",acquisto);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("showInfoPurchase.jsp");
+        System.out.println("acquisto (nella servlet, estratto dalla request)" + ((Acquisto) request.getAttribute("acquisto") == null)); //DEBUG
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/showInfoPurchase.jsp");
         dispatcher.forward(request, response);
     }
 

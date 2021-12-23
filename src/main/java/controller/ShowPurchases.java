@@ -33,7 +33,7 @@ public class ShowPurchases extends HttpServlet
         else {
             ArrayList<Acquisto> acquisti = this.showAllAcquisti(user);
             request.setAttribute("listaAcquisti", acquisti);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("showPurchases.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/showPurchases.jsp");
             dispatcher.forward(request, response);
         }
     }
