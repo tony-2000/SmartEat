@@ -34,8 +34,9 @@ public class ShowProfile extends HttpServlet {
         else
         {
             String CF = user.getCF();
-            Tessera tessera = tdao.doRetrieveTesseraByKey("CF");
+            Tessera tessera = tdao.doRetrieveTesseraByKey(CF);
             request.setAttribute("tessera", tessera);
+            System.out.println("servlet " + tessera.getSaldo()); //DEBUG
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/utente/showProfile.jsp");
             dispatcher.forward(request, response);
         }

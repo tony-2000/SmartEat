@@ -57,7 +57,7 @@ public class DeletePurchase extends HttpServlet
         long actual=System.currentTimeMillis();
         Date actualDate = new Date(actual);
 
-        if(Mensa.isMensaPurchase() && acquisto.getDataAcquisto().compareTo(actualDate)==0)
+        if (Mensa.isMensaPurchase() && acquisto.getDataAcquisto().toString().equals(actualDate.toString()))
             acquisto.setRefund(true);
         else acquisto.setRefund(false);
 
@@ -67,6 +67,7 @@ public class DeletePurchase extends HttpServlet
         if(acquisto.isRefund())
         {
             tessera.setSaldo(tessera.getSaldo()+menu.getPrezzo());
+            tdao.doUpdate(tessera);
             acquistodao.doDelete(data,CF,codiceMenu);
             message[1]="Rimborso effettuato con successo";
             return true;
