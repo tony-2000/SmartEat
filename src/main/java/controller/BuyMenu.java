@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 //Se non ci sono posti vuoti non fa comparire la checkbox e rimanda "postoMensa" a false
@@ -71,11 +73,22 @@ public class BuyMenu extends HttpServlet
         MenuDAOInterface menudao=new MenuDAO();
         Menu menu=menudao.doRetrieveMenuByKey(codiceMenu);
         float prezzo=menu.getPrezzo();
+
+        boolean hasPurchase=false;
+        List<Acquisto> acquistos =acquistodao.doRetrieveAllAcquistoByCF(CF);
+        for(int i=0;i<acquistos.size();i++)
+        {
+            if (acquistos.get(i).getDataAcquisto().compareTo(actual) == 0) {
+                hasPurchase = true;
+                break;
+            }
+        }
+
         if(Mensa.isMensaPurchase())
         {
             if(tessera.getSaldo()-prezzo>=0)
             {
-                if(!(acquistodao.doRetrieveAcquistoByKey(actual, CF, codiceMenu).getDataAcquisto()==null))
+                if(hasPurchase)
                 {
                     if(posto)
                     {
