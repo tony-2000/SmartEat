@@ -1,6 +1,8 @@
 package model;
 
 
+import java.util.ArrayList;
+
 /**
  * La classe modella le pietanze.
  */
@@ -35,6 +37,12 @@ public class Pietanza {
      * numero di acquisti della pietanza.
      */
     private int numeroAcquisti;
+
+
+    /**
+     * ArrayList di servizio per eliminare una pietanza.
+     */
+    private static ArrayList<String> listDeletePietanza=new ArrayList<>();
 
 
     /** Restituisce il nome della pietanza.
@@ -119,4 +127,11 @@ public class Pietanza {
      * @param numeroAcquisti numero di acquisti della pietanza.
      */
     public void setNumeroAcquisti(int numeroAcquisti) {this.numeroAcquisti = numeroAcquisti;}
+
+
+    /**
+     * restituisce i nomi delle pietanza da eliminare
+     * @return lista di nomi di pietanza
+     */
+    public static ArrayList<String> getListDeletePietanza() {return listDeletePietanza;}
 }

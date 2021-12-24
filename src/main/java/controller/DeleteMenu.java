@@ -12,10 +12,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 /**
  * Classe che elimina un menu da parte dell'admin
  */
-
 @WebServlet(name = "DeleteMenu", value = "/DeleteMenu")
 public class DeleteMenu extends HttpServlet
 {
@@ -35,13 +35,12 @@ public class DeleteMenu extends HttpServlet
         else
         {
             int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
-            request.setAttribute("codiceMenu", codiceMenu);
             boolean result = this.deleteMenu(codiceMenu);
             String message;
             if (result)
                 message = "Il menu è stato eliminato correttamente";
             else
-                message = "Il menu verra' eliminato dopo l'orario di chiusura";
+                message = "Il menu verrà eliminato dopo l'orario di chiusura";
             request.setAttribute("message", message);
             response.sendRedirect(request.getContextPath() + "/AdminMenuArea");
         }

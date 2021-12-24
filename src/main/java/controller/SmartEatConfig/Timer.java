@@ -24,8 +24,10 @@ public class Timer extends TimerTask {
             ArrayList<Menu> listAddMenu=Menu.getListAddMenu();
             ArrayList<Integer> listToggleMenu=Menu.getListToggleMenu();
             ArrayList<Integer> listDeleteMenu=Menu.getListDeleteMenu();
+            ArrayList<String> listDeletePietanza=Pietanza.getListDeletePietanza();
             MenuDAOInterface menudao=new MenuDAO();
             MensaDAO dao=new MensaDAO();
+            PietanzaDAOInterface pietanzaDao=new PietanzaDAO();
             ArrayList<String> mensa=dao.doRetrieveMensaByKey("mensa1");
             Mensa.setPostiVuoti(Integer.parseInt(mensa.get(1)));
             System.out.println("Aggiornamento posti");
@@ -51,6 +53,13 @@ public class Timer extends TimerTask {
                 int codiceMenu=listDeleteMenu.get(0);
                 menudao.doDelete(codiceMenu);
                 listToggleMenu.remove(0);
+            }
+
+            while(!listDeletePietanza.isEmpty())
+            {
+                String nomePietanza=listDeletePietanza.get(0);
+                pietanzaDao.doDelete(nomePietanza);
+                listDeletePietanza.remove(0);
             }
         }
     }

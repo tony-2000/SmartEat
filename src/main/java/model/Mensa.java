@@ -146,7 +146,6 @@ public class Mensa
         String confiString=config.toString();
         String attualeString=attuale.toString();
 
-        //uguale???
         return attualeString.compareTo(chiusuraString)>0 && attualeString.compareTo(confiString)<=0;
     }
 
@@ -158,14 +157,11 @@ public class Mensa
         MensaDAOInterface mensadao=new MensaDAO();
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
         Time apertura= Time.valueOf(mensa.get(2));
-        //Time config=Time.valueOf("23:59:59");
         Time attuale= new Time(System.currentTimeMillis());
 
         String aperturaString=apertura.toString();
-        //String configString=config.toString();
         String attualeString=attuale.toString();
 
-        //attualeString.compareTo(configString)>0 && attualeString.compareTo(aperturaString)<0;
         return attualeString.compareTo(aperturaString)<0;
     }
 

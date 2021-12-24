@@ -6,8 +6,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 
+/**
+ * Classe che aggiunge una pietanza al database da parte dell'admin.
+ */
 @WebServlet(name = "AddPietanza", value = "/AddPietanza")
 public class AddPietanza extends HttpServlet {
     @Override
@@ -15,7 +17,6 @@ public class AddPietanza extends HttpServlet {
         HttpSession session = request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         Pietanza pietanza = new Pietanza();
-        PietanzaDAOInterface pietanzadao = new PietanzaDAO();
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
         assert u != null;
@@ -48,7 +49,13 @@ public class AddPietanza extends HttpServlet {
         doGet(request, response);
     }
 
-
+    /**Aggiunge una pietanza al database.
+     * @pre {@literal pietanza.nome!=null && pietanza.descrizione!=null && pietanza.tipo!=null &&
+     * pietanza.ingredienti!=null && pietanza.immagine!=null && pietanza.numeroAcquisti!=null
+     * && !(pietanza->includes(pietanza))}
+     * @post {@literal pietanza->includes(pietanza)}
+     * @param pietanza pietanza da aggiungere al database
+     */
     public void addPietanza(Pietanza pietanza)
     {
         PietanzaDAOInterface pietanzadao = new PietanzaDAO();
