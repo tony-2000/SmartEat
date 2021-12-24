@@ -2,6 +2,7 @@ package controller.SmartEatConfig;
 
 import model.*;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
@@ -25,6 +26,7 @@ public class Timer extends TimerTask {
             ArrayList<Integer> listToggleMenu=Menu.getListToggleMenu();
             ArrayList<Integer> listDeleteMenu=Menu.getListDeleteMenu();
             ArrayList<String> listDeletePietanza=Pietanza.getListDeletePietanza();
+            ArrayList<String> listUpdateMensa=Mensa.getListUpdateMensa();
             MenuDAOInterface menudao=new MenuDAO();
             MensaDAO dao=new MensaDAO();
             PietanzaDAOInterface pietanzaDao=new PietanzaDAO();
@@ -60,6 +62,15 @@ public class Timer extends TimerTask {
                 String nomePietanza=listDeletePietanza.get(0);
                 pietanzaDao.doDelete(nomePietanza);
                 listDeletePietanza.remove(0);
+            }
+
+            while(!listUpdateMensa.isEmpty())
+            {
+                String posti=listUpdateMensa.get(0);
+                String apertura=listUpdateMensa.get(1);
+                String chiusura=listUpdateMensa.get(2);
+                dao.doUpdate("mensa1",Integer.parseInt(posti), Time.valueOf(apertura),Time.valueOf(chiusura));
+                listUpdateMensa.clear();
             }
         }
     }

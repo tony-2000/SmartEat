@@ -55,6 +55,13 @@ public class Mensa
     public void setNome(String nome) {this.nome = nome;}
 
 
+    /**
+     * ArrayList di servizio per aggiornare la mensa
+     */
+    private static ArrayList<String> listUpdateMensa=new ArrayList<>();
+
+
+
     /** Restituisce il numero di posti disponibili.
      * @return
      *Restituisce il numero di posti disponibili.
@@ -111,6 +118,14 @@ public class Mensa
     public static void setPostiVuoti(int postiVuoti) {
         Mensa.postiVuoti = postiVuoti;
     }
+
+
+    /**
+     * restituisce i dati da aggiornare della mensa
+     * @return lista di informazioni della mensa
+     */
+    public static ArrayList<String> getListUpdateMensa() {return listUpdateMensa;}
+
 
 
     /** Verifica se la mensa e' aperta.
