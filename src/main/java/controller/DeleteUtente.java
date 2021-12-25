@@ -1,0 +1,61 @@
+package controller;
+
+
+import model.RuoloUtente;
+import model.Utente;
+import model.UtenteDAO;
+import model.UtenteDAOInterface;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.ArrayList;
+
+/**
+ *
+ */
+@WebServlet(name = "DeleteUtente", value = "/DeleteUtente")
+public class DeleteUtente extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session=request.getSession();
+        Utente u= (Utente) session.getAttribute("utenteSessione");
+        if(u==null)
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
+        assert u != null;
+        RuoloUtente ruoloUtente = u.isAmministratore();
+        if(!ruoloUtente.isAdmin())
+            response.sendRedirect(request.getContextPath()+"/toHome");
+        else
+        {
+            String CF=request.getParameter("CF");
+            DeleteUser(CF);
+            String message="Utente eliminato correttamente";
+            request.setAttribute("message",message);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminArea.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        doGet(request, response);
+    }
+
+    /**
+     *
+     * @param CF
+     */
+        public void DeleteUser(String CF)
+        {
+            UtenteDAOInterface dao=new UtenteDAO();
+            dao.doDelete(CF);
+        }
+}
