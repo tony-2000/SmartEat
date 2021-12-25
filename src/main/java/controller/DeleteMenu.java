@@ -3,6 +3,7 @@ package controller;
 
 import model.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,7 +43,9 @@ public class DeleteMenu extends HttpServlet
             else
                 message = "Il menu verrà eliminato dopo l'orario di chiusura";
             request.setAttribute("message", message);
-            response.sendRedirect(request.getContextPath() + "/AdminMenuArea");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMenuArea");
+            dispatcher.forward(request, response);
+            //response.sendRedirect(request.getContextPath() + "/AdminMenuArea");
         }
     }
 

@@ -10,6 +10,12 @@
 <html>
 <head>
     <title>Visualizza dettagli menù</title>
+
+    <script>
+        function confirmDelete() {
+            return confirm("Sicuro di voler eliminare il menù selezionato?");
+        }
+    </script>
 </head>
 <body>
     <%
@@ -33,6 +39,16 @@
             <li><%=menu.getSecondo()%></li>
             <li><%=menu.getDessert()%></li>
         </ul>
+
+        <form action="ToggleMenu" method="post">
+            <input type="hidden" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
+            <input type="submit" value="<%=menu.isAvailable() ? "Disattiva" : "Attiva"%>">
+        </form>
+
+        <form action="DeleteMenu" method="post">
+            <input type="hidden" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
+            <input type="submit" value="Elimina menù" onclick="return confirmDelete()">
+        </form>
     </main>
 
     <footer></footer>

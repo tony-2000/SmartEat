@@ -45,7 +45,8 @@ public class ToggleMenu extends HttpServlet {
                 message="La disponibilita' del menu verra' aggiornata dopo l'orario di chiusura";
             request.setAttribute("message",message);
             //dispatcher
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/ShowMenuDetails");
+            //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/showMenuDetails.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMenuArea");
             dispatcher.forward(request, response);
         }
     }

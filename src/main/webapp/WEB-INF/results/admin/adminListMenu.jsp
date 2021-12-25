@@ -32,13 +32,13 @@
             response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
     %>
-    <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
     </header> <br>
 
     <main>
+        <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
         <h1>Gestisci i menù</h1>
         <%
             List<Menu> menus = (List<Menu>) request.getAttribute("listaMenu");
