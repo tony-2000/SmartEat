@@ -36,8 +36,10 @@ public class AdminStatsArea extends HttpServlet
      *
      * @return
      */
+    /*
     public ArrayList<Pietanza> mostraStatistiche()
     {
 
     }
+    */
 }

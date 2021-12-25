@@ -22,6 +22,7 @@ public class AddMenu extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         Menu menu = new Menu();
@@ -34,10 +35,12 @@ public class AddMenu extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/toHome");
         else {
             String nome = request.getParameter("nome");
+            System.out.println(nome); //DEBUG
             String primo = request.getParameter("primo");
             String secondo = request.getParameter("secondo");
             String dessert = request.getParameter("dessert");
             String descrizione = request.getParameter("descrizione");
+            System.out.println(descrizione); //DEBUG
             String immagine = request.getParameter("immagine");
             float prezzo = Float.parseFloat(request.getParameter("prezzo"));
             menu.setNome(nome);
@@ -56,7 +59,7 @@ public class AddMenu extends HttpServlet {
                 message="Il menu verrà aggiunto dopo l'orario di chiusura";
             request.setAttribute("message",message);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListMenu.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMenuArea");
             dispatcher.forward(request, response);
 
         }
