@@ -36,9 +36,9 @@ public class DeleteUtente extends HttpServlet {
         {
             String CF=request.getParameter("CF");
             DeleteUser(CF);
-            String message="Utente eliminato correttamente";
+            String message="Utente eliminato correttamente.";
             request.setAttribute("message",message);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminArea.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminUtentiArea");
             dispatcher.forward(request, response);
         }
     }

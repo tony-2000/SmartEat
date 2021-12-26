@@ -43,7 +43,7 @@ public class AcceptUtente extends HttpServlet {
             else
                 message="Utente rifiutato correttamente";
             request.setAttribute("message",message);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminArea.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/toAcceptUtente");
             dispatcher.forward(request, response);
         }
     }

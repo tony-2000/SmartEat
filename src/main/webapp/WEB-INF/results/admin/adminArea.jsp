@@ -17,16 +17,17 @@
             response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
     %>
-    <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
     </header> <br>
 
     <main>
+        <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
         <ul>
-            <li><a href="${pageContext.request.contextPath}/AdminMenuArea">Visualizza i menù</a></li>
-            <li><a href="${pageContext.request.contextPath}/AdminPietanzeArea">Visualizza le pietanze</a></li>
+            <li><a href="${pageContext.request.contextPath}/AdminMenuArea">Gestisci i menù</a></li>
+            <li><a href="${pageContext.request.contextPath}/AdminPietanzeArea">Gestisci le pietanze</a></li>
+            <li><a href="${pageContext.request.contextPath}/AdminUtentiArea">Gestisci gli utenti</a></li>
         </ul>
     </main>
 
