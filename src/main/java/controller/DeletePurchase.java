@@ -69,6 +69,18 @@ public class DeletePurchase extends HttpServlet
             tessera.setSaldo(tessera.getSaldo()+menu.getPrezzo());
             tdao.doUpdate(tessera);
             acquistodao.doDelete(data,CF,codiceMenu);
+
+            PietanzaDAOInterface pdao = new PietanzaDAO();
+            Pietanza primo= pdao.doRetrievePietanzaByKey(menu.getPrimo());
+            Pietanza secondo= pdao.doRetrievePietanzaByKey(menu.getSecondo());
+            Pietanza dessert= pdao.doRetrievePietanzaByKey(menu.getDessert());
+            primo.setNumeroAcquisti(primo.getNumeroAcquisti()-1);
+            secondo.setNumeroAcquisti(primo.getNumeroAcquisti()-1);
+            dessert.setNumeroAcquisti(primo.getNumeroAcquisti()-1);
+            pdao.doUpdate(primo);
+            pdao.doUpdate(secondo);
+            pdao.doUpdate(dessert);
+
             message[1]="Rimborso effettuato con successo";
             return true;
         }
