@@ -42,7 +42,7 @@ public class UpdateMensa extends HttpServlet {
                 message="L'orario di apertura deve essere precedente a quello di chiusura";
                 request.setAttribute("message",message);
                 request.setAttribute("mensa",mensa);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminMensaArea.jsp");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMensaArea");
                 dispatcher.forward(request, response);
             }
             else if(apertura.toString().compareTo("01:00:00")<=0)
@@ -50,7 +50,7 @@ public class UpdateMensa extends HttpServlet {
                 message="L'orario di apertura non può essere precedente alle ore 01:00";
                 request.setAttribute("message",message);
                 request.setAttribute("mensa",mensa);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminMensaArea.jsp");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMensaArea");
                 dispatcher.forward(request, response);
             }
             else if(chiusura.toString().compareTo("23:00:00")>=0)
@@ -58,7 +58,7 @@ public class UpdateMensa extends HttpServlet {
                 message="L'orario di chiusura non può essere successivo alle ore 23:00";
                 request.setAttribute("message",message);
                 request.setAttribute("mensa",mensa);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminMensaArea.jsp");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMensaArea");
                 dispatcher.forward(request, response);
             }
             else
@@ -71,7 +71,7 @@ public class UpdateMensa extends HttpServlet {
                     message = "Le informazioni della mensa verranno modificate dopo l'orario di chiusura";
                 request.setAttribute("message", message);
                 request.setAttribute("mensa", mensa);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminMensaArea.jsp");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMensaArea");
                 dispatcher.forward(request, response);
             }
         }

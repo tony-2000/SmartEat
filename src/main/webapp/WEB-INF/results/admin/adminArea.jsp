@@ -25,6 +25,7 @@
     <main>
         <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
         <ul>
+            <li><a href="${pageContext.request.contextPath}/AdminMensaArea">Gestisci la mensa</a></li>
             <li><a href="${pageContext.request.contextPath}/AdminMenuArea">Gestisci i menù</a></li>
             <li><a href="${pageContext.request.contextPath}/AdminPietanzeArea">Gestisci le pietanze</a></li>
             <li><a href="${pageContext.request.contextPath}/AdminUtentiArea">Gestisci gli utenti</a></li>
