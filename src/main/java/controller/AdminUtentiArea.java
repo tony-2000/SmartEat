@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *
+ * Classe che implementa l'area utenti da parte dell'amministratore.
  */
 @WebServlet(name = "AdminUtentiArea", value = "/AdminUtentiArea")
 public class AdminUtentiArea extends HttpServlet {
@@ -48,9 +48,9 @@ public class AdminUtentiArea extends HttpServlet {
     }
 
 
-    /**
-     *
-     * @return
+    /** Restituisce tutti gli utenti accettati e registrati alla piattaforma.
+     * @post {@literal List=utente->select(u|u.accepted==true)->asSet()}
+     * @return List con tutti gli utenti accettati.
      */
     public ArrayList<Utente> ShowAllUsers()
     {
