@@ -13,9 +13,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
-
-//Se non ci sono posti vuoti non fa comparire la checkbox e rimanda "postoMensa" a false
-
 /**
  * Classe che implementa l'acquisto di un menu
  */

@@ -11,4 +11,10 @@ public class RuoloAdmin implements RuoloUtente
      * @return true
      */
     public boolean isAdmin() {return true;}
+
+    /**
+     * ToString
+     * @return String
+     */
+    public String toString() {return "Amministratore";}
 }
