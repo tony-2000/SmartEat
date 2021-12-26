@@ -33,7 +33,7 @@ public class DeletePurchase extends HttpServlet
             request.setAttribute("message",message[1]);
         else
             request.setAttribute("message",message[0]);
-        //response.sendRedirect(request.getContextPath()+"/toHome");
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/home.jsp");
         dispatcher.forward(request, response);
     }
@@ -86,7 +86,7 @@ public class DeletePurchase extends HttpServlet
         }
         else
         {
-            message[0]="Rimborso non effettuato, si prega di riprovare.";
+            message[0]="Rimborso non effettuato perché il tempo per il rimborso è scaduto.";
             return false;
         }
     }
