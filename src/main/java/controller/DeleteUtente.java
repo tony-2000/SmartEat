@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *
+ * Classe che implementa l'eliminazione di un utente.
  */
 @WebServlet(name = "DeleteUtente", value = "/DeleteUtente")
 public class DeleteUtente extends HttpServlet {
@@ -49,9 +49,10 @@ public class DeleteUtente extends HttpServlet {
         doGet(request, response);
     }
 
-    /**
-     *
-     * @param CF
+    /** Elimina un utente.
+     * @pre {@literal CF!=null && utente->exists(u|u.codiceFiscale==CF)}
+     * @post {@literal !(utente->exists(u|u.codiceFiscale==CF))}
+     * @param CF Codice fiscale dell'utente da eliminare.
      */
         public void DeleteUser(String CF)
         {

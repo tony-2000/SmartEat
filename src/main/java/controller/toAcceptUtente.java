@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *
+ * Classe che reindirizza alla pagina di accettazione degli utenti.
  */
 @WebServlet(name = "toAcceptUtente", value = "/toAcceptUtente")
 public class toAcceptUtente extends HttpServlet {
@@ -46,9 +46,9 @@ public class toAcceptUtente extends HttpServlet {
         doGet(request, response);
     }
 
-    /**
-     *
-     * @return
+    /** Restituisce tutti gli utenti non accettati e che hanno fatto una richiesta di registrazione alla piattaforma.
+     * @post {@literal List=utente->select(u|u.accepted==false)->asSet()}
+     * @return List con tutti gli utenti da accettare.
      */
     public ArrayList<Utente> ShowAllUsersToAccept()
     {

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *
+ * Classe che implementa l'accettazione degli utenti da parte dell'amministratore.
  */
 @WebServlet(name = "AcceptUtente", value = "/AcceptUtente")
 public class AcceptUtente extends HttpServlet {
@@ -54,10 +54,10 @@ public class AcceptUtente extends HttpServlet {
         doGet(request, response);
     }
 
-    /**
-     *
-     * @param CF
-     * @param accept
+    /** Completa la registrazione di un utente accettandolo o meno.
+     * @pre {@literal CF!=null}
+     * @param CF Codice fiscale dell'utente che deve essere accettato o meno.
+     * @param accept true se l'utente è accettato, false se l'utente non è accettato.
      */
         public void CompleteReg(String CF,boolean accept)
         {
