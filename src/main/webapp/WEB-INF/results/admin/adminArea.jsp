@@ -29,6 +29,7 @@
             <li><a href="${pageContext.request.contextPath}/AdminMenuArea">Gestisci i menù</a></li>
             <li><a href="${pageContext.request.contextPath}/AdminPietanzeArea">Gestisci le pietanze</a></li>
             <li><a href="${pageContext.request.contextPath}/AdminUtentiArea">Gestisci gli utenti</a></li>
+            <li><a href="${pageContext.request.contextPath}/AdminStatsArea">Visualizza le statistiche degli acquisti</a></li>
         </ul>
     </main>
 

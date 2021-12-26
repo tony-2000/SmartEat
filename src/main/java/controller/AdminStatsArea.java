@@ -26,6 +26,7 @@ public class AdminStatsArea extends HttpServlet
 
     public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        request.setCharacterEncoding("UTF-8");
         HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
@@ -42,7 +43,7 @@ public class AdminStatsArea extends HttpServlet
             request.setAttribute("pietanze", pietanzas);
             request.setAttribute("statsMenu", statsMenu);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("AdminStatsArea.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminStatsArea.jsp");
             dispatcher.forward(request, response);
         }
     }
