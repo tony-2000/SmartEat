@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Classe che implementa l'accettazione degli utenti da parte dell'amministratore.
@@ -65,5 +64,7 @@ public class AcceptUtente extends HttpServlet {
             Utente user=dao.doRetrieveUtenteByKey(CF);
             user.setAccepted(accept);
             dao.doUpdate(user);
+            if(!accept)
+                dao.doDelete(CF);
         }
 }

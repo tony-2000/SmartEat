@@ -13,9 +13,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
-
-//Se non ci sono posti vuoti non fa comparire la checkbox e rimanda "postoMensa" a false
-
 /**
  * Classe che implementa l'acquisto di un menu
  */
@@ -75,9 +72,8 @@ public class BuyMenu extends HttpServlet
 
         boolean hasPurchase=false;
         List<Acquisto> acquistos =acquistodao.doRetrieveAllAcquistoByCF(CF);
-        for(int i=0;i<acquistos.size();i++)
-        {
-            if (acquistos.get(i).getDataAcquisto().toString().equals(actual.toString())) {
+        for (Acquisto value : acquistos) {
+            if (value.getDataAcquisto().toString().equals(actual.toString())) {
                 hasPurchase = true;
                 break;
             }
@@ -101,6 +97,17 @@ public class BuyMenu extends HttpServlet
                     acquistodao.doSave(acquisto);
                     tessera.setSaldo(tessera.getSaldo()-prezzo);
                     tesseradao.doUpdate(tessera);
+
+                    PietanzaDAOInterface pdao = new PietanzaDAO();
+                    Pietanza primo= pdao.doRetrievePietanzaByKey(menu.getPrimo());
+                    Pietanza secondo= pdao.doRetrievePietanzaByKey(menu.getSecondo());
+                    Pietanza dessert= pdao.doRetrievePietanzaByKey(menu.getDessert());
+                    primo.setNumeroAcquisti(primo.getNumeroAcquisti()+1);
+                    secondo.setNumeroAcquisti(primo.getNumeroAcquisti()+1);
+                    dessert.setNumeroAcquisti(primo.getNumeroAcquisti()+1);
+                    pdao.doUpdate(primo);
+                    pdao.doUpdate(secondo);
+                    pdao.doUpdate(dessert);
                 }
                 else
                 {

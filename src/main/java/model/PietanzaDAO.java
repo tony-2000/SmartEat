@@ -143,26 +143,4 @@ public class PietanzaDAO implements PietanzaDAOInterface
         }
     }
 
-    /** Aggiorna il numero di acquisti.
-     * @pre {@literal na!=null && nome!=null && pietanza->exists(p|p.nome=nome)}
-     * @post {@literal pietanza->exists(p|p.nome=nome && p.numeroAcquisti=na)}
-     * @param na Il numero di acquisti aggiornato
-     * @param nome Il nome della pietanza da modificare
-     */
-    public void doUpdateNumeroAcquisti(String nome, int na)
-    {
-        try (Connection con = ConPool.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement("UPDATE pietanza SET numeroAcquisti=? WHERE nome=?",
-                    Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, na);
-
-            ps.executeUpdate();
-
-        } catch (SQLException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
 }

@@ -11,4 +11,10 @@ public class RuoloStandard implements RuoloUtente
          * @return false
          */
         public boolean isAdmin() {return false;}
+
+        /**
+         * ToString
+         * @return String
+         */
+        public String toString() {return "Standard";}
     }
