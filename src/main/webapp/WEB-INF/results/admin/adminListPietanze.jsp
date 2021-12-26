@@ -84,6 +84,7 @@
             }
         %>
 
+        <p><a href="${pageContext.request.contextPath}/toAddPietanza">Aggiungi una pietanza.</a></p>
     </main>
 
     <footer></footer>

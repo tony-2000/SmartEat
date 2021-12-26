@@ -14,6 +14,7 @@ import java.io.IOException;
 public class AddPietanza extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         Pietanza pietanza = new Pietanza();
@@ -30,16 +31,17 @@ public class AddPietanza extends HttpServlet {
             char tipo = request.getParameter("tipo").charAt(0);
             String ingredienti = request.getParameter("ingredienti");
             String immagine = request.getParameter("immagine");
-            int numeroAcquisti = Integer.parseInt(request.getParameter("numeroAcquisti"));
+            //int numeroAcquisti = Integer.parseInt(request.getParameter("numeroAcquisti"));
             pietanza.setNome(nome);
             pietanza.setDescrizione(descrizione);
             pietanza.setTipo(tipo);
             pietanza.setIngredienti(ingredienti);
             pietanza.setImmagine(immagine);
-            pietanza.setNumeroAcquisti(numeroAcquisti);
+            pietanza.setNumeroAcquisti(0);
             this.addPietanza(pietanza);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListPietanze.jsp");
+            //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListPietanze.jsp");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminPietanzeArea");
             dispatcher.forward(request, response);
         }
     }
