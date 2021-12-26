@@ -26,6 +26,7 @@
     <main>
         <ul>
             <li><a href="${pageContext.request.contextPath}/AdminMenuArea">Visualizza i menù</a></li>
+            <li><a href="${pageContext.request.contextPath}/AdminPietanzeArea">Visualizza le pietanze</a></li>
         </ul>
     </main>
 

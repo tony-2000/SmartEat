@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +23,7 @@ public class DeletePietanza extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        request.setCharacterEncoding("UTF-8");
         HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
@@ -40,7 +42,8 @@ public class DeletePietanza extends HttpServlet {
             else
                 message = "La pietanza verrà eliminata dopo l'orario di chiusura";
             request.setAttribute("message", message);
-            response.sendRedirect(request.getContextPath() + "/AdminPietanzeArea");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminPietanzeArea");
+            dispatcher.forward(request, response);
         }
     }
 

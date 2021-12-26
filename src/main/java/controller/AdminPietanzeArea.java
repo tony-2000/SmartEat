@@ -26,7 +26,7 @@ public class AdminPietanzeArea extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/toHome");
             ArrayList<Pietanza> pietanzas = AdminShowPietanze();
             request.setAttribute("listaPietanze", pietanzas);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListMenu.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListPietanze.jsp");
             dispatcher.forward(request, response);
         }
     }
