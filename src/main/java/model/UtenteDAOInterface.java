@@ -15,4 +15,5 @@ public interface UtenteDAOInterface
      void doUpdate(Utente u);
      void doUpdateUtenteInfo(Utente u);
      Utente doRetrieveUtenteByEmailPassword(String email, String password);
+     void doAccept(String codiceFiscale);
 }

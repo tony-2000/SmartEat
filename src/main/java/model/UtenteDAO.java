@@ -246,4 +246,26 @@ public class UtenteDAO implements UtenteDAOInterface
         }
     }
 
+    /** Accetta un utente.
+     * @pre {@literal codiceFiscale!=null && utente->exists(u|u.codiceFiscale==codiceFiscale)}
+     * @post {utente->exists(u|u.codiceFiscale==codiceFiscale && u.accepted==true)}
+     * @param codiceFiscale codice fiscale dell'utente da accettare.
+     */
+    public void doAccept(String codiceFiscale)
+    {
+        try (Connection con = ConPool.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement("UPDATE utente SET accepted=true WHERE codiceFiscale=?",
+                    Statement.RETURN_GENERATED_KEYS);
+
+            ps.setString(1,codiceFiscale);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

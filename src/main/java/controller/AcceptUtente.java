@@ -63,7 +63,7 @@ public class AcceptUtente extends HttpServlet {
             UtenteDAOInterface dao= new UtenteDAO();
             Utente user=dao.doRetrieveUtenteByKey(CF);
             user.setAccepted(accept);
-            dao.doUpdate(user);
+            dao.doAccept(user.getCF());
             if(!accept)
                 dao.doDelete(CF);
         }
