@@ -69,7 +69,7 @@ public class AdminStatsArea extends HttpServlet
                 else if (y.getDessert().equals(x.getNome()))
                     temp++;
             }
-            counter.set(i, temp);
+            counter.add(i, temp);
             i++;
         }
         return counter;
