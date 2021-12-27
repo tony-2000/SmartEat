@@ -11,19 +11,6 @@
 <head>
     <title>Gestione utenti</title>
 
-    <style>
-        table {
-            width: 95%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        table, th, td {
-            border:1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
-
     <script>
         function confirmDelete() {
             return confirm("Sicuro di voler eliminare l'utente selezionato?");
@@ -41,6 +28,7 @@
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
     </header> <br>
 
     <main>
