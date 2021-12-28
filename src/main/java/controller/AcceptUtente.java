@@ -1,10 +1,7 @@
 package controller;
 
 
-import model.RuoloUtente;
-import model.Utente;
-import model.UtenteDAO;
-import model.UtenteDAOInterface;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -62,8 +59,15 @@ public class AcceptUtente extends HttpServlet {
         {
             UtenteDAOInterface dao= new UtenteDAO();
             Utente user=dao.doRetrieveUtenteByKey(CF);
-            user.setAccepted(accept);
-            dao.doAccept(user.getCF());
+            if(accept)
+            {
+                dao.doAccept(user.getCF());
+                TesseraDAOInterface tdao=new TesseraDAO();
+                Tessera tessera=new Tessera();
+                tessera.setCF(CF);
+                tessera.setSaldo(0);
+                tdao.doSave(tessera);
+            }
             if(!accept)
                 dao.doDelete(CF);
         }
