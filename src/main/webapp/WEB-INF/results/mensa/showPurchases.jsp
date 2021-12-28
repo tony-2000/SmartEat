@@ -22,8 +22,9 @@
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
+        <%@include file="/WEB-INF/partials/messages.jsp"%>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
-    </header> <br>
+    </header>
 
     <main>
         <h1>Acquisti effettuati</h1>
@@ -72,6 +73,8 @@
         %>
     </main>
 
-    <footer></footer>
+    <footer>
+        <%@include file="/WEB-INF/partials/footer.jsp"%>
+    </footer>
 </body>
 </html>

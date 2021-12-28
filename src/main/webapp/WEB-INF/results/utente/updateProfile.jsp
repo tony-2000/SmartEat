@@ -134,9 +134,11 @@
             response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
     %>
+
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
-    </header> <br>
+        <%@include file="/WEB-INF/partials/messages.jsp"%>
+    </header>
 
     <main>
         <div>
@@ -183,6 +185,8 @@
         </div>
     </main>
 
-    <footer></footer>
+    <footer>
+        <%@include file="/WEB-INF/partials/footer.jsp"%>
+    </footer>
 </body>
 </html>

@@ -17,9 +17,6 @@
         overflow: hidden;
         background-color: black;
         display: flex;
-    }
-
-    .navbar li {
         flex-direction: row;
     }
 

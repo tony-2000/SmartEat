@@ -21,15 +21,24 @@
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
+        <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
-        <img src="${pageContext.request.contextPath}/images/temp.jpg" alt="temp" style="max-width: 30%; border-radius: 50%">
-        <h1><%=(String) session.getAttribute("nomeMensa")%></h1>
-        <p>Sono attualmente disponibili <%=Mensa.getPostiVuoti()%> posti.</p>
+    <main style="display: flex; flex-direction: row; justify-content: center; align-items: center">
+        <div style="display: flex; flex-direction: row">
+            <img src="${pageContext.request.contextPath}/images/temp.jpg" alt="temp"
+                 style="max-width: 23rem; border-radius: 50%; margin-right: 1rem">
+            <div style="align-self: center; margin-left: 1rem">
+                <h1><%=(String) session.getAttribute("nomeMensa")%></h1>
+                <p>Sono attualmente disponibili <%=Mensa.getPostiVuoti()%> posti.</p>
+                <p>Apertura - <%=session.getAttribute("aperturaMensa")%></p>
+                <p>Chiusura - <%=session.getAttribute("chiusuraMensa")%></p>
+            </div>
+        </div>
     </main>
 
-    <footer></footer>
+    <footer>
+        <%@include file="/WEB-INF/partials/footer.jsp"%>
+    </footer>
 </body>
 </html>

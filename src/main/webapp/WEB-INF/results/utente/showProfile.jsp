@@ -20,9 +20,11 @@
         Tessera tessera = (Tessera) request.getAttribute("tessera");
         System.out.println("jsp " + tessera.getSaldo()); //DEBUG
     %>
+
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
-    </header> <br>
+        <%@include file="/WEB-INF/partials/messages.jsp"%>
+    </header>
 
     <main>
         <div>
@@ -42,6 +44,8 @@
         </div>
     </main>
 
-    <footer></footer>
+    <footer>
+        <%@include file="/WEB-INF/partials/footer.jsp"%>
+    </footer>
 </body>
 </html>

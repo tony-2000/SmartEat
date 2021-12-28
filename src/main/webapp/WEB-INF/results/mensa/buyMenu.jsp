@@ -26,7 +26,8 @@
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
-    </header> <br>
+        <%@include file="/WEB-INF/partials/messages.jsp"%>
+    </header>
 
     <main>
         <h2><%=menu.getNome()%></h2>
@@ -57,6 +58,8 @@
         </form>
     </main>
 
-    <footer></footer>
+    <footer>
+        <%@include file="/WEB-INF/partials/footer.jsp"%>
+    </footer>
 </body>
 </html>

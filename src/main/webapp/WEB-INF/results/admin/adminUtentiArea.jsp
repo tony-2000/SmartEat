@@ -28,8 +28,9 @@
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
+        <%@include file="/WEB-INF/partials/messages.jsp"%>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
-    </header> <br>
+    </header>
 
     <main>
         <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
@@ -91,6 +92,8 @@
         <p><a href="${pageContext.request.contextPath}/toAcceptUtente">Accettazione utenti.</a></p>
     </main>
 
-    <footer></footer>
+    <footer>
+        <%@include file="/WEB-INF/partials/footer.jsp"%>
+    </footer>
 </body>
 </html>

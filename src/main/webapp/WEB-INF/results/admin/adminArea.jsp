@@ -20,7 +20,8 @@
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
-    </header> <br>
+        <%@include file="/WEB-INF/partials/messages.jsp"%>
+    </header>
 
     <main>
         <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
@@ -33,6 +34,8 @@
         </ul>
     </main>
 
-    <footer></footer>
+    <footer>
+        <%@include file="/WEB-INF/partials/footer.jsp"%>
+    </footer>
 </body>
 </html>

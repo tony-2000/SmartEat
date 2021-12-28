@@ -24,7 +24,8 @@
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
-    </header> <br>
+        <%@include file="/WEB-INF/partials/messages.jsp"%>
+    </header>
 
     <main>
         <h1>Info acquisto</h1>
@@ -44,6 +45,8 @@
         </form>
     </main>
 
-    <footer></footer>
+    <footer>
+        <%@include file="/WEB-INF/partials/footer.jsp"%>
+    </footer>
 </body>
 </html>

@@ -2,8 +2,34 @@
 
 :root {
     font-family: 'Roboto', sans-serif;
+    font-size: clamp(14px, 2vw, 18px);
 }
 
+h1 {
+    font-size: clamp(28px, 2vw, 32px);
+}
+
+h2 {
+    font-size: clamp(21px, 2vw, 24px);
+}
+
+h3 {
+    font-size: clamp(16.38px, 2vw, 18.72px);
+}
+
+h4 {
+    font-size: clamp(14px, 2vw, 16px);
+}
+
+h5 {
+    font-size: clamp(11.62px, 2vw, 13.28px);
+}
+
+h6 {
+    font-size: clamp(10.5px, 2vw, 12px);
+}
+
+/*
 html {
     font-size: 14px;
 }
@@ -37,6 +63,20 @@ h6 {
     font-size: 10.5px;
     font-weight: bold;
 }
+*/
+
+p, h1, h2, h3, h4, h5, h6 {
+    padding: 0.3rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
 
 body {
     display: flex;
@@ -45,8 +85,10 @@ body {
 
 body > main {
     flex: 1;
+    background-color: darkgray;
 }
 
+/*
 @media screen and (min-width: 320px) {
     html {
         font-size: calc(14px + 2 * ((100vw - 320px) / 680));
@@ -82,3 +124,4 @@ body > main {
         font-size: 12px;
     }
 }
+*/

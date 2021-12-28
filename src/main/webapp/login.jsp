@@ -57,32 +57,28 @@
     %>
     <%@include file="WEB-INF/partials/mainImports.jsp"%>
 
-    <h2>Effettua l'accesso a SmartEat</h2>
+    <header>
+        <%@include file="/WEB-INF/partials/messages.jsp"%>
+    </header>
 
-    <%
-        String message = (String) request.getAttribute("logError");
-        if (message != null && message.length() > 0) {
-    %>
-        <p style="color: red"><%=message%></p>
-    <%
-        }
-        message = (String) request.getAttribute("message");
-        if (message != null && message.length() > 0) {
-    %>
-    <p style="color: green"><%=message%></p>
-    <%
-        }
-    %>
+    <main>
+        <h2>Effettua l'accesso a SmartEat</h2>
 
-    <form name="login" onsubmit="return validateForm()" action="${pageContext.request.contextPath}/Login" method="post">
-        <label for="mail">Indirizzo e-mail</label><br>
-        <input type="email" id="mail" name="mail" maxlength="35" required><a id="emailAlert" style="color: red"></a><br>
+        <form name="login" onsubmit="return validateForm()" action="${pageContext.request.contextPath}/Login" method="post">
+            <label for="mail">Indirizzo e-mail</label><br>
+            <input type="email" id="mail" name="mail" maxlength="35" required><a id="emailAlert" style="color: red"></a><br>
 
-        <label for="password">Password</label><br>
-        <input type="password" id="password" name="password" maxlength="16" required><a id="passwordAlert" style="color: red"></a><br><br>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password" maxlength="16" required><a id="passwordAlert" style="color: red"></a><br><br>
 
-        <input type="submit" value="Login">
-    </form>
-    <p><a href="${pageContext.request.contextPath}/toSignUp">Oppure registrati</a></p>
+            <input type="submit" value="Login">
+        </form>
+
+        <p><a href="${pageContext.request.contextPath}/toSignUp">Oppure registrati</a></p>
+    </main>
+
+    <footer>
+        <%@include file="/WEB-INF/partials/footer.jsp"%>
+    </footer>
 </body>
 </html>
