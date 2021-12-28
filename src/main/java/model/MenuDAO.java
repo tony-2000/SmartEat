@@ -14,7 +14,7 @@ public class MenuDAO implements MenuDAOInterface
      * @post {@literal List=menu->asSet()}
      * @return Lista di tutti i menu salvati
      */
-    public List<Menu> doRetrieveAllmenu()
+    public List<Menu> doRetrieveAllMenu()
     {
         List<Menu> list = new ArrayList<>();
         try (Connection con = ConPool.getConnection())
