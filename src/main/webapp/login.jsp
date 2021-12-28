@@ -55,6 +55,7 @@
             response.sendRedirect(request.getContextPath() + "/toHome");
         }
     %>
+    <%@include file="WEB-INF/partials/mainImports.jsp"%>
 
     <h2>Effettua l'accesso a SmartEat</h2>
 

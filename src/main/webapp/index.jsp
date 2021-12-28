@@ -14,5 +14,6 @@
         response.sendRedirect(request.getContextPath() + "/toHome");
     }
 %>
+<%@include file="WEB-INF/partials/mainImports.jsp"%>
 </body>
 </html>

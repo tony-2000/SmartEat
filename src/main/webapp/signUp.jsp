@@ -160,6 +160,7 @@
     </script>
 </head>
 <body>
+    <%@include file="WEB-INF/partials/mainImports.jsp"%>
     <h2>Registrati a SmartEat</h2>
 
     <%

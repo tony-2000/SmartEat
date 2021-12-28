@@ -11,19 +11,6 @@
 <html>
 <head>
     <title>Statistiche acquisti</title>
-    <style>
-        table {
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            table-layout: fixed;
-        }
-
-        table, th, td {
-            border:1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
 </head>
 <body>
     <%
@@ -38,6 +25,7 @@
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
     </header> <br>
 
     <main>
@@ -55,6 +43,7 @@
                 <tr>
                     <th>Pietanza</th>
                     <th>Acquisti totali</th>
+                    <th>Menù in cui è stata disponibile</th>
                 </tr>
                 </thead>
 
@@ -65,6 +54,7 @@
                 %>
                     <tr>
                         <td><%=pietanze.get(i).getNome()%></td>
+                        <td><%=pietanze.get(i).getNumeroAcquisti()%></td>
                         <td><%=stats.get(i)%></td>
                     </tr>
                 <%
