@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface MenuDAOInterface
 {
-     List<Menu> doRetrieveAllmenu();
+     List<Menu> doRetrieveAllMenu();
      Menu doRetrieveMenuByKey(int codiceMenu);
      void doSave(Menu cat);
      void doDelete(int codiceMenu);

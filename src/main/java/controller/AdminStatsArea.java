@@ -55,7 +55,7 @@ public class AdminStatsArea extends HttpServlet
      */
     public List<Integer> mostraStatistiche(List<Pietanza> array) {
         MenuDAOInterface mdao = new MenuDAO();
-        List<Menu> menus = mdao.doRetrieveAllmenu();
+        List<Menu> menus = mdao.doRetrieveAllMenu();
         List<Integer> counter = new ArrayList<>();
         int i = 0;
 

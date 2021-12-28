@@ -47,7 +47,7 @@ public class ShowAllMenus extends HttpServlet
     public ArrayList<Menu> ShowAllMenu()
     {
         MenuDAOInterface mdao=new MenuDAO();
-        ArrayList<Menu> menu= (ArrayList<Menu>) mdao.doRetrieveAllmenu();
+        ArrayList<Menu> menu= (ArrayList<Menu>) mdao.doRetrieveAllMenu();
         ArrayList<Menu> disponibili= new ArrayList<>();
         for(Menu x : menu)
         {

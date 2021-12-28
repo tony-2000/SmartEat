@@ -44,6 +44,6 @@ public class AdminMenuArea extends HttpServlet {
     public ArrayList<Menu> AdminShowMenu()
     {
         MenuDAOInterface mdao=new MenuDAO();
-        return (ArrayList<Menu>) mdao.doRetrieveAllmenu();
+        return (ArrayList<Menu>) mdao.doRetrieveAllMenu();
     }
 }
