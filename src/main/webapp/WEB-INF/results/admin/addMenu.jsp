@@ -21,80 +21,79 @@
 
         List<Pietanza> pietanze = (List<Pietanza>) request.getAttribute("pietanze");
     %>
-    <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
 
     <header>
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <h1>Aggiungi un menù</h1>
-        <%
-            if (pietanze == null || pietanze.isEmpty()) {
-        %>
+    <main class="field">
+        <form action="AddMenu" method="post">
+            <h2>Aggiungi un menù</h2><hr>
+            <%
+                if (pietanze == null || pietanze.isEmpty()) {
+            %>
             <p style="color: red">Non ci sono pietanze da aggiungere al menù. Riprovare.</p>
-        <%
-            } else {
-        %>
-            <form action="AddMenu" method="post">
-                <label for="nome">Nome</label><br>
-                <input type="text" name="nome" id="nome" maxlength="25" required><br>
+            <%
+                } else {
+            %>
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" maxlength="25" required><br>
 
-                <label for="primo">Primo</label><br>
-                <select name="primo" id="primo" required>
-                    <%
-                        for (Pietanza p: pietanze) {
-                            if (p.getTipo() == 'P') {
-                    %>
-                        <option value="<%=p.getNome()%>"><%=p.getNome()%></option>
-                    <%
-                            }
+            <label for="primo">Primo</label>
+            <select name="primo" id="primo" required>
+                <%
+                    for (Pietanza p: pietanze) {
+                        if (p.getTipo() == 'P') {
+                %>
+                <option value="<%=p.getNome()%>"><%=p.getNome()%></option>
+                <%
                         }
-                    %>
-                </select><br>
+                    }
+                %>
+            </select><br>
 
-                <label for="secondo">Secondo</label><br>
-                <select name="secondo" id="secondo" required>
-                    <%
-                        for (Pietanza p: pietanze) {
-                            if (p.getTipo() == 'S') {
-                    %>
-                        <option value="<%=p.getNome()%>"><%=p.getNome()%></option>
-                    <%
-                            }
+            <label for="secondo">Secondo</label>
+            <select name="secondo" id="secondo" required>
+                <%
+                    for (Pietanza p: pietanze) {
+                        if (p.getTipo() == 'S') {
+                %>
+                <option value="<%=p.getNome()%>"><%=p.getNome()%></option>
+                <%
                         }
-                    %>
-                </select><br>
+                    }
+                %>
+            </select><br>
 
-                <label for="dessert">Dessert</label><br>
-                <select name="dessert" id="dessert" required>
-                    <%
-                        for (Pietanza p: pietanze) {
-                            if (p.getTipo() == 'D') {
-                    %>
-                        <option value="<%=p.getNome()%>"><%=p.getNome()%></option>
-                    <%
-                            }
+            <label for="dessert">Dessert</label>
+            <select name="dessert" id="dessert" required>
+                <%
+                    for (Pietanza p: pietanze) {
+                        if (p.getTipo() == 'D') {
+                %>
+                <option value="<%=p.getNome()%>"><%=p.getNome()%></option>
+                <%
                         }
-                    %>
-                </select><br>
+                    }
+                %>
+            </select><br>
 
-                <label for="descrizione">Descrizione</label><br>
-                <textarea name="descrizione" id="descrizione"
-                          rows="5" cols="30" style="resize: none"
-                          maxlength="500" required></textarea><br>
+            <label for="descrizione">Descrizione</label>
+            <textarea name="descrizione" id="descrizione"
+                      rows="5" cols="30" style="resize: none"
+                      maxlength="500" required></textarea><br>
 
-                <input type="hidden" name="immagine" id="immagine" value="">
+            <input type="hidden" name="immagine" id="immagine" value="">
 
-                <label for="prezzo">Prezzo</label><br>
-                <input type="number" name="prezzo" id="prezzo" step=".25" required><br><br>
+            <label for="prezzo">Prezzo</label>
+            <input type="number" name="prezzo" id="prezzo" step=".25" required><br><br>
 
-                <input type="submit" value="Crea">
-            </form>
-        <%
-            }
-        %>
+            <input type="submit" value="Crea">
+            <%
+                }
+            %><hr>
+        </form>
     </main>
 
     <footer>

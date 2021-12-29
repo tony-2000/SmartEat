@@ -71,6 +71,7 @@ form {
     display: flex;
     flex-direction: column;
     margin: 2rem;
+    box-shadow: 5px 5px 5px grey;
 }
 
 form > * {
@@ -96,7 +97,7 @@ form > p > a {
     text-decoration: none;
 }
 
-form > input {
+form > input, form > select, form > textarea {
     font-family: var(--main-font);
     font-size: var(--main-font-size);
     border: 1px solid gray;

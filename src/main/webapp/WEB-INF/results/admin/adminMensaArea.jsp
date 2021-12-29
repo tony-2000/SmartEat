@@ -26,20 +26,20 @@
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
-        <h1><%=mensa.get(0)%></h1>
+    <main class="field">
         <form action="UpdateMensa" method="post">
-            <label for="postiDisponibili">Numero posti disponibili</label><br>
+            <h2><%=mensa.get(0)%></h2><hr>
+
+            <label for="postiDisponibili">Numero posti disponibili</label>
             <input type="number" id="postiDisponibili" name="postiDisponibili" value="<%=mensa.get(1)%>"><br>
 
-            <label for="orarioApertura">Orario di apertura</label><br>
+            <label for="orarioApertura">Orario di apertura</label>
             <input type="time" id="orarioApertura" name="orarioApertura" value="<%=mensa.get(2)%>"><br>
 
-            <label for="orarioChiusura">Orario di chiusura</label><br>
-            <input type="time" id="orarioChiusura" name="orarioChiusura" value="<%=mensa.get(3)%>"><br><br>
+            <label for="orarioChiusura">Orario di chiusura</label>
+            <input type="time" id="orarioChiusura" name="orarioChiusura" value="<%=mensa.get(3)%>"><br>
 
-            <input type="submit" value="Conferma modifiche">
+            <input type="submit" value="Conferma modifiche"><hr>
         </form>
     </main>
 
