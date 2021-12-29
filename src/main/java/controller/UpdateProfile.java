@@ -62,35 +62,50 @@ public class UpdateProfile extends HttpServlet {
                                 String residenza,String password,String passwordCheck)
     {
         String error="";
-        try
-        {
-            Check.nomeIsValid(nome);
-            Check.cognomeIsValid(cognome);
-            Check.sessoIsValid(gender);
-            Check.nascitaIsValid(nascita);
-            Check.luogoDNIsValid(luogo);
-            Check.residenzaIsValid(residenza);
-            Check.passwordIsValid(password,passwordCheck);
-        }
-        catch (Exception e)
-        {
-            error=e.getMessage();
-            return error;
-        }
-        Utente user=new Utente();
-        UtenteDAOInterface dao=new UtenteDAO();
-        user.setCF(oldUser.getCF());
-        user.setNome(nome);
-        user.setCognome(cognome);
-        user.setSesso(gender);
-        user.setDataDiNascita(nascita);
-        user.setLuogoDiNascita(luogo);
-        user.setEmail(oldUser.getEmail());
-        user.setResidenza(residenza);
-        user.setPasswordHash(password);
-        user.setAmministratore(oldUser.isAmministratore());
-        user.setAccepted(oldUser.isAccepted());
-        dao.doUpdateUtenteInfo(user);
-        return error;
+        Esito res;
+
+            res=Check.nomeIsValid(nome);
+            if (!res.isValido())
+                    error= res.getMessage();
+            res=Check.cognomeIsValid(cognome);
+            if (!res.isValido())
+                    error= res.getMessage();
+            res=Check.sessoIsValid(gender);
+            if (!res.isValido())
+                    error= res.getMessage();
+            res=Check.nascitaIsValid(nascita);
+            if (!res.isValido())
+                    error= res.getMessage();
+            res=Check.luogoDNIsValid(luogo);
+            if (!res.isValido())
+                    error= res.getMessage();
+            res=Check.residenzaIsValid(residenza);
+            if (!res.isValido())
+                    error= res.getMessage();
+            res=Check.passwordIsValid(password,passwordCheck);
+            if (!res.isValido())
+                    error= res.getMessage();
+
+       if(!res.isValido())
+           return error;
+       else
+       {
+           Utente user = new Utente();
+           UtenteDAOInterface dao = new UtenteDAO();
+           user.setCF(oldUser.getCF());
+           user.setNome(nome);
+           user.setCognome(cognome);
+           user.setSesso(gender);
+           user.setDataDiNascita(nascita);
+           user.setLuogoDiNascita(luogo);
+           user.setEmail(oldUser.getEmail());
+           user.setResidenza(residenza);
+           user.setPasswordHash(password);
+           user.setAmministratore(oldUser.isAmministratore());
+           user.setAccepted(oldUser.isAccepted());
+           dao.doUpdateUtenteInfo(user);
+           res.setValido(true);
+           return error;
+       }
     }
 }

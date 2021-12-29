@@ -39,7 +39,8 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         Utente user = this.login(mail, password, strings);
 
-        if (user.getCF() == null) {
+        if (user.getCF() == null)
+        {
             String err = "Dati utente scorretti";
             if (strings[1] != null)
                 err = err + ": " + strings[1];
@@ -73,17 +74,20 @@ public class Login extends HttpServlet {
      * altrimenti restituisce le informazioni dell'Utente
      * @post {@literal Utente (empty) || utente->select(u|u.email=email && u.password==password}
      */
-    public Utente login(String mail, String password, String[] strings) {
+    public Utente login(String mail, String password, String[] strings)
+    {
         Esito res;
 
         res = Check.mailIsValidLogin(mail);
-        if (!res.isValido()) {
+        if (!res.isValido())
+        {
             strings[1] = res.getMessage();
             return new Utente();
         }
 
         res = Check.passwordIsValid(password, password);
-        if (!res.isValido()) {
+        if (!res.isValido())
+        {
             strings[1] = res.getMessage();
             return new Utente();
         }

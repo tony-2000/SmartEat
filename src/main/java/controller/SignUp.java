@@ -58,41 +58,71 @@ public class SignUp extends HttpServlet {
      * @param passwordCheck campo Conferma password
      * @return Stringa di conferma di avvenuto salvataggio o di errore.
      */
+
     public String registrazione(String CF, String nome, String cognome, char gender, Date nascita,String luogo, String mail, String residenza, String password, String passwordCheck)
     {
         String error="";
-        try
+        Esito res;
+
+        res=Check.CFIsValid(CF);
+        if (!res.isValido())
+            error= res.getMessage();
+
+        res=Check.nomeIsValid(nome);
+        if (!res.isValido())
+            error= res.getMessage();
+
+        res=Check.cognomeIsValid(cognome);
+        if (!res.isValido())
+            error= res.getMessage();
+
+        res=Check.sessoIsValid(gender);
+        if (!res.isValido())
+            error= res.getMessage();
+
+        res=Check.nascitaIsValid(nascita);
+        if (!res.isValido())
+            error= res.getMessage();
+
+        res=Check.luogoDNIsValid(luogo);
+        if (!res.isValido())
+            error= res.getMessage();
+
+        res=Check.mailIsValidReg(mail);
+        if (!res.isValido())
+            error= res.getMessage();
+
+        res=Check.residenzaIsValid(residenza);
+        if (!res.isValido())
+            error= res.getMessage();
+
+        res=Check.passwordIsValid(password,passwordCheck);
+        if (!res.isValido())
+            error= res.getMessage();
+
+        if(!res.isValido())
+            return error;
+        else
         {
-            Check.CFIsValid(CF);
-            Check.nomeIsValid(nome);
-            Check.cognomeIsValid(cognome);
-            Check.sessoIsValid(gender);
-            Check.nascitaIsValid(nascita);
-            Check.luogoDNIsValid(luogo);
-            Check.mailIsValidReg(mail);
-            Check.residenzaIsValid(residenza);
-            Check.passwordIsValid(password,passwordCheck);
+            Utente user = new Utente();
+            UtenteDAOInterface dao = new UtenteDAO();
+            user.setCF(CF);
+            user.setNome(nome);
+            user.setCognome(cognome);
+            user.setSesso(gender);
+            user.setDataDiNascita(nascita);
+            user.setLuogoDiNascita(luogo);
+            user.setEmail(mail);
+            user.setResidenza(residenza);
+            user.setPasswordHash(password);
+            RuoloUtente standard = new RuoloStandard();
+            user.setAmministratore(standard);
+            user.setAccepted(false);
+            dao.doSave(user);
+            return error;
         }
-        catch (Exception e)
-        {
-             error=e.getMessage();
-             return error;
-        }
-        Utente user=new Utente();
-        UtenteDAOInterface dao=new UtenteDAO();
-        user.setCF(CF);
-        user.setNome(nome);
-        user.setCognome(cognome);
-        user.setSesso(gender);
-        user.setDataDiNascita(nascita);
-        user.setLuogoDiNascita(luogo);
-        user.setEmail(mail);
-        user.setResidenza(residenza);
-        user.setPasswordHash(password);
-        RuoloUtente standard= new RuoloStandard();
-        user.setAmministratore(standard);
-        user.setAccepted(false);
-        dao.doSave(user);
-        return error;
     }
 }
+
+
+

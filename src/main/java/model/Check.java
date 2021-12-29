@@ -6,7 +6,8 @@ import java.util.ArrayList;
 /**
  * Questa classe di servizio realizza la convalida degli input
  */
-public class Check {
+public class Check
+{
 
     public static Esito CFIsValid(String CF)
     {
