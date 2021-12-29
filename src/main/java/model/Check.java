@@ -123,7 +123,7 @@ public class Check {
             return result;
         }
         if (!(mail.contains("@"))) {
-            result.setMessage("Il campo mail non può essere vuoto");
+            result.setMessage("Il campo mail deve contenere @");
             return result;
         }
         if (!(mail.contains("."))) {
@@ -160,7 +160,7 @@ public class Check {
             return result;
         }
         if (!(mail.contains("@"))) {
-            result.setMessage("Il campo mail non può essere vuoto");
+            result.setMessage("Il campo mail deve contenere @");
             return result;
         }
         if (!(mail.contains("."))) {
