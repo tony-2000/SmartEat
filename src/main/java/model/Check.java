@@ -126,21 +126,47 @@ public class Check {
     }
 
 
-    public static void passwordIsValid(String password, String passwordCheck) throws Exception {
-        if (!password.equals(passwordCheck)) throw new Exception("Le due password non coincidono");
-        if (password.equals("")) throw new Exception("Il campo password è vuoto");
-        if (password.length() < 8) throw new Exception("Il campo password ha meno di 8 caratteri");
-        if (password.length() > 16) throw new Exception("Il campo password ha più di 16 caratteri");
-        if (password.equals(password.toLowerCase()))
-            throw new Exception("Il campo password non ha caratteri maiuscoli");
-        if (password.equals(password.toUpperCase()))
-            throw new Exception("Il campo password non ha caratteri minuscoli");
-        if (!password.matches("(.*[0-9].*)")) throw new Exception("Il campo password non ha numeri");
+    public static Esito passwordIsValid(String password, String passwordCheck) {
+        Esito result = new Esito();
+        result.setValido(false);
+        if (!password.equals(passwordCheck)) {
+            result.setMessage("Le due password non coincidono");
+            return result;
+        }
+        if (password.equals("")) {
+            result.setMessage("Il campo password è vuoto");
+            return result;
+        }
+        if (password.length() < 8) {
+            result.setMessage("Il campo password ha meno di 8 caratteri");
+            return result;
+        }
+        if (password.length() > 16) {
+            result.setMessage("Il campo password ha più di 16 caratteri");
+            return result;
+        }
+        if (password.equals(password.toLowerCase())) {
+            result.setMessage("Il campo password non ha caratteri maiuscoli");
+            return result;
+        }
+        if (password.equals(password.toUpperCase())) {
+            result.setMessage("Il campo password non ha caratteri minuscoli");
+            return result;
+        }
+        if (!password.matches("(.*[0-9].*)")) {
+            result.setMessage("Il campo password non ha numeri");
+            return result;
+        }
         boolean checkSpecial = false;
         for (int i = 0; i < password.length(); i++)
             if (!Character.isLetterOrDigit(password.charAt(i)))
                 checkSpecial = true;
-        if (!checkSpecial) throw new Exception("Il campo password non ha caratteri speciali");
+        if (!checkSpecial) {
+            result.setMessage("Il campo password non ha caratteri speciali");
+            return result;
+        }
+        result.setValido(true);
+        return result;
     }
 
 }
