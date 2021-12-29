@@ -13,7 +13,7 @@
 
     <script>
         function confirmDelete() {
-            return confirm("Sicuro di voler eliminare la pietanza selezionata?");
+            return confirm("ATTENZIONE!\nSicuro di voler eliminare la pietanza selezionata? Se la pietanza è contenuta in uno o più menu, verranno eliminati automaticamente anche questi ultimi.");
         }
     </script>
 </head>
