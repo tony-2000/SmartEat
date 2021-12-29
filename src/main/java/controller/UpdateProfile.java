@@ -38,6 +38,9 @@ public class UpdateProfile extends HttpServlet {
         UtenteDAOInterface udao=new UtenteDAO();
         Utente user= udao.doRetrieveUtenteByKey(oldUser.getCF());
         session.setAttribute("utenteSessione",user);
+        TesseraDAOInterface tessradao=new TesseraDAO();
+        Tessera tessera=tessradao.doRetrieveTesseraByKey(oldUser.getCF());
+        request.setAttribute("tessera",tessera);
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
     }
