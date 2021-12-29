@@ -66,44 +66,67 @@ public class SignUp extends HttpServlet {
 
         res=Check.CFIsValid(CF);
         if (!res.isValido())
+        {
             error= res.getMessage();
+            return error;
+        }
 
         res=Check.nomeIsValid(nome);
         if (!res.isValido())
+        {
             error= res.getMessage();
+            return error;
+        }
 
         res=Check.cognomeIsValid(cognome);
         if (!res.isValido())
+        {
             error= res.getMessage();
+            return error;
+        }
 
         res=Check.sessoIsValid(gender);
         if (!res.isValido())
+        {
             error= res.getMessage();
+            return error;
+        }
 
         res=Check.nascitaIsValid(nascita);
         if (!res.isValido())
+        {
             error= res.getMessage();
+            return error;
+        }
 
         res=Check.luogoDNIsValid(luogo);
         if (!res.isValido())
+        {
             error= res.getMessage();
+            return error;
+        }
 
         res=Check.mailIsValidReg(mail);
         if (!res.isValido())
+        {
             error= res.getMessage();
+            return error;
+        }
 
         res=Check.residenzaIsValid(residenza);
         if (!res.isValido())
+        {
             error= res.getMessage();
+            return error;
+        }
 
         res=Check.passwordIsValid(password,passwordCheck);
         if (!res.isValido())
-            error= res.getMessage();
-
-        if(!res.isValido())
-            return error;
-        else
         {
+            error= res.getMessage();
+            return error;
+        }
+
             Utente user = new Utente();
             UtenteDAOInterface dao = new UtenteDAO();
             user.setCF(CF);
@@ -120,7 +143,6 @@ public class SignUp extends HttpServlet {
             user.setAccepted(false);
             dao.doSave(user);
             return error;
-        }
     }
 }
 

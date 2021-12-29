@@ -66,30 +66,47 @@ public class UpdateProfile extends HttpServlet {
 
             res=Check.nomeIsValid(nome);
             if (!res.isValido())
-                    error= res.getMessage();
+            {
+                error= res.getMessage();
+                return error;
+            }
             res=Check.cognomeIsValid(cognome);
             if (!res.isValido())
-                    error= res.getMessage();
+            {
+                error= res.getMessage();
+                return error;
+            }
             res=Check.sessoIsValid(gender);
             if (!res.isValido())
-                    error= res.getMessage();
+            {
+                error= res.getMessage();
+                return error;
+            }
             res=Check.nascitaIsValid(nascita);
             if (!res.isValido())
-                    error= res.getMessage();
+            {
+                error= res.getMessage();
+                return error;
+            }
             res=Check.luogoDNIsValid(luogo);
             if (!res.isValido())
-                    error= res.getMessage();
+            {
+                error= res.getMessage();
+                return error;
+            }
             res=Check.residenzaIsValid(residenza);
             if (!res.isValido())
-                    error= res.getMessage();
+            {
+                error= res.getMessage();
+                return error;
+            }
             res=Check.passwordIsValid(password,passwordCheck);
             if (!res.isValido())
-                    error= res.getMessage();
+            {
+                error= res.getMessage();
+                return error;
+            }
 
-       if(!res.isValido())
-           return error;
-       else
-       {
            Utente user = new Utente();
            UtenteDAOInterface dao = new UtenteDAO();
            user.setCF(oldUser.getCF());
@@ -106,6 +123,5 @@ public class UpdateProfile extends HttpServlet {
            dao.doUpdateUtenteInfo(user);
            res.setValido(true);
            return error;
-       }
     }
 }
