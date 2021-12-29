@@ -8,55 +8,114 @@ import java.util.ArrayList;
  */
 public class Check {
 
-    public static Esito CFIsValid(String CF) throws Exception {
+    public static Esito CFIsValid(String CF)
+    {
         Esito result = new Esito();
         result.setValido(false);
-        if (CF.length() < 16) result.setMessage("Lunghezza CF minore di 16 caratteri");
-        if (CF.length() > 16) throw new Exception("Lunghezza CF maggiore di 16 caratteri");
+        if (CF.length() < 16) {
+            result.setMessage("Lunghezza CF minore di 16 caratteri");
+            return result;
+        }
+        if (CF.length() > 16) {
+            result.setMessage("Lunghezza CF maggiore di 16 caratteri");
+            return result;
+        }
         for (int i = 0; i < 16; i++)
-            if (!Character.isLetterOrDigit(CF.charAt(i)))
-                throw new Exception("Il CF può contenere solo lettere o numeri");
+            if (!Character.isLetterOrDigit(CF.charAt(i))) {
+                result.setMessage("Il CF può contenere solo lettere o numeri");
+                return result;
+            }
         ArrayList<Utente> array;
         UtenteDAO users = new UtenteDAO();
         array = (ArrayList<Utente>) users.doRetrieveAllUtente();
         for (Utente x : array) {
-            if (x.getCF().equals(CF))
-                throw new Exception("Il CF è già presente in database");
+            if (x.getCF().equals(CF)) {
+                result.setMessage("Il CF è già presente in database");
+                return result;
+            }
         }
         result.setValido(true);
         return result;
     }
 
-    public static void nomeIsValid(String name) throws Exception {
-        if (name.length() > 20) throw new Exception("Lunghezza nome maggiore di 20 caratteri");
-        if (name.length() == 0) throw new Exception("Il campo nome non può essere vuoto");
+    public static Esito nomeIsValid(String name)
+    {
+        Esito result = new Esito();
+        result.setValido(false);
+        if (name.length() > 20) {
+            result.setMessage("Lunghezza nome maggiore di 20 caratteri");
+            return result;
+        }
+        if (name.length() == 0) {
+            result.setMessage("Il campo nome non può essere vuoto");
+            return result;
+        }
+        result.setValido(true);
+        return result;
     }
 
-    public static void cognomeIsValid(String surname) throws Exception {
-        if (surname.length() > 20) throw new Exception("Lunghezza cognome maggiore di 20 caratteri");
-        if (surname.length() == 0) throw new Exception("Il campo cognome non può essere vuoto");
+    public static Esito cognomeIsValid(String surname)
+    {
+        Esito result = new Esito();
+        result.setValido(false);
+        if (surname.length() > 20) {
+            result.setMessage("Lunghezza cognome maggiore di 20 caratteri");
+            return result;
+        }
+        if (surname.length() == 0) {
+            result.setMessage("Il campo cognome non può essere vuoto");
+            return result;
+        }
+        result.setValido(true);
+        return result;
     }
 
 
-    public static void sessoIsValid(char g) throws Exception {
-        if (!(Character.toString(g).equals("M")) && !(Character.toString(g).equals("F")) && !(Character.toString(g).equals("N")))
-            throw new Exception("Formato non valido, inserire uno tra i seguenti caratteri: M, F, N");
+    public static Esito sessoIsValid(char g)
+    {
+        Esito result = new Esito();
+        result.setValido(false);
+        if (!(Character.toString(g).equals("M")) && !(Character.toString(g).equals("F")) && !(Character.toString(g).equals("N"))) {
+            result.setMessage("Formato non valido, inserire uno tra i seguenti caratteri: M, F, N");
+            return result;
+        }
+        result.setValido(true);
+        return result;
     }
 
 
-    public static void nascitaIsValid(Date data) throws Exception {
-        if (data.compareTo(new Date(System.currentTimeMillis())) >= 0)
-            throw new Exception("Data di nascita non valida");
+    public static Esito nascitaIsValid(Date data)
+    {
+        Esito result = new Esito();
+        result.setValido(false);
+        if (data.compareTo(new Date(System.currentTimeMillis())) >= 0) {
+            result.setMessage("Data di nascita non valida");
+            return result;
+        }
+        result.setValido(true);
+        return result;
     }
 
 
-    public static void luogoDNIsValid(String ldn) throws Exception {
-        if (ldn.length() > 25) throw new Exception("Lunghezza luogo di nascita maggiore di 25 caratteri");
-        if (ldn.length() == 0) throw new Exception("Il campo luogo di nascita non può essere vuoto");
+    public static Esito luogoDNIsValid(String ldn)
+    {
+        Esito result = new Esito();
+        result.setValido(false);
+        if (ldn.length() > 25) {
+            result.setMessage("Lunghezza luogo di nascita maggiore di 25 caratteri");
+            return result;
+        }
+        if (ldn.length() == 0) {
+            result.setMessage("Il campo luogo di nascita non può essere vuoto");
+            return result;
+        }
+        result.setValido(true);
+        return result;
     }
 
 
-    public static Esito mailIsValidReg(String mail) {
+    public static Esito mailIsValidReg(String mail)
+    {
         Esito result = new Esito();
         result.setValido(false);
         if (mail.equals("")) {
@@ -92,7 +151,8 @@ public class Check {
         return result;
     }
 
-    public static Esito mailIsValidLogin(String mail) {
+    public static Esito mailIsValidLogin(String mail)
+    {
         Esito result = new Esito();
         result.setValido(false);
         if (mail.equals("")) {
@@ -120,9 +180,22 @@ public class Check {
     }
 
 
-    public static void residenzaIsValid(String res) throws Exception {
-        if (res.length() > 35) throw new Exception("Il campo residenza ncontiene più di 35 caratteri");
-        if (res.length() == 0) throw new Exception("Il campo mail non può essere vuoto");
+    public static Esito residenzaIsValid(String res)
+    {
+        Esito result = new Esito();
+        result.setValido(false);
+        if (res.length() > 35)
+        {
+            result.setMessage("Il campo residenza ncontiene più di 35 caratteri");
+            return result;
+        }
+        if (res.length() == 0)
+        {
+            result.setMessage("Il campo mail non può essere vuoto");
+            return result;
+        }
+        result.setValido(true);
+        return result;
     }
 
 
