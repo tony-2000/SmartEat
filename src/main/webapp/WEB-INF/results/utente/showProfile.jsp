@@ -18,7 +18,6 @@
             response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
         Tessera tessera = (Tessera) request.getAttribute("tessera");
-        System.out.println("jsp " + tessera.getSaldo()); //DEBUG
     %>
 
     <header>

@@ -61,20 +61,20 @@
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <h2>Effettua l'accesso a SmartEat</h2>
-
+    <main class="field">
         <form name="login" onsubmit="return validateForm()" action="${pageContext.request.contextPath}/Login" method="post">
-            <label for="mail">Indirizzo e-mail</label><br>
+            <h2>Effettua l'accesso a SmartEat</h2><hr>
+
+            <label for="mail">Indirizzo e-mail</label>
             <input type="email" id="mail" name="mail" maxlength="35" required><a id="emailAlert" style="color: red"></a><br>
 
-            <label for="password">Password</label><br>
-            <input type="password" id="password" name="password" maxlength="16" required><a id="passwordAlert" style="color: red"></a><br><br>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" maxlength="16" required><a id="passwordAlert" style="color: red"></a><br>
 
-            <input type="submit" value="Login">
+            <input type="submit" value="Login"><hr>
+
+            <p><a href="${pageContext.request.contextPath}/toSignUp">Oppure registrati</a></p>
         </form>
-
-        <p><a href="${pageContext.request.contextPath}/toSignUp">Oppure registrati</a></p>
     </main>
 
     <footer>

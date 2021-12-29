@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+/* Basic elements */
 :root {
-    font-family: 'Roboto', sans-serif;
-    font-size: clamp(14px, 2vw, 18px);
+    --main-font: 'Roboto', sans-serif;
+    --main-font-size: clamp(14px, 2vw, 18px);
+
+    font-family: var(--main-font);
+    font-size: var(--main-font-size);
 }
 
 h1 {
@@ -29,42 +33,6 @@ h6 {
     font-size: clamp(10.5px, 2vw, 12px);
 }
 
-/*
-html {
-    font-size: 14px;
-}
-
-h1 {
-    font-size: 28px;
-    font-weight: bold;
-}
-
-h2 {
-    font-size: 21px;
-    font-weight: bold;
-}
-
-h3 {
-    font-size: 16.38px;
-    font-weight: bold;
-}
-
-h4 {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-h5 {
-    font-size: 11.62px;
-    font-weight: bold;
-}
-
-h6 {
-    font-size: 10.5px;
-    font-weight: bold;
-}
-*/
-
 p, h1, h2, h3, h4, h5, h6 {
     padding: 0.3rem;
 }
@@ -88,40 +56,61 @@ body > main {
     background-color: darkgray;
 }
 
-/*
-@media screen and (min-width: 320px) {
-    html {
-        font-size: calc(14px + 2 * ((100vw - 320px) / 680));
-    }
+/* Forms */
+.field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-@media screen and (min-width: 1000px) {
-    html {
-        font-size: 16px;
-    }
-
-    h1 {
-        font-size: 32px;
-    }
-
-    h2 {
-        font-size: 24px;
-    }
-
-    h3 {
-        font-size: 18.72px;
-    }
-
-    h4 {
-        font-size: 26px;
-    }
-
-    h5 {
-        font-size: 13.28px;
-    }
-
-    h6 {
-        font-size: 12px;
-    }
+form {
+    background-color: white;
+    border-radius: 0;
+    width: 45vw;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
 }
-*/
+
+form > * {
+    margin: 0.25rem 2.5rem;
+}
+
+form > h2 {
+    text-align: center;
+    margin: 1rem 1rem 0;
+}
+
+form > hr {
+    color: black;
+    margin: 1rem 1.5rem;
+}
+
+form > p {
+    margin: 0 2.5rem 1rem;
+    text-align: end;
+}
+
+form > p > a {
+    text-decoration: none;
+}
+
+form > input {
+    font-family: var(--main-font);
+    font-size: var(--main-font-size);
+    border: 1px solid gray;
+    padding: 0.3rem;
+    border-radius: 0;
+}
+
+form > input[type=submit] {
+    border: none;
+    font-weight: bold;
+    margin: 1rem 2.5rem;
+    padding: 0.5rem;
+}
+
+form > input[type=submit]:hover {
+    cursor: pointer;
+}

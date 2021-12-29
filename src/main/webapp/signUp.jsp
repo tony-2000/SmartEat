@@ -166,45 +166,45 @@
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <h2>Registrati a SmartEat</h2>
-
+    <main class="field">
         <form name="signUp" onsubmit="return validateForm()" action="SignUp" method="post">
-            <label for="CF">Codice Fiscale</label><br>
+            <h2>Registrati a SmartEat</h2><hr>
+
+            <label for="CF">Codice Fiscale</label>
             <input type="text" id="CF" name="CF" maxlength="16" required><a id="CFAlert" style="color: red"></a><br>
 
-            <label for="nome_utente">Nome</label><br>
+            <label for="nome_utente">Nome</label>
             <input type="text" id="nome_utente" name="nome_utente" maxlength="20" required><a id="nomeAlert" style="color: red"></a><br>
 
-            <label for="cognome">Cognome</label><br>
+            <label for="cognome">Cognome</label>
             <input type="text" id="cognome" name="cognome" maxlength="20" required><a id="cognomeAlert" style="color: red"></a><br>
 
-            <label for="gender">Sesso</label><br>
+            <label for="gender">Sesso</label>
             <select id="gender" name="gender" required>
                 <option value="M">Maschio</option>
                 <option value="F">Femmina</option>
                 <option value="N">Altro</option>
             </select><a id="genderAlert" style="color: red"></a><br>
 
-            <label for="dataDiNascita">Data di nascita</label><br>
+            <label for="dataDiNascita">Data di nascita</label>
             <input type="date" id="dataDiNascita" name="dataDiNascita" required><a id="ddnAlert" style="color: red"></a><br>
 
-            <label for="luogoDiNascita">Luogo di nascita</label><br>
+            <label for="luogoDiNascita">Luogo di nascita</label>
             <input type="text" id="luogoDiNascita" name="luogoDiNascita" maxlength="25" required><a id="ldnAlert" style="color: red"></a><br>
 
-            <label for="residenza">Luogo di residenza</label><br>
+            <label for="residenza">Luogo di residenza</label>
             <input type="text" id="residenza" name="residenza" maxlength="25" required><a id="residenzaAlert" style="color: red"></a><br>
 
-            <label for="mail">Indirizzo e-mail</label><br>
+            <label for="mail">Indirizzo e-mail</label>
             <input type="email" id="mail" name="mail" maxlength="35" required><a id="emailAlert" style="color: red"></a><br>
 
-            <label for="password">Password</label><br>
+            <label for="password">Password</label>
             <input type="password" id="password" name="password" maxlength="16" required><a id="passwordAlert" style="color: red"></a><br>
 
-            <label for="passwordCheck">Conferma password</label><br>
-            <input type="password" id="passwordCheck" name="passwordCheck" maxlength="16" required><a id="checkPasswordAlert" style="color: red"></a><br><br>
+            <label for="passwordCheck">Conferma password</label>
+            <input type="password" id="passwordCheck" name="passwordCheck" maxlength="16" required><a id="checkPasswordAlert" style="color: red"></a><br>
 
-            <input type="submit" value="Registrati">
+            <input type="submit" value="Registrati"><hr>
         </form>
     </main>
 
