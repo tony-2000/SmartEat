@@ -9,9 +9,11 @@ import java.util.ArrayList;
 public class Check
 {
 
-    public static void CFIsValid(String CF) throws Exception
+    public static Esito CFIsValid(String CF) throws Exception
     {
-        if(CF.length()<16) throw new Exception("Lunghezza CF minore di 16 caratteri");
+        Esito result = new Esito();
+        result.setValido(false);
+        if(CF.length()<16) result.setMessage("Lunghezza CF minore di 16 caratteri");
         if(CF.length()>16) throw new Exception("Lunghezza CF maggiore di 16 caratteri");
         for(int i=0;i<16;i++)
            if (!Character.isLetterOrDigit(CF.charAt(i)))
@@ -24,6 +26,8 @@ public class Check
             if(x.getCF().equals(CF))
                 throw new Exception("Il CF è già presente in database");
         }
+        result.setValido(true);
+        return result;
     }
 
     public static void nomeIsValid(String name) throws Exception {

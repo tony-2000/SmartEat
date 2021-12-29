@@ -19,6 +19,18 @@ import java.util.ArrayList;
 @WebServlet(name="Login", value="/Login")
 public class Login extends HttpServlet {
 
+    UtenteDAOInterface dao;
+
+    public Login() {
+        super();
+        dao= new UtenteDAO();
+    }
+
+    public Login(UtenteDAOInterface dao){
+        super();
+        this.dao=dao;
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String[] strings=new String[2];
@@ -77,7 +89,6 @@ public class Login extends HttpServlet {
             strings[1]=e.getMessage();
             return new Utente();
         }
-        UtenteDAOInterface dao= new UtenteDAO();
         Utente u= dao.doRetrieveUtenteByEmailPassword(mail,password);
         if(!u.isAccepted())
             strings[0]="L'amministratore non ha ancora accettato la tua richiesta di registrazione.";

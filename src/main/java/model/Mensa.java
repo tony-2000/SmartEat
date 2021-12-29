@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 /**
- * La classe modella gli oggeti mensa ed utilizza il Singleton Pattern
+ * La classe modella gli oggetti mensa ed utilizza il Singleton Pattern
  * @invariant orarioApertura.getTime()-orarioChiusura.getTime(){@literal <}0
  */
 public class Mensa
@@ -31,9 +31,9 @@ public class Mensa
     private static int postiVuoti;
 
     /**
-     * Instanza privata del Singleton Mensa
+     * Istanza privata del Singleton Mensa
      */
-    private static  Mensa mensa=new Mensa();
+    public static  Mensa mensa=new Mensa();
 
     /**
      *Costruttore privato per realizzare il Singleton Pattern
