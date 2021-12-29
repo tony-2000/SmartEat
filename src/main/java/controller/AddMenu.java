@@ -50,7 +50,7 @@ public class AddMenu extends HttpServlet {
             menu.setDescrizione(descrizione);
             menu.setImmagine(immagine);
             menu.setPrezzo(prezzo);
-            menu.setAvailable(false);
+            menu.setAvailable(true);
             boolean result=this.addMenu(menu, menudao);
             String message;
             if(result)
