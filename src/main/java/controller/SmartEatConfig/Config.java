@@ -16,11 +16,12 @@ import java.io.IOException;
 @WebServlet(name="Config", value="/Config",loadOnStartup = 0)
 public class Config extends HttpServlet
 {
-
+    /**
+     * Costruttore vuoto
+     */
     public Config() {
         super();
     }
-
 
     public void init(ServletConfig config) throws ServletException
     {
