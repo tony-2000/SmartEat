@@ -18,17 +18,35 @@ import java.io.IOException;
 @WebServlet(name = "AcceptUtente", value = "/AcceptUtente")
 public class AcceptUtente extends HttpServlet
 {
-
+    /**
+     * DAO di Utente
+     */
     private final UtenteDAOInterface dao;
+
+    /**
+     * DAO di Tessera
+     */
     private final TesseraDAOInterface tdao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public AcceptUtente() {
         super();
         dao = new UtenteDAO();
         tdao=new TesseraDAO();
     }
 
+    /**Costruttore con parametri
+     * @param dao DAO di Utente
+     * @param tdao DAO di Tessera
+     * @param session Sessione
+     */
     public AcceptUtente(UtenteDAOInterface dao,TesseraDAOInterface tdao,HttpSession session) {
         super();
         this.dao = dao;
