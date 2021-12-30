@@ -17,6 +17,20 @@ import java.sql.Date;
  */
 @WebServlet(name="SignUp", value="/SignUp")
 public class SignUp extends HttpServlet {
+
+    private UtenteDAOInterface dao;
+
+    public SignUp() {
+        super();
+        dao = new UtenteDAO();
+    }
+
+    public SignUp(UtenteDAOInterface dao) {
+        super();
+        this.dao = dao;
+    }
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String url="login.jsp";
@@ -128,7 +142,6 @@ public class SignUp extends HttpServlet {
         }
 
             Utente user = new Utente();
-            UtenteDAOInterface dao = new UtenteDAO();
             user.setCF(CF);
             user.setNome(nome);
             user.setCognome(cognome);

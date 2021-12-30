@@ -16,7 +16,8 @@ import java.io.IOException;
  * Classe che implementa l'accettazione degli utenti da parte dell'amministratore.
  */
 @WebServlet(name = "AcceptUtente", value = "/AcceptUtente")
-public class AcceptUtente extends HttpServlet {
+public class AcceptUtente extends HttpServlet
+{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
