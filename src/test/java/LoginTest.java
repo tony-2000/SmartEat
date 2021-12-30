@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -77,6 +76,7 @@ public class LoginTest extends Mockito{
     {
         String mail="pippo@mail.it";
         String password="P4ssword!";
+        String CF="1234567890ABCDEF";
         String[] strings = new String[2];
         UtenteDAOInterface udao = mock(UtenteDAO.class);
         MensaDAOInterface mdao = mock(MensaDAO.class);
@@ -86,6 +86,7 @@ public class LoginTest extends Mockito{
         Utente user = new Utente();
         user.setEmail(mail);
         user.setPasswordHash(password);
+        user.setCF(CF);
         user.setAccepted(false);
 
         when(udao.doRetrieveUtenteByEmailPassword(anyString(),anyString())).thenReturn(user);
@@ -111,6 +112,7 @@ public class LoginTest extends Mockito{
         user.setEmail(mail);
         user.setPasswordHash(password);
         user.setCF(CF);
+        user.setAccepted(false);
 
         when(udao.doRetrieveUtenteByEmailPassword(anyString(),anyString())).thenReturn(user);
 
@@ -126,6 +128,7 @@ public class LoginTest extends Mockito{
         user.setEmail("pippo@mail.it");
         user.setPasswordHash("P4ssword!");
         user.setCF("1234567890ABCDEF");
+        user.setAccepted(true);
         HttpServletRequest request= mock(HttpServletRequest.class);
         HttpServletResponse response= mock(HttpServletResponse.class);
         UtenteDAOInterface udao = mock(UtenteDAO.class);
@@ -145,13 +148,17 @@ public class LoginTest extends Mockito{
 
         when(udao.doRetrieveUtenteByEmailPassword(anyString(),anyString())).thenReturn(user);
         when(request.getParameter("mail")).thenReturn("pippo@mail.it");
-        when(request.getParameter("mail")).thenReturn("P4ssword!");
+        when(request.getParameter("password")).thenReturn("P4ssword!");
         when(mdao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
         when(request.getSession()).thenReturn(session);
         when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
 
+
+
         login.doPost(request,response);
 
 
+
+        verify(session, atLeastOnce()).setAttribute(eq("utenteSessione"), any(Utente.class));
     }
 }
