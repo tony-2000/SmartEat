@@ -5,7 +5,12 @@ import model.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Classe che aggiunge una pietanza al database da parte dell'admin.
@@ -40,17 +45,30 @@ public class AddPietanza extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/toHome");
         else
         {
+            Part image = request.getPart("image");
+            String nameImage = Paths.get(image.getSubmittedFileName()).getFileName().toString();
+            String uploadPath = System.getenv("CATALINA_HOME") + File.separator + "uploads" + File.separator;
+            InputStream stream = image.getInputStream();
+            String linkImmagine = uploadPath + nameImage;
+            File file = new File(linkImmagine);
+            try {
+                Files.copy(stream, file.toPath());
+            } catch (FileAlreadyExistsException e) {
+                /* do nothing */
+            }
+
+
+
             String nome = request.getParameter("nome");
             String descrizione = request.getParameter("descrizione");
             char tipo = request.getParameter("tipo").charAt(0);
             String ingredienti = request.getParameter("ingredienti");
-            String immagine = request.getParameter("immagine");
             //int numeroAcquisti = Integer.parseInt(request.getParameter("numeroAcquisti"));
             pietanza.setNome(nome);
             pietanza.setDescrizione(descrizione);
             pietanza.setTipo(tipo);
             pietanza.setIngredienti(ingredienti);
-            pietanza.setImmagine(immagine);
+            pietanza.setImmagine("SmartEat_War/covers/"+nameImage);
             pietanza.setNumeroAcquisti(0);
             this.addPietanza(pietanza);
 
