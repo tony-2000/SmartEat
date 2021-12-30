@@ -19,21 +19,27 @@ import java.util.ArrayList;
 @WebServlet(name = "Login", value = "/Login")
 public class Login extends HttpServlet {
 
-    UtenteDAOInterface dao;
+    private final UtenteDAOInterface udao;
+    private final MensaDAOInterface mdao;
+    private HttpSession session;
 
     public Login() {
         super();
-        dao = new UtenteDAO();
+        udao = new UtenteDAO();
+        mdao = new MensaDAO();
     }
 
-    public Login(UtenteDAOInterface dao) {
+    public Login(UtenteDAOInterface udao, MensaDAOInterface mdao, HttpSession session) {
         super();
-        this.dao = dao;
+        this.udao = udao;
+        this.mdao = mdao;
+        this.session = session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] strings = new String[2];
-        HttpSession session = request.getSession();
+        if(session==null)
+            session=request.getSession();
         String resp = "/WEB-INF/results/mensa/home.jsp";
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
@@ -51,8 +57,7 @@ public class Login extends HttpServlet {
             request.setAttribute("logError", strings[0]);
         } else
             session.setAttribute("utenteSessione", user);
-        MensaDAOInterface mensadao = new MensaDAO();
-        ArrayList<String> mensa = mensadao.doRetrieveMensaByKey("mensa1");
+        ArrayList<String> mensa = mdao.doRetrieveMensaByKey("mensa1");
         session.setAttribute("nomeMensa", mensa.get(0));
         session.setAttribute("postiMensa", Integer.valueOf(mensa.get(1)));
         session.setAttribute("aperturaMensa", Time.valueOf(mensa.get(2)));
@@ -92,7 +97,7 @@ public class Login extends HttpServlet {
             return new Utente();
         }
 
-        Utente u = dao.doRetrieveUtenteByEmailPassword(mail, password);
+        Utente u = udao.doRetrieveUtenteByEmailPassword(mail, password);
         if (!u.isAccepted())
             strings[0] = "L'amministratore non ha ancora accettato la tua richiesta di registrazione.";
         return u;
