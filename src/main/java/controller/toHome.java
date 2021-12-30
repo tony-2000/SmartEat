@@ -20,15 +20,17 @@ import java.util.ArrayList;
 public class toHome extends HttpServlet {
 
     private final MensaDAOInterface mensadao;
+    private HttpSession session;
 
     public toHome() {
         super();
         mensadao=new MensaDAO();
     }
 
-    public toHome(MensaDAOInterface mensadao) {
+    public toHome(MensaDAOInterface mensadao,HttpSession session) {
         super();
         this.mensadao=mensadao;
+        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +39,8 @@ public class toHome extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
         session.setAttribute("nomeMensa",mensa.get(0));
         session.setAttribute("postiMensa",Integer.valueOf(mensa.get(1)));

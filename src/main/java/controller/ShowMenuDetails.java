@@ -14,21 +14,24 @@ import java.io.IOException;
 public class ShowMenuDetails extends HttpServlet {
 
     private final MenuDAOInterface mdao;
+    private HttpSession session;
 
     public ShowMenuDetails() {
         super();
         mdao=new MenuDAO();
     }
 
-    public ShowMenuDetails(MenuDAOInterface mdao) {
+    public ShowMenuDetails(MenuDAOInterface mdao,HttpSession session) {
         super();
         this.mdao=mdao;
+        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

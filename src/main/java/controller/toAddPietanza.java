@@ -13,20 +13,23 @@ import java.io.IOException;
 @WebServlet(name = "toAddPietanza", value = "/toAddPietanza")
 public class toAddPietanza extends HttpServlet {
 
-    private TesseraDAOInterface tdao;
-    private AcquistoDAOInterface acquistodao;
-    private MenuDAOInterface menudao;
-    private   PietanzaDAOInterface pdao;
+
+    private HttpSession session;
 
     public toAddPietanza() {
         super();
     }
 
+    public toAddPietanza(HttpSession session) {
+        super();
+        this.session=session;
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

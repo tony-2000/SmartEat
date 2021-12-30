@@ -19,15 +19,17 @@ import java.io.IOException;
 public class ShowProfile extends HttpServlet {
 
     private final TesseraDAOInterface tdao;
+    private HttpSession session;
 
     public ShowProfile() {
         super();
         tdao = new TesseraDAO();
     }
 
-    public ShowProfile(TesseraDAOInterface tdao) {
+    public ShowProfile(TesseraDAOInterface tdao,HttpSession session) {
         super();
         this.tdao = tdao;
+        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,7 +38,8 @@ public class ShowProfile extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente user= (Utente) session.getAttribute("utenteSessione");
         if(user==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

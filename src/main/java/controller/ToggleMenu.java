@@ -23,15 +23,17 @@ import java.util.ArrayList;
 public class ToggleMenu extends HttpServlet {
 
     private final MenuDAOInterface menudao;
+    private HttpSession session;
 
     public ToggleMenu() {
         super();
         menudao=new MenuDAO();
     }
 
-    public ToggleMenu(MenuDAOInterface menudao) {
+    public ToggleMenu(MenuDAOInterface menudao,HttpSession session) {
         super();
         this.menudao=menudao;
+        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +41,8 @@ public class ToggleMenu extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

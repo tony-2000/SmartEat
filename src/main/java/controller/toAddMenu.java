@@ -19,15 +19,17 @@ import java.util.ArrayList;
 public class toAddMenu extends HttpServlet {
 
     private final PietanzaDAOInterface pdao;
+    private HttpSession session;
 
     public toAddMenu() {
         super();
         pdao=new PietanzaDAO();
     }
 
-    public toAddMenu(PietanzaDAOInterface pdao) {
+    public toAddMenu(PietanzaDAOInterface pdao,HttpSession session) {
         super();
         this.pdao=pdao;
+        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,7 +38,8 @@ public class toAddMenu extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

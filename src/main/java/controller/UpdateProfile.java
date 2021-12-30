@@ -20,6 +20,7 @@ public class UpdateProfile extends HttpServlet {
 
     private final UtenteDAOInterface udao;
     private final TesseraDAOInterface tesseradao;
+    private HttpSession session;
 
     public UpdateProfile() {
         super();
@@ -28,14 +29,16 @@ public class UpdateProfile extends HttpServlet {
 
     }
 
-    public UpdateProfile(TesseraDAOInterface tesseradao,UtenteDAOInterface udao) {
+    public UpdateProfile(TesseraDAOInterface tesseradao,UtenteDAOInterface udao,HttpSession session) {
         super();
         this.tesseradao = tesseradao;
         this.udao=udao;
+        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         String url="/WEB-INF/results/utente/showProfile.jsp";
         Utente oldUser= (Utente) session.getAttribute("utenteSessione");
         String nome = request.getParameter("nome_utente");

@@ -20,21 +20,24 @@ public class toAcceptUtente extends HttpServlet {
 
 
     private final UtenteDAOInterface dao;
+    private HttpSession session;
 
     public toAcceptUtente() {
         super();
         dao=new UtenteDAO();
     }
 
-    public toAcceptUtente(UtenteDAOInterface dao) {
+    public toAcceptUtente(UtenteDAOInterface dao,HttpSession session) {
         super();
         this.dao=dao;
+        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

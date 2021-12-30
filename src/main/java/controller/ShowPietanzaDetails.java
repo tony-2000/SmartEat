@@ -14,21 +14,24 @@ import java.io.IOException;
 public class ShowPietanzaDetails extends HttpServlet {
 
     private final PietanzaDAOInterface pdao;
+    private HttpSession session;
 
     public ShowPietanzaDetails() {
         super();
         pdao=new PietanzaDAO();
     }
 
-    public ShowPietanzaDetails(PietanzaDAOInterface pdao) {
+    public ShowPietanzaDetails(PietanzaDAOInterface pdao,HttpSession session) {
         super();
         this.pdao=pdao;
+        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

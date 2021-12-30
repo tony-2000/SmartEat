@@ -19,6 +19,7 @@ public class toBuyMenu extends HttpServlet
 {
     private final TesseraDAOInterface tdao;
     private final MenuDAOInterface mdao;
+    private HttpSession session;
 
     public toBuyMenu() {
         super();
@@ -26,10 +27,11 @@ public class toBuyMenu extends HttpServlet
         mdao=new MenuDAO();
     }
 
-    public toBuyMenu(TesseraDAOInterface tdao,MenuDAOInterface mdao) {
+    public toBuyMenu(TesseraDAOInterface tdao,MenuDAOInterface mdao,HttpSession session) {
         super();
         this.tdao = tdao;
         this.mdao=mdao;
+        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,7 +43,8 @@ public class toBuyMenu extends HttpServlet
         int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
         Menu menu=mdao.doRetrieveMenuByKey(codiceMenu);
         request.setAttribute("menu",menu);
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente user= (Utente) session.getAttribute("utenteSessione");
         Tessera tessera=tdao.doRetrieveTesseraByKey(user.getCF());
         request.setAttribute("tessera",tessera);

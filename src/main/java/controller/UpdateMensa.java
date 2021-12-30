@@ -20,21 +20,24 @@ import java.util.ArrayList;
 public class UpdateMensa extends HttpServlet {
 
     private final MensaDAOInterface mensaDao;
+    private HttpSession session;
 
     public UpdateMensa() {
         super();
         mensaDao=new MensaDAO();
     }
 
-    public UpdateMensa(MensaDAOInterface mensaDao) {
+    public UpdateMensa(MensaDAOInterface mensaDao,HttpSession session) {
         super();
         this.mensaDao=mensaDao;
+        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

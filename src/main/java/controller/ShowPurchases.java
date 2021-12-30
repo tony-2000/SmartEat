@@ -19,15 +19,17 @@ import java.util.ArrayList;
 public class ShowPurchases extends HttpServlet
 {
     private final AcquistoDAOInterface acquistodao;
+    private HttpSession session;
 
     public ShowPurchases() {
         super();
         acquistodao=new AcquistoDAO();
     }
 
-    public ShowPurchases(AcquistoDAOInterface acquistodao) {
+    public ShowPurchases(AcquistoDAOInterface acquistodao,HttpSession session) {
         super();
         this.acquistodao=acquistodao;
+        this.session=session;
     }
 
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -37,7 +39,8 @@ public class ShowPurchases extends HttpServlet
 
     public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente user= (Utente) session.getAttribute("utenteSessione");
         if(user==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
