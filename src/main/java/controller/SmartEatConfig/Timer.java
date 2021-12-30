@@ -12,15 +12,21 @@ import java.util.TimerTask;
 public class Timer extends TimerTask {
 
     /**
-     * Metodo che resetta la variabile postiVuoti in mensa su quella postiDisponibili in database ed esegue
-     * varie operazioni di aggiornamento per menu e pietanze.
+     * DAO di Menu
      */
-
-
     private final MenuDAOInterface menudao;
+    /**
+     * DAO di Mensa
+     */
     private final MensaDAOInterface dao;
+    /**
+     * DAO di Pietanza
+     */
     private final PietanzaDAOInterface pietanzaDao;
 
+    /**
+     * Costruttore Vuoto
+     */
     public Timer() {
         super();
         menudao = new MenuDAO();
@@ -28,12 +34,22 @@ public class Timer extends TimerTask {
         pietanzaDao=new PietanzaDAO();
     }
 
+    /**Costruttore con parametri
+     * @param dao DAO di Mensa
+     * @param menudao DAO di Menu
+     * @param pietanzaDao DAO di Pietanza
+     */
     public Timer(MensaDAOInterface dao,MenuDAOInterface menudao,PietanzaDAOInterface pietanzaDao) {
         super();
         this.dao = dao;
         this.pietanzaDao=pietanzaDao;
         this.menudao=menudao;
     }
+
+    /**
+     * Metodo che resetta la variabile postiVuoti in mensa su quella postiDisponibili in database ed esegue
+     * varie operazioni di aggiornamento per menu e pietanze.
+     */
     public void run(){
 
         System.out.println("run Timer");
