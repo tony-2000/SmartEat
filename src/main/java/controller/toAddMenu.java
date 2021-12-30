@@ -18,14 +18,26 @@ import java.util.ArrayList;
 @WebServlet(name="toAddMenu", value="/toAddMenu")
 public class toAddMenu extends HttpServlet {
 
+    /**
+     * DAO di Pietanza
+     */
     private final PietanzaDAOInterface pdao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public toAddMenu() {
         super();
         pdao=new PietanzaDAO();
     }
-
+    /**Costruttore con parametri
+     * @param pdao DAO di Pietanza
+     * @param session Sessione
+     */
     public toAddMenu(PietanzaDAOInterface pdao,HttpSession session) {
         super();
         this.pdao=pdao;

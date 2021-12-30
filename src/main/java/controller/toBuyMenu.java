@@ -17,16 +17,33 @@ import java.io.IOException;
 @WebServlet(name="toBuyMenu", value="/toBuyMenu")
 public class toBuyMenu extends HttpServlet
 {
+    /**
+     * DAO di Tessera
+     */
     private final TesseraDAOInterface tdao;
+    /**
+     * DAO di Menu
+     */
     private final MenuDAOInterface mdao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public toBuyMenu() {
         super();
         tdao = new TesseraDAO();
         mdao=new MenuDAO();
     }
 
+    /**Costruttore con parametri
+     * @param mdao DAO di Menu
+     * @param tdao DAO di Tessera
+     * @param session Sessione
+     */
     public toBuyMenu(TesseraDAOInterface tdao,MenuDAOInterface mdao,HttpSession session) {
         super();
         this.tdao = tdao;

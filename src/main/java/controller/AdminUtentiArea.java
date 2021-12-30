@@ -19,14 +19,28 @@ import java.util.ArrayList;
 @WebServlet(name = "AdminUtentiArea", value = "/AdminUtentiArea")
 public class AdminUtentiArea extends HttpServlet {
 
+    /**
+     * DAO di Utente
+     */
     private final UtenteDAOInterface dao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore vuoto
+     */
     public AdminUtentiArea() {
         super();
         dao = new UtenteDAO();
     }
 
+    /**Costruttore con parametri
+     * @param dao DAO di Utente
+     * @param session Sessione
+     */
     public AdminUtentiArea(UtenteDAOInterface dao,HttpSession session) {
         super();
         this.dao = dao;

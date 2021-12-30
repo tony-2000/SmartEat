@@ -13,14 +13,26 @@ import java.io.IOException;
 @WebServlet(name = "ShowMenuDetails", value = "/ShowMenuDetails")
 public class ShowMenuDetails extends HttpServlet {
 
+    /**
+     * DAO di Menu
+     */
     private final MenuDAOInterface mdao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public ShowMenuDetails() {
         super();
         mdao=new MenuDAO();
     }
-
+    /**Costruttore con parametri
+     * @param mdao DAO di Menu
+     * @param session Sessione
+     */
     public ShowMenuDetails(MenuDAOInterface mdao,HttpSession session) {
         super();
         this.mdao=mdao;

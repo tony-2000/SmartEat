@@ -14,14 +14,28 @@ import java.util.ArrayList;
 @WebServlet(name = "AdminPietanzeArea", value = "/AdminPietanzeArea")
 public class AdminPietanzeArea extends HttpServlet {
 
+    /**
+     * DAO di Pietanza
+     */
     private final PietanzaDAOInterface pdao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore vuoto
+     */
     public AdminPietanzeArea() {
         super();
         pdao = new PietanzaDAO();
     }
 
+    /**Costruttore con parametri
+     * @param pdao DAO di Pietanza
+     * @param session Sessione
+     */
     public AdminPietanzeArea(PietanzaDAOInterface pdao,HttpSession session) {
         super();
         this.pdao = pdao;

@@ -18,14 +18,27 @@ import java.util.ArrayList;
 @WebServlet(name="ShowPurchases", value="/ShowPurchases")
 public class ShowPurchases extends HttpServlet
 {
+    /**
+     * DAO di Acquisto
+     */
     private final AcquistoDAOInterface acquistodao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public ShowPurchases() {
         super();
         acquistodao=new AcquistoDAO();
     }
 
+    /**Costruttore con parametri
+     * @param acquistodao DAO di Acquisto
+     * @param session Sessione
+     */
     public ShowPurchases(AcquistoDAOInterface acquistodao,HttpSession session) {
         super();
         this.acquistodao=acquistodao;

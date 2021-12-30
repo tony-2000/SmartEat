@@ -22,15 +22,28 @@ import java.util.ArrayList;
 @MultipartConfig
 public class AddMenu extends HttpServlet {
 
+    /**
+     * DAO di Menu
+     */
     private final MenuDAOInterface menudao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public AddMenu() {
         super();
         menudao = new MenuDAO();
-
     }
 
+    /**Costruttore con parametri
+     * @param menudao DAO di Menu
+     * @param session Sessione
+     */
     public AddMenu(MenuDAOInterface menudao,HttpSession session) {
         super();
         this.menudao = menudao;

@@ -18,14 +18,26 @@ import java.io.IOException;
 @WebServlet(name="ShowProfile", value="/ShowProfile")
 public class ShowProfile extends HttpServlet {
 
+    /**
+     * DAO di Tessera
+     */
     private final TesseraDAOInterface tdao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public ShowProfile() {
         super();
         tdao = new TesseraDAO();
     }
-
+    /**Costruttore con parametri
+     * @param tdao DAO di Tessera
+     * @param session Sessione
+     */
     public ShowProfile(TesseraDAOInterface tdao,HttpSession session) {
         super();
         this.tdao = tdao;

@@ -18,10 +18,22 @@ import java.sql.Date;
 @WebServlet(name="ShowInfoPurchase", value="/ShowInfoPurchase")
 public class ShowInfoPurchase extends HttpServlet
 {
+    /**
+     * DAO di Tessera
+     */
     private final TesseraDAOInterface tdao;
+    /**
+     * DAO di Acquisto
+     */
     private final AcquistoDAOInterface acquistodao;
+    /**
+     * DAO di Menu
+     */
     private final MenuDAOInterface menudao;
 
+    /**
+     * Costruttore Vuoto
+     */
     public ShowInfoPurchase() {
         super();
         tdao = new TesseraDAO();
@@ -29,7 +41,11 @@ public class ShowInfoPurchase extends HttpServlet
         menudao=new MenuDAO();
 
     }
-
+    /**Costruttore con parametri
+     * @param menudao DAO di Menu
+     * @param tdao DAO di Tessera
+     * @param acquistodao DAO di Menu
+     */
     public ShowInfoPurchase(TesseraDAOInterface tdao,AcquistoDAOInterface acquistodao,MenuDAOInterface menudao) {
         super();
         this.tdao = tdao;

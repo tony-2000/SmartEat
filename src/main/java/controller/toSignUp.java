@@ -17,6 +17,9 @@ import java.io.IOException;
 @WebServlet(name="toSignUp", value="/toSignUp")
 public class toSignUp extends HttpServlet {
 
+    /**
+     * Costruttore Vuoto
+     */
     public toSignUp() {
         super();
     }

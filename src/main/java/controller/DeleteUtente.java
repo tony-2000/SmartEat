@@ -18,14 +18,28 @@ import java.io.IOException;
 @WebServlet(name = "DeleteUtente", value = "/DeleteUtente")
 public class DeleteUtente extends HttpServlet {
 
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
+
+    /**
+     * DAO di Utente
+     */
     private final UtenteDAOInterface dao;
 
+    /**
+     * Costruttore vuoto
+     */
     public DeleteUtente() {
         super();
         dao=new UtenteDAO();
     }
 
+    /**Costruttore con parametri
+     * @param dao DAO di Utente
+     * @param session Sessione
+     */
     public DeleteUtente(UtenteDAOInterface dao,HttpSession session) {
         super();
        this.dao=dao;

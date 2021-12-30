@@ -13,13 +13,21 @@ import java.io.IOException;
 @WebServlet(name = "toAddPietanza", value = "/toAddPietanza")
 public class toAddPietanza extends HttpServlet {
 
-
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public toAddPietanza() {
         super();
     }
 
+    /**Costruttore con parametri
+     * @param session Sessione
+     */
     public toAddPietanza(HttpSession session) {
         super();
         this.session=session;

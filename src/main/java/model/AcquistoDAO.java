@@ -10,32 +10,6 @@ import java.util.List;
 public class AcquistoDAO implements AcquistoDAOInterface
 {
 
-    /** Restituisce una lista con tutti gli acquisti salvati.
-     * @post {@literal List=acquisto->asSet()}
-     * @return Lista di tutti gli acquisti salvati
-     */
-    public List<Acquisto> doRetrieveAllAcquisto()
-    {
-        List<Acquisto> list = new ArrayList<>();
-        try (Connection con = ConPool.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM acquisto");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Acquisto p = new Acquisto();
-                p.setDataAcquisto(rs.getDate(1));
-                p.setCF(rs.getString(2));
-                p.setCodiceMenu(rs.getInt(3));
-                p.setPostoMensa(rs.getBoolean(4));
-                list.add(p);
-            }
-            return list;
-        } catch (SQLException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
     /** Restituisce l'acquisto con una chiave specifica, se presente, altrimenti restituisce un oggetto Acquisto vuoto.
      * @pre {@literal dataAcquisto!=null && CF!=null && codiceMenu!=null}
      * @post {@literal Acquisto (empty) || acquisto->select(Acquisto|Acquisto.dataAcquisto==dataAcquisto && Acquisto.codiceFiscale==codiceFiscale && Acquisto.codiceMenu==codiceMenu)}

@@ -17,12 +17,21 @@ import java.io.IOException;
 @WebServlet(name="Logout", value="/Logout")
 public class Logout extends HttpServlet
 {
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore vuoto
+     */
     public Logout() {
         super();
     }
 
+    /**Costruttore con parametri
+     * @param session Sessione
+     */
     public Logout(HttpSession session) {
         super();
         this.session=session;

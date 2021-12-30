@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Time;
-import java.util.ArrayList;
 
 /**
  * Classe che implementa il login al sistema.
@@ -19,34 +17,44 @@ import java.util.ArrayList;
 @WebServlet(name = "Login", value = "/Login")
 public class Login extends HttpServlet {
 
+    /**
+     * DAO di Utente
+     */
     private final UtenteDAOInterface udao;
-    private final MensaDAOInterface mdao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore vuoto
+     */
     public Login() {
         super();
         udao = new UtenteDAO();
-        mdao = new MensaDAO();
     }
 
-    public Login(UtenteDAOInterface udao, MensaDAOInterface mdao, HttpSession session) {
+    /**Costruttore con parametri
+     * @param udao DAO di Utente
+     * @param session Sessione
+     */
+    public Login(UtenteDAOInterface udao, HttpSession session) {
         super();
         this.udao = udao;
-        this.mdao = mdao;
         this.session = session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] strings = new String[2];
-        if(session==null)
-            session=request.getSession();
+        if (session == null)
+            session = request.getSession();
         String resp = "/WEB-INF/results/mensa/home.jsp";
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
         Utente user = this.login(mail, password, strings);
 
-        if (user.getCF() == null)
-        {
+        if (user.getCF() == null) {
             String err = "Dati utente scorretti";
             if (strings[1] != null)
                 err = err + ": " + strings[1];
@@ -57,11 +65,10 @@ public class Login extends HttpServlet {
             request.setAttribute("logError", strings[0]);
         } else
             session.setAttribute("utenteSessione", user);
-        ArrayList<String> mensa = mdao.doRetrieveMensaByKey("mensa1");
-        session.setAttribute("nomeMensa", mensa.get(0));
-        session.setAttribute("postiMensa", Integer.valueOf(mensa.get(1)));
-        session.setAttribute("aperturaMensa", Time.valueOf(mensa.get(2)));
-        session.setAttribute("chiusuraMensa", Time.valueOf(mensa.get(3)));
+        session.setAttribute("nomeMensa", Mensa.mensa.getNome());
+        session.setAttribute("postiMensa", Mensa.mensa.getPostiDisponibili());
+        session.setAttribute("aperturaMensa", Mensa.mensa.getOrarioApertura());
+        session.setAttribute("chiusuraMensa", Mensa.mensa.getOrarioChiusura());
         RequestDispatcher dispatcher = request.getRequestDispatcher(resp);
         dispatcher.forward(request, response);
     }
@@ -79,20 +86,17 @@ public class Login extends HttpServlet {
      * altrimenti restituisce le informazioni dell'Utente
      * @post {@literal Utente (empty) || utente->select(u|u.email=email && u.password==password}
      */
-    public Utente login(String mail, String password, String[] strings)
-    {
+    public Utente login(String mail, String password, String[] strings) {
         Esito res;
 
         res = Check.mailIsValidLogin(mail);
-        if (!res.isValido())
-        {
+        if (!res.isValido()) {
             strings[1] = res.getMessage();
             return new Utente();
         }
 
         res = Check.passwordIsValid(password, password);
-        if (!res.isValido())
-        {
+        if (!res.isValido()) {
             strings[1] = res.getMessage();
             return new Utente();
         }

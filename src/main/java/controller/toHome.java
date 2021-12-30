@@ -19,17 +19,23 @@ import java.util.ArrayList;
 @WebServlet(name="toHome", value="/toHome")
 public class toHome extends HttpServlet {
 
-    private final MensaDAOInterface mensadao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public toHome() {
         super();
-        mensadao=new MensaDAO();
     }
 
-    public toHome(MensaDAOInterface mensadao,HttpSession session) {
+    /**Costruttore con parametri
+     * @param session Sessione
+     */
+    public toHome(HttpSession session) {
         super();
-        this.mensadao=mensadao;
         this.session=session;
     }
 
@@ -41,11 +47,10 @@ public class toHome extends HttpServlet {
     {
         if(session==null)
             session=request.getSession();
-        ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
-        session.setAttribute("nomeMensa",mensa.get(0));
-        session.setAttribute("postiMensa",Integer.valueOf(mensa.get(1)));
-        session.setAttribute("aperturaMensa", Time.valueOf(mensa.get(2)));
-        session.setAttribute("chiusuraMensa",Time.valueOf(mensa.get(3)));
+        session.setAttribute("nomeMensa",Mensa.mensa.getNome());
+        session.setAttribute("postiMensa",Mensa.mensa.getPostiDisponibili());
+        session.setAttribute("aperturaMensa", Mensa.mensa.getOrarioApertura());
+        session.setAttribute("chiusuraMensa",Mensa.mensa.getOrarioChiusura());
         session.setAttribute("postiVuoti",Mensa.getPostiVuoti());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/home.jsp");
         dispatcher.forward(request, response);

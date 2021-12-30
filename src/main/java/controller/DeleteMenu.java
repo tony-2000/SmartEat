@@ -21,15 +21,28 @@ import java.util.ArrayList;
 public class DeleteMenu extends HttpServlet
 {
 
+    /**
+     * DAO di Menu
+     */
     private final MenuDAOInterface menudao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore vuoto
+     */
     public DeleteMenu() {
         super();
         menudao=new MenuDAO();
-
     }
 
+    /**Costruttore con parametri
+     * @param menudao DAO di Menu
+     * @param session Sessione
+     */
     public DeleteMenu(MenuDAOInterface menudao,HttpSession session) {
         super();
         this.menudao=menudao;

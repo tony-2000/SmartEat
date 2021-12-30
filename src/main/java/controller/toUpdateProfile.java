@@ -16,6 +16,9 @@ import java.io.IOException;
 @WebServlet(name="toUpdateProfile", value="/toUpdateProfile")
 public class toUpdateProfile extends HttpServlet {
 
+    /**
+     * Costruttore Vuoto
+     */
     public toUpdateProfile() {
         super();
     }

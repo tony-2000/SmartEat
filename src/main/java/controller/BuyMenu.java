@@ -19,12 +19,35 @@ import java.util.List;
 @WebServlet(name="BuyMenu", value="/BuyMenu")
 public class BuyMenu extends HttpServlet
 {
+    /**
+     * DAO di Tessera
+     */
     private final TesseraDAOInterface tdao;
+
+    /**
+     * DAO di Acquisto
+     */
     private final AcquistoDAOInterface acquistodao;
+
+    /**
+     * DAO di Menu
+     */
     private final MenuDAOInterface menudao;
+
+    /**
+     * DAO di Pietanza
+     */
     private final PietanzaDAOInterface pdao;
+
+    /**
+     * sessione in corso
+     */
     private HttpSession session;
 
+
+    /**
+     *    Costruttore vuoto
+     */
     public BuyMenu() {
         super();
         tdao = new TesseraDAO();
@@ -33,6 +56,13 @@ public class BuyMenu extends HttpServlet
         pdao=new PietanzaDAO();
     }
 
+    /**Costruttore con parametri
+     * @param tdao DAO di Tessera
+     * @param acquistodao DAO di Acquisto
+     * @param menudao DAO di Menu
+     * @param pdao DAO di Pietanza
+     * @param session Sessione
+     */
     public BuyMenu(HttpSession session,TesseraDAOInterface tdao,AcquistoDAOInterface acquistodao,MenuDAOInterface menudao,PietanzaDAOInterface pdao) {
         super();
         this.tdao = tdao;

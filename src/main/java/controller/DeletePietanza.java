@@ -18,14 +18,28 @@ import java.util.ArrayList;
 @WebServlet(name="DeletePietanza", value="/DeletePietanza")
 public class DeletePietanza extends HttpServlet {
 
+    /**
+     * DAO di Pietanza
+     */
     private final PietanzaDAOInterface pietanzaDao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore vuoto
+     */
     public DeletePietanza() {
         super();
         pietanzaDao=new PietanzaDAO();
     }
 
+    /**Costruttore con parametri
+     * @param pietanzaDao DAO di Pietanza
+     * @param session Sessione
+     */
     public DeletePietanza(PietanzaDAOInterface pietanzaDao,HttpSession session) {
         super();
        this.pietanzaDao=pietanzaDao;

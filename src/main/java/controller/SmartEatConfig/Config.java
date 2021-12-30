@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Config e' una servlet che setta un timer per aggiornamenti vari.
@@ -17,25 +16,18 @@ import java.util.ArrayList;
 @WebServlet(name="Config", value="/Config",loadOnStartup = 0)
 public class Config extends HttpServlet
 {
-    private final MensaDAOInterface dao;
-
+    /**
+     * Costruttore vuoto
+     */
     public Config() {
         super();
-        dao = new MensaDAO();
-    }
-
-    public Config(MensaDAOInterface dao) {
-        super();
-        this.dao = dao;
     }
 
     public void init(ServletConfig config) throws ServletException
     {
         super.init(config);
-        ArrayList<String> mensa=dao.doRetrieveMensaByKey("mensa1");
-        Mensa.setPostiVuoti(Integer.parseInt(mensa.get(1)));
+        Mensa.setPostiVuoti(Mensa.mensa.getPostiDisponibili());
         java.util.Timer timer = new java.util.Timer();
-        //Timer ogni 30m
         timer.scheduleAtFixedRate(new Timer(), 0, 1000*60*30);
     }
 

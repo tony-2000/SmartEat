@@ -16,12 +16,21 @@ import java.io.IOException;
 @WebServlet(name = "AdminArea", value = "/AdminArea")
 public class AdminArea extends HttpServlet {
 
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public AdminArea() {
         super();
     }
 
+    /**Costruttore con parametri
+     * @param session Sessione
+     */
     public AdminArea(HttpSession session) {
         super();
         this.session=session;

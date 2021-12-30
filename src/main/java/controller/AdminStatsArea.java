@@ -19,17 +19,35 @@ import java.util.List;
 @WebServlet(name="AdminStatsArea", value="/AdminStatsArea")
 public class AdminStatsArea extends HttpServlet
 {
-
+    /**
+     *DAO di Pietanza
+     */
     private final PietanzaDAOInterface pdao;
+
+    /**
+     *DAO di Menu
+     */
     private final MenuDAOInterface mdao;
+
+    /**
+     *Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     *Costruttore vuoto
+     */
     public AdminStatsArea() {
         super();
         pdao = new PietanzaDAO();
         mdao=new MenuDAO();
     }
 
+    /**Costruttore con parametri
+     * @param pdao DAO di Pietanza
+     * @param mdao DAO di Menu
+     * @param session Sessione
+     */
     public AdminStatsArea(PietanzaDAOInterface pdao,MenuDAOInterface mdao,HttpSession session) {
         super();
         this.pdao = pdao;
