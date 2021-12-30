@@ -10,39 +10,34 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
 
-public class LoginTest extends Mockito{
+public class LoginTest extends Mockito {
 
     Login login;
 
     @Before
-    public void setup()
-    {
-        login= new Login();
+    public void setup() {
+        login = new Login();
     }
 
     @Test
-    public void loginTestMailScorretta()
-    {
-        String mail="pippo";
-        String password="P4ssword!";
+    public void loginTestMailScorretta() {
+        String mail = "pippo";
+        String password = "P4ssword!";
         String[] strings = new String[2];
         UtenteDAOInterface udao = mock(UtenteDAO.class);
-        MensaDAOInterface mdao = mock(MensaDAO.class);
         HttpSession session = mock(HttpSession.class);
-        login=new Login(udao, mdao, session);
+        login = new Login(udao, session);
 
         Utente user = new Utente();
         user.setEmail(mail);
         user.setPasswordHash(password);
 
-        when(udao.doRetrieveUtenteByEmailPassword(anyString(),anyString())).thenReturn(user);
+        when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
 
         login.login(mail, password, strings);
 
@@ -50,21 +45,19 @@ public class LoginTest extends Mockito{
     }
 
     @Test
-    public void loginTestPasswordScorretta()
-    {
-        String mail="pippo@mail.it";
-        String password="P4ssword";
+    public void loginTestPasswordScorretta() {
+        String mail = "pippo@mail.it";
+        String password = "P4ssword";
         String[] strings = new String[2];
         UtenteDAOInterface udao = mock(UtenteDAO.class);
-        MensaDAOInterface mdao = mock(MensaDAO.class);
         HttpSession session = mock(HttpSession.class);
-        login=new Login(udao, mdao, session);
+        login = new Login(udao, session);
 
         Utente user = new Utente();
         user.setEmail(mail);
         user.setPasswordHash(password);
 
-        when(udao.doRetrieveUtenteByEmailPassword(anyString(),anyString())).thenReturn(user);
+        when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
 
         login.login(mail, password, strings);
 
@@ -72,16 +65,14 @@ public class LoginTest extends Mockito{
     }
 
     @Test
-    public void loginTestNotAccepted()
-    {
-        String mail="pippo@mail.it";
-        String password="P4ssword!";
-        String CF="1234567890ABCDEF";
+    public void loginTestNotAccepted() {
+        String mail = "pippo@mail.it";
+        String password = "P4ssword!";
+        String CF = "1234567890ABCDEF";
         String[] strings = new String[2];
         UtenteDAOInterface udao = mock(UtenteDAO.class);
-        MensaDAOInterface mdao = mock(MensaDAO.class);
         HttpSession session = mock(HttpSession.class);
-        login=new Login(udao, mdao, session);
+        login = new Login(udao, session);
 
         Utente user = new Utente();
         user.setEmail(mail);
@@ -89,7 +80,7 @@ public class LoginTest extends Mockito{
         user.setCF(CF);
         user.setAccepted(false);
 
-        when(udao.doRetrieveUtenteByEmailPassword(anyString(),anyString())).thenReturn(user);
+        when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
 
         login.login(mail, password, strings);
 
@@ -97,16 +88,14 @@ public class LoginTest extends Mockito{
     }
 
     @Test
-    public void loginTestCorretto()
-    {
-        String mail="pippo@mail.it";
-        String password="P4ssword!";
-        String CF="1234567890ABCDEF";
+    public void loginTestCorretto() {
+        String mail = "pippo@mail.it";
+        String password = "P4ssword!";
+        String CF = "1234567890ABCDEF";
         String[] strings = new String[2];
         UtenteDAOInterface udao = mock(UtenteDAO.class);
-        MensaDAOInterface mdao = mock(MensaDAO.class);
         HttpSession session = mock(HttpSession.class);
-        login=new Login(udao, mdao, session);
+        login = new Login(udao, session);
 
         Utente user = new Utente();
         user.setEmail(mail);
@@ -114,7 +103,7 @@ public class LoginTest extends Mockito{
         user.setCF(CF);
         user.setAccepted(false);
 
-        when(udao.doRetrieveUtenteByEmailPassword(anyString(),anyString())).thenReturn(user);
+        when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
 
         Utente user2 = login.login(mail, password, strings);
 
@@ -129,36 +118,74 @@ public class LoginTest extends Mockito{
         user.setPasswordHash("P4ssword!");
         user.setCF("1234567890ABCDEF");
         user.setAccepted(true);
-        HttpServletRequest request= mock(HttpServletRequest.class);
-        HttpServletResponse response= mock(HttpServletResponse.class);
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
         UtenteDAOInterface udao = mock(UtenteDAO.class);
-        MensaDAOInterface mdao = mock(MensaDAO.class);
         HttpSession session = mock(HttpSession.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
 
+        login = new Login(udao, session);
 
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("Mensa1");
-        strings.add("10");
-        strings.add("00:00:00");
-        strings.add("00:00:00");
-
-
-        login=new Login(udao, mdao, session);
-
-        when(udao.doRetrieveUtenteByEmailPassword(anyString(),anyString())).thenReturn(user);
+        when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
         when(request.getParameter("mail")).thenReturn("pippo@mail.it");
         when(request.getParameter("password")).thenReturn("P4ssword!");
-        when(mdao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
         when(request.getSession()).thenReturn(session);
         when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
 
-
-
-        login.doPost(request,response);
-
-
+        login.doPost(request, response);
 
         verify(session, atLeastOnce()).setAttribute(eq("utenteSessione"), any(Utente.class));
+    }
+
+    @Test
+    public void doPostTestNullCFIncorrectValidation() throws ServletException, IOException {
+        Utente user = new Utente();
+        user.setEmail("pippo@mail.it");
+        user.setPasswordHash("P4ssword");
+        user.setAccepted(true);
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
+        UtenteDAOInterface udao = mock(UtenteDAO.class);
+        HttpSession session = mock(HttpSession.class);
+        RequestDispatcher dispatcher = mock(RequestDispatcher.class);
+
+        login = new Login(udao, session);
+
+        when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
+        when(request.getParameter("mail")).thenReturn("pippo@mail.it");
+        when(request.getParameter("password")).thenReturn("P4ssword!");
+        when(request.getSession()).thenReturn(session);
+        when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
+
+        login.doPost(request, response);
+
+        verify(request, atLeastOnce()).setAttribute(eq("logError"), anyString());
+        verify(request, never()).setAttribute(eq("logError"), eq("L'amministratore non ha ancora accettato la tua richiesta di registrazione."));
+    }
+
+    @Test
+    public void doPostTestNullCFNotAccepted() throws ServletException, IOException {
+        Utente user = new Utente();
+        user.setEmail("pippo@mail.it");
+        user.setPasswordHash("P4ssword!");
+        user.setCF("1234567890ABCDEF");
+        user.setAccepted(false);
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
+        UtenteDAOInterface udao = mock(UtenteDAO.class);
+        HttpSession session = mock(HttpSession.class);
+        RequestDispatcher dispatcher = mock(RequestDispatcher.class);
+
+        login = new Login(udao, session);
+
+        when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
+        when(request.getParameter("mail")).thenReturn("pippo@mail.it");
+        when(request.getParameter("password")).thenReturn("P4ssword!");
+        when(request.getSession()).thenReturn(session);
+        when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
+
+        login.doPost(request, response);
+
+        verify(request, atLeastOnce()).setAttribute(eq("logError"), eq("L'amministratore non ha ancora accettato la tua richiesta di registrazione."));
     }
 }

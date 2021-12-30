@@ -33,15 +33,14 @@ public class Login extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] strings = new String[2];
-        if(session==null)
-            session=request.getSession();
+        if (session == null)
+            session = request.getSession();
         String resp = "/WEB-INF/results/mensa/home.jsp";
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");
         Utente user = this.login(mail, password, strings);
 
-        if (user.getCF() == null)
-        {
+        if (user.getCF() == null) {
             String err = "Dati utente scorretti";
             if (strings[1] != null)
                 err = err + ": " + strings[1];
@@ -53,9 +52,9 @@ public class Login extends HttpServlet {
         } else
             session.setAttribute("utenteSessione", user);
         session.setAttribute("nomeMensa", Mensa.mensa.getNome());
-        session.setAttribute("postiMensa",  Mensa.mensa.getPostiDisponibili());
+        session.setAttribute("postiMensa", Mensa.mensa.getPostiDisponibili());
         session.setAttribute("aperturaMensa", Mensa.mensa.getOrarioApertura());
-        session.setAttribute("chiusuraMensa",  Mensa.mensa.getOrarioChiusura());
+        session.setAttribute("chiusuraMensa", Mensa.mensa.getOrarioChiusura());
         RequestDispatcher dispatcher = request.getRequestDispatcher(resp);
         dispatcher.forward(request, response);
     }
@@ -67,26 +66,23 @@ public class Login extends HttpServlet {
     /**
      * Questo metodo verifica che l'utente sia salvato nel database.
      *
-     * @param mail Mail dell'utente
+     * @param mail     Mail dell'utente
      * @param password Password dell'utente
      * @return Utente (empty) se vi sono errori nella richiesta login oppure l'utente non esiste,
      * altrimenti restituisce le informazioni dell'Utente
      * @post {@literal Utente (empty) || utente->select(u|u.email=email && u.password==password}
      */
-    public Utente login(String mail, String password, String[] strings)
-    {
+    public Utente login(String mail, String password, String[] strings) {
         Esito res;
 
         res = Check.mailIsValidLogin(mail);
-        if (!res.isValido())
-        {
+        if (!res.isValido()) {
             strings[1] = res.getMessage();
             return new Utente();
         }
 
         res = Check.passwordIsValid(password, password);
-        if (!res.isValido())
-        {
+        if (!res.isValido()) {
             strings[1] = res.getMessage();
             return new Utente();
         }
