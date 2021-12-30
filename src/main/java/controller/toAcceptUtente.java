@@ -1,9 +1,6 @@
 package controller;
 
-import model.RuoloUtente;
-import model.Utente;
-import model.UtenteDAO;
-import model.UtenteDAOInterface;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +17,20 @@ import java.util.ArrayList;
  */
 @WebServlet(name = "toAcceptUtente", value = "/toAcceptUtente")
 public class toAcceptUtente extends HttpServlet {
+
+
+    private   UtenteDAOInterface dao;
+
+    public toAcceptUtente() {
+        super();
+        dao=new UtenteDAO();
+    }
+
+    public toAcceptUtente(UtenteDAOInterface dao) {
+        super();
+        this.dao=dao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -52,7 +63,6 @@ public class toAcceptUtente extends HttpServlet {
      */
     public ArrayList<Utente> ShowAllUsersToAccept()
     {
-        UtenteDAOInterface dao = new UtenteDAO();
         ArrayList<Utente> listUtenti = (ArrayList<Utente>) dao.doRetrieveAllUtente();
         ArrayList<Utente> toAccept = new ArrayList<>();
         for (Utente x : listUtenti)

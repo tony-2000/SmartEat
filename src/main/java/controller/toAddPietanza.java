@@ -1,7 +1,6 @@
 package controller;
 
-import model.RuoloUtente;
-import model.Utente;
+import model.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,6 +12,17 @@ import java.io.IOException;
  */
 @WebServlet(name = "toAddPietanza", value = "/toAddPietanza")
 public class toAddPietanza extends HttpServlet {
+
+    private TesseraDAOInterface tdao;
+    private AcquistoDAOInterface acquistodao;
+    private MenuDAOInterface menudao;
+    private   PietanzaDAOInterface pdao;
+
+    public toAddPietanza() {
+        super();
+    }
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

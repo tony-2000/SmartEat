@@ -18,6 +18,22 @@ import java.io.IOException;
 @WebServlet(name = "AcceptUtente", value = "/AcceptUtente")
 public class AcceptUtente extends HttpServlet
 {
+
+    private UtenteDAOInterface dao;
+    private  TesseraDAOInterface tdao;
+
+    public AcceptUtente() {
+        super();
+        dao = new UtenteDAO();
+        tdao=new TesseraDAO();
+    }
+
+    public AcceptUtente(UtenteDAOInterface dao,TesseraDAOInterface tdao) {
+        super();
+        this.dao = dao;
+        this.tdao=tdao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -58,12 +74,10 @@ public class AcceptUtente extends HttpServlet
      */
         public void CompleteReg(String CF,boolean accept)
         {
-            UtenteDAOInterface dao= new UtenteDAO();
             Utente user=dao.doRetrieveUtenteByKey(CF);
             if(accept)
             {
                 dao.doAccept(user.getCF());
-                TesseraDAOInterface tdao=new TesseraDAO();
                 Tessera tessera=new Tessera();
                 tessera.setCF(CF);
                 tessera.setSaldo(0);

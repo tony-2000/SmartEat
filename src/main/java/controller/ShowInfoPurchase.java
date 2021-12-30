@@ -18,6 +18,25 @@ import java.sql.Date;
 @WebServlet(name="ShowInfoPurchase", value="/ShowInfoPurchase")
 public class ShowInfoPurchase extends HttpServlet
 {
+    private TesseraDAOInterface tdao;
+    private AcquistoDAOInterface acquistodao;
+    private  MenuDAOInterface menudao;
+
+    public ShowInfoPurchase() {
+        super();
+        tdao = new TesseraDAO();
+        acquistodao=new AcquistoDAO();
+        menudao=new MenuDAO();
+
+    }
+
+    public ShowInfoPurchase(TesseraDAOInterface tdao,AcquistoDAOInterface acquistodao,MenuDAOInterface menudao) {
+        super();
+        this.tdao = tdao;
+        this.acquistodao=acquistodao;
+        this.menudao=menudao;
+    }
+
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         doGet(request,response);
@@ -28,7 +47,6 @@ public class ShowInfoPurchase extends HttpServlet
         Date data= Date.valueOf(request.getParameter("dataAcquisto"));
         String CF=request.getParameter("CF");
         int codiceMenu= Integer.parseInt(request.getParameter("codiceMenu"));
-        MenuDAOInterface menudao=new MenuDAO();
         Menu menu=menudao.doRetrieveMenuByKey(codiceMenu);
         Acquisto acquisto=this.showInfoPurchase(codiceMenu,CF,data);
 
@@ -38,7 +56,6 @@ public class ShowInfoPurchase extends HttpServlet
             acquisto.setRefund(true);
         else acquisto.setRefund(false);
 
-        TesseraDAOInterface tdao=new TesseraDAO();
         Tessera tessera=tdao.doRetrieveTesseraByKey(CF);
 
         request.setAttribute("tessera",tessera);
@@ -58,7 +75,6 @@ public class ShowInfoPurchase extends HttpServlet
      */
     public Acquisto showInfoPurchase(int codiceMenu,String CF, Date data)
     {
-        AcquistoDAOInterface acquistodao=new AcquistoDAO();
         return acquistodao.doRetrieveAcquistoByKey(data,CF,codiceMenu);
     }
 }

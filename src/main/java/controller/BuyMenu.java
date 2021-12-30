@@ -19,6 +19,28 @@ import java.util.List;
 @WebServlet(name="BuyMenu", value="/BuyMenu")
 public class BuyMenu extends HttpServlet
 {
+    private TesseraDAOInterface tdao;
+    private AcquistoDAOInterface acquistodao;
+    private  MenuDAOInterface menudao;
+    private   PietanzaDAOInterface pdao;
+
+    public BuyMenu() {
+        super();
+        tdao = new TesseraDAO();
+        acquistodao=new AcquistoDAO();
+        menudao=new MenuDAO();
+        pdao=new PietanzaDAO();
+    }
+
+    public BuyMenu(TesseraDAOInterface tdao,AcquistoDAOInterface acquistodao,MenuDAOInterface menudao,PietanzaDAOInterface pdao) {
+        super();
+        this.tdao = tdao;
+        this.acquistodao=acquistodao;
+        this.menudao=menudao;
+        this.pdao=pdao;
+    }
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -32,7 +54,6 @@ public class BuyMenu extends HttpServlet
 
         Date actual=new Date(System.currentTimeMillis());
         boolean posto= Boolean.parseBoolean(request.getParameter("postoMensa"));
-        TesseraDAOInterface tdao=new TesseraDAO();
         Tessera tessera=tdao.doRetrieveTesseraByKey(user.getCF());
         String[] message=new String[2];
         boolean buy=this.buy(codiceMenu,actual,posto,user.getCF(),tessera,message);
@@ -59,17 +80,14 @@ public class BuyMenu extends HttpServlet
      */
     public boolean buy(int codiceMenu,Date actual, boolean posto, String CF,Tessera tessera,String[] message)
     {
-        TesseraDAOInterface tesseradao=new TesseraDAO();
-        AcquistoDAOInterface acquistodao=new AcquistoDAO();
+
         Acquisto acquisto=new Acquisto();
         acquisto.setDataAcquisto(actual);
         acquisto.setCF(CF);
         acquisto.setCodiceMenu(codiceMenu);
         acquisto.setPostoMensa(posto);
-        MenuDAOInterface menudao=new MenuDAO();
         Menu menu=menudao.doRetrieveMenuByKey(codiceMenu);
         float prezzo=menu.getPrezzo();
-
         boolean hasPurchase=false;
         List<Acquisto> acquistos =acquistodao.doRetrieveAllAcquistoByCF(CF);
         for (Acquisto value : acquistos) {
@@ -96,9 +114,7 @@ public class BuyMenu extends HttpServlet
                     }
                     acquistodao.doSave(acquisto);
                     tessera.setSaldo(tessera.getSaldo()-prezzo);
-                    tesseradao.doUpdate(tessera);
-
-                    PietanzaDAOInterface pdao = new PietanzaDAO();
+                    tdao.doUpdate(tessera);
                     Pietanza primo= pdao.doRetrievePietanzaByKey(menu.getPrimo());
                     Pietanza secondo= pdao.doRetrievePietanzaByKey(menu.getSecondo());
                     Pietanza dessert= pdao.doRetrievePietanzaByKey(menu.getDessert());

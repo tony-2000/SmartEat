@@ -20,6 +20,20 @@ import java.util.ArrayList;
 @WebServlet(name = "DeleteMenu", value = "/DeleteMenu")
 public class DeleteMenu extends HttpServlet
 {
+
+    private  MenuDAOInterface menudao;
+
+    public DeleteMenu() {
+        super();
+        menudao=new MenuDAO();
+
+    }
+
+    public DeleteMenu(MenuDAOInterface menudao) {
+        super();
+        this.menudao=menudao;
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -58,7 +72,6 @@ public class DeleteMenu extends HttpServlet
      */
     public boolean deleteMenu(int codiceMenu)
     {
-        MenuDAOInterface menudao = new MenuDAO();
         if (Mensa.isMensaConfig()) {
             menudao.doDelete(codiceMenu);
             return true;

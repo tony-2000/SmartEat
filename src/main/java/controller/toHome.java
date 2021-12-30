@@ -1,8 +1,6 @@
 package controller;
 
-import model.Mensa;
-import model.MensaDAO;
-import model.MensaDAOInterface;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +18,19 @@ import java.util.ArrayList;
  */
 @WebServlet(name="toHome", value="/toHome")
 public class toHome extends HttpServlet {
+
+    private   MensaDAOInterface mensadao;
+
+    public toHome() {
+        super();
+        mensadao=new MensaDAO();
+    }
+
+    public toHome(MensaDAOInterface mensadao) {
+        super();
+        this.mensadao=mensadao;
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -27,7 +38,6 @@ public class toHome extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         HttpSession session=request.getSession();
-        MensaDAOInterface mensadao=new MensaDAO();
         ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
         session.setAttribute("nomeMensa",mensa.get(0));
         session.setAttribute("postiMensa",Integer.valueOf(mensa.get(1)));

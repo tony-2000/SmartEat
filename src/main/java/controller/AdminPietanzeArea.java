@@ -13,6 +13,20 @@ import java.util.ArrayList;
  */
 @WebServlet(name = "AdminPietanzeArea", value = "/AdminPietanzeArea")
 public class AdminPietanzeArea extends HttpServlet {
+
+    private PietanzaDAOInterface pdao;
+
+    public AdminPietanzeArea() {
+        super();
+        pdao = new PietanzaDAO();
+    }
+
+    public AdminPietanzeArea(PietanzaDAOInterface pdao) {
+        super();
+        this.pdao = pdao;
+    }
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -40,7 +54,6 @@ public class AdminPietanzeArea extends HttpServlet {
      */
     public ArrayList<Pietanza> AdminShowPietanze()
     {
-        PietanzaDAOInterface pdao=new PietanzaDAO();
         return (ArrayList<Pietanza>) pdao.doRetrieveAllPietanza();
     }
 }

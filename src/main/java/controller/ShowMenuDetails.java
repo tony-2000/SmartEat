@@ -12,6 +12,19 @@ import java.io.IOException;
  */
 @WebServlet(name = "ShowMenuDetails", value = "/ShowMenuDetails")
 public class ShowMenuDetails extends HttpServlet {
+
+    private  MenuDAOInterface mdao;
+
+    public ShowMenuDetails() {
+        super();
+        mdao=new MenuDAO();
+    }
+
+    public ShowMenuDetails(MenuDAOInterface mdao) {
+        super();
+        this.mdao=mdao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -43,7 +56,6 @@ public class ShowMenuDetails extends HttpServlet {
      */
     public Menu getMenu(int codiceMenu)
     {
-        MenuDAOInterface mdao=new MenuDAO();
         return mdao.doRetrieveMenuByKey(codiceMenu);
     }
 }

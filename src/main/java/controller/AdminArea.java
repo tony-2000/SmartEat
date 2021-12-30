@@ -1,5 +1,7 @@
 package controller;
 
+import model.PietanzaDAO;
+import model.PietanzaDAOInterface;
 import model.RuoloUtente;
 import model.Utente;
 
@@ -13,6 +15,12 @@ import java.io.IOException;
  */
 @WebServlet(name = "AdminArea", value = "/AdminArea")
 public class AdminArea extends HttpServlet {
+
+
+    public AdminArea() {
+        super();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

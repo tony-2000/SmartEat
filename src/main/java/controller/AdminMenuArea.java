@@ -13,6 +13,19 @@ import java.util.ArrayList;
  */
 @WebServlet(name = "AdminMenuArea", value = "/AdminMenuArea")
 public class AdminMenuArea extends HttpServlet {
+
+    private   MenuDAOInterface mdao;
+
+    public AdminMenuArea() {
+        super();
+        mdao = new MenuDAO();
+    }
+
+    public AdminMenuArea(MenuDAOInterface mdao) {
+        super();
+        this.mdao = mdao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -43,7 +56,6 @@ public class AdminMenuArea extends HttpServlet {
      */
     public ArrayList<Menu> AdminShowMenu()
     {
-        MenuDAOInterface mdao=new MenuDAO();
         return (ArrayList<Menu>) mdao.doRetrieveAllMenu();
     }
 }

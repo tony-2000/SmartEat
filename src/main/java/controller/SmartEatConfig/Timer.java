@@ -15,6 +15,25 @@ public class Timer extends TimerTask {
      * Metodo che resetta la variabile postiVuoti in mensa su quella postiDisponibili in database ed esegue
      * varie operazioni di aggiornamento per menu e pietanze.
      */
+
+
+    private MenuDAOInterface menudao;
+    private MensaDAOInterface dao;
+    private PietanzaDAOInterface pietanzaDao;
+
+    public Timer() {
+        super();
+        menudao = new MenuDAO();
+        dao=new MensaDAO();
+        pietanzaDao=new PietanzaDAO();
+    }
+
+    public Timer(MensaDAOInterface dao,MenuDAOInterface menudao,PietanzaDAOInterface pietanzaDao) {
+        super();
+        this.dao = dao;
+        this.pietanzaDao=pietanzaDao;
+        this.menudao=menudao;
+    }
     public void run(){
 
         System.out.println("run Timer");
@@ -27,9 +46,6 @@ public class Timer extends TimerTask {
             ArrayList<Integer> listDeleteMenu=Menu.getListDeleteMenu();
             ArrayList<String> listDeletePietanza=Pietanza.getListDeletePietanza();
             ArrayList<String> listUpdateMensa=Mensa.getListUpdateMensa();
-            MenuDAOInterface menudao=new MenuDAO();
-            MensaDAO dao=new MensaDAO();
-            PietanzaDAOInterface pietanzaDao=new PietanzaDAO();
             ArrayList<String> mensa=dao.doRetrieveMensaByKey("mensa1");
             Mensa.setPostiVuoti(Integer.parseInt(mensa.get(1)));
             System.out.println("Aggiornamento posti");

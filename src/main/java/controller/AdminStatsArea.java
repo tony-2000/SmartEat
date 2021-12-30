@@ -19,6 +19,23 @@ import java.util.List;
 @WebServlet(name="AdminStatsArea", value="/AdminStatsArea")
 public class AdminStatsArea extends HttpServlet
 {
+
+    private  PietanzaDAOInterface pdao;
+    private   MenuDAOInterface mdao;
+
+    public AdminStatsArea() {
+        super();
+        pdao = new PietanzaDAO();
+        mdao=new MenuDAO();
+    }
+
+    public AdminStatsArea(PietanzaDAOInterface pdao,MenuDAOInterface mdao) {
+        super();
+        this.pdao = pdao;
+        this.mdao=mdao;
+    }
+
+
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         doGet(request,response);
@@ -37,7 +54,6 @@ public class AdminStatsArea extends HttpServlet
             response.sendRedirect(request.getContextPath()+"/toHome");
         else
         {
-            PietanzaDAOInterface pdao = new PietanzaDAO();
             List<Pietanza> pietanzas= pdao.doRetrieveAllPietanza();
             List<Integer> statsMenu = this.mostraStatistiche(pietanzas);
             request.setAttribute("pietanze", pietanzas);
@@ -54,7 +70,6 @@ public class AdminStatsArea extends HttpServlet
      * @return lista di interi che rappresenta il numero di menu in cui, nella lista di input, la pietanza al numero corrispondente è disponibile.
      */
     public List<Integer> mostraStatistiche(List<Pietanza> array) {
-        MenuDAOInterface mdao = new MenuDAO();
         List<Menu> menus = mdao.doRetrieveAllMenu();
         List<Integer> counter = new ArrayList<>();
         int i = 0;

@@ -1,6 +1,8 @@
 package controller;
 
 
+import model.*;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,11 @@ import java.io.IOException;
  */
 @WebServlet(name="toSignUp", value="/toSignUp")
 public class toSignUp extends HttpServlet {
+
+    public toSignUp() {
+        super();
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }

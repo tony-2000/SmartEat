@@ -18,6 +18,18 @@ import java.util.ArrayList;
 @WebServlet(name="ShowPurchases", value="/ShowPurchases")
 public class ShowPurchases extends HttpServlet
 {
+    private AcquistoDAOInterface acquistodao;
+
+    public ShowPurchases() {
+        super();
+        acquistodao=new AcquistoDAO();
+    }
+
+    public ShowPurchases(AcquistoDAOInterface acquistodao) {
+        super();
+        this.acquistodao=acquistodao;
+    }
+
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         doGet(request,response);
@@ -45,7 +57,6 @@ public class ShowPurchases extends HttpServlet
      */
     public ArrayList<Acquisto> showAllAcquisti(Utente user)
     {
-        AcquistoDAOInterface acquistodao=new AcquistoDAO();
         return (ArrayList<Acquisto>) acquistodao.doRetrieveAllAcquistoByCF(user.getCF());
     }
 

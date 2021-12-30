@@ -17,11 +17,21 @@ import java.util.ArrayList;
 @WebServlet(name="Config", value="/Config",loadOnStartup = 0)
 public class Config extends HttpServlet
 {
+    private MensaDAOInterface dao;
+
+    public Config() {
+        super();
+        dao = new MensaDAO();
+    }
+
+    public Config(MensaDAOInterface dao) {
+        super();
+        this.dao = dao;
+    }
 
     public void init(ServletConfig config) throws ServletException
     {
         super.init(config);
-        MensaDAO dao=new MensaDAO();
         ArrayList<String> mensa=dao.doRetrieveMensaByKey("mensa1");
         Mensa.setPostiVuoti(Integer.parseInt(mensa.get(1)));
         java.util.Timer timer = new java.util.Timer();

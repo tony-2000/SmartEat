@@ -16,6 +16,19 @@ import java.io.IOException;
 @WebServlet(name="ShowInfoMenu", value="/ShowInfoMenu")
 public class ShowInfoMenu extends HttpServlet
 {
+    private  MenuDAOInterface mdao;
+
+    public ShowInfoMenu() {
+        super();
+        mdao=new MenuDAO();
+    }
+
+    public ShowInfoMenu(MenuDAOInterface mdao) {
+        super();
+        this.mdao=mdao;
+    }
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -42,7 +55,6 @@ public class ShowInfoMenu extends HttpServlet
      */
     public Menu showMenuInfo(int codiceMenu)
     {
-        MenuDAOInterface mdao=new MenuDAO();
         return mdao.doRetrieveMenuByKey(codiceMenu);
     }
 }

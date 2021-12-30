@@ -18,6 +18,19 @@ import java.util.ArrayList;
  */
 @WebServlet(name = "UpdateMensa", value = "/UpdateMensa")
 public class UpdateMensa extends HttpServlet {
+
+    private MensaDAOInterface mensaDao;
+
+    public UpdateMensa() {
+        super();
+        mensaDao=new MensaDAO();
+    }
+
+    public UpdateMensa(MensaDAOInterface mensaDao) {
+        super();
+        this.mensaDao=mensaDao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -32,7 +45,6 @@ public class UpdateMensa extends HttpServlet {
         else
         {
             String message;
-            MensaDAOInterface mensaDao=new MensaDAO();
             ArrayList<String> mensa= mensaDao.doRetrieveMensaByKey("mensa1");
             int posti = Integer.parseInt(request.getParameter("postiDisponibili"));
             Time apertura = Time.valueOf(request.getParameter("orarioApertura"));
@@ -94,7 +106,6 @@ public class UpdateMensa extends HttpServlet {
      */
     public boolean updateMensa(int posti,Time apertura,Time chiusura)
     {
-        MensaDAOInterface mensaDao=new MensaDAO();
         if (Mensa.isMensaConfig())
         {
             mensaDao.doUpdate("mensa1",posti,apertura,chiusura);

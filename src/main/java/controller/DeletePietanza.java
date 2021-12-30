@@ -17,6 +17,20 @@ import java.util.ArrayList;
  */
 @WebServlet(name="DeletePietanza", value="/DeletePietanza")
 public class DeletePietanza extends HttpServlet {
+
+    private PietanzaDAOInterface pietanzaDao;
+
+    public DeletePietanza() {
+        super();
+        pietanzaDao=new PietanzaDAO();
+    }
+
+    public DeletePietanza(PietanzaDAOInterface pietanzaDao) {
+        super();
+       this.pietanzaDao=pietanzaDao;
+    }
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -57,9 +71,8 @@ public class DeletePietanza extends HttpServlet {
      */
     public boolean deletePietanza(String nomePietanza)
     {
-        PietanzaDAOInterface pietanzaDAo = new PietanzaDAO();
         if (Mensa.isMensaConfig()) {
-            pietanzaDAo.doDelete(nomePietanza);
+            pietanzaDao.doDelete(nomePietanza);
             return true;
         }
         ArrayList<String> listDeletePietanza = Pietanza.getListDeletePietanza();

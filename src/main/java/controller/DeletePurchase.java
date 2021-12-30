@@ -17,6 +17,29 @@ import java.sql.Date;
 @WebServlet(name="DeletePurchase", value="/DeletePurchase")
 public class DeletePurchase extends HttpServlet
 {
+
+    private TesseraDAOInterface tdao;
+    private AcquistoDAOInterface acquistodao;
+    private  MenuDAOInterface menudao;
+    private   PietanzaDAOInterface pdao;
+
+    public DeletePurchase() {
+        super();
+        tdao = new TesseraDAO();
+        acquistodao=new AcquistoDAO();
+        menudao=new MenuDAO();
+        pdao=new PietanzaDAO();
+    }
+
+    public DeletePurchase(TesseraDAOInterface tdao,AcquistoDAOInterface acquistodao,MenuDAOInterface menudao,PietanzaDAOInterface pdao) {
+        super();
+        this.tdao = tdao;
+        this.acquistodao=acquistodao;
+        this.menudao=menudao;
+        this.pdao=pdao;
+    }
+
+
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         doGet(request,response);
@@ -49,9 +72,7 @@ public class DeletePurchase extends HttpServlet
      */
     public boolean Rimborso(int codiceMenu, String CF, Date data, String[] message )
     {
-        MenuDAOInterface menudao=new MenuDAO();
         Menu menu=menudao.doRetrieveMenuByKey(codiceMenu);
-        AcquistoDAOInterface acquistodao=new AcquistoDAO();
         Acquisto acquisto= acquistodao.doRetrieveAcquistoByKey(data,CF,codiceMenu);
 
         long actual=System.currentTimeMillis();
@@ -61,7 +82,6 @@ public class DeletePurchase extends HttpServlet
             acquisto.setRefund(true);
         else acquisto.setRefund(false);
 
-        TesseraDAOInterface tdao=new TesseraDAO();
         Tessera tessera=tdao.doRetrieveTesseraByKey(CF);
 
         if(acquisto.isRefund())
@@ -70,7 +90,6 @@ public class DeletePurchase extends HttpServlet
             tdao.doUpdate(tessera);
             acquistodao.doDelete(data,CF,codiceMenu);
 
-            PietanzaDAOInterface pdao = new PietanzaDAO();
             Pietanza primo= pdao.doRetrievePietanzaByKey(menu.getPrimo());
             Pietanza secondo= pdao.doRetrievePietanzaByKey(menu.getSecondo());
             Pietanza dessert= pdao.doRetrievePietanzaByKey(menu.getDessert());

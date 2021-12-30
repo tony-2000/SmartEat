@@ -21,6 +21,19 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ToggleMenu", value = "/ToggleMenu")
 public class ToggleMenu extends HttpServlet {
+
+    private  MenuDAOInterface menudao;
+
+    public ToggleMenu() {
+        super();
+        menudao=new MenuDAO();
+    }
+
+    public ToggleMenu(MenuDAOInterface menudao) {
+        super();
+        this.menudao=menudao;
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -58,7 +71,6 @@ public class ToggleMenu extends HttpServlet {
      */
     public boolean toggleMenu(int codiceMenu)
     {
-        MenuDAOInterface menudao=new MenuDAO();
         boolean available=menudao.doRetrieveMenuByKey(codiceMenu).isAvailable();
         boolean change=!available;
         if (Mensa.isMensaConfig())

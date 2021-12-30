@@ -17,6 +17,21 @@ import java.util.ArrayList;
  */
 @WebServlet(name = "AddMenu", value = "/AddMenu")
 public class AddMenu extends HttpServlet {
+
+    private MenuDAOInterface menudao;
+
+    public AddMenu() {
+        super();
+        menudao = new MenuDAO();
+
+    }
+
+    public AddMenu(MenuDAOInterface menudao) {
+        super();
+        this.menudao = menudao;
+    }
+
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -26,7 +41,7 @@ public class AddMenu extends HttpServlet {
         HttpSession session = request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         Menu menu = new Menu();
-        MenuDAOInterface menudao = new MenuDAO();
+
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
         assert u != null;
@@ -51,7 +66,7 @@ public class AddMenu extends HttpServlet {
             menu.setImmagine(immagine);
             menu.setPrezzo(prezzo);
             menu.setAvailable(true);
-            boolean result=this.addMenu(menu, menudao);
+            boolean result=this.addMenu(menu);
             String message;
             if(result)
                 message="Il menu è stato aggiunto correttamente";
@@ -71,10 +86,9 @@ public class AddMenu extends HttpServlet {
      * && !(menu->includes(menu))}
      * @post {@literal menu->includes(menu)}
      * @param menu menu da aggiungere
-     * @param menudao DAO che permette di aggiungere menu al database
      * @return true se il menu e' aggiunto all'istante, false se aggiunto successivamente
      */
-    public boolean addMenu(Menu menu, MenuDAOInterface menudao)
+    public boolean addMenu(Menu menu)
     {
         if (Mensa.isMensaConfig())
         {

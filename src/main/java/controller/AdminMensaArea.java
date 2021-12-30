@@ -16,6 +16,19 @@ import java.util.ArrayList;
  */
 @WebServlet(name = "AdminMensaArea", value = "/AdminMensaArea")
 public class AdminMensaArea extends HttpServlet {
+
+    private  MensaDAOInterface mensadao;
+
+    public AdminMensaArea() {
+        super();
+        mensadao = new MensaDAO();
+    }
+
+    public AdminMensaArea(MensaDAOInterface mensadao) {
+        super();
+        this.mensadao = mensadao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -48,7 +61,6 @@ public class AdminMensaArea extends HttpServlet {
      */
     public ArrayList<String> adminMensa()
     {
-        MensaDAOInterface mensadao=new MensaDAO();
         return mensadao.doRetrieveMensaByKey("mensa1");
     }
 }

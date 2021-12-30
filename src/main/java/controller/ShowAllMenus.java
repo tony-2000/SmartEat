@@ -1,9 +1,6 @@
 package controller;
 
-import model.Menu;
-import model.MenuDAO;
-import model.MenuDAOInterface;
-import model.Utente;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +18,19 @@ import java.util.ArrayList;
 @WebServlet(name="ShowAllMenus", value="/ShowAllMenus")
 public class ShowAllMenus extends HttpServlet
 {
+
+    private  MenuDAOInterface mdao;
+
+    public ShowAllMenus() {
+        super();
+        mdao=new MenuDAO();
+    }
+
+    public ShowAllMenus(MenuDAOInterface mdao) {
+        super();
+        this.mdao=mdao;
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -46,7 +56,6 @@ public class ShowAllMenus extends HttpServlet
      */
     public ArrayList<Menu> ShowAllMenu()
     {
-        MenuDAOInterface mdao=new MenuDAO();
         ArrayList<Menu> menu= (ArrayList<Menu>) mdao.doRetrieveAllMenu();
         ArrayList<Menu> disponibili= new ArrayList<>();
         for(Menu x : menu)

@@ -1,10 +1,7 @@
 package controller;
 
 
-import model.RuoloUtente;
-import model.Utente;
-import model.UtenteDAO;
-import model.UtenteDAOInterface;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +17,20 @@ import java.io.IOException;
  */
 @WebServlet(name = "DeleteUtente", value = "/DeleteUtente")
 public class DeleteUtente extends HttpServlet {
+
+
+    private   UtenteDAOInterface dao;
+
+    public DeleteUtente() {
+        super();
+        dao=new UtenteDAO();
+    }
+
+    public DeleteUtente(UtenteDAOInterface dao) {
+        super();
+       this.dao=dao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -55,7 +66,6 @@ public class DeleteUtente extends HttpServlet {
      */
         public void DeleteUser(String CF)
         {
-            UtenteDAOInterface dao=new UtenteDAO();
             dao.doDelete(CF);
         }
 }

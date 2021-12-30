@@ -12,6 +12,20 @@ import java.io.IOException;
  */
 @WebServlet(name = "AddPietanza", value = "/AddPietanza")
 public class AddPietanza extends HttpServlet {
+
+    private PietanzaDAOInterface pietanzadao;
+
+    public AddPietanza() {
+        super();
+        pietanzadao = new PietanzaDAO();
+    }
+
+
+    public AddPietanza(PietanzaDAOInterface pietanzadao) {
+        super();
+        this.pietanzadao = pietanzadao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -60,7 +74,6 @@ public class AddPietanza extends HttpServlet {
      */
     public void addPietanza(Pietanza pietanza)
     {
-        PietanzaDAOInterface pietanzadao = new PietanzaDAO();
         pietanzadao.doSave(pietanza);
     }
 }

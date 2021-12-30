@@ -17,6 +17,19 @@ import java.util.ArrayList;
  */
 @WebServlet(name="toAddMenu", value="/toAddMenu")
 public class toAddMenu extends HttpServlet {
+
+    private   PietanzaDAOInterface pdao;
+
+    public toAddMenu() {
+        super();
+        pdao=new PietanzaDAO();
+    }
+
+    public toAddMenu(PietanzaDAOInterface pdao) {
+        super();
+        this.pdao=pdao;
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
@@ -33,7 +46,6 @@ public class toAddMenu extends HttpServlet {
             response.sendRedirect(request.getContextPath()+"/toHome");
         else
         {
-            PietanzaDAOInterface pdao=new PietanzaDAO();
             ArrayList<Pietanza> pietanze= (ArrayList<Pietanza>) pdao.doRetrieveAllPietanza();
             request.setAttribute("pietanze",pietanze);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/addMenu.jsp");

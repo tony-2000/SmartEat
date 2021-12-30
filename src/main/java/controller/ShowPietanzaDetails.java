@@ -12,6 +12,19 @@ import java.io.IOException;
  */
 @WebServlet(name = "ShowPietanzaDetails", value = "/ShowPietanzaDetails")
 public class ShowPietanzaDetails extends HttpServlet {
+
+    private   PietanzaDAOInterface pdao;
+
+    public ShowPietanzaDetails() {
+        super();
+        pdao=new PietanzaDAO();
+    }
+
+    public ShowPietanzaDetails(PietanzaDAOInterface pdao) {
+        super();
+        this.pdao=pdao;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -45,7 +58,6 @@ public class ShowPietanzaDetails extends HttpServlet {
      */
     public Pietanza getPietanza(String pietanza)
     {
-        PietanzaDAOInterface pdao=new PietanzaDAO();
         return pdao.doRetrievePietanzaByKey(pietanza);
     }
 }

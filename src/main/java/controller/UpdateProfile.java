@@ -17,6 +17,23 @@ import java.sql.Date;
  */
 @WebServlet(name="UpdateProfile", value="/UpdateProfile")
 public class UpdateProfile extends HttpServlet {
+
+    private UtenteDAOInterface udao;
+    private TesseraDAOInterface tesseradao;
+
+    public UpdateProfile() {
+        super();
+        udao=new UtenteDAO();
+        tesseradao = new TesseraDAO();
+
+    }
+
+    public UpdateProfile(TesseraDAOInterface tesseradao,UtenteDAOInterface udao) {
+        super();
+        this.tesseradao = tesseradao;
+        this.udao=udao;
+    }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
         String url="/WEB-INF/results/utente/showProfile.jsp";
@@ -35,11 +52,9 @@ public class UpdateProfile extends HttpServlet {
             url="/WEB-INF/results/utente/updateProfile.jsp";
         else message="Aggiornamento dei dati avvenuto con successo";
         request.setAttribute("message",message);
-        UtenteDAOInterface udao=new UtenteDAO();
         Utente user= udao.doRetrieveUtenteByKey(oldUser.getCF());
         session.setAttribute("utenteSessione",user);
-        TesseraDAOInterface tessradao=new TesseraDAO();
-        Tessera tessera=tessradao.doRetrieveTesseraByKey(oldUser.getCF());
+        Tessera tessera=tesseradao.doRetrieveTesseraByKey(oldUser.getCF());
         request.setAttribute("tessera",tessera);
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
@@ -111,7 +126,6 @@ public class UpdateProfile extends HttpServlet {
             }
 
            Utente user = new Utente();
-           UtenteDAOInterface dao = new UtenteDAO();
            user.setCF(oldUser.getCF());
            user.setNome(nome);
            user.setCognome(cognome);
@@ -123,7 +137,7 @@ public class UpdateProfile extends HttpServlet {
            user.setPasswordHash(password);
            user.setAmministratore(oldUser.isAmministratore());
            user.setAccepted(oldUser.isAccepted());
-           dao.doUpdateUtenteInfo(user);
+           udao.doUpdateUtenteInfo(user);
            res.setValido(true);
            return error;
     }
