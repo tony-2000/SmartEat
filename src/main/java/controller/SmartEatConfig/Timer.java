@@ -46,8 +46,7 @@ public class Timer extends TimerTask {
             ArrayList<Integer> listDeleteMenu=Menu.getListDeleteMenu();
             ArrayList<String> listDeletePietanza=Pietanza.getListDeletePietanza();
             ArrayList<String> listUpdateMensa=Mensa.getListUpdateMensa();
-            ArrayList<String> mensa=dao.doRetrieveMensaByKey("mensa1");
-            Mensa.setPostiVuoti(Integer.parseInt(mensa.get(1)));
+            Mensa.setPostiVuoti(Mensa.mensa.getPostiDisponibili());
             System.out.println("Aggiornamento posti");
 
             while(!listAddMenu.isEmpty())
