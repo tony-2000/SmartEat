@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @WebServlet(name="DeletePietanza", value="/DeletePietanza")
 public class DeletePietanza extends HttpServlet {
 
-    private PietanzaDAOInterface pietanzaDao;
+    private final PietanzaDAOInterface pietanzaDao;
 
     public DeletePietanza() {
         super();

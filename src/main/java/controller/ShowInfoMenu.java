@@ -16,7 +16,7 @@ import java.io.IOException;
 @WebServlet(name="ShowInfoMenu", value="/ShowInfoMenu")
 public class ShowInfoMenu extends HttpServlet
 {
-    private  MenuDAOInterface mdao;
+    private final MenuDAOInterface mdao;
 
     public ShowInfoMenu() {
         super();

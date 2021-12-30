@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @WebServlet(name = "AddMenu", value = "/AddMenu")
 public class AddMenu extends HttpServlet {
 
-    private MenuDAOInterface menudao;
+    private final MenuDAOInterface menudao;
 
     public AddMenu() {
         super();

@@ -18,8 +18,8 @@ import java.sql.Date;
 @WebServlet(name="UpdateProfile", value="/UpdateProfile")
 public class UpdateProfile extends HttpServlet {
 
-    private UtenteDAOInterface udao;
-    private TesseraDAOInterface tesseradao;
+    private final UtenteDAOInterface udao;
+    private final TesseraDAOInterface tesseradao;
 
     public UpdateProfile() {
         super();

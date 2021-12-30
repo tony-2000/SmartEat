@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "ShowPietanzaDetails", value = "/ShowPietanzaDetails")
 public class ShowPietanzaDetails extends HttpServlet {
 
-    private   PietanzaDAOInterface pdao;
+    private final PietanzaDAOInterface pdao;
 
     public ShowPietanzaDetails() {
         super();

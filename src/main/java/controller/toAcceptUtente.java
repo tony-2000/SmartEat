@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class toAcceptUtente extends HttpServlet {
 
 
-    private   UtenteDAOInterface dao;
+    private final UtenteDAOInterface dao;
 
     public toAcceptUtente() {
         super();

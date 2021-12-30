@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "ShowMenuDetails", value = "/ShowMenuDetails")
 public class ShowMenuDetails extends HttpServlet {
 
-    private  MenuDAOInterface mdao;
+    private final MenuDAOInterface mdao;
 
     public ShowMenuDetails() {
         super();

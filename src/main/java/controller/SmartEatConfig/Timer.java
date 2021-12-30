@@ -17,9 +17,9 @@ public class Timer extends TimerTask {
      */
 
 
-    private MenuDAOInterface menudao;
-    private MensaDAOInterface dao;
-    private PietanzaDAOInterface pietanzaDao;
+    private final MenuDAOInterface menudao;
+    private final MensaDAOInterface dao;
+    private final PietanzaDAOInterface pietanzaDao;
 
     public Timer() {
         super();

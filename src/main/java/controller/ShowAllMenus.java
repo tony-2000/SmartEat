@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ShowAllMenus extends HttpServlet
 {
 
-    private  MenuDAOInterface mdao;
+    private final MenuDAOInterface mdao;
 
     public ShowAllMenus() {
         super();

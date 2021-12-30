@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @WebServlet(name = "ToggleMenu", value = "/ToggleMenu")
 public class ToggleMenu extends HttpServlet {
 
-    private  MenuDAOInterface menudao;
+    private final MenuDAOInterface menudao;
 
     public ToggleMenu() {
         super();

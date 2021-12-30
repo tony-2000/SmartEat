@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @WebServlet(name = "AdminMenuArea", value = "/AdminMenuArea")
 public class AdminMenuArea extends HttpServlet {
 
-    private   MenuDAOInterface mdao;
+    private final MenuDAOInterface mdao;
 
     public AdminMenuArea() {
         super();

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @WebServlet(name="toHome", value="/toHome")
 public class toHome extends HttpServlet {
 
-    private   MensaDAOInterface mensadao;
+    private final MensaDAOInterface mensadao;
 
     public toHome() {
         super();

@@ -19,7 +19,7 @@ import java.io.IOException;
 public class DeleteUtente extends HttpServlet {
 
 
-    private   UtenteDAOInterface dao;
+    private final UtenteDAOInterface dao;
 
     public DeleteUtente() {
         super();

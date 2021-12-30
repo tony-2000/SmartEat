@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @WebServlet(name = "AdminPietanzeArea", value = "/AdminPietanzeArea")
 public class AdminPietanzeArea extends HttpServlet {
 
-    private PietanzaDAOInterface pdao;
+    private final PietanzaDAOInterface pdao;
 
     public AdminPietanzeArea() {
         super();
