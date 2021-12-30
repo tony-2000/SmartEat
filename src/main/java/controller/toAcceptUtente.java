@@ -18,15 +18,26 @@ import java.util.ArrayList;
 @WebServlet(name = "toAcceptUtente", value = "/toAcceptUtente")
 public class toAcceptUtente extends HttpServlet {
 
-
+    /**
+     * DAO di Utente
+     */
     private final UtenteDAOInterface dao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public toAcceptUtente() {
         super();
         dao=new UtenteDAO();
     }
-
+    /**Costruttore con parametri
+     * @param dao DAO di Utente
+     * @param session Sessione
+     */
     public toAcceptUtente(UtenteDAOInterface dao,HttpSession session) {
         super();
         this.dao=dao;

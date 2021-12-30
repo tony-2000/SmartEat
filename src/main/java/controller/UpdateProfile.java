@@ -18,10 +18,22 @@ import java.sql.Date;
 @WebServlet(name="UpdateProfile", value="/UpdateProfile")
 public class UpdateProfile extends HttpServlet {
 
+    /**
+     * DAO di Utente
+     */
     private final UtenteDAOInterface udao;
+    /**
+     * DAO di Tessera
+     */
     private final TesseraDAOInterface tesseradao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public UpdateProfile() {
         super();
         udao=new UtenteDAO();
@@ -29,6 +41,11 @@ public class UpdateProfile extends HttpServlet {
 
     }
 
+    /**Costruttore con parametri
+     * @param tesseradao DAO di Tessera
+     * @param udao DAO di Utente
+     * @param session Sessione
+     */
     public UpdateProfile(TesseraDAOInterface tesseradao,UtenteDAOInterface udao,HttpSession session) {
         super();
         this.tesseradao = tesseradao;

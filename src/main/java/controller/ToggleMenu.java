@@ -22,14 +22,27 @@ import java.util.ArrayList;
 @WebServlet(name = "ToggleMenu", value = "/ToggleMenu")
 public class ToggleMenu extends HttpServlet {
 
+    /**
+     * DAO di Menu
+     */
     private final MenuDAOInterface menudao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public ToggleMenu() {
         super();
         menudao=new MenuDAO();
     }
 
+    /**Costruttore con parametri
+     * @param menudao DAO di Menu
+     * @param session Sessione
+     */
     public ToggleMenu(MenuDAOInterface menudao,HttpSession session) {
         super();
         this.menudao=menudao;

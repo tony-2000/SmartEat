@@ -19,12 +19,21 @@ import java.util.ArrayList;
 @WebServlet(name="toHome", value="/toHome")
 public class toHome extends HttpServlet {
 
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public toHome() {
         super();
     }
 
+    /**Costruttore con parametri
+     * @param session Sessione
+     */
     public toHome(HttpSession session) {
         super();
         this.session=session;

@@ -19,14 +19,27 @@ import java.util.ArrayList;
 @WebServlet(name = "UpdateMensa", value = "/UpdateMensa")
 public class UpdateMensa extends HttpServlet {
 
+    /**
+     * DAO di Mensa
+     */
     private final MensaDAOInterface mensaDao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public UpdateMensa() {
         super();
         mensaDao=new MensaDAO();
     }
 
+    /**Costruttore con parametri
+     * @param mensaDao di Mensa
+     * @param session Sessione
+     */
     public UpdateMensa(MensaDAOInterface mensaDao,HttpSession session) {
         super();
         this.mensaDao=mensaDao;

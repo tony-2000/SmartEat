@@ -13,14 +13,26 @@ import java.io.IOException;
 @WebServlet(name = "ShowPietanzaDetails", value = "/ShowPietanzaDetails")
 public class ShowPietanzaDetails extends HttpServlet {
 
+    /**
+     * DAO di Pietanza
+     */
     private final PietanzaDAOInterface pdao;
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public ShowPietanzaDetails() {
         super();
         pdao=new PietanzaDAO();
     }
-
+    /**Costruttore con parametri
+     * @param pdao DAO di Pietanza
+     * @param session Sessione
+     */
     public ShowPietanzaDetails(PietanzaDAOInterface pdao,HttpSession session) {
         super();
         this.pdao=pdao;
