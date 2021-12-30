@@ -19,15 +19,17 @@ import java.util.ArrayList;
 public class DeletePietanza extends HttpServlet {
 
     private final PietanzaDAOInterface pietanzaDao;
+    private HttpSession session;
 
     public DeletePietanza() {
         super();
         pietanzaDao=new PietanzaDAO();
     }
 
-    public DeletePietanza(PietanzaDAOInterface pietanzaDao) {
+    public DeletePietanza(PietanzaDAOInterface pietanzaDao,HttpSession session) {
         super();
        this.pietanzaDao=pietanzaDao;
+       this.session=session;
     }
 
 
@@ -38,7 +40,8 @@ public class DeletePietanza extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

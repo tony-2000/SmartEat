@@ -18,21 +18,24 @@ import java.util.ArrayList;
 public class AdminMensaArea extends HttpServlet {
 
     private final MensaDAOInterface mensadao;
+    private HttpSession session;
 
     public AdminMensaArea() {
         super();
         mensadao = new MensaDAO();
     }
 
-    public AdminMensaArea(MensaDAOInterface mensadao) {
+    public AdminMensaArea(MensaDAOInterface mensadao,HttpSession session) {
         super();
         this.mensadao = mensadao;
+        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

@@ -21,6 +21,7 @@ public class AcceptUtente extends HttpServlet
 
     private final UtenteDAOInterface dao;
     private final TesseraDAOInterface tdao;
+    private HttpSession session;
 
     public AcceptUtente() {
         super();
@@ -28,16 +29,17 @@ public class AcceptUtente extends HttpServlet
         tdao=new TesseraDAO();
     }
 
-    public AcceptUtente(UtenteDAOInterface dao,TesseraDAOInterface tdao) {
+    public AcceptUtente(UtenteDAOInterface dao,TesseraDAOInterface tdao,HttpSession session) {
         super();
         this.dao = dao;
         this.tdao=tdao;
+        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

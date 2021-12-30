@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 public class AddPietanza extends HttpServlet {
 
     private final PietanzaDAOInterface pietanzadao;
+    private HttpSession session;
 
     public AddPietanza() {
         super();
@@ -27,15 +28,17 @@ public class AddPietanza extends HttpServlet {
     }
 
 
-    public AddPietanza(PietanzaDAOInterface pietanzadao) {
+    public AddPietanza(PietanzaDAOInterface pietanzadao,HttpSession session) {
         super();
         this.pietanzadao = pietanzadao;
+        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         Pietanza pietanza = new Pietanza();
         if(u==null)

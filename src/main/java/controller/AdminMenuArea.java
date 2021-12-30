@@ -15,21 +15,24 @@ import java.util.ArrayList;
 public class AdminMenuArea extends HttpServlet {
 
     private final MenuDAOInterface mdao;
+    private HttpSession session;
 
     public AdminMenuArea() {
         super();
         mdao = new MenuDAO();
     }
 
-    public AdminMenuArea(MenuDAOInterface mdao) {
+    public AdminMenuArea(MenuDAOInterface mdao,HttpSession session) {
         super();
         this.mdao = mdao;
+        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

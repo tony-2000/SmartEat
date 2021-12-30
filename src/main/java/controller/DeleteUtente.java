@@ -18,7 +18,7 @@ import java.io.IOException;
 @WebServlet(name = "DeleteUtente", value = "/DeleteUtente")
 public class DeleteUtente extends HttpServlet {
 
-
+    private HttpSession session;
     private final UtenteDAOInterface dao;
 
     public DeleteUtente() {
@@ -26,15 +26,17 @@ public class DeleteUtente extends HttpServlet {
         dao=new UtenteDAO();
     }
 
-    public DeleteUtente(UtenteDAOInterface dao) {
+    public DeleteUtente(UtenteDAOInterface dao,HttpSession session) {
         super();
        this.dao=dao;
+       this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

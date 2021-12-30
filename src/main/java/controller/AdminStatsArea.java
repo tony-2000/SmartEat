@@ -22,6 +22,7 @@ public class AdminStatsArea extends HttpServlet
 
     private final PietanzaDAOInterface pdao;
     private final MenuDAOInterface mdao;
+    private HttpSession session;
 
     public AdminStatsArea() {
         super();
@@ -29,10 +30,11 @@ public class AdminStatsArea extends HttpServlet
         mdao=new MenuDAO();
     }
 
-    public AdminStatsArea(PietanzaDAOInterface pdao,MenuDAOInterface mdao) {
+    public AdminStatsArea(PietanzaDAOInterface pdao,MenuDAOInterface mdao,HttpSession session) {
         super();
         this.pdao = pdao;
         this.mdao=mdao;
+        this.session=session;
     }
 
 
@@ -44,7 +46,8 @@ public class AdminStatsArea extends HttpServlet
     public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

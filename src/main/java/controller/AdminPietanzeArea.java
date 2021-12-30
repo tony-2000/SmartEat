@@ -15,22 +15,25 @@ import java.util.ArrayList;
 public class AdminPietanzeArea extends HttpServlet {
 
     private final PietanzaDAOInterface pdao;
+    private HttpSession session;
 
     public AdminPietanzeArea() {
         super();
         pdao = new PietanzaDAO();
     }
 
-    public AdminPietanzeArea(PietanzaDAOInterface pdao) {
+    public AdminPietanzeArea(PietanzaDAOInterface pdao,HttpSession session) {
         super();
         this.pdao = pdao;
+        this.session=session;
     }
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

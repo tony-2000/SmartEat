@@ -22,6 +22,7 @@ public class DeleteMenu extends HttpServlet
 {
 
     private final MenuDAOInterface menudao;
+    private HttpSession session;
 
     public DeleteMenu() {
         super();
@@ -29,9 +30,10 @@ public class DeleteMenu extends HttpServlet
 
     }
 
-    public DeleteMenu(MenuDAOInterface menudao) {
+    public DeleteMenu(MenuDAOInterface menudao,HttpSession session) {
         super();
         this.menudao=menudao;
+        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,7 +41,8 @@ public class DeleteMenu extends HttpServlet
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

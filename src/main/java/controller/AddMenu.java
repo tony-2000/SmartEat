@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class AddMenu extends HttpServlet {
 
     private final MenuDAOInterface menudao;
+    private HttpSession session;
 
     public AddMenu() {
         super();
@@ -30,9 +31,10 @@ public class AddMenu extends HttpServlet {
 
     }
 
-    public AddMenu(MenuDAOInterface menudao) {
+    public AddMenu(MenuDAOInterface menudao,HttpSession session) {
         super();
         this.menudao = menudao;
+        this.session=session;
     }
 
 
@@ -42,7 +44,8 @@ public class AddMenu extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         Menu menu = new Menu();
 

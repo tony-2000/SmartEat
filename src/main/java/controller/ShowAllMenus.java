@@ -20,15 +20,17 @@ public class ShowAllMenus extends HttpServlet
 {
 
     private final MenuDAOInterface mdao;
+    private HttpSession session;
 
     public ShowAllMenus() {
         super();
         mdao=new MenuDAO();
     }
 
-    public ShowAllMenus(MenuDAOInterface mdao) {
+    public ShowAllMenus(MenuDAOInterface mdao,HttpSession session) {
         super();
         this.mdao=mdao;
+        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +39,8 @@ public class ShowAllMenus extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

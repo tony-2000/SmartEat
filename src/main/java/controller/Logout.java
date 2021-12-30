@@ -17,11 +17,16 @@ import java.io.IOException;
 @WebServlet(name="Logout", value="/Logout")
 public class Logout extends HttpServlet
 {
+    private HttpSession session;
 
     public Logout() {
         super();
     }
 
+    public Logout(HttpSession session) {
+        super();
+        this.session=session;
+    }
 
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -30,7 +35,8 @@ public class Logout extends HttpServlet
 
     public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         session.removeAttribute("utenteSessione");
         RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
         dispatcher.forward(request, response);

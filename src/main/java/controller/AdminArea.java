@@ -16,15 +16,22 @@ import java.io.IOException;
 @WebServlet(name = "AdminArea", value = "/AdminArea")
 public class AdminArea extends HttpServlet {
 
+    private HttpSession session;
 
     public AdminArea() {
         super();
     }
 
+    public AdminArea(HttpSession session) {
+        super();
+        this.session=session;
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

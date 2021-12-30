@@ -23,6 +23,7 @@ public class BuyMenu extends HttpServlet
     private final AcquistoDAOInterface acquistodao;
     private final MenuDAOInterface menudao;
     private final PietanzaDAOInterface pdao;
+    private HttpSession session;
 
     public BuyMenu() {
         super();
@@ -32,12 +33,13 @@ public class BuyMenu extends HttpServlet
         pdao=new PietanzaDAO();
     }
 
-    public BuyMenu(TesseraDAOInterface tdao,AcquistoDAOInterface acquistodao,MenuDAOInterface menudao,PietanzaDAOInterface pdao) {
+    public BuyMenu(HttpSession session,TesseraDAOInterface tdao,AcquistoDAOInterface acquistodao,MenuDAOInterface menudao,PietanzaDAOInterface pdao) {
         super();
         this.tdao = tdao;
         this.acquistodao=acquistodao;
         this.menudao=menudao;
         this.pdao=pdao;
+        this.session=session;
     }
 
 
@@ -49,7 +51,8 @@ public class BuyMenu extends HttpServlet
     {
 
         int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
-        HttpSession session=request.getSession();
+        if(session==null)
+            session=request.getSession();
         Utente user= (Utente) session.getAttribute("utenteSessione");
 
         Date actual=new Date(System.currentTimeMillis());
