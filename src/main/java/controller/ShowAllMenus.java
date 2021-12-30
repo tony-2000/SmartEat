@@ -18,15 +18,28 @@ import java.util.ArrayList;
 @WebServlet(name="ShowAllMenus", value="/ShowAllMenus")
 public class ShowAllMenus extends HttpServlet
 {
-
+    /**
+     * DAO di Menu
+     */
     private final MenuDAOInterface mdao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Cotruttore vuoto
+     */
     public ShowAllMenus() {
         super();
         mdao=new MenuDAO();
     }
 
+    /**Costruttore con parametri
+     * @param mdao DAO di Menu
+     * @param session Sessione
+     */
     public ShowAllMenus(MenuDAOInterface mdao,HttpSession session) {
         super();
         this.mdao=mdao;

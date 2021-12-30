@@ -17,14 +17,28 @@ import java.util.ArrayList;
 @WebServlet(name = "AdminMensaArea", value = "/AdminMensaArea")
 public class AdminMensaArea extends HttpServlet {
 
+    /**
+     * DAO in Mensa
+     */
     private final MensaDAOInterface mensadao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore Vuoto
+     */
     public AdminMensaArea() {
         super();
         mensadao = new MensaDAO();
     }
 
+    /**Costruttore con parametri
+     * @param mensadao DAO di Mensa
+     * @param session Sessione
+     */
     public AdminMensaArea(MensaDAOInterface mensadao,HttpSession session) {
         super();
         this.mensadao = mensadao;

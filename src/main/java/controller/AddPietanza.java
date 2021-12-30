@@ -19,15 +19,29 @@ import java.nio.file.Paths;
 @MultipartConfig
 public class AddPietanza extends HttpServlet {
 
+    /**
+     * DAO di Pietanza
+     */
     private final PietanzaDAOInterface pietanzadao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+
+    /**
+     * Costruttore Vuoto
+     */
     public AddPietanza() {
         super();
         pietanzadao = new PietanzaDAO();
     }
 
-
+    /**Costruttore con parametri
+     * @param pietanzadao DAO di Pietanza
+     * @param session Sessione
+     */
     public AddPietanza(PietanzaDAOInterface pietanzadao,HttpSession session) {
         super();
         this.pietanzadao = pietanzadao;

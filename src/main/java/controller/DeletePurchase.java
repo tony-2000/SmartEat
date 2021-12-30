@@ -18,11 +18,32 @@ import java.sql.Date;
 public class DeletePurchase extends HttpServlet
 {
 
+    /**
+     * DAO di Tessera
+     */
     private final TesseraDAOInterface tdao;
+
+
+    /**
+     * DAO di Acquisto
+     */
     private final AcquistoDAOInterface acquistodao;
+
+
+    /**
+     * DAO di Menu
+     */
     private final MenuDAOInterface menudao;
+
+
+    /**
+     * DAO di Pietanza
+     */
     private final PietanzaDAOInterface pdao;
 
+    /**
+     * Costruttore vuoto
+     */
     public DeletePurchase() {
         super();
         tdao = new TesseraDAO();
@@ -31,6 +52,13 @@ public class DeletePurchase extends HttpServlet
         pdao=new PietanzaDAO();
     }
 
+
+    /**Costruttore con parametri
+     * @param tdao DAO di Tessera
+     * @param acquistodao DAO di Acquisto
+     * @param menudao DAO di Menu
+     * @param pdao DAO di Pietanza
+     */
     public DeletePurchase(TesseraDAOInterface tdao,AcquistoDAOInterface acquistodao,MenuDAOInterface menudao,PietanzaDAOInterface pdao) {
         super();
         this.tdao = tdao;

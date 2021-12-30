@@ -17,14 +17,28 @@ import java.io.IOException;
 @WebServlet(name = "Login", value = "/Login")
 public class Login extends HttpServlet {
 
+    /**
+     * DAO di Utente
+     */
     private final UtenteDAOInterface udao;
+
+    /**
+     * Sessione in corso
+     */
     private HttpSession session;
 
+    /**
+     * Costruttore vuoto
+     */
     public Login() {
         super();
         udao = new UtenteDAO();
     }
 
+    /**Costruttore con parametri
+     * @param udao DAO di Utente
+     * @param session Sessione
+     */
     public Login(UtenteDAOInterface udao, HttpSession session) {
         super();
         this.udao = udao;
