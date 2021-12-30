@@ -16,6 +16,7 @@ import java.nio.file.Paths;
  * Classe che aggiunge una pietanza al database da parte dell'admin.
  */
 @WebServlet(name = "AddPietanza", value = "/AddPietanza")
+@MultipartConfig
 public class AddPietanza extends HttpServlet {
 
     private final PietanzaDAOInterface pietanzadao;
@@ -56,8 +57,6 @@ public class AddPietanza extends HttpServlet {
             } catch (FileAlreadyExistsException e) {
                 /* do nothing */
             }
-
-
 
             String nome = request.getParameter("nome");
             String descrizione = request.getParameter("descrizione");
