@@ -20,19 +20,16 @@ import java.util.ArrayList;
 public class Login extends HttpServlet {
 
     private final UtenteDAOInterface udao;
-    private final MensaDAOInterface mdao;
     private HttpSession session;
 
     public Login() {
         super();
         udao = new UtenteDAO();
-        mdao = new MensaDAO();
     }
 
-    public Login(UtenteDAOInterface udao, MensaDAOInterface mdao, HttpSession session) {
+    public Login(UtenteDAOInterface udao, HttpSession session) {
         super();
         this.udao = udao;
-        this.mdao = mdao;
         this.session = session;
     }
 
@@ -57,11 +54,10 @@ public class Login extends HttpServlet {
             request.setAttribute("logError", strings[0]);
         } else
             session.setAttribute("utenteSessione", user);
-        ArrayList<String> mensa = mdao.doRetrieveMensaByKey("mensa1");
-        session.setAttribute("nomeMensa", mensa.get(0));
-        session.setAttribute("postiMensa", Integer.valueOf(mensa.get(1)));
-        session.setAttribute("aperturaMensa", Time.valueOf(mensa.get(2)));
-        session.setAttribute("chiusuraMensa", Time.valueOf(mensa.get(3)));
+        session.setAttribute("nomeMensa", Mensa.mensa.getNome());
+        session.setAttribute("postiMensa",  Mensa.mensa.getPostiDisponibili());
+        session.setAttribute("aperturaMensa", Mensa.mensa.getOrarioApertura());
+        session.setAttribute("chiusuraMensa",  Mensa.mensa.getOrarioChiusura());
         RequestDispatcher dispatcher = request.getRequestDispatcher(resp);
         dispatcher.forward(request, response);
     }
@@ -73,7 +69,7 @@ public class Login extends HttpServlet {
     /**
      * Questo metodo verifica che l'utente sia salvato nel database.
      *
-     * @param mail     Mail dell'utente
+     * @param mail Mail dell'utente
      * @param password Password dell'utente
      * @return Utente (empty) se vi sono errori nella richiesta login oppure l'utente non esiste,
      * altrimenti restituisce le informazioni dell'Utente
