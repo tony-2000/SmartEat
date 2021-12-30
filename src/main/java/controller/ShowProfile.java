@@ -18,7 +18,7 @@ import java.io.IOException;
 @WebServlet(name="ShowProfile", value="/ShowProfile")
 public class ShowProfile extends HttpServlet {
 
-    private TesseraDAOInterface tdao;
+    private final TesseraDAOInterface tdao;
 
     public ShowProfile() {
         super();

@@ -19,10 +19,10 @@ import java.util.List;
 @WebServlet(name="BuyMenu", value="/BuyMenu")
 public class BuyMenu extends HttpServlet
 {
-    private TesseraDAOInterface tdao;
-    private AcquistoDAOInterface acquistodao;
-    private  MenuDAOInterface menudao;
-    private   PietanzaDAOInterface pdao;
+    private final TesseraDAOInterface tdao;
+    private final AcquistoDAOInterface acquistodao;
+    private final MenuDAOInterface menudao;
+    private final PietanzaDAOInterface pdao;
 
     public BuyMenu() {
         super();

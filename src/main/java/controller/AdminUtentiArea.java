@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @WebServlet(name = "AdminUtentiArea", value = "/AdminUtentiArea")
 public class AdminUtentiArea extends HttpServlet {
 
-    private UtenteDAOInterface dao;
+    private final UtenteDAOInterface dao;
 
     public AdminUtentiArea() {
         super();

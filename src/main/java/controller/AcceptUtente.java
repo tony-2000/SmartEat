@@ -19,8 +19,8 @@ import java.io.IOException;
 public class AcceptUtente extends HttpServlet
 {
 
-    private UtenteDAOInterface dao;
-    private  TesseraDAOInterface tdao;
+    private final UtenteDAOInterface dao;
+    private final TesseraDAOInterface tdao;
 
     public AcceptUtente() {
         super();

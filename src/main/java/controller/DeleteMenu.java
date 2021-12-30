@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class DeleteMenu extends HttpServlet
 {
 
-    private  MenuDAOInterface menudao;
+    private final MenuDAOInterface menudao;
 
     public DeleteMenu() {
         super();

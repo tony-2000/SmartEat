@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @WebServlet(name="ShowPurchases", value="/ShowPurchases")
 public class ShowPurchases extends HttpServlet
 {
-    private AcquistoDAOInterface acquistodao;
+    private final AcquistoDAOInterface acquistodao;
 
     public ShowPurchases() {
         super();

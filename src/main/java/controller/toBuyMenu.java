@@ -17,8 +17,8 @@ import java.io.IOException;
 @WebServlet(name="toBuyMenu", value="/toBuyMenu")
 public class toBuyMenu extends HttpServlet
 {
-    private TesseraDAOInterface tdao;
-    private  MenuDAOInterface mdao;
+    private final TesseraDAOInterface tdao;
+    private final MenuDAOInterface mdao;
 
     public toBuyMenu() {
         super();

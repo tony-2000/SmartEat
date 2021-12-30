@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @WebServlet(name = "UpdateMensa", value = "/UpdateMensa")
 public class UpdateMensa extends HttpServlet {
 
-    private MensaDAOInterface mensaDao;
+    private final MensaDAOInterface mensaDao;
 
     public UpdateMensa() {
         super();

@@ -18,7 +18,7 @@ import java.sql.Date;
 @WebServlet(name="SignUp", value="/SignUp")
 public class SignUp extends HttpServlet {
 
-    private UtenteDAOInterface dao;
+    private final UtenteDAOInterface dao;
 
     public SignUp() {
         super();

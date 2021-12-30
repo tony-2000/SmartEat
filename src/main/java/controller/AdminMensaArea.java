@@ -17,7 +17,7 @@ import java.util.ArrayList;
 @WebServlet(name = "AdminMensaArea", value = "/AdminMensaArea")
 public class AdminMensaArea extends HttpServlet {
 
-    private  MensaDAOInterface mensadao;
+    private final MensaDAOInterface mensadao;
 
     public AdminMensaArea() {
         super();

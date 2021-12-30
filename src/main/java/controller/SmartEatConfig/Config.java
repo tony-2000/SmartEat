@@ -17,7 +17,7 @@ import java.util.ArrayList;
 @WebServlet(name="Config", value="/Config",loadOnStartup = 0)
 public class Config extends HttpServlet
 {
-    private MensaDAOInterface dao;
+    private final MensaDAOInterface dao;
 
     public Config() {
         super();

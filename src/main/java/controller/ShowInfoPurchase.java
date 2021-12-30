@@ -18,9 +18,9 @@ import java.sql.Date;
 @WebServlet(name="ShowInfoPurchase", value="/ShowInfoPurchase")
 public class ShowInfoPurchase extends HttpServlet
 {
-    private TesseraDAOInterface tdao;
-    private AcquistoDAOInterface acquistodao;
-    private  MenuDAOInterface menudao;
+    private final TesseraDAOInterface tdao;
+    private final AcquistoDAOInterface acquistodao;
+    private final MenuDAOInterface menudao;
 
     public ShowInfoPurchase() {
         super();

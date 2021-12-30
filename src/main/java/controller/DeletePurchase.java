@@ -18,10 +18,10 @@ import java.sql.Date;
 public class DeletePurchase extends HttpServlet
 {
 
-    private TesseraDAOInterface tdao;
-    private AcquistoDAOInterface acquistodao;
-    private  MenuDAOInterface menudao;
-    private   PietanzaDAOInterface pdao;
+    private final TesseraDAOInterface tdao;
+    private final AcquistoDAOInterface acquistodao;
+    private final MenuDAOInterface menudao;
+    private final PietanzaDAOInterface pdao;
 
     public DeletePurchase() {
         super();

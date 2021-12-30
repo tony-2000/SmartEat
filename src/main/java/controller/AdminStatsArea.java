@@ -20,8 +20,8 @@ import java.util.List;
 public class AdminStatsArea extends HttpServlet
 {
 
-    private  PietanzaDAOInterface pdao;
-    private   MenuDAOInterface mdao;
+    private final PietanzaDAOInterface pdao;
+    private final MenuDAOInterface mdao;
 
     public AdminStatsArea() {
         super();
