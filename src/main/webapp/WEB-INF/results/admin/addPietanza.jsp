@@ -24,7 +24,7 @@
     </header>
 
     <main class="field">
-        <form action="AddPietanza" method="post">
+        <form action="AddPietanza" method="post" enctype="multipart/form-data">
             <h2>Aggiungi una pietanza</h2><hr>
 
             <label for="nome">Nome</label>
@@ -45,9 +45,10 @@
             <label for="ingredienti">Ingredienti</label>
             <textarea name="ingredienti" id="ingredienti"
                       rows="5" cols="30" style="resize: none"
-                      maxlength="300" required></textarea><br><br>
+                      maxlength="300" required></textarea><br>
 
-            <input type="hidden" name="immagine" id="immagine">
+            <label for="image">Immagine</label>
+            <input type="file" name="image" id="image" required>
 
             <input type="submit" value="Aggiungi"><hr>
         </form>

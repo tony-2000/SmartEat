@@ -140,49 +140,40 @@
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <div>
-            <h1>Modifica Info Utente</h1>
-            <%
-                String message = (String) request.getAttribute("message");
-                if (message != null && message.length() > 0) {
-            %>
-            <p style="color: red"><%=message%></p>
-            <%
-                }
-            %>
-            <form name="updateProfile" onsubmit="return validateForm()" action="UpdateProfile" method="post">
-                <label for="nome_utente">Nome</label><br>
-                <input type="text" id="nome_utente" name="nome_utente" maxlength="20" value="<%=utente.getNome()%>" required><a id="nomeAlert" style="color: red"></a><br>
+    <main class="field">
+        <form name="updateProfile" onsubmit="return validateForm()" action="UpdateProfile" method="post">
+            <h2>Modifica Info Utente</h2><hr>
 
-                <label for="cognome">Cognome</label><br>
-                <input type="text" id="cognome" name="cognome" maxlength="20" value="<%=utente.getCognome()%>" required><a id="cognomeAlert" style="color: red"></a><br>
+            <label for="nome_utente">Nome</label>
+            <input type="text" id="nome_utente" name="nome_utente" maxlength="20" value="<%=utente.getNome()%>" required><a id="nomeAlert" style="color: red"></a><br>
 
-                <label for="gender">Sesso</label><br>
-                <select id="gender" name="gender" required>
-                    <option value="M" <%if (utente.getSesso() == 'M') {%>selected<%}%>>Maschio</option>
-                    <option value="F" <%if (utente.getSesso() == 'F') {%>selected<%}%>>Femmina</option>
-                    <option value="N" <%if (utente.getSesso() == 'N') {%>selected<%}%>>Altro</option>
-                </select><a id="genderAlert" style="color: red"></a><br>
+            <label for="cognome">Cognome</label>
+            <input type="text" id="cognome" name="cognome" maxlength="20" value="<%=utente.getCognome()%>" required><a id="cognomeAlert" style="color: red"></a><br>
 
-                <label for="dataDiNascita">Data di nascita</label><br>
-                <input type="date" id="dataDiNascita" name="dataDiNascita" value="<%=utente.getDataDiNascita()%>" required><a id="ddnAlert" style="color: red"></a><br>
+            <label for="gender">Sesso</label>
+            <select id="gender" name="gender" required>
+                <option value="M" <%if (utente.getSesso() == 'M') {%>selected<%}%>>Maschio</option>
+                <option value="F" <%if (utente.getSesso() == 'F') {%>selected<%}%>>Femmina</option>
+                <option value="N" <%if (utente.getSesso() == 'N') {%>selected<%}%>>Altro</option>
+            </select><a id="genderAlert" style="color: red"></a><br>
 
-                <label for="luogoDiNascita">Luogo di nascita</label><br>
-                <input type="text" id="luogoDiNascita" name="luogoDiNascita" maxlength="25" value="<%=utente.getLuogoDiNascita()%>" required><a id="ldnAlert" style="color: red"></a><br>
+            <label for="dataDiNascita">Data di nascita</label>
+            <input type="date" id="dataDiNascita" name="dataDiNascita" value="<%=utente.getDataDiNascita()%>" required><a id="ddnAlert" style="color: red"></a><br>
 
-                <label for="residenza">Luogo di residenza</label><br>
-                <input type="text" id="residenza" name="residenza" maxlength="25" value="<%=utente.getResidenza()%>" required><a id="residenzaAlert" style="color: red"></a><br>
+            <label for="luogoDiNascita">Luogo di nascita</label>
+            <input type="text" id="luogoDiNascita" name="luogoDiNascita" maxlength="25" value="<%=utente.getLuogoDiNascita()%>" required><a id="ldnAlert" style="color: red"></a><br>
 
-                <label for="password">Password</label><br>
-                <input type="password" id="password" name="password" maxlength="16" required><a id="passwordAlert" style="color: red"></a><br>
+            <label for="residenza">Luogo di residenza</label>
+            <input type="text" id="residenza" name="residenza" maxlength="25" value="<%=utente.getResidenza()%>" required><a id="residenzaAlert" style="color: red"></a><br>
 
-                <label for="passwordCheck">Conferma password</label><br>
-                <input type="password" id="passwordCheck" name="passwordCheck" maxlength="16" required><a id="checkPasswordAlert" style="color: red"></a><br><br>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" maxlength="16" required><a id="passwordAlert" style="color: red"></a><br>
 
-                <input type="submit" value="Conferma modifiche">
-            </form>
-        </div>
+            <label for="passwordCheck">Conferma password</label>
+            <input type="password" id="passwordCheck" name="passwordCheck" maxlength="16" required><a id="checkPasswordAlert" style="color: red"></a><br>
+
+            <input type="submit" value="Conferma modifiche"><hr>
+        </form>
     </main>
 
     <footer>

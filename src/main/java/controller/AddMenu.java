@@ -57,7 +57,7 @@ public class AddMenu extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/toHome");
         else {
             Part image = request.getPart("image");
-            String nameImage = Paths.get(image.getSubmittedFileName()).getFileName().toString();
+            String nameImage = System.currentTimeMillis() + Paths.get(image.getSubmittedFileName()).getFileName().toString();
             String uploadPath = System.getenv("CATALINA_HOME") + File.separator + "uploads" + File.separator;
             InputStream stream = image.getInputStream();
             String linkImmagine = uploadPath + nameImage;

@@ -27,7 +27,6 @@
     </header>
 
     <main>
-        <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
         <h1>Gestisci le pietanze</h1>
         <%
             List<Pietanza> pietanze = (List<Pietanza>) request.getAttribute("listaPietanze");

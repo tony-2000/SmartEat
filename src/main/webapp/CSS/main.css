@@ -115,3 +115,54 @@ form > input[type=submit] {
 form > input[type=submit]:hover {
     cursor: pointer;
 }
+
+/* Profile */
+.profile {
+    background-color: white;
+    border-radius: 0;
+    width: 45vw;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.profile > * {
+    margin: 0.25rem 2.5rem;
+}
+
+.profile > h2 {
+    text-align: center;
+    margin: 1rem 1rem 0;
+}
+
+.profile > hr {
+    color: black;
+    margin: 1rem 1.5rem;
+}
+
+.profile > p {
+    margin: 0 2.5rem 1rem;
+    text-align: end;
+}
+
+.profile > p > a {
+    text-decoration: none;
+}
+
+.profile table {
+    margin: 1rem 2rem;
+    border: 1px solid gray;
+}
+
+.profile tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+.profile td {
+    padding: .5rem 1rem;
+}
+
+.profile td:last-child {
+    text-align: end;
+}

@@ -28,7 +28,7 @@
     </header>
 
     <main class="field">
-        <form action="AddMenu" method="post">
+        <form action="AddMenu" method="post" enctype="multipart/form-data">
             <h2>Aggiungi un menù</h2><hr>
             <%
                 if (pietanze == null || pietanze.isEmpty()) {
@@ -84,10 +84,11 @@
                       rows="5" cols="30" style="resize: none"
                       maxlength="500" required></textarea><br>
 
-            <input type="hidden" name="immagine" id="immagine" value="">
+            <label for="image">Immagine</label>
+            <input type="file" name="image" id="image" required>
 
             <label for="prezzo">Prezzo</label>
-            <input type="number" name="prezzo" id="prezzo" step=".25" required><br><br>
+            <input type="number" name="prezzo" id="prezzo" step=".25" required><br>
 
             <input type="submit" value="Crea">
             <%
