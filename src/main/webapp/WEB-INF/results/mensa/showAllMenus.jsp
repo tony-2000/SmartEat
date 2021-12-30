@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
     </header>
 
-    <main>
+    <main class="display">
         <h1>Acquista un menù</h1>
         <%
             List<Menu> menus = (List<Menu>) request.getAttribute("listaMenu");
@@ -35,31 +35,29 @@
         <%
             } else {
         %>
-            <table>
-                <caption>Menù acquistabili</caption>
-
-                <thead>
-                <tr>
-                    <th>Nome del menù</th>
-                    <th>Descrizione</th>
-                    <th>Prezzo</th>
-                </tr>
-                </thead>
-
-                <tbody>
+            <div class="cards">
                 <%
-                    for (Menu m: menus) {
+                    for (Menu menu: menus) {
                 %>
-                    <tr>
-                        <td><a href="${pageContext.request.contextPath}/ShowInfoMenu?codiceMenu=<%=m.getCodiceMenu()%>"><%=m.getNome()%></a></td>
-                        <td><%=m.getDescrizione()%></td>
-                        <td><%=m.getPrezzo()%>€</td>
-                    </tr>
+                    <div class="card">
+                        <a href="${pageContext.request.contextPath}/ShowInfoMenu?codiceMenu=<%=menu.getCodiceMenu()%>" style="text-decoration: none">
+                            <div class="content">
+                                <img src="${pageContext.request.contextPath}/covers/<%=menu.getImmagine()%>" alt="cover" style="height:100%">
+                                <div class="container">
+                                    <p><b><%=menu.getNome()%></b></p>
+                                    <p><%=menu.getDescrizione()%></p>
+                                    <p><%=menu.getPrimo()%>, <%=menu.getSecondo()%>, <%=menu.getDessert()%></p>
+                                </div>
+                                <div class="price">
+                                    <h2>€<%=menu.getPrezzo()%></h2>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 <%
                     }
                 %>
-                </tbody>
-            </table>
+            </div>
         <%
             }
         %>
