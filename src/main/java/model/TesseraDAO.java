@@ -9,30 +9,6 @@ import java.util.List;
  */
 public class TesseraDAO implements TesseraDAOInterface
 {
-
-    /** Restituisce tutte le tessere salvate
-     * @post {@literal List=tessera->asSet()}
-     * @return Lista contenente tutte le tessere salvate
-     */
-    public List<Tessera> doRetrieveAllTessera()
-    {
-        List<Tessera> list = new ArrayList<>();
-        try (Connection con = ConPool.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM tessera");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Tessera p = new Tessera();
-                p.setCF(rs.getString(1));
-                p.setSaldo(rs.getFloat(2));
-                list.add(p);
-            }
-            return list;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     /** Restituisce la tessera con la chiave richiesta, se presente, altrimenti restituisce un oggetto Tessera vuoto.
      * @pre {@literal CF!=null}
      * @post {@literal Tessera (empty) || tessera->select(t|t.codiceFiscale==CF)}
