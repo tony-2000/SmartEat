@@ -14,6 +14,7 @@
           <element id="module-output" name="SmartEat" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.27" />
           <element id="library" level="project" name="Maven: org.mockito:mockito-core:4.2.0" />
           <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.12.4" />
           <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy-agent:1.12.4" />
@@ -56,6 +57,7 @@
           <element id="library" level="project" name="Maven: org.ow2.asm:asm-analysis:9.1" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm-tree:9.1" />
           <element id="library" level="project" name="Maven: org.jacoco:org.jacoco.report:0.8.7" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.56" />
         </element>
       </element>
       <element id="directory" name="META-INF">
