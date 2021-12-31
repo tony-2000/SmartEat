@@ -43,6 +43,12 @@
             <version>0.8.7</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-juli -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-juli</artifactId>
+            <version>9.0.56</version>
+        </dependency>
     </dependencies>
 
     <build>
