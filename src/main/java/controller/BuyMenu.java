@@ -86,7 +86,7 @@ public class BuyMenu extends HttpServlet
         Utente user= (Utente) session.getAttribute("utenteSessione");
 
         Date actual=new Date(System.currentTimeMillis());
-        boolean posto= Boolean.parseBoolean(request.getParameter("postoMensa"));
+        boolean posto = request.getParameter("postoMensa") != null;
         Tessera tessera=tdao.doRetrieveTesseraByKey(user.getCF());
         String[] message=new String[2];
         boolean buy=this.buy(codiceMenu,actual,posto,user.getCF(),tessera,message);

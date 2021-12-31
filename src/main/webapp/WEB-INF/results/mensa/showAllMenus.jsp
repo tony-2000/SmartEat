@@ -26,23 +26,23 @@
     </header>
 
     <main class="display">
-        <h1>Acquista un menù</h1>
-        <%
-            List<Menu> menus = (List<Menu>) request.getAttribute("listaMenu");
-            if (menus == null || menus.isEmpty()) {
-        %>
-            <p style="color: red">Non ci sono menù disponibili.</p>
-        <%
+        <div class="box">
+            <h1>Acquista un menù</h1>
+            <%
+                List<Menu> menus = (List<Menu>) request.getAttribute("listaMenu");
+                if (menus == null || menus.isEmpty()) {
+            %>
+                <p style="color: red">Non ci sono menù disponibili.</p>
+            <%
             } else {
-        %>
-            <div class="cards">
+            %>
                 <%
                     for (Menu menu: menus) {
                 %>
                     <div class="card">
-                        <a href="${pageContext.request.contextPath}/ShowInfoMenu?codiceMenu=<%=menu.getCodiceMenu()%>" style="text-decoration: none">
+                        <a href="${pageContext.request.contextPath}/ShowInfoMenu?codiceMenu=<%=menu.getCodiceMenu()%>">
                             <div class="content">
-                                <img src="${pageContext.request.contextPath}/covers/<%=menu.getImmagine()%>" alt="cover" style="height:100%">
+                                <img src="${pageContext.request.contextPath}/covers/<%=menu.getImmagine()%>" alt="cover">
                                 <div class="container">
                                     <p><b><%=menu.getNome()%></b></p>
                                     <p><%=menu.getDescrizione()%></p>
@@ -57,10 +57,10 @@
                 <%
                     }
                 %>
-            </div>
-        <%
-            }
-        %>
+            <%
+                }
+            %>
+        </div>
     </main>
 
     <footer>

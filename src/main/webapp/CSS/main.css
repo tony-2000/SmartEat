@@ -48,6 +48,7 @@ b {
 html, body {
     height: 100%;
     margin: 0;
+    background-color: darkgray;
 }
 
 body {
@@ -57,7 +58,6 @@ body {
 
 body > main {
     flex: 1;
-    background-color: darkgray;
 }
 
 /* Forms */
@@ -69,35 +69,38 @@ body > main {
 }
 
 form {
+    display: flex;
+    flex-direction: column;
+}
+
+.field form {
     background-color: white;
     border-radius: 0;
     width: 45vw;
-    display: flex;
-    flex-direction: column;
     margin: 2rem;
     box-shadow: 5px 5px 5px grey;
 }
 
-form > * {
+.field form > * {
     margin: 0.25rem 2.5rem;
 }
 
-form > h2 {
+.field form > h2 {
     text-align: center;
     margin: 1rem 1rem 0;
 }
 
-form > hr {
+.field form > hr {
     color: black;
     margin: 1rem 1.5rem;
 }
 
-form > p {
+.field form > p {
     margin: 0 2.5rem 1rem;
     text-align: end;
 }
 
-form > p > a {
+.field form > p > a {
     text-decoration: none;
 }
 
@@ -112,8 +115,11 @@ form > input, form > select, form > textarea {
 form > input[type=submit] {
     border: none;
     font-weight: bold;
-    margin: 1rem 2.5rem;
     padding: 0.5rem;
+}
+
+.field form > input[type=submit] {
+    margin: 1rem 2.5rem;
 }
 
 form > input[type=submit]:hover {
@@ -182,17 +188,28 @@ form > input[type=submit]:hover {
     margin: 1rem;
 }
 
-.display > .cards {
+.display > .box {
     background-color: white;
     flex: 1;
     width: 85vw;
     padding: 1rem;
+    margin: 2rem;
     box-shadow: 5px 5px 5px grey;
     border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.box > h1 {
+    text-align: center;
 }
 
 .card {
     margin: 1rem;
+}
+
+.card > a {
+    text-decoration: none;
 }
 
 .card .content {
@@ -202,6 +219,24 @@ form > input[type=submit]:hover {
     background-color: white;
     border: 1px solid gray;
     height: 10rem;
+}
+
+.card .content > img {
+    height: 100%;
+    width: 20%;
+    object-fit: cover;
+}
+
+.card .content > .price {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    color: black;
+    padding: .5rem;
+    width: 15%;
+    border-radius: 10px 0 0 10px;
 }
 
 .card:hover {
@@ -215,14 +250,4 @@ form > input[type=submit]:hover {
     flex-direction: column;
     justify-content: center;
     flex: 1;
-}
-
-.price {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: lightgray;
-    color: black;
-    padding: 2rem;
 }

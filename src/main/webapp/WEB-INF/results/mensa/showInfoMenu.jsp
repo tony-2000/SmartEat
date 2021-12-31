@@ -26,19 +26,28 @@
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <h2><%=menu.getNome()%></h2>
-        <h4><%=menu.getPrezzo()%>€</h4>
-        <p><%=menu.getDescrizione()%></p>
-        <ul>
-            <li><%=menu.getPrimo()%></li>
-            <li><%=menu.getSecondo()%></li>
-            <li><%=menu.getDessert()%></li>
-        </ul>
-        <form action="toBuyMenu" method="post">
-            <input type="hidden" id="codiceMenu" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
-            <input type="submit" value="Acquista">
-        </form>
+    <main class="display">
+        <div class="box">
+            <h1 style="margin-bottom: 1rem"><%=menu.getNome()%></h1>
+            <div style="flex: 1; display: flex; flex-direction: row; justify-content: center; align-items: center">
+                <div style="width: 50%; display: flex; flex-direction: row; justify-content: center">
+                    <img src="${pageContext.request.contextPath}/covers/<%=menu.getImmagine()%>" alt="cover"
+                         style="flex: 1; height: 20rem; object-fit: cover">
+                </div>
+                <div style="width: 50%; height: 100%; margin: 0 1rem; display: flex; flex-direction: column">
+                    <p><b><%=menu.getPrezzo()%>€</b></p>
+                    <p><%=menu.getDescrizione()%></p>
+                    <p><%=menu.getPrimo()%></p>
+                    <p><%=menu.getSecondo()%></p>
+                    <p><%=menu.getDessert()%></p>
+                    <div style="flex: 1"></div>
+                    <form action="toBuyMenu" method="post">
+                        <input type="hidden" id="codiceMenu" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
+                        <input type="submit" value="Acquista">
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>

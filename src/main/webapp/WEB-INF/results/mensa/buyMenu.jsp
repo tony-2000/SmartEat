@@ -29,33 +29,39 @@
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <h2><%=menu.getNome()%></h2>
-        <h4><%=menu.getPrezzo()%>€</h4>
-        <p><%=menu.getDescrizione()%></p>
-        <ul>
-            <li><%=menu.getPrimo()%></li>
-            <li><%=menu.getSecondo()%></li>
-            <li><%=menu.getDessert()%></li>
-        </ul>
-        <p>Hai attualmente <b>€<%=tessera.getSaldo()%></b> disponibili.</p>
-        <form action="BuyMenu" method="post">
-            <%
-                if (postiVuoti > 0) {
-            %>
-                <p>Desideri anche prenotare un posto?</p>
-                <input type="radio" id="postotrue" name="postoMensa" value="true"> <label for="postotrue">Sì</label> <br>
-                <input type="radio" id="postofalse" name="postoMensa" value="false"> <label for="postofalse">No</label> <br>
-            <%
-                } else {
-            %>
-                <input type="hidden" name="postoMensa" value="false">
-            <%
-                }
-            %>
-            <input type="hidden" id="codiceMenu" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
-            <input type="submit" value="Conferma acquisto">
-        </form>
+    <main class="display">
+        <div class="box">
+            <h1 style="margin-bottom: 1rem"><%=menu.getNome()%></h1>
+            <div style="flex: 1; display: flex; flex-direction: row; justify-content: center; align-items: center">
+                <div style="flex: 1; height: 100%; margin-right: 1rem; display: flex; flex-direction: column">
+                    <img src="${pageContext.request.contextPath}/covers/<%=menu.getImmagine()%>" alt="cover"
+                         style="width: 100%; height: 15rem; object-fit: cover">
+                    <div style="flex: 1"></div>
+                    <p><b>€<%=menu.getPrezzo()%></b></p>
+                    <p><%=menu.getDescrizione()%></p>
+                    <p><%=menu.getPrimo()%>, <%=menu.getSecondo()%>, <%=menu.getDessert()%></p>
+                    <div style="flex: 1"></div>
+                </div>
+                <div style="flex: 1; height: 100%; margin-left: 1rem; display: flex; flex-direction: column">
+                    <p>Hai attualmente <b>€<%=tessera.getSaldo()%></b> disponibili.</p>
+                    <div style="flex: 1"></div>
+                    <form action="BuyMenu" method="post">
+                        <%
+                            if (postiVuoti > 0) {
+                        %>
+                            <label for="postoMensa">
+                                <input type="checkbox" id="postoMensa" name="postoMensa" value="true">
+                                Desidero anche prenotare un posto
+                            </label>
+                        <%
+                            }
+                        %>
+                        <input type="hidden" id="codiceMenu" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
+                        <input type="submit" value="Conferma acquisto" style="margin-top: .25rem">
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
