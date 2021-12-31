@@ -30,7 +30,7 @@
                  style="max-width: 23rem; border-radius: 50%; margin-right: 1rem">
             <div style="align-self: center; margin-left: 1rem">
                 <h1><%=(String) session.getAttribute("nomeMensa")%></h1>
-                <p>Sono attualmente disponibili <%=Mensa.getPostiVuoti()%> posti.</p>
+                <p>Sono attualmente disponibili <%=session.getAttribute("postiVuoti")%> posti.</p>
                 <p>Apertura - <%=session.getAttribute("aperturaMensa")%></p>
                 <p>Chiusura - <%=session.getAttribute("chiusuraMensa")%></p>
             </div>
