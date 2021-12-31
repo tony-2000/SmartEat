@@ -56,6 +56,7 @@
           <element id="library" level="project" name="Maven: org.ow2.asm:asm-analysis:9.1" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm-tree:9.1" />
           <element id="library" level="project" name="Maven: org.jacoco:org.jacoco.report:0.8.7" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:9.0.56" />
         </element>
       </element>
       <element id="directory" name="META-INF">
