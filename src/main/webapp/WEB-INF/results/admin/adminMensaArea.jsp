@@ -34,10 +34,10 @@
             <input type="number" id="postiDisponibili" name="postiDisponibili" value="<%=mensa.get(1)%>"><br>
 
             <label for="orarioApertura">Orario di apertura</label>
-            <input type="time" id="orarioApertura" name="orarioApertura" value="<%=mensa.get(2)%>"><br>
+            <input type="time" id="orarioApertura" step="1" name="orarioApertura" value="<%=mensa.get(2)%>"><br>
 
             <label for="orarioChiusura">Orario di chiusura</label>
-            <input type="time" id="orarioChiusura" name="orarioChiusura" value="<%=mensa.get(3)%>"><br>
+            <input type="time" id="orarioChiusura" step="1" name="orarioChiusura" value="<%=mensa.get(3)%>"><br>
 
             <input type="submit" value="Conferma modifiche"><hr>
         </form>
