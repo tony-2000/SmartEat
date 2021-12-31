@@ -38,7 +38,15 @@ public class Mensa
     /**
      *Costruttore privato per realizzare il Singleton Pattern
      */
-    private Mensa(){}
+    private Mensa()
+    {
+        MensaDAOInterface dao= new MensaDAO();
+        ArrayList<String> strings=dao.doRetrieveMensaByKey("mensa1");
+        this.setNome(strings.get(0));
+        this.setPostiDisponibili(Integer.parseInt(strings.get(1)));
+        this.setOrarioApertura(Time.valueOf(strings.get(2)));
+        this.setOrarioChiusura(Time.valueOf(strings.get(3)));
+    }
 
 
     /** Restituisce il nome della mensa.
