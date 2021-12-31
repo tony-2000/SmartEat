@@ -69,6 +69,7 @@ public class Login extends HttpServlet {
         session.setAttribute("postiMensa", Mensa.mensa.getPostiDisponibili());
         session.setAttribute("aperturaMensa", Mensa.mensa.getOrarioApertura());
         session.setAttribute("chiusuraMensa", Mensa.mensa.getOrarioChiusura());
+        session.setAttribute("postiVuoti",Mensa.getPostiVuoti());
         RequestDispatcher dispatcher = request.getRequestDispatcher(resp);
         dispatcher.forward(request, response);
     }
