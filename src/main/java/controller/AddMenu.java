@@ -92,7 +92,7 @@ public class AddMenu extends HttpServlet {
             menu.setSecondo(secondo);
             menu.setDessert(dessert);
             menu.setDescrizione(descrizione);
-            menu.setImmagine("SmartEat_War/covers/"+nameImage);
+            menu.setImmagine(nameImage);
             menu.setPrezzo(prezzo);
             menu.setAvailable(true);
             boolean result=this.addMenu(menu);

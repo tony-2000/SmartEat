@@ -191,6 +191,10 @@ form > input[type=submit]:hover {
     border-radius: 3px;
 }
 
+.card {
+    margin: 1rem;
+}
+
 .card .content {
     display: flex;
     flex-direction: row;

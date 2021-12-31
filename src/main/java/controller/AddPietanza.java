@@ -84,7 +84,7 @@ public class AddPietanza extends HttpServlet {
             pietanza.setDescrizione(descrizione);
             pietanza.setTipo(tipo);
             pietanza.setIngredienti(ingredienti);
-            pietanza.setImmagine("SmartEat_War/covers/"+nameImage);
+            pietanza.setImmagine(nameImage);
             pietanza.setNumeroAcquisti(0);
             this.addPietanza(pietanza);
 
