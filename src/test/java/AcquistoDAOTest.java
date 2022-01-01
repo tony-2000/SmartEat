@@ -86,13 +86,12 @@ public class AcquistoDAOTest extends Mockito
         assertEquals(acquisto2.getCF(),acquisto.getCF());
         assertEquals(acquisto2.getCodiceMenu(),acquisto.getCodiceMenu());
         assertEquals(acquisto2.getDataAcquisto(),acquisto.getDataAcquisto());
-        assertNotEquals(acquisto2.isPostoMensa(),postoMensa);
     }
 
 
 
     @Test
-    public void doDelete()
+    public void doDeleteTest()
     {
         Date dataAcquisto=Date.valueOf("2021-12-10");
         String CF="RSSMRA74D22A0011";
