@@ -37,11 +37,14 @@
                     <img src="${pageContext.request.contextPath}/covers/<%=menu.getImmagine()%>" alt="cover"
                          style="width: 100%; height: 15rem; object-fit: cover">
                     <div style="flex: 1"></div>
-                    <p><b>€<%=menu.getPrezzo()%></b></p>
+                    <p>Prezzo: <b>€<%=menu.getPrezzo()%></b></p>
                     <p><%=menu.getDescrizione()%></p>
                     <p><%=menu.getPrimo()%>, <%=menu.getSecondo()%>, <%=menu.getDessert()%></p>
                     <div style="flex: 1"></div>
                 </div>
+
+                <hr style="height: 100%; color: black">
+
                 <div style="flex: 1; height: 100%; margin-left: 1rem; display: flex; flex-direction: column">
                     <p>Hai attualmente <b>€<%=tessera.getSaldo()%></b> disponibili.</p>
                     <div style="flex: 1"></div>

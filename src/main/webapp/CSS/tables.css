@@ -1,14 +1,29 @@
-table {
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
+.table-container {
+    display: flex;
+    flex-direction: row;
 }
 
-table, th, td {
-    border:1px solid black;
+table {
+    flex: 1;
+}
+
+table {
+    border:1px solid gray;
     border-collapse: collapse;
+}
+
+th, td {
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    padding: .3rem;
 }
 
 th {
     font-weight: bold;
+    text-align: start;
+    background-color: darkgray;
+}
+
+tr:nth-child(even) {
+    background-color: lightgray;
 }

@@ -28,14 +28,14 @@
 
     <main class="display">
         <div class="box">
-            <h1 style="margin-bottom: 1rem"><%=menu.getNome()%></h1>
             <div style="flex: 1; display: flex; flex-direction: row; justify-content: center; align-items: center">
                 <div style="width: 50%; display: flex; flex-direction: row; justify-content: center">
                     <img src="${pageContext.request.contextPath}/covers/<%=menu.getImmagine()%>" alt="cover"
-                         style="flex: 1; height: 20rem; object-fit: cover">
+                         style="flex: 1; height: 25rem; width: 5rem; object-fit: cover">
                 </div>
                 <div style="width: 50%; height: 100%; margin: 0 1rem; display: flex; flex-direction: column">
-                    <p><b><%=menu.getPrezzo()%>€</b></p>
+                    <h1><%=menu.getNome()%></h1>
+                    <p>Prezzo: <b><%=menu.getPrezzo()%>€</b></p>
                     <p><%=menu.getDescrizione()%></p>
                     <p><%=menu.getPrimo()%></p>
                     <p><%=menu.getSecondo()%></p>

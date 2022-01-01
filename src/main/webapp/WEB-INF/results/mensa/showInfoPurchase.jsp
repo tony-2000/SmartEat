@@ -27,22 +27,31 @@
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <h1>Info acquisto</h1>
-        <h2><%=menu.getNome()%></h2>
-        <p><%=menu.getDescrizione()%></p>
-        <ul>
-            <li><%=menu.getPrimo()%></li>
-            <li><%=menu.getSecondo()%></li>
-            <li><%=menu.getDessert()%></li>
-        </ul>
-        <p><%=acquisto.getDataAcquisto()%>, €<%=menu.getPrezzo()%></p>
-        <form action="DeletePurchase" method="post">
-            <input type="hidden" name="dataAcquisto" value="<%=acquisto.getDataAcquisto()%>">
-            <input type="hidden" name="CF" value="<%=acquisto.getCF()%>">
-            <input type="hidden" name="codiceMenu" value="<%=acquisto.getCodiceMenu()%>">
-            <input type="submit" value="Rimborsa">
-        </form>
+    <main class="display">
+        <div class="box">
+            <div style="flex: 1; display: flex; flex-direction: row; justify-content: center; align-items: center">
+                <div style="width: 50%; display: flex; flex-direction: row; justify-content: center">
+                    <img src="${pageContext.request.contextPath}/covers/<%=menu.getImmagine()%>" alt="cover"
+                         style="flex: 1; height: 25rem; width: 5rem; object-fit: cover">
+                </div>
+                <div style="width: 50%; height: 100%; margin: 0 1rem; display: flex; flex-direction: column">
+                    <h1><%=menu.getNome()%></h1>
+                    <p>Acquisto del <b><%=acquisto.getDataAcquisto()%></b></p>
+                    <p>Prezzo: <b><%=menu.getPrezzo()%>€</b></p>
+                    <p><%=menu.getDescrizione()%></p>
+                    <p><%=menu.getPrimo()%></p>
+                    <p><%=menu.getSecondo()%></p>
+                    <p><%=menu.getDessert()%></p>
+                    <div style="flex: 1"></div>
+                    <form action="DeletePurchase" method="post">
+                        <input type="hidden" name="dataAcquisto" value="<%=acquisto.getDataAcquisto()%>">
+                        <input type="hidden" name="CF" value="<%=acquisto.getCF()%>">
+                        <input type="hidden" name="codiceMenu" value="<%=acquisto.getCodiceMenu()%>">
+                        <input type="submit" value="Rimborsa" <% if (!acquisto.isRefund()) { %>disabled<% } %>>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>

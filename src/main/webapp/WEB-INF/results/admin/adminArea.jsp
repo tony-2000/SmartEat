@@ -23,15 +23,35 @@
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/AdminMensaArea">Gestisci la mensa</a></li>
-            <li><a href="${pageContext.request.contextPath}/AdminMenuArea">Gestisci i menù</a></li>
-            <li><a href="${pageContext.request.contextPath}/AdminPietanzeArea">Gestisci le pietanze</a></li>
-            <li><a href="${pageContext.request.contextPath}/AdminUtentiArea">Gestisci gli utenti</a></li>
-            <li><a href="${pageContext.request.contextPath}/AdminStatsArea">Visualizza le statistiche degli acquisti</a></li>
-        </ul>
+    <main class="field">
+        <form id="gestioneMensa"
+              action="${pageContext.request.contextPath}/AdminMensaArea"
+              method="get" style="display: none"></form>
+
+        <form id="gestioneMenu"
+              action="${pageContext.request.contextPath}/AdminMenuArea"
+              method="get" style="display: none"></form>
+
+        <form id="gestionePietanze"
+              action="${pageContext.request.contextPath}/AdminPietanzeArea"
+              method="get" style="display: none"></form>
+
+        <form id="gestioneUtenti"
+              action="${pageContext.request.contextPath}/AdminUtentiArea"
+              method="get" style="display: none"></form>
+
+        <form id="statsMensa"
+              action="${pageContext.request.contextPath}/AdminStatsArea"
+              method="get" style="display: none"></form>
+
+        <form>
+            <h2>Funzioni amministrative</h2><hr>
+            <input type="submit" form="gestioneMensa" value="Gestisci la mensa">
+            <input type="submit" form="gestioneMenu" value="Gestisci i menù">
+            <input type="submit" form="gestionePietanze" value="Gestisci le pietanze">
+            <input type="submit" form="gestioneUtenti" value="Gestisci gli utenti">
+            <input type="submit" form="statsMensa" value="Visualizza le statistiche degli acquisti"><hr>
+        </form>
     </main>
 
     <footer>

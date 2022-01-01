@@ -26,49 +26,58 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
     </header>
 
-    <main>
-        <h1>Gestisci i menù</h1>
-        <%
-            List<Menu> menus = (List<Menu>) request.getAttribute("listaMenu");
-            if (menus == null || menus.isEmpty()) {
-        %>
-        <p style="color: red">Non ci sono menù disponibili.</p>
-        <%
-        } else {
-        %>
-        <table>
-            <caption>Menù memorizzati</caption>
-
-            <thead>
-            <tr>
-                <th>Codice</th>
-                <th>Nome</th>
-                <th>Descrizione</th>
-                <th>Prezzo</th>
-                <th>Disponibile</th>
-            </tr>
-            </thead>
-
-            <tbody>
+    <main class="display">
+        <div class="box">
+            <h1>Gestisci i menù</h1><hr>
+            <form action="${pageContext.request.contextPath}/toAddMenu" method="get">
+                <input type="submit" value="Aggiungi un menù">
+            </form>
             <%
-                for (Menu m: menus) {
+                List<Menu> menus = (List<Menu>) request.getAttribute("listaMenu");
+                if (menus == null || menus.isEmpty()) {
             %>
-            <tr>
-                <td><a href="${pageContext.request.contextPath}/ShowMenuDetails?codiceMenu=<%=m.getCodiceMenu()%>"><%=m.getCodiceMenu()%></a></td>
-                <td><%=m.getNome()%></td>
-                <td><%=m.getDescrizione()%></td>
-                <td><%=m.getPrezzo()%>€</td>
-                <td><%=m.isAvailable()%></td>
-            </tr>
+            <p style="color: red">Non ci sono menù disponibili.</p>
+            <%
+            } else {
+            %>
+            <div class="table-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Codice</th>
+                        <th>Nome</th>
+                        <th>Descrizione</th>
+                        <th>Prezzo</th>
+                        <th>Disponibile</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <%
+                        for (Menu m: menus) {
+                    %>
+                    <tr>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/ShowMenuDetails?codiceMenu=<%=m.getCodiceMenu()%>"
+                                  method="get">
+                                <input type="submit" value="<%=m.getCodiceMenu()%>">
+                            </form>
+                        </td>
+                        <td><%=m.getNome()%></td>
+                        <td><%=m.getDescrizione()%></td>
+                        <td><%=m.getPrezzo()%>€</td>
+                        <td><%=m.isAvailable()%></td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                    </tbody>
+                </table>
+            </div>
             <%
                 }
             %>
-            </tbody>
-        </table>
-        <%
-            }
-        %>
-        <p><a href="${pageContext.request.contextPath}/toAddMenu">Aggiungi un menù.</a></p>
+        </div>
     </main>
 
     <footer>

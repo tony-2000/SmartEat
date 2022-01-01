@@ -26,51 +26,44 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
     </header>
 
-    <main>
-        <h1>Acquisti effettuati</h1>
-        <%
-            List<Acquisto> acquisti = (List<Acquisto>) request.getAttribute("listaAcquisti");
-            if (acquisti == null || acquisti.isEmpty()) {
-        %>
-            <p style="color: red">Non hai effettuato nessun acquisto.</p>
-        <%
+    <main class="display">
+        <div class="box">
+            <h1>Acquisti effettuati</h1>
+            <%
+                List<Acquisto> acquisti = (List<Acquisto>) request.getAttribute("listaAcquisti");
+                if (acquisti == null || acquisti.isEmpty()) {
+            %>
+                <p style="color: red; text-align: center">Non hai effettuato nessun acquisto.</p>
+            <%
             } else {
-        %>
-            <table>
-                <caption>Acquisti effettuati</caption>
-
-                <thead>
-                <tr>
-                    <th>Codice menù</th>
-                    <th>Data di acquisto</th>
-                    <th>Visualizza informazioni</th>
-                </tr>
-                </thead>
-
-                <tbody>
+            %>
                 <%
                     for (Acquisto acquisto: acquisti) {
                 %>
-                    <tr>
-                        <td><%=acquisto.getCodiceMenu()%></td>
-                        <td><%=acquisto.getDataAcquisto()%></td>
-                        <td>
-                            <form action="ShowInfoPurchase" method="post">
-                                <input type="hidden" name="dataAcquisto" value="<%=acquisto.getDataAcquisto()%>">
-                                <input type="hidden" name="CF" value="<%=acquisto.getCF()%>">
-                                <input type="hidden" name="codiceMenu" value="<%=acquisto.getCodiceMenu()%>">
-                                <input type="submit" value="Info">
-                            </form>
-                        </td>
-                    </tr>
+            <div class="card">
+                <div class="content" style="height: 5rem">
+                    <div class="container">
+                        <p>Menù n°<b><%=acquisto.getCodiceMenu()%></b></p>
+                        <p>Acquistato il <%=acquisto.getDataAcquisto()%></p>
+                    </div>
+
+                    <div class="price" style="background: none">
+                        <form action="ShowInfoPurchase" method="post">
+                            <input type="hidden" name="dataAcquisto" value="<%=acquisto.getDataAcquisto()%>">
+                            <input type="hidden" name="CF" value="<%=acquisto.getCF()%>">
+                            <input type="hidden" name="codiceMenu" value="<%=acquisto.getCodiceMenu()%>">
+                            <input type="submit" value="Info" style="padding: 1rem 2rem">
+                        </form>
+                    </div>
+                </div>
+            </div>
                 <%
                     }
                 %>
-                </tbody>
-            </table>
-        <%
-            }
-        %>
+            <%
+                }
+            %>
+        </div>
     </main>
 
     <footer>

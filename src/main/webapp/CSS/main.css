@@ -75,7 +75,7 @@ form {
 
 .field form {
     background-color: white;
-    border-radius: 0;
+    border-radius: 3px;
     width: 45vw;
     margin: 2rem;
     box-shadow: 5px 5px 5px grey;
@@ -129,7 +129,7 @@ form > input[type=submit]:hover {
 /* Profile */
 .profile {
     background-color: white;
-    border-radius: 0;
+    border-radius: 3px;
     width: 45vw;
     display: flex;
     flex-direction: column;
@@ -200,6 +200,10 @@ form > input[type=submit]:hover {
     flex-direction: column;
 }
 
+.box > * {
+    margin: .5rem;
+}
+
 .box > h1 {
     text-align: center;
 }
@@ -235,7 +239,7 @@ form > input[type=submit]:hover {
     background-color: lightgray;
     color: black;
     padding: .5rem;
-    width: 15%;
+    flex: .15;
     border-radius: 10px 0 0 10px;
 }
 
