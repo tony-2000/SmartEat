@@ -32,16 +32,25 @@
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <h2><%=pietanza.getNome()%></h2>
-        <p><%=pietanza.getDescrizione()%></p>
-        <p>Tipo: <%=pietanza.getTipo()%></p>
-        <p><%=pietanza.getIngredienti()%></p> <br>
-
-        <form action="DeletePietanza" method="post">
-            <input type="hidden" name="nomePietanza" value="<%=pietanza.getNome()%>">
-            <input type="submit" onclick="return confirmDelete()" value="Elimina pietanza">
-        </form>
+    <main class="display">
+        <div class="box">
+            <div style="flex: 1; display: flex; flex-direction: row; justify-content: center; align-items: center">
+                <div style="width: 50%; display: flex; flex-direction: row; justify-content: center">
+                    <img src="${pageContext.request.contextPath}/covers/<%=pietanza.getImmagine()%>" alt="cover"
+                         style="flex: 1; height: 25rem; width: 5rem; object-fit: cover">
+                </div>
+                <div style="width: 50%; height: 100%; margin: 0 1rem; display: flex; flex-direction: column">
+                    <h1><%=pietanza.getNome()%></h1>
+                    <p><%=pietanza.getDescrizione()%></p>
+                    <p>Tipo: <%=pietanza.getTipo()%></p>
+                    <div style="flex: 1"></div>
+                    <form action="DeletePietanza" method="post">
+                        <input type="hidden" name="nomePietanza" value="<%=pietanza.getNome()%>">
+                        <input type="submit" onclick="return confirmDelete()" value="Elimina pietanza">
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>

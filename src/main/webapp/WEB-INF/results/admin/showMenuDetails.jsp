@@ -32,25 +32,32 @@
         <%@include file="/WEB-INF/partials/messages.jsp"%>
     </header>
 
-    <main>
-        <h2><%=menu.getNome()%></h2>
-        <h4><%=menu.getPrezzo()%>€</h4>
-        <p><%=menu.getDescrizione()%></p>
-        <ul>
-            <li><%=menu.getPrimo()%></li>
-            <li><%=menu.getSecondo()%></li>
-            <li><%=menu.getDessert()%></li>
-        </ul>
-
-        <form action="ToggleMenu" method="post">
-            <input type="hidden" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
-            <input type="submit" value="<%=menu.isAvailable() ? "Disattiva" : "Attiva"%>">
-        </form>
-
-        <form action="DeleteMenu" method="post">
-            <input type="hidden" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
-            <input type="submit" value="Elimina menù" onclick="return confirmDelete()">
-        </form>
+    <main class="display">
+        <div class="box">
+            <div style="flex: 1; display: flex; flex-direction: row; justify-content: center; align-items: center">
+                <div style="width: 50%; display: flex; flex-direction: row; justify-content: center">
+                    <img src="${pageContext.request.contextPath}/covers/<%=menu.getImmagine()%>" alt="cover"
+                         style="flex: 1; height: 25rem; width: 5rem; object-fit: cover">
+                </div>
+                <div style="width: 50%; height: 100%; margin: 0 1rem; display: flex; flex-direction: column">
+                    <h1><%=menu.getNome()%></h1>
+                    <p>Prezzo: <b><%=menu.getPrezzo()%>€</b></p>
+                    <p><%=menu.getDescrizione()%></p>
+                    <p><%=menu.getPrimo()%></p>
+                    <p><%=menu.getSecondo()%></p>
+                    <p><%=menu.getDessert()%></p>
+                    <div style="flex: 1"></div>
+                    <form action="ToggleMenu" method="post" style="margin-bottom: .5rem">
+                        <input type="hidden" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
+                        <input type="submit" value="<%=menu.isAvailable() ? "Disattiva" : "Attiva"%>">
+                    </form>
+                    <form action="DeleteMenu" method="post">
+                        <input type="hidden" name="codiceMenu" value="<%=menu.getCodiceMenu()%>">
+                        <input type="submit" value="Elimina menù" onclick="return confirmDelete()">
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>

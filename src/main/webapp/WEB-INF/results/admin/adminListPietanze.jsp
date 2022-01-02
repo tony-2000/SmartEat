@@ -26,53 +26,56 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
     </header>
 
-    <main>
-        <h1>Gestisci le pietanze</h1>
-        <%
-            List<Pietanza> pietanze = (List<Pietanza>) request.getAttribute("listaPietanze");
-            if (pietanze == null || pietanze.isEmpty()) {
-        %>
-            <p style="color: red">Non ci sono pietanze disponibili.</p>
-        <%
-            } else {
-        %>
-            <table>
-                <caption>Pietanze memorizzate</caption>
+    <main class="display">
+        <div class="box">
+            <h1>Gestisci le pietanze</h1><hr>
+            <form action="${pageContext.request.contextPath}/toAddPietanza" method="get">
+                <input type="submit" value="Aggiungi una pietanza">
+            </form>
+            <%
+                List<Pietanza> pietanze = (List<Pietanza>) request.getAttribute("listaPietanze");
+                if (pietanze == null || pietanze.isEmpty()) {
+            %>
+                <p style="color: red; text-align: center">Non ci sono pietanze disponibili.</p>
+            <%
+                } else {
+            %>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Ingredienti</th>
+                            <th>Informazioni</th>
+                        </tr>
+                        </thead>
 
-                <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Ingredienti</th>
-                    <th>Informazioni</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <%
-                    for (Pietanza pietanza: pietanze) {
-                %>
-                    <tr>
-                        <td><%=pietanza.getNome()%></td>
-                        <td><%=pietanza.getTipo()%></td>
-                        <td><%=pietanza.getIngredienti()%></td>
-                        <td>
-                            <form action="ShowPietanzaDetails" method="post">
-                                <input type="hidden" name="nomePietanza" value="<%=pietanza.getNome()%>">
-                                <input type="submit" value="Info">
-                            </form>
-                        </td>
-                    </tr>
-                <%
-                    }
-                %>
-                </tbody>
-            </table>
-        <%
-            }
-        %>
-
-        <p><a href="${pageContext.request.contextPath}/toAddPietanza">Aggiungi una pietanza.</a></p>
+                        <tbody>
+                        <%
+                            for (Pietanza pietanza: pietanze) {
+                        %>
+                        <tr>
+                            <td><%=pietanza.getNome()%></td>
+                            <td><%=pietanza.getTipo()%></td>
+                            <td><%=pietanza.getIngredienti()%></td>
+                            <td>
+                                <form action="ShowPietanzaDetails" method="post">
+                                    <input type="hidden" name="nomePietanza" value="<%=pietanza.getNome()%>">
+                                    <input type="submit" value="Info">
+                                </form>
+                            </td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+            <%
+                }
+            %>
+        </div>
     </main>
 
     <footer>

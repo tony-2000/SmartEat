@@ -32,72 +32,73 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
     </header>
 
-    <main>
-        <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
-        <h1>Gestione utenti</h1>
-        <%
-            if (utenti == null || utenti.isEmpty()) {
-        %>
-        <p style="color: red">Non ci sono utenti da accettare.</p>
-        <%
-        } else {
-        %>
-        <table>
-            <caption>Utenti da accettare</caption>
-
-            <thead>
-            <tr>
-                <th>CF</th>
-                <th>Nome</th>
-                <th>Cognome</th>
-                <th>Sesso</th>
-                <th>Data di nascita</th>
-                <th>Luogo di nascita</th>
-                <th>Residenza</th>
-                <th>E-Mail</th>
-                <th>Admin</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-
-            <tbody>
+    <main class="display">
+        <div class="box">
+            <h1>Gestione utenti</h1><hr>
             <%
-                for (Utente user: utenti) {
+                if (utenti == null || utenti.isEmpty()) {
             %>
-            <tr>
-                <td><%=user.getCF()%></td>
-                <td><%=user.getNome()%></td>
-                <td><%=user.getCognome()%></td>
-                <td><%=user.getSesso()%></td>
-                <td><%=user.getDataDiNascita()%></td>
-                <td><%=user.getLuogoDiNascita()%></td>
-                <td><%=user.getResidenza()%></td>
-                <td><%=user.getEmail()%></td>
-                <td><%=user.isAmministratore().isAdmin() ? "Sì" : "No"%></td>
-                <td>
-                    <form action="AcceptUtente" method="post">
-                        <input type="hidden" name="CFUser" value="<%=user.getCF()%>">
-                        <input type="hidden" name="accept" value="true">
-                        <input type="submit" value="Accetta">
-                    </form>
-                </td>
-                <td>
-                    <form action="AcceptUtente" method="post">
-                        <input type="hidden" name="CFUser" value="<%=user.getCF()%>">
-                        <input type="hidden" name="accept" value="false">
-                        <input type="submit" onclick="return confirmDelete()" value="Rifiuta">
-                    </form>
-                </td>
-            </tr>
+                <p style="color: red; text-align: center">Non ci sono utenti da accettare.</p>
+            <%
+                } else {
+            %>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>CF</th>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                            <th>Sesso</th>
+                            <th>Data di nascita</th>
+                            <th>Luogo di nascita</th>
+                            <th>Residenza</th>
+                            <th>E-Mail</th>
+                            <th>Admin</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <%
+                            for (Utente user: utenti) {
+                        %>
+                        <tr>
+                            <td><%=user.getCF()%></td>
+                            <td><%=user.getNome()%></td>
+                            <td><%=user.getCognome()%></td>
+                            <td><%=user.getSesso()%></td>
+                            <td><%=user.getDataDiNascita()%></td>
+                            <td><%=user.getLuogoDiNascita()%></td>
+                            <td><%=user.getResidenza()%></td>
+                            <td><%=user.getEmail()%></td>
+                            <td><%=user.isAmministratore().isAdmin() ? "Sì" : "No"%></td>
+                            <td>
+                                <form action="AcceptUtente" method="post">
+                                    <input type="hidden" name="CFUser" value="<%=user.getCF()%>">
+                                    <input type="hidden" name="accept" value="true">
+                                    <input type="submit" value="Accetta">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="AcceptUtente" method="post">
+                                    <input type="hidden" name="CFUser" value="<%=user.getCF()%>">
+                                    <input type="hidden" name="accept" value="false">
+                                    <input type="submit" onclick="return confirmDelete()" value="Rifiuta">
+                                </form>
+                            </td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
             <%
                 }
             %>
-            </tbody>
-        </table>
-        <%
-            }
-        %>
+        </div>
     </main>
 
     <footer>

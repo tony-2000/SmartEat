@@ -36,7 +36,7 @@
                 List<Menu> menus = (List<Menu>) request.getAttribute("listaMenu");
                 if (menus == null || menus.isEmpty()) {
             %>
-            <p style="color: red">Non ci sono menù disponibili.</p>
+                <p style="color: red; text-align: center">Non ci sono menù disponibili.</p>
             <%
             } else {
             %>
@@ -49,6 +49,7 @@
                         <th>Descrizione</th>
                         <th>Prezzo</th>
                         <th>Disponibile</th>
+                        <th>Informazioni</th>
                     </tr>
                     </thead>
 
@@ -57,16 +58,18 @@
                         for (Menu m: menus) {
                     %>
                     <tr>
-                        <td>
-                            <form action="${pageContext.request.contextPath}/ShowMenuDetails?codiceMenu=<%=m.getCodiceMenu()%>"
-                                  method="get">
-                                <input type="submit" value="<%=m.getCodiceMenu()%>">
-                            </form>
-                        </td>
+                        <td><%=m.getCodiceMenu()%></td>
                         <td><%=m.getNome()%></td>
                         <td><%=m.getDescrizione()%></td>
                         <td><%=m.getPrezzo()%>€</td>
-                        <td><%=m.isAvailable()%></td>
+                        <td><%=m.isAvailable() ? "Sì" : "No"%></td>
+                        <td>
+                            <form action="${pageContext.request.contextPath}/ShowMenuDetails?codiceMenu=<%=m.getCodiceMenu()%>"
+                                  method="get">
+                                <input type="hidden" name="codiceMenu" value="<%=m.getCodiceMenu()%>">
+                                <input type="submit" value="Info">
+                            </form>
+                        </td>
                     </tr>
                     <%
                         }

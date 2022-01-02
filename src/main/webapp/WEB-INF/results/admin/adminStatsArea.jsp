@@ -29,43 +29,45 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
     </header>
 
-    <main>
-        <p style="color: blue"><%=request.getAttribute("message") != null ? request.getAttribute("message") : ""%></p>
-        <h1>Statistiche acquisti</h1>
-        <%
-            if (pietanze == null || pietanze.isEmpty()) {
-        %>
-            <p style="color: red">Non ci sono pietanze di cui visualizzare le statistiche</p>
-        <%
+    <main class="display">
+        <div class="box">
+            <h1>Statistiche acquisti</h1><hr>
+            <%
+                if (pietanze == null || pietanze.isEmpty()) {
+            %>
+                <p style="color: red; text-align: center">Non ci sono pietanze di cui visualizzare le statistiche</p>
+            <%
             } else {
-        %>
-            <table>
-                <thead>
-                <tr>
-                    <th>Pietanza</th>
-                    <th>Acquisti totali</th>
-                    <th>Menù in cui è stata disponibile</th>
-                </tr>
-                </thead>
+            %>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Pietanza</th>
+                            <th>Acquisti totali</th>
+                            <th>Menù in cui è stata disponibile</th>
+                        </tr>
+                        </thead>
 
-                <tbody>
-                <%
-                    for (int i=0; i < pietanze.size(); i++) {
-
-                %>
-                    <tr>
-                        <td><%=pietanze.get(i).getNome()%></td>
-                        <td><%=pietanze.get(i).getNumeroAcquisti()%></td>
-                        <td><%=stats.get(i)%></td>
-                    </tr>
-                <%
-                    }
-                %>
-                </tbody>
-            </table>
-        <%
-            }
-        %>
+                        <tbody>
+                        <%
+                            for (int i=0; i < pietanze.size(); i++) {
+                        %>
+                        <tr>
+                            <td><%=pietanze.get(i).getNome()%></td>
+                            <td><%=pietanze.get(i).getNumeroAcquisti()%></td>
+                            <td><%=stats.get(i)%></td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                </div>
+            <%
+                }
+            %>
+        </div>
     </main>
 
     <footer>

@@ -73,7 +73,7 @@
 
                     <tr>
                         <td>Saldo</td>
-                        <td><b>€<%=tessera.getSaldo()%></b></td>
+                        <td><b><%=tessera.getSaldo()%>€</b></td>
                     </tr>
                 </tbody>
             </table>

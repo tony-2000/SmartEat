@@ -49,7 +49,7 @@
                                     <p><%=menu.getPrimo()%>, <%=menu.getSecondo()%>, <%=menu.getDessert()%></p>
                                 </div>
                                 <div class="price">
-                                    <h2>€<%=menu.getPrezzo()%></h2>
+                                    <h2><%=menu.getPrezzo()%>€</h2>
                                 </div>
                             </div>
                         </a>
