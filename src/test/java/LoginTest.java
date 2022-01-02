@@ -17,11 +17,16 @@ import static org.junit.Assert.*;
 
 public class LoginTest extends Mockito {
 
-    Login login;
+    private Login login;
+    private UtenteDAOInterface udao;
+    private HttpSession session;
 
     @Before
-    public void setup() {
-        login = new Login();
+    public void setup()
+    {
+        udao = mock(UtenteDAO.class);
+        session = mock(HttpSession.class);
+        login = new Login(udao, session);
     }
 
     @Test
@@ -29,9 +34,6 @@ public class LoginTest extends Mockito {
         String mail = "pippo";
         String password = "P4ssword!";
         String[] strings = new String[2];
-        UtenteDAOInterface udao = mock(UtenteDAO.class);
-        HttpSession session = mock(HttpSession.class);
-        login = new Login(udao, session);
 
         Utente user = new Utente();
         user.setEmail(mail);
@@ -49,9 +51,6 @@ public class LoginTest extends Mockito {
         String mail = "pippo@mail.it";
         String password = "P4ssword";
         String[] strings = new String[2];
-        UtenteDAOInterface udao = mock(UtenteDAO.class);
-        HttpSession session = mock(HttpSession.class);
-        login = new Login(udao, session);
 
         Utente user = new Utente();
         user.setEmail(mail);
@@ -70,9 +69,6 @@ public class LoginTest extends Mockito {
         String password = "P4ssword!";
         String CF = "1234567890ABCDEF";
         String[] strings = new String[2];
-        UtenteDAOInterface udao = mock(UtenteDAO.class);
-        HttpSession session = mock(HttpSession.class);
-        login = new Login(udao, session);
 
         Utente user = new Utente();
         user.setEmail(mail);
@@ -93,9 +89,6 @@ public class LoginTest extends Mockito {
         String password = "P4ssword!";
         String CF = "1234567890ABCDEF";
         String[] strings = new String[2];
-        UtenteDAOInterface udao = mock(UtenteDAO.class);
-        HttpSession session = mock(HttpSession.class);
-        login = new Login(udao, session);
 
         Utente user = new Utente();
         user.setEmail(mail);
@@ -120,11 +113,7 @@ public class LoginTest extends Mockito {
         user.setAccepted(true);
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
-        UtenteDAOInterface udao = mock(UtenteDAO.class);
-        HttpSession session = mock(HttpSession.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-
-        login = new Login(udao, session);
 
         when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
         when(request.getParameter("mail")).thenReturn("pippo@mail.it");
@@ -145,11 +134,7 @@ public class LoginTest extends Mockito {
         user.setAccepted(true);
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
-        UtenteDAOInterface udao = mock(UtenteDAO.class);
-        HttpSession session = mock(HttpSession.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-
-        login = new Login(udao, session);
 
         when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
         when(request.getParameter("mail")).thenReturn("pippo@mail.it");
@@ -172,11 +157,7 @@ public class LoginTest extends Mockito {
         user.setAccepted(false);
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
-        UtenteDAOInterface udao = mock(UtenteDAO.class);
-        HttpSession session = mock(HttpSession.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-
-        login = new Login(udao, session);
 
         when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
         when(request.getParameter("mail")).thenReturn("pippo@mail.it");

@@ -35,7 +35,7 @@
                 </div>
                 <div style="width: 50%; height: 100%; margin: 0 1rem; display: flex; flex-direction: column">
                     <h1><%=menu.getNome()%></h1>
-                    <p>Prezzo: <b><%=menu.getPrezzo()%>€</b></p>
+                    <p>Prezzo: <b><%=menu.getPrezzo()%>€</b></p><hr style="width: 100%; color: black">
                     <p><%=menu.getDescrizione()%></p>
                     <p><%=menu.getPrimo()%></p>
                     <p><%=menu.getSecondo()%></p>

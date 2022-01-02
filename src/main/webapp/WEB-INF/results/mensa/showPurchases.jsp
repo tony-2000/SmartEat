@@ -1,6 +1,10 @@
 <%@ page import="model.Utente" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Acquisto" %><%--
+<%@ page import="model.Acquisto" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="model.Menu" %>
+
+<%--
   Created by IntelliJ IDEA.
   User: simon
   Date: 23/12/2021
@@ -31,32 +35,37 @@
             <h1>Acquisti effettuati</h1>
             <%
                 List<Acquisto> acquisti = (List<Acquisto>) request.getAttribute("listaAcquisti");
+                List<Menu> menus = (List<Menu>) request.getAttribute("listaMenu");
                 if (acquisti == null || acquisti.isEmpty()) {
             %>
                 <p style="color: red; text-align: center">Non hai effettuato nessun acquisto.</p>
             <%
-            } else {
+                } else {
             %>
                 <%
-                    for (Acquisto acquisto: acquisti) {
+                    Collections.reverse(acquisti);
+                    Collections.reverse(menus);
+                    for (int i=0; i < acquisti.size(); i++) {
                 %>
-            <div class="card">
-                <div class="content" style="height: 5rem">
-                    <div class="container">
-                        <p>Menù n°<b><%=acquisto.getCodiceMenu()%></b></p>
-                        <p>Acquistato il <%=acquisto.getDataAcquisto()%></p>
-                    </div>
+                    <div class="card">
+                        <div class="content" style="height: 5rem">
+                            <img src="${pageContext.request.contextPath}/covers/<%=menus.get(i).getImmagine()%>" alt="cover">
 
-                    <div class="price" style="background: none">
-                        <form action="ShowInfoPurchase" method="post">
-                            <input type="hidden" name="dataAcquisto" value="<%=acquisto.getDataAcquisto()%>">
-                            <input type="hidden" name="CF" value="<%=acquisto.getCF()%>">
-                            <input type="hidden" name="codiceMenu" value="<%=acquisto.getCodiceMenu()%>">
-                            <input type="submit" value="Info" style="padding: 1rem 2rem">
-                        </form>
+                            <div class="container">
+                                <p><b><%=menus.get(i).getNome()%></b></p>
+                                <p>Acquistato il <%=acquisti.get(i).getDataAcquisto()%></p>
+                            </div>
+
+                            <div class="price" style="background: none">
+                                <form action="ShowInfoPurchase" method="post">
+                                    <input type="hidden" name="dataAcquisto" value="<%=acquisti.get(i).getDataAcquisto()%>">
+                                    <input type="hidden" name="CF" value="<%=acquisti.get(i).getCF()%>">
+                                    <input type="hidden" name="codiceMenu" value="<%=acquisti.get(i).getCodiceMenu()%>">
+                                    <input type="submit" value="Info" style="padding: 1rem 2rem">
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
                 <%
                     }
                 %>
