@@ -59,12 +59,11 @@ public class DeletePietanza extends HttpServlet {
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
+        else{
         RuoloUtente ruoloUtente = u.isAmministratore();
         if (!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath() + "/toHome");
-        else
-        {
+        else {
             String nomePietanza = request.getParameter("nomePietanza");
             boolean result = this.deletePietanza(nomePietanza);
             String message;
@@ -75,6 +74,7 @@ public class DeletePietanza extends HttpServlet {
             request.setAttribute("message", message);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminPietanzeArea");
             dispatcher.forward(request, response);
+        }
         }
     }
 

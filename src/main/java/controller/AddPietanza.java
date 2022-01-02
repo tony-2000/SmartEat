@@ -57,12 +57,11 @@ public class AddPietanza extends HttpServlet {
         Pietanza pietanza = new Pietanza();
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
+        else{
         RuoloUtente ruoloUtente = u.isAmministratore();
         if (!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath() + "/toHome");
-        else
-        {
+        else {
             Part image = request.getPart("image");
             String nameImage = System.currentTimeMillis() + Paths.get(image.getSubmittedFileName()).getFileName().toString();
             String uploadPath = System.getenv("CATALINA_HOME") + File.separator + "uploads" + File.separator;
@@ -91,6 +90,7 @@ public class AddPietanza extends HttpServlet {
             //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListPietanze.jsp");
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminPietanzeArea");
             dispatcher.forward(request, response);
+        }
         }
     }
 

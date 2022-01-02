@@ -59,24 +59,23 @@ public class ToggleMenu extends HttpServlet {
         Utente u = (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
+        else{
         RuoloUtente ruoloUtente = u.isAmministratore();
         if (!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath() + "/toHome");
         else {
             int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
-            request.setAttribute("codiceMenu",codiceMenu);
-            boolean result=this.toggleMenu(codiceMenu);
+            request.setAttribute("codiceMenu", codiceMenu);
+            boolean result = this.toggleMenu(codiceMenu);
             String message;
-            if(result)
-                message="La disponibilita' del menu è stata cambiata";
+            if (result)
+                message = "La disponibilita' del menu è stata cambiata";
             else
-                message="La disponibilita' del menu verra' aggiornata dopo l'orario di chiusura";
-            request.setAttribute("message",message);
-            //dispatcher
-            //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/showMenuDetails.jsp");
+                message = "La disponibilita' del menu verra' aggiornata dopo l'orario di chiusura";
+            request.setAttribute("message", message);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMenuArea");
             dispatcher.forward(request, response);
+        }
         }
     }
 

@@ -53,16 +53,16 @@ public class AdminMensaArea extends HttpServlet {
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
+        else{
         RuoloUtente ruoloUtente = u.isAmministratore();
         if(!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath()+"/toHome");
-        else
-        {
-            ArrayList<String> mensa= this.adminMensa();
-            request.setAttribute("mensa",mensa);
+        else {
+            ArrayList<String> mensa = this.adminMensa();
+            request.setAttribute("mensa", mensa);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminMensaArea.jsp");
             dispatcher.forward(request, response);
+        }
         }
     }
 

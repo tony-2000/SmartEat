@@ -54,18 +54,18 @@ public class DeleteUtente extends HttpServlet {
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
+        else{
         RuoloUtente ruoloUtente = u.isAmministratore();
         if(!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath()+"/toHome");
-        else
-        {
-            String CF=request.getParameter("CF");
+        else {
+            String CF = request.getParameter("CF");
             DeleteUser(CF);
-            String message="Utente eliminato correttamente.";
-            request.setAttribute("message",message);
+            String message = "Utente eliminato correttamente.";
+            request.setAttribute("message", message);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminUtentiArea");
             dispatcher.forward(request, response);
+        }
         }
     }
 

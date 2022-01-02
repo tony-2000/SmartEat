@@ -41,16 +41,15 @@ public class toAddPietanza extends HttpServlet {
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
+        else{
         RuoloUtente ruoloUtente = u.isAmministratore();
         if(!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath()+"/toHome");
-        else
-        {
+        else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/addPietanza.jsp");
             dispatcher.forward(request, response);
         }
-
+        }
     }
 
     @Override

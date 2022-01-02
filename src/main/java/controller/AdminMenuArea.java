@@ -54,10 +54,12 @@ public class AdminMenuArea extends HttpServlet {
             RuoloUtente ruoloUtente = u.isAmministratore();
             if (!ruoloUtente.isAdmin())
                 response.sendRedirect(request.getContextPath() + "/toHome");
-            ArrayList<Menu> menus = AdminShowMenu();
-            request.setAttribute("listaMenu", menus);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListMenu.jsp");
-            dispatcher.forward(request, response);
+            else {
+                ArrayList<Menu> menus = AdminShowMenu();
+                request.setAttribute("listaMenu", menus);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListMenu.jsp");
+                dispatcher.forward(request, response);
+            }
         }
 
     }

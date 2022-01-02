@@ -69,19 +69,19 @@ public class AdminStatsArea extends HttpServlet
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
+        else{
         RuoloUtente ruoloUtente = u.isAmministratore();
         if(!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath()+"/toHome");
-        else
-        {
-            List<Pietanza> pietanzas= pdao.doRetrieveAllPietanza();
+        else {
+            List<Pietanza> pietanzas = pdao.doRetrieveAllPietanza();
             List<Integer> statsMenu = this.mostraStatistiche(pietanzas);
             request.setAttribute("pietanze", pietanzas);
             request.setAttribute("statsMenu", statsMenu);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminStatsArea.jsp");
             dispatcher.forward(request, response);
+        }
         }
     }
 
