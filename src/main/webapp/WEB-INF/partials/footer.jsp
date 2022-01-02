@@ -5,4 +5,6 @@
   Time: 15:49
   To change this template use File | Settings | File Templates.
 --%>
-<p style="background-color: red">Test</p>
+<p class="footer">
+    Copyright 2021-2022 SmartEat. All rights reserved.
+</p>

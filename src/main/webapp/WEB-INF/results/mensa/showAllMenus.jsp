@@ -23,6 +23,13 @@
         <%@include file="/WEB-INF/partials/navbar.jsp"%>
         <%@include file="/WEB-INF/partials/messages.jsp"%>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/tables.css">
+
+        <style>
+            .card:hover {
+                box-shadow: 10px 10px 20px grey;
+                outline: .3rem solid var(--main-color);
+            }
+        </style>
     </header>
 
     <main class="display">
@@ -44,7 +51,7 @@
                             <div class="content">
                                 <img src="${pageContext.request.contextPath}/covers/<%=menu.getImmagine()%>" alt="cover">
                                 <div class="container">
-                                    <p><b><%=menu.getNome()%></b></p>
+                                    <h3><%=menu.getNome()%></h3>
                                     <p><%=menu.getDescrizione()%></p>
                                     <p><%=menu.getPrimo()%>, <%=menu.getSecondo()%>, <%=menu.getDessert()%></p>
                                 </div>

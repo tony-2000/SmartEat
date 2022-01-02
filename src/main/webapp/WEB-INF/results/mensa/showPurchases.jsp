@@ -50,12 +50,10 @@
                     <div class="card">
                         <div class="content" style="height: 5rem">
                             <img src="${pageContext.request.contextPath}/covers/<%=menus.get(i).getImmagine()%>" alt="cover">
-
                             <div class="container">
-                                <p><b><%=menus.get(i).getNome()%></b></p>
+                                <h3><%=menus.get(i).getNome()%></h3>
                                 <p>Acquistato il <%=acquisti.get(i).getDataAcquisto()%></p>
                             </div>
-
                             <div class="price" style="background: none">
                                 <form action="ShowInfoPurchase" method="post">
                                     <input type="hidden" name="dataAcquisto" value="<%=acquisti.get(i).getDataAcquisto()%>">

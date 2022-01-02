@@ -1,9 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 
 /* Basic elements */
 :root {
-    --main-font: 'Roboto', sans-serif;
+    --main-font: 'Rubik', sans-serif;
+    --heading-font: 'Roboto Slab', serif;
+    --navbar-font: 'Lato', sans-serif;
     --main-font-size: clamp(14px, 2vw, 18px);
+    --main-color: #3443eb;
 
     font-family: var(--main-font);
     font-size: var(--main-font-size);
@@ -39,6 +46,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
+    font-family: var(--heading-font);
 }
 
 b {
@@ -48,7 +56,7 @@ b {
 html, body {
     height: 100%;
     margin: 0;
-    background-color: darkgray;
+    background-image: url("../images/background.jpg");
 }
 
 body {
@@ -58,6 +66,51 @@ body {
 
 body > main {
     flex: 1;
+}
+
+hr {
+    color: var(--main-color) !important;
+}
+
+/* Navbar */
+.navbar {
+    border-bottom: .5rem solid var(--main-color);
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar li > a {
+    font-family: var(--navbar-font);
+    font-size: clamp(16.38px, 2vw, 18.72px);
+    display: block;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    padding: .75rem .8rem;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: black;
+    background-color: var(--main-color);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: white;
+    background-color: #292929;
+    font-size: clamp(11.62px, 2vw, 13.28px);
+    padding: .35rem;
+    border-top: .5rem solid var(--main-color);
 }
 
 /* Forms */
@@ -75,6 +128,7 @@ form {
 
 .field form {
     background-color: white;
+    border: 1px solid lightgray;
     border-radius: 3px;
     width: 45vw;
     margin: 2rem;
@@ -97,11 +151,16 @@ form {
 
 .field form > p {
     margin: 0 2.5rem 1rem;
-    text-align: end;
+    text-align: center;
 }
 
-.field form > p > a {
+.field a:link, a:visited {
     text-decoration: none;
+    color: var(--main-color);
+}
+
+.field a:hover {
+    text-decoration: underline;
 }
 
 form > input, form > select, form > textarea {
@@ -112,10 +171,18 @@ form > input, form > select, form > textarea {
     border-radius: 0;
 }
 
+form > input:focus, form > select:focus, form > textarea:focus {
+    outline: 3px solid var(--main-color);
+    border-color: var(--main-color);
+}
+
 form > input[type=submit] {
+    font-family: var(--heading-font);
     border: none;
     font-weight: bold;
-    padding: 0.5rem;
+    padding: .5rem;
+    background-color: var(--main-color);
+    color: white;
 }
 
 .field form > input[type=submit] {
@@ -124,11 +191,15 @@ form > input[type=submit] {
 
 form > input[type=submit]:hover {
     cursor: pointer;
+    background-color: white;
+    outline: .3rem solid var(--main-color);
+    color: var(--main-color);
 }
 
 /* Profile */
 .profile {
     background-color: white;
+    border: 1px solid lightgray;
     border-radius: 3px;
     width: 45vw;
     display: flex;
@@ -195,6 +266,7 @@ form > input[type=submit]:hover {
     padding: 1rem;
     margin: 2rem;
     box-shadow: 5px 5px 5px grey;
+    border: 1px solid lightgray;
     border-radius: 3px;
     display: flex;
     flex-direction: column;
@@ -221,7 +293,7 @@ form > input[type=submit]:hover {
     flex-direction: row;
     box-shadow: 5px 5px 5px grey;
     background-color: white;
-    border: 1px solid gray;
+    border: 2px solid var(--main-color);
     height: 10rem;
 }
 
@@ -236,15 +308,11 @@ form > input[type=submit]:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: lightgray;
-    color: black;
+    background-color: var(--main-color);
+    color: white;
     padding: .5rem;
     flex: .15;
     border-radius: 10px 0 0 10px;
-}
-
-.card:hover {
-    box-shadow: 5px 5px 10px grey;
 }
 
 .container {
