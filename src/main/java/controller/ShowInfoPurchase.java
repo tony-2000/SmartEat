@@ -67,8 +67,9 @@ public class ShowInfoPurchase extends HttpServlet
         Acquisto acquisto=this.showInfoPurchase(codiceMenu,CF,data);
 
         long actual=System.currentTimeMillis();
-        Date actualDate = new Date(actual);
-        if(Mensa.isMensaPurchase()&&acquisto.getDataAcquisto().equals(actualDate))
+        String actualDate = new Date(actual).toString();
+        String dataAcquisto = acquisto.getDataAcquisto().toString();
+        if(Mensa.isMensaPurchase() && dataAcquisto.equals(actualDate))
             acquisto.setRefund(true);
         else acquisto.setRefund(false);
 
