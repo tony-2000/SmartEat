@@ -19,6 +19,11 @@ import java.util.ArrayList;
 public class ShowPurchases extends HttpServlet
 {
     /**
+     * DAO di Menu
+     */
+    private final MenuDAOInterface menudao;
+
+    /**
      * DAO di Acquisto
      */
     private final AcquistoDAOInterface acquistodao;
@@ -33,16 +38,18 @@ public class ShowPurchases extends HttpServlet
     public ShowPurchases() {
         super();
         acquistodao=new AcquistoDAO();
+        menudao=new MenuDAO();
     }
 
     /**Costruttore con parametri
      * @param acquistodao DAO di Acquisto
      * @param session Sessione
      */
-    public ShowPurchases(AcquistoDAOInterface acquistodao,HttpSession session) {
+    public ShowPurchases(AcquistoDAOInterface acquistodao,HttpSession session,MenuDAOInterface menudao) {
         super();
         this.acquistodao=acquistodao;
         this.session=session;
+        this.menudao=menudao;
     }
 
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -60,6 +67,12 @@ public class ShowPurchases extends HttpServlet
         else {
             ArrayList<Acquisto> acquisti = this.showAllAcquisti(user);
             request.setAttribute("listaAcquisti", acquisti);
+            ArrayList<Menu> menu=new ArrayList<>();
+            for(Acquisto x: acquisti)
+            {
+                menu.add(menudao.doRetrieveMenuByKey(x.getCodiceMenu()));
+            }
+            request.setAttribute("listaMenu",menu);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/mensa/showPurchases.jsp");
             dispatcher.forward(request, response);
         }
