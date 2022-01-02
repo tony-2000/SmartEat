@@ -24,15 +24,15 @@ public class MenuDAOTest extends Mockito
         menu.setNome("test");
         menu.setPrezzo((float) 9.99);
         menu.setPrimo("Pasta2");
-        menu.setSecondo("Cotoletta");
-        menu.setDessert("Torta");
+        menu.setSecondo("Cotoletta3");
+        menu.setDessert("Torta4");
         menu.setDescrizione("Testing");
         menu.setImmagine("png");
         menu.setAvailable(true);
         menuDAO.doSave(menu);
 
         Menu menu2;
-        menu2=menuDAO.doRetrieveMenuByKey(12);
+        menu2=menuDAO.doRetrieveMenuByKey(5);
 
         assertEquals(menu.getPrimo(),menu2.getPrimo());
         assertEquals(menu.getSecondo(),menu2.getSecondo());
@@ -68,7 +68,7 @@ public class MenuDAOTest extends Mockito
     @Test
     public void doUpdateAvailableTest()
     {
-        int codiceMenu=8;
+        int codiceMenu=2;
         Menu menu= menuDAO.doRetrieveMenuByKey(codiceMenu);
         boolean available=menu.isAvailable();
 
@@ -86,7 +86,7 @@ public class MenuDAOTest extends Mockito
     @Test
     public void doDeleteTest()
     {
-        int codiceMenu=12;
+        int codiceMenu=3;
         menuDAO.doDelete(codiceMenu);
 
         Menu menu2;

@@ -60,7 +60,7 @@ public class PietanzaDAOTest extends Mockito
     @Test
     public void doRetrievePietanzaByKeyTest()
     {
-        String nome="Cotoletta";
+        String nome="Cotoletta2";
         Pietanza pietanza;
         pietanza=pietanzaDAO.doRetrievePietanzaByKey(nome);
         assertEquals(nome,pietanza.getNome());
@@ -74,7 +74,7 @@ public class PietanzaDAOTest extends Mockito
     @Test
     public void doUpdateTest()
     {
-        Pietanza oldPietanza= pietanzaDAO.doRetrievePietanzaByKey("Cotoletta");
+        Pietanza oldPietanza= pietanzaDAO.doRetrievePietanzaByKey("Cotoletta3");
         Pietanza PietanzaDaAggiornare=new Pietanza();
 
         PietanzaDaAggiornare.setNome(oldPietanza.getNome());
@@ -101,7 +101,7 @@ public class PietanzaDAOTest extends Mockito
     @Test
     public void doDeleteTest()
     {
-        String nome="Carbonara";
+        String nome="Pasta2";
         pietanzaDAO.doDelete(nome);
 
         Pietanza pietanzaEl;
