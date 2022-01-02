@@ -44,7 +44,7 @@ public class AdminPietanzeArea extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if(session==null)
             session=request.getSession();
@@ -55,10 +55,12 @@ public class AdminPietanzeArea extends HttpServlet {
             RuoloUtente ruoloUtente = u.isAmministratore();
             if (!ruoloUtente.isAdmin())
                 response.sendRedirect(request.getContextPath() + "/toHome");
-            ArrayList<Pietanza> pietanzas = AdminShowPietanze();
-            request.setAttribute("listaPietanze", pietanzas);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListPietanze.jsp");
-            dispatcher.forward(request, response);
+            else {
+                ArrayList<Pietanza> pietanzas = AdminShowPietanze();
+                request.setAttribute("listaPietanze", pietanzas);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListPietanze.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 

@@ -55,16 +55,16 @@ public class toAddMenu extends HttpServlet {
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
+        else{
         RuoloUtente ruoloUtente = u.isAmministratore();
         if(!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath()+"/toHome");
-        else
-        {
-            ArrayList<Pietanza> pietanze= (ArrayList<Pietanza>) pdao.doRetrieveAllPietanza();
-            request.setAttribute("pietanze",pietanze);
+        else {
+            ArrayList<Pietanza> pietanze = (ArrayList<Pietanza>) pdao.doRetrieveAllPietanza();
+            request.setAttribute("pietanze", pietanze);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/addMenu.jsp");
             dispatcher.forward(request, response);
+        }
         }
     }
 }

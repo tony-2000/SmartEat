@@ -37,7 +37,7 @@ public class AcquistoDAOTest extends Mockito
     @Test
     public void doRetrieveAllAcquistoByCFTest()
     {
-        String CF="RSSMRA74D22A0011";
+        String CF="RSSMRA74D22A0012";
         ArrayList<Acquisto> acquisto= (ArrayList<Acquisto>) acquistoDAO.doRetrieveAllAcquistoByCF(CF);
         int i=0;
         for(Acquisto x: acquisto)
@@ -50,9 +50,9 @@ public class AcquistoDAOTest extends Mockito
     @Test
     public void doSaveTest()
     {
-        Date dataAcquisto=Date.valueOf("2021-12-10");
-        String CF="RSSMRA74D22A0011";
-        int codiceMenu=2;
+        Date dataAcquisto=Date.valueOf("2021-11-19");
+        String CF="RSSMRA74D22A0014";
+        int codiceMenu=4;
         boolean pm=true;
         Acquisto acquisto=new Acquisto();
         acquisto.setDataAcquisto(dataAcquisto);
@@ -74,14 +74,14 @@ public class AcquistoDAOTest extends Mockito
     @Test
     public void doUpdateTest()
     {
-        Acquisto acquisto= acquistoDAO.doRetrieveAcquistoByKey(Date.valueOf("2021-12-10"),"RSSMRA74D22A0011",2);
+        Acquisto acquisto= acquistoDAO.doRetrieveAcquistoByKey(Date.valueOf("2021-12-12"),"RSSMRA74D22A0013",1);
         boolean postoMensa=acquisto.isPostoMensa();
 
         acquisto.setPostoMensa(false);
         acquistoDAO.doUpdate(acquisto);
 
         Acquisto acquisto2;
-        acquisto2=acquistoDAO.doRetrieveAcquistoByKey(Date.valueOf("2021-12-10"),"RSSMRA74D22A0011",2);
+        acquisto2=acquistoDAO.doRetrieveAcquistoByKey(Date.valueOf("2021-12-12"),"RSSMRA74D22A0013",1);
 
         assertEquals(acquisto2.getCF(),acquisto.getCF());
         assertEquals(acquisto2.getCodiceMenu(),acquisto.getCodiceMenu());
@@ -93,9 +93,9 @@ public class AcquistoDAOTest extends Mockito
     @Test
     public void doDeleteTest()
     {
-        Date dataAcquisto=Date.valueOf("2021-12-10");
-        String CF="RSSMRA74D22A0011";
-        int codiceMenu=2;
+        Date dataAcquisto=Date.valueOf("2021-12-11");
+        String CF="RSSMRA74D22A0012";
+        int codiceMenu=1;
         acquistoDAO.doDelete(dataAcquisto,CF,codiceMenu);
 
         Acquisto acquisto2;

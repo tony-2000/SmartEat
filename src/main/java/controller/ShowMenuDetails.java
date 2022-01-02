@@ -47,15 +47,18 @@ public class ShowMenuDetails extends HttpServlet {
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
-        RuoloUtente ruoloUtente = u.isAmministratore();
-        if(!ruoloUtente.isAdmin())
-            response.sendRedirect(request.getContextPath()+"/toHome");
-        int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
-        Menu menu=this.getMenu(codiceMenu);
-        request.setAttribute("menu",menu);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/showMenuDetails.jsp");
-        dispatcher.forward(request, response);
+        else {
+            RuoloUtente ruoloUtente = u.isAmministratore();
+            if (!ruoloUtente.isAdmin())
+                response.sendRedirect(request.getContextPath() + "/toHome");
+            else {
+                int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
+                Menu menu = this.getMenu(codiceMenu);
+                request.setAttribute("menu", menu);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/showMenuDetails.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
     }
 
     @Override

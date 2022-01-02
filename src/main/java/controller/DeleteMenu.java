@@ -59,12 +59,11 @@ public class DeleteMenu extends HttpServlet
         Utente u = (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
+        else{
         RuoloUtente ruoloUtente = u.isAmministratore();
         if (!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath() + "/toHome");
-        else
-        {
+        else {
             int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
             boolean result = this.deleteMenu(codiceMenu);
             String message;
@@ -75,7 +74,7 @@ public class DeleteMenu extends HttpServlet
             request.setAttribute("message", message);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMenuArea");
             dispatcher.forward(request, response);
-            //response.sendRedirect(request.getContextPath() + "/AdminMenuArea");
+        }
         }
     }
 

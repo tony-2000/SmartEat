@@ -29,7 +29,7 @@ public class TesseraDAOTest extends Mockito
     @Test
     public void doSaveTest()
     {
-        String CF="RSSMRA74D22A0011";
+        String CF="RSSMRA74D22A0015";
         int saldo=24;
         Tessera tessera=new Tessera();
         tessera.setCF(CF);

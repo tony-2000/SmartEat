@@ -54,7 +54,7 @@ public class UpdateMensa extends HttpServlet {
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
-        assert u != null;
+        else{
         RuoloUtente ruoloUtente = u.isAmministratore();
         if(!ruoloUtente.isAdmin())
             response.sendRedirect(request.getContextPath()+"/toHome");
@@ -89,8 +89,7 @@ public class UpdateMensa extends HttpServlet {
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMensaArea");
                 dispatcher.forward(request, response);
             }
-            else
-            {
+            else {
                 boolean result = this.updateMensa(posti, apertura, chiusura);
                 mensa = mensaDao.doRetrieveMensaByKey("mensa1");
                 if (result)
@@ -101,6 +100,7 @@ public class UpdateMensa extends HttpServlet {
                 request.setAttribute("mensa", mensa);
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMensaArea");
                 dispatcher.forward(request, response);
+            }
             }
         }
     }

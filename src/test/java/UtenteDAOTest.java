@@ -84,7 +84,7 @@ public class UtenteDAOTest extends Mockito
     @Test
     public void doDeleteTest()
     {
-        String CF="RSSMRA74D22A0120";
+        String CF="RSSMRA74D22A0013";
         utenteDAO.doDelete(CF);
 
         Utente utente2;
@@ -96,7 +96,7 @@ public class UtenteDAOTest extends Mockito
     @Test
     public void doUpdateTest()
     {
-        String CF="RSSMRA74D22A0120";
+        String CF="RSSMRA74D22A0012";
         Utente oldUser= utenteDAO.doRetrieveUtenteByKey(CF);
         Utente newUser=new Utente();
         newUser.setCF(oldUser.getCF());
@@ -128,7 +128,7 @@ public class UtenteDAOTest extends Mockito
     @Test
     public void doUpdateUtenteInfoTest()
     {
-        String CF="RSSMRA74D22A0121";
+        String CF="RSSMRA74D22A0013";
         Utente oldUser= utenteDAO.doRetrieveUtenteByKey(CF);
         Utente newUser=new Utente();
         newUser.setCF(oldUser.getCF());
@@ -160,8 +160,8 @@ public class UtenteDAOTest extends Mockito
     @Test
     public void doRetrieveUtenteByEmailPasswordTest()
     {
-        String mail="aaaaaa@linn.comm";
-        String password="AAAAAAnnnnnn7777.";
+        String mail="Luigi.Green@gmail.com";
+        String password="Mario.001";
         Utente user;
         user=utenteDAO.doRetrieveUtenteByEmailPassword(mail,password);
         assertNotNull(user.getCF());
@@ -172,7 +172,7 @@ public class UtenteDAOTest extends Mockito
     @Test
     public void doAcceptTest()
     {
-        String CF="RSSMRA74D22A0120";
+        String CF="RSSMRA74D22A0014";
         Utente user=utenteDAO.doRetrieveUtenteByKey(CF);
         utenteDAO.doAccept(CF);
         Utente newUser=utenteDAO.doRetrieveUtenteByKey(CF);
