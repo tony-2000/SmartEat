@@ -54,13 +54,12 @@ public class UpdateProfile extends HttpServlet {
         String nome = request.getParameter("nome_utente");
         String cognome = request.getParameter("cognome");
         String g = request.getParameter("gender");
-        char gender=g.charAt(0);
         Date nascita = Date.valueOf((request.getParameter("dataDiNascita")));
         String luogo = request.getParameter("luogoDiNascita");
         String residenza = request.getParameter("residenza");
         String password = request.getParameter("password");
         String passwordCheck = request.getParameter("passwordCheck");
-        String message=this.updateProfile(oldUser, nome,cognome,gender,nascita,luogo,residenza,password,passwordCheck);
+        String message=this.updateProfile(oldUser, nome,cognome,g,nascita,luogo,residenza,password,passwordCheck);
         if(!message.equals(""))
             url="/WEB-INF/results/utente/updateProfile.jsp";
         else message="Aggiornamento dei dati avvenuto con successo";
@@ -89,7 +88,7 @@ public class UpdateProfile extends HttpServlet {
      * @param passwordCheck campo Conferma password
      * @return Stringa di conferma di avvenuto salvataggio o di errore.
      */
-    public String updateProfile(Utente oldUser,String nome,String cognome,char gender, Date nascita,String luogo,
+    public String updateProfile(Utente oldUser,String nome,String cognome,String gender, Date nascita,String luogo,
                                 String residenza,String password,String passwordCheck)
     {
         String error="";
@@ -142,7 +141,7 @@ public class UpdateProfile extends HttpServlet {
            user.setCF(oldUser.getCF());
            user.setNome(nome);
            user.setCognome(cognome);
-           user.setSesso(gender);
+           user.setSesso(gender.charAt(0));
            user.setDataDiNascita(nascita);
            user.setLuogoDiNascita(luogo);
            user.setEmail(oldUser.getEmail());
