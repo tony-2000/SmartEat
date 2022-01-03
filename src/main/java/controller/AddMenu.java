@@ -44,12 +44,10 @@ public class AddMenu extends HttpServlet {
      * Costruttore con parametri
      *
      * @param menudao DAO di Menu
-     * @param session Sessione
      */
-    public AddMenu(MenuDAOInterface menudao, HttpSession session) {
+    public AddMenu(MenuDAOInterface menudao) {
         super();
         this.menudao = menudao;
-        this.session = session;
     }
 
 
@@ -59,8 +57,7 @@ public class AddMenu extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        if (session == null)
-            session = request.getSession();
+        HttpSession session = request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         Menu menu = new Menu();
 
@@ -105,7 +102,7 @@ public class AddMenu extends HttpServlet {
                     message = "Il menu verrà aggiunto dopo l'orario di chiusura";
                 request.setAttribute("message", message);
 
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMenuArea");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminMenuArea");
                 dispatcher.forward(request, response);
             }
         }
