@@ -1,9 +1,9 @@
 import controller.Login;
-import model.*;
-
+import model.Utente;
+import model.UtenteDAO;
+import model.UtenteDAOInterface;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,10 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 
-public class LoginTest extends Mockito {
+public class LoginTest {
 
     private Login login;
     private UtenteDAOInterface udao;
@@ -26,7 +29,7 @@ public class LoginTest extends Mockito {
     {
         udao = mock(UtenteDAO.class);
         session = mock(HttpSession.class);
-        login = new Login(udao, session);
+        login = new Login(udao);
     }
 
     @Test
@@ -112,6 +115,7 @@ public class LoginTest extends Mockito {
         user.setCF("1234567890ABCDEF");
         user.setAccepted(true);
         HttpServletRequest request = mock(HttpServletRequest.class);
+        when(request.getSession()).thenReturn(session);
         HttpServletResponse response = mock(HttpServletResponse.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
 
@@ -133,6 +137,7 @@ public class LoginTest extends Mockito {
         user.setPasswordHash("P4ssword");
         user.setAccepted(true);
         HttpServletRequest request = mock(HttpServletRequest.class);
+        when(request.getSession()).thenReturn(session);
         HttpServletResponse response = mock(HttpServletResponse.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
 
@@ -156,6 +161,7 @@ public class LoginTest extends Mockito {
         user.setCF("1234567890ABCDEF");
         user.setAccepted(false);
         HttpServletRequest request = mock(HttpServletRequest.class);
+        when(request.getSession()).thenReturn(session);
         HttpServletResponse response = mock(HttpServletResponse.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
 

@@ -2,12 +2,12 @@ import model.Pietanza;
 import model.PietanzaDAO;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class PietanzaDAOTest extends Mockito
+public class PietanzaDAOTest
 {
     PietanzaDAO pietanzaDAO;
 

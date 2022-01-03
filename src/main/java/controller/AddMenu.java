@@ -27,10 +27,6 @@ public class AddMenu extends HttpServlet {
      */
     private final MenuDAOInterface menudao;
 
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
 
     /**
      * Costruttore Vuoto

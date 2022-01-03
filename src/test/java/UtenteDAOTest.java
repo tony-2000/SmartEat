@@ -1,14 +1,13 @@
 import model.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.sql.Date;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class UtenteDAOTest extends Mockito
+public class UtenteDAOTest
 {
 
     UtenteDAO utenteDAO;

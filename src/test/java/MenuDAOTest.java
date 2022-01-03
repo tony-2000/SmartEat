@@ -2,12 +2,12 @@ import model.Menu;
 import model.MenuDAO;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class MenuDAOTest extends Mockito
+public class MenuDAOTest
 {
     MenuDAO menuDAO;
 

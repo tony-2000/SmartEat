@@ -2,7 +2,6 @@ import controller.AdminStatsArea;
 import model.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,8 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
-public class AdminStatsAreaTest extends Mockito
+public class AdminStatsAreaTest
 {
     AdminStatsArea adminStatsArea;
     PietanzaDAOInterface pdao;
@@ -27,7 +27,7 @@ public class AdminStatsAreaTest extends Mockito
         session = mock(HttpSession.class);
         pdao=mock(PietanzaDAO.class);
         mdao=mock(MenuDAO.class);
-        adminStatsArea = new AdminStatsArea(pdao,mdao,session);
+        adminStatsArea = new AdminStatsArea(pdao,mdao);
         listPietanza=new ArrayList<>();
     }
 
@@ -82,6 +82,7 @@ public class AdminStatsAreaTest extends Mockito
     public void  AdminStatsAreaTestNonInSessione() throws IOException, ServletException {
         HttpServletResponse response= mock(HttpServletResponse.class);
         HttpServletRequest request= mock(HttpServletRequest.class);
+        when(request.getSession()).thenReturn(session);
 
         when(session.getAttribute("utenteSessione")).thenReturn(null);
         when(request.getContextPath()).thenReturn("context");
@@ -95,6 +96,7 @@ public class AdminStatsAreaTest extends Mockito
     public void  AdminStatsAreaTestNonAdmin() throws IOException, ServletException {
         HttpServletResponse response= mock(HttpServletResponse.class);
         HttpServletRequest request= mock(HttpServletRequest.class);
+        when(request.getSession()).thenReturn(session);
 
         Utente user = new Utente();
         user.setAmministratore(new RuoloStandard());
@@ -113,6 +115,7 @@ public class AdminStatsAreaTest extends Mockito
         HttpServletResponse response= mock(HttpServletResponse.class);
         HttpServletRequest request= mock(HttpServletRequest.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
+        when(request.getSession()).thenReturn(session);
 
         Utente user = new Utente();
         user.setCF("1234567890ABCDEF");

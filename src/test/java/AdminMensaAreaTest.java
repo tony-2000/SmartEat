@@ -1,9 +1,7 @@
-
 import controller.AdminMensaArea;
 import model.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +12,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
-public class AdminMensaAreaTest extends Mockito
+public class AdminMensaAreaTest
 {
     AdminMensaArea adminMensaArea;
     MensaDAOInterface mdao;
@@ -25,7 +25,7 @@ public class AdminMensaAreaTest extends Mockito
     public void setup() {
         session = mock(HttpSession.class);
         mdao=mock(MensaDAO.class);
-        adminMensaArea = new AdminMensaArea(mdao,session);
+        adminMensaArea = new AdminMensaArea(mdao);
 
     }
 
@@ -47,6 +47,7 @@ public class AdminMensaAreaTest extends Mockito
         HttpServletResponse response= mock(HttpServletResponse.class);
         HttpServletRequest request= mock(HttpServletRequest.class);
 
+        when(request.getSession()).thenReturn(session);
         when(session.getAttribute("utenteSessione")).thenReturn(null);
         when(request.getContextPath()).thenReturn("context");
 
@@ -59,6 +60,7 @@ public class AdminMensaAreaTest extends Mockito
     public void  AdminAreaNonAdmin() throws IOException, ServletException {
         HttpServletResponse response= mock(HttpServletResponse.class);
         HttpServletRequest request= mock(HttpServletRequest.class);
+        when(request.getSession()).thenReturn(session);
 
         Utente user = new Utente();
         user.setAmministratore(new RuoloStandard());
@@ -77,6 +79,7 @@ public class AdminMensaAreaTest extends Mockito
         HttpServletRequest request= mock(HttpServletRequest.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
 
+        when(request.getSession()).thenReturn(session);
         Utente user = new Utente();
         user.setCF("1234567890ABCDEF");
         user.setAmministratore(new RuoloAdmin());

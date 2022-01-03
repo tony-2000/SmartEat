@@ -2,14 +2,13 @@ import model.Acquisto;
 import model.AcquistoDAO;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.sql.Date;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class AcquistoDAOTest extends Mockito
+public class AcquistoDAOTest
 {
 
     AcquistoDAO acquistoDAO;

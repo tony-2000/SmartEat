@@ -2,12 +2,10 @@ import model.Tessera;
 import model.TesseraDAO;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
-
 
 import static org.junit.Assert.*;
 
-public class TesseraDAOTest extends Mockito
+public class TesseraDAOTest
 {
     TesseraDAO tesseraDAO;
 
