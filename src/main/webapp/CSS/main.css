@@ -11,6 +11,7 @@
     --navbar-font: 'Lato', sans-serif;
     --main-font-size: clamp(14px, 2vw, 18px);
     --main-color: #3443eb;
+    --side-color: #969be0;
 
     font-family: var(--main-font);
     font-size: var(--main-font-size);
@@ -233,11 +234,11 @@ form > input[type=submit]:hover {
 
 .profile table {
     margin: 1rem 2rem;
-    border: 1px solid gray;
+    border: 1px solid var(--main-color);
 }
 
 .profile tr:nth-child(even) {
-    background-color: lightgray;
+    background-color: var(--side-color);
 }
 
 .profile td {

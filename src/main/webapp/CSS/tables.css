@@ -8,22 +8,23 @@ table {
 }
 
 table {
-    border:1px solid gray;
+    border:1px solid var(--main-color);
     border-collapse: collapse;
 }
 
 th, td {
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    border-left: 1px solid var(--main-color);
+    border-right: 1px solid var(--main-color);
     padding: .3rem;
 }
 
 th {
     font-weight: bold;
     text-align: start;
-    background-color: darkgray;
+    color: white;
+    background-color: var(--main-color);
 }
 
 tr:nth-child(even) {
-    background-color: lightgray;
+    background-color: var(--side-color);
 }
