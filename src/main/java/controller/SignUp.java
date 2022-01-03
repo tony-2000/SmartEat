@@ -46,14 +46,13 @@ public class SignUp extends HttpServlet {
         String nome = request.getParameter("nome_utente");
         String cognome = request.getParameter("cognome");
         String g = request.getParameter("gender");
-        char gender=g.charAt(0);
         Date nascita = Date.valueOf((request.getParameter("dataDiNascita")));
         String luogo = request.getParameter("luogoDiNascita");
         String mail = request.getParameter("mail");
         String residenza = request.getParameter("residenza");
         String password = request.getParameter("password");
         String passwordCheck = request.getParameter("passwordCheck");
-        String message=this.registrazione(CF,nome,cognome,gender,nascita,luogo,mail,residenza,password,passwordCheck);
+        String message=this.registrazione(CF,nome,cognome,g,nascita,luogo,mail,residenza,password,passwordCheck);
         if(!message.equals(""))
             url="signUp.jsp";
         else message="Richiesta di registrazione avvenuta con successo";
@@ -81,7 +80,7 @@ public class SignUp extends HttpServlet {
      * @return Stringa di conferma di avvenuto salvataggio o di errore.
      */
 
-    public String registrazione(String CF, String nome, String cognome, char gender, Date nascita,String luogo, String mail, String residenza, String password, String passwordCheck)
+    public String registrazione(String CF, String nome, String cognome, String gender, Date nascita,String luogo, String mail, String residenza, String password, String passwordCheck)
     {
         String error="";
         Esito res;
@@ -153,7 +152,7 @@ public class SignUp extends HttpServlet {
             user.setCF(CF);
             user.setNome(nome);
             user.setCognome(cognome);
-            user.setSesso(gender);
+            user.setSesso(gender.charAt(0));
             user.setDataDiNascita(nascita);
             user.setLuogoDiNascita(luogo);
             user.setEmail(mail);

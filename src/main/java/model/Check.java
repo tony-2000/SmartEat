@@ -72,10 +72,16 @@ public class Check
     }
 
 
-    public static Esito sessoIsValid(char g)
+    public static Esito sessoIsValid(String str)
     {
         Esito result = new Esito();
         result.setValido(false);
+        if(str.isEmpty())
+        {
+            result.setMessage("Formato non valido, inserire uno tra i seguenti caratteri: M, F, N");
+            return result;
+        }
+        char g=str.charAt(0);
         if (!(Character.toString(g).equals("M")) && !(Character.toString(g).equals("F")) && !(Character.toString(g).equals("N"))) {
             result.setMessage("Formato non valido, inserire uno tra i seguenti caratteri: M, F, N");
             return result;
