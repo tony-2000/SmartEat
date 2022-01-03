@@ -22,18 +22,25 @@ public class ShowInfoMenu extends HttpServlet
     private final MenuDAOInterface mdao;
 
     /**
+     * DAO di Pietanza
+     */
+    private final PietanzaDAOInterface pdao;
+
+    /**
      * Costruttore Vuoto
      */
     public ShowInfoMenu() {
         super();
         mdao=new MenuDAO();
+        pdao=new PietanzaDAO();
     }
     /**Costruttore con parametri
      * @param mdao DAO di Menu
      */
-    public ShowInfoMenu(MenuDAOInterface mdao) {
+    public ShowInfoMenu(MenuDAOInterface mdao,PietanzaDAOInterface pdao) {
         super();
         this.mdao=mdao;
+        this.pdao=pdao;
     }
 
 
@@ -45,7 +52,13 @@ public class ShowInfoMenu extends HttpServlet
     {
         int codiceMenu = Integer.parseInt(request.getParameter("codiceMenu"));
         Menu menu=showMenuInfo(codiceMenu);
+        Pietanza primo=pdao.doRetrievePietanzaByKey(menu.getPrimo());
+        Pietanza secondo=pdao.doRetrievePietanzaByKey(menu.getSecondo());
+        Pietanza dessert=pdao.doRetrievePietanzaByKey(menu.getDessert());
         request.setAttribute("menu",menu);
+        request.setAttribute("primo",primo);
+        request.setAttribute("secondo",secondo);
+        request.setAttribute("dessert",dessert);
         String message="Acquisto non consentito, la mensa è attualmente chiusa all'acquisto, si prega di riprovare nei tempi " +
                          "concessi all'acquisto dei pasti";
         if(!Mensa.isMensaPurchase())
