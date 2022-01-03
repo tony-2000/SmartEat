@@ -24,11 +24,6 @@ public class DeletePietanza extends HttpServlet {
     private final PietanzaDAOInterface pietanzaDao;
 
     /**
-     * Sessione in corso
-     */
-    private HttpSession session;
-
-    /**
      * Costruttore vuoto
      */
     public DeletePietanza() {
@@ -38,12 +33,10 @@ public class DeletePietanza extends HttpServlet {
 
     /**Costruttore con parametri
      * @param pietanzaDao DAO di Pietanza
-     * @param session Sessione
      */
-    public DeletePietanza(PietanzaDAOInterface pietanzaDao,HttpSession session) {
+    public DeletePietanza(PietanzaDAOInterface pietanzaDao) {
         super();
        this.pietanzaDao=pietanzaDao;
-       this.session=session;
     }
 
 
@@ -54,8 +47,7 @@ public class DeletePietanza extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         request.setCharacterEncoding("UTF-8");
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

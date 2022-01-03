@@ -27,10 +27,7 @@ public class ShowPurchases extends HttpServlet
      * DAO di Acquisto
      */
     private final AcquistoDAOInterface acquistodao;
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
+
 
     /**
      * Costruttore Vuoto
@@ -43,12 +40,10 @@ public class ShowPurchases extends HttpServlet
 
     /**Costruttore con parametri
      * @param acquistodao DAO di Acquisto
-     * @param session Sessione
      */
-    public ShowPurchases(AcquistoDAOInterface acquistodao,HttpSession session,MenuDAOInterface menudao) {
+    public ShowPurchases(AcquistoDAOInterface acquistodao,MenuDAOInterface menudao) {
         super();
         this.acquistodao=acquistodao;
-        this.session=session;
         this.menudao=menudao;
     }
 
@@ -59,8 +54,7 @@ public class ShowPurchases extends HttpServlet
 
     public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente user= (Utente) session.getAttribute("utenteSessione");
         if(user==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

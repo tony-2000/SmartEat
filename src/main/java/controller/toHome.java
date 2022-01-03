@@ -1,6 +1,6 @@
 package controller;
 
-import model.*;
+import model.Mensa;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Time;
-import java.util.ArrayList;
 
 /**
  * Classe che reindirizza alla Home
@@ -19,10 +17,6 @@ import java.util.ArrayList;
 @WebServlet(name="toHome", value="/toHome")
 public class toHome extends HttpServlet {
 
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
 
     /**
      * Costruttore Vuoto
@@ -31,13 +25,6 @@ public class toHome extends HttpServlet {
         super();
     }
 
-    /**Costruttore con parametri
-     * @param session Sessione
-     */
-    public toHome(HttpSession session) {
-        super();
-        this.session=session;
-    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
@@ -45,8 +32,7 @@ public class toHome extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         session.setAttribute("nomeMensa",Mensa.mensa.getNome());
         session.setAttribute("postiMensa",Mensa.mensa.getPostiDisponibili());
         session.setAttribute("aperturaMensa", Mensa.mensa.getOrarioApertura());

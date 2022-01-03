@@ -26,10 +26,6 @@ public class UpdateProfile extends HttpServlet {
      * DAO di Tessera
      */
     private final TesseraDAOInterface tesseradao;
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
 
     /**
      * Costruttore Vuoto
@@ -44,18 +40,15 @@ public class UpdateProfile extends HttpServlet {
     /**Costruttore con parametri
      * @param tesseradao DAO di Tessera
      * @param udao DAO di Utente
-     * @param session Sessione
      */
-    public UpdateProfile(TesseraDAOInterface tesseradao,UtenteDAOInterface udao,HttpSession session) {
+    public UpdateProfile(TesseraDAOInterface tesseradao,UtenteDAOInterface udao) {
         super();
         this.tesseradao = tesseradao;
         this.udao=udao;
-        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         String url="/WEB-INF/results/utente/showProfile.jsp";
         Utente oldUser= (Utente) session.getAttribute("utenteSessione");
         String nome = request.getParameter("nome_utente");

@@ -1,7 +1,5 @@
 package controller;
 
-import model.*;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +15,7 @@ import java.io.IOException;
 @WebServlet(name="Logout", value="/Logout")
 public class Logout extends HttpServlet
 {
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
+
 
     /**
      * Costruttore vuoto
@@ -29,13 +24,6 @@ public class Logout extends HttpServlet
         super();
     }
 
-    /**Costruttore con parametri
-     * @param session Sessione
-     */
-    public Logout(HttpSession session) {
-        super();
-        this.session=session;
-    }
 
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -44,8 +32,7 @@ public class Logout extends HttpServlet
 
     public void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         session.removeAttribute("utenteSessione");
         RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
         dispatcher.forward(request, response);

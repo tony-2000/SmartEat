@@ -22,10 +22,7 @@ public class toAddMenu extends HttpServlet {
      * DAO di Pietanza
      */
     private final PietanzaDAOInterface pdao;
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
+
 
     /**
      * Costruttore Vuoto
@@ -36,12 +33,10 @@ public class toAddMenu extends HttpServlet {
     }
     /**Costruttore con parametri
      * @param pdao DAO di Pietanza
-     * @param session Sessione
      */
-    public toAddMenu(PietanzaDAOInterface pdao,HttpSession session) {
+    public toAddMenu(PietanzaDAOInterface pdao) {
         super();
         this.pdao=pdao;
-        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,8 +45,7 @@ public class toAddMenu extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

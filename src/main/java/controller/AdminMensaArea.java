@@ -22,10 +22,6 @@ public class AdminMensaArea extends HttpServlet {
      */
     private final MensaDAOInterface mensadao;
 
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
 
     /**
      * Costruttore Vuoto
@@ -37,19 +33,16 @@ public class AdminMensaArea extends HttpServlet {
 
     /**Costruttore con parametri
      * @param mensadao DAO di Mensa
-     * @param session Sessione
      */
-    public AdminMensaArea(MensaDAOInterface mensadao,HttpSession session) {
+    public AdminMensaArea(MensaDAOInterface mensadao) {
         super();
         this.mensadao = mensadao;
-        this.session=session;
     }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

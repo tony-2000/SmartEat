@@ -22,10 +22,6 @@ public class Login extends HttpServlet {
      */
     private final UtenteDAOInterface udao;
 
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
 
     /**
      * Costruttore vuoto
@@ -37,18 +33,15 @@ public class Login extends HttpServlet {
 
     /**Costruttore con parametri
      * @param udao DAO di Utente
-     * @param session Sessione
      */
-    public Login(UtenteDAOInterface udao, HttpSession session) {
+    public Login(UtenteDAOInterface udao) {
         super();
         this.udao = udao;
-        this.session = session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] strings = new String[2];
-        if (session == null)
-            session = request.getSession();
+        HttpSession session= request.getSession();
         String resp = "/WEB-INF/results/mensa/home.jsp";
         String mail = request.getParameter("mail");
         String password = request.getParameter("password");

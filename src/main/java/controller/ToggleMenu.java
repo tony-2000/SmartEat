@@ -26,10 +26,6 @@ public class ToggleMenu extends HttpServlet {
      * DAO di Menu
      */
     private final MenuDAOInterface menudao;
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
 
     /**
      * Costruttore Vuoto
@@ -41,12 +37,10 @@ public class ToggleMenu extends HttpServlet {
 
     /**Costruttore con parametri
      * @param menudao DAO di Menu
-     * @param session Sessione
      */
-    public ToggleMenu(MenuDAOInterface menudao,HttpSession session) {
+    public ToggleMenu(MenuDAOInterface menudao) {
         super();
         this.menudao=menudao;
-        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,8 +48,7 @@ public class ToggleMenu extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

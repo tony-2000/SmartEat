@@ -24,11 +24,6 @@ public class AddPietanza extends HttpServlet {
      */
     private final PietanzaDAOInterface pietanzadao;
 
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
-
 
     /**
      * Costruttore Vuoto
@@ -40,19 +35,16 @@ public class AddPietanza extends HttpServlet {
 
     /**Costruttore con parametri
      * @param pietanzadao DAO di Pietanza
-     * @param session Sessione
      */
-    public AddPietanza(PietanzaDAOInterface pietanzadao,HttpSession session) {
+    public AddPietanza(PietanzaDAOInterface pietanzadao) {
         super();
         this.pietanzadao = pietanzadao;
-        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente u = (Utente) session.getAttribute("utenteSessione");
         Pietanza pietanza = new Pietanza();
         if(u==null)
@@ -78,7 +70,7 @@ public class AddPietanza extends HttpServlet {
             String descrizione = request.getParameter("descrizione");
             char tipo = request.getParameter("tipo").charAt(0);
             String ingredienti = request.getParameter("ingredienti");
-            //int numeroAcquisti = Integer.parseInt(request.getParameter("numeroAcquisti"));
+
             pietanza.setNome(nome);
             pietanza.setDescrizione(descrizione);
             pietanza.setTipo(tipo);
@@ -87,7 +79,6 @@ public class AddPietanza extends HttpServlet {
             pietanza.setNumeroAcquisti(0);
             this.addPietanza(pietanza);
 
-            //RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/results/admin/adminListPietanze.jsp");
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminPietanzeArea");
             dispatcher.forward(request, response);
         }

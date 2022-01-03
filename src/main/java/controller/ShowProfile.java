@@ -22,10 +22,7 @@ public class ShowProfile extends HttpServlet {
      * DAO di Tessera
      */
     private final TesseraDAOInterface tdao;
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
+
 
     /**
      * Costruttore Vuoto
@@ -36,12 +33,10 @@ public class ShowProfile extends HttpServlet {
     }
     /**Costruttore con parametri
      * @param tdao DAO di Tessera
-     * @param session Sessione
      */
-    public ShowProfile(TesseraDAOInterface tdao,HttpSession session) {
+    public ShowProfile(TesseraDAOInterface tdao) {
         super();
         this.tdao = tdao;
-        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,8 +45,7 @@ public class ShowProfile extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente user= (Utente) session.getAttribute("utenteSessione");
         if(user==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

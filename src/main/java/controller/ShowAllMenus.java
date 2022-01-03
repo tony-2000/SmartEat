@@ -23,10 +23,6 @@ public class ShowAllMenus extends HttpServlet
      */
     private final MenuDAOInterface mdao;
 
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
 
     /**
      * Cotruttore vuoto
@@ -38,12 +34,10 @@ public class ShowAllMenus extends HttpServlet
 
     /**Costruttore con parametri
      * @param mdao DAO di Menu
-     * @param session Sessione
      */
-    public ShowAllMenus(MenuDAOInterface mdao,HttpSession session) {
+    public ShowAllMenus(MenuDAOInterface mdao) {
         super();
         this.mdao=mdao;
-        this.session=session;
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,8 +46,7 @@ public class ShowAllMenus extends HttpServlet
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

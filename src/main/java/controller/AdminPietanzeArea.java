@@ -19,10 +19,6 @@ public class AdminPietanzeArea extends HttpServlet {
      */
     private final PietanzaDAOInterface pdao;
 
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
 
     /**
      * Costruttore vuoto
@@ -34,20 +30,17 @@ public class AdminPietanzeArea extends HttpServlet {
 
     /**Costruttore con parametri
      * @param pdao DAO di Pietanza
-     * @param session Sessione
      */
-    public AdminPietanzeArea(PietanzaDAOInterface pdao,HttpSession session) {
+    public AdminPietanzeArea(PietanzaDAOInterface pdao) {
         super();
         this.pdao = pdao;
-        this.session=session;
     }
 
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

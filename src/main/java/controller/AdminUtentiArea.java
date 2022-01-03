@@ -24,10 +24,6 @@ public class AdminUtentiArea extends HttpServlet {
      */
     private final UtenteDAOInterface dao;
 
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
 
     /**
      * Costruttore vuoto
@@ -39,19 +35,16 @@ public class AdminUtentiArea extends HttpServlet {
 
     /**Costruttore con parametri
      * @param dao DAO di Utente
-     * @param session Sessione
      */
-    public AdminUtentiArea(UtenteDAOInterface dao,HttpSession session) {
+    public AdminUtentiArea(UtenteDAOInterface dao) {
         super();
         this.dao = dao;
-        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

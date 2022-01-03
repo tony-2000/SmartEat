@@ -23,10 +23,6 @@ public class UpdateMensa extends HttpServlet {
      * DAO di Mensa
      */
     private final MensaDAOInterface mensaDao;
-    /**
-     * Sessione in corso
-     */
-    private HttpSession session;
 
     /**
      * Costruttore Vuoto
@@ -38,19 +34,16 @@ public class UpdateMensa extends HttpServlet {
 
     /**Costruttore con parametri
      * @param mensaDao di Mensa
-     * @param session Sessione
      */
-    public UpdateMensa(MensaDAOInterface mensaDao,HttpSession session) {
+    public UpdateMensa(MensaDAOInterface mensaDao) {
         super();
         this.mensaDao=mensaDao;
-        this.session=session;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");

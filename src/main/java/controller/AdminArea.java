@@ -19,30 +19,17 @@ import java.io.IOException;
 public class AdminArea extends HttpServlet {
 
     /**
-     * Sessione in corso
-     */
-    private HttpSession session;
-
-    /**
      * Costruttore Vuoto
      */
     public AdminArea() {
         super();
     }
 
-    /**Costruttore con parametri
-     * @param session Sessione
-     */
-    public AdminArea(HttpSession session) {
-        super();
-        this.session=session;
-    }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(session==null)
-            session=request.getSession();
+        HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
         if(u==null)
             response.sendRedirect(request.getContextPath()+"/index.jsp");
