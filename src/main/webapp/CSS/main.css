@@ -11,7 +11,7 @@
     --navbar-font: 'Lato', sans-serif;
     --main-font-size: clamp(14px, 2vw, 18px);
     --main-color: #3443eb;
-    --side-color: #969be0;
+    --side-color: #a8b0ff;
 
     font-family: var(--main-font);
     font-size: var(--main-font-size);

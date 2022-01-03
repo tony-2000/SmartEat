@@ -20,7 +20,7 @@
             Utente u = (Utente) session.getAttribute("utenteSessione");
             if (u != null && u.isAmministratore().isAdmin()) {
         %>
-        <li><a href="${pageContext.request.contextPath}/AdminArea">Ammin.</a></li>
+        <li><a href="${pageContext.request.contextPath}/AdminArea">Admin</a></li>
         <%
             }
         %>
