@@ -12,8 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class MensaDAOTest
 {
@@ -56,31 +55,33 @@ public class MensaDAOTest
         catch (Exception ignored)
         {}
     }
-/*
 
     @Test
     public void doUpdateTest()
     {
-        ArrayList<String> mensa= mensaDAO.doRetrieveMensaByKey("Mensa1");
-        String nome=mensa.get(0);
-        int postiDisponibili= Integer.parseInt(mensa.get(1));
-        Time orarioApertura= Time.valueOf(mensa.get(2));
-        Time orarioChiusura= Time.valueOf(mensa.get(3));
+        ArrayList<String> mensa =new ArrayList<>();
+        mensa.add(0,"Mensa1");
+        mensa.add(1,"499");
+        mensa.add(2,"13:10:00");
+        mensa.add(3,"15:10:00");
 
 
-        int postiDisponibiliAggiornati=postiDisponibili+1;
-        Time orarioAperturaAggiornato= Time.valueOf(mensa.get(2)+200000);
-        Time orarioChiusuraAggiornato= Time.valueOf(mensa.get(3)+200000);
+        int postiDisponibiliAggiornati = Integer.parseInt(mensa.get(1) + 1);
+        Time orarioAperturaAggiornato = Time.valueOf(mensa.get(2) + 200000);
+        Time orarioChiusuraAggiornato = Time.valueOf(mensa.get(3) + 200000);
 
+        try {
+            Mockito.mockStatic(ConPool.class);
 
-        mensaDAO.doUpdate(nome,postiDisponibiliAggiornati,orarioAperturaAggiornato,orarioChiusuraAggiornato);
+            when(ConPool.getConnection()).thenReturn(c);
+            when(c.prepareStatement(any(String.class))).thenReturn(stmt);
 
-        ArrayList<String> mensaAggiornata= mensaDAO.doRetrieveMensaByKey("Mensa1");
+            when(rs.next()).thenReturn(true).thenReturn(false);
+            when(stmt.executeQuery()).thenReturn(rs);
 
-        assertEquals(mensaAggiornata.get(0),mensa.get(0));
-        assertNotEquals(mensaAggiornata.get(1),mensa.get(1));
-        assertNotEquals(mensaAggiornata.get(2),mensa.get(2));
-        assertNotEquals(mensaAggiornata.get(3),mensa.get(3));
+            mensaDAO.doUpdate(mensa.get(0), postiDisponibiliAggiornati, orarioAperturaAggiornato, orarioChiusuraAggiornato);
+            verify(stmt,atLeastOnce()).executeUpdate();
+        }
+        catch (Exception ignored){}
     }
-*/
 }
