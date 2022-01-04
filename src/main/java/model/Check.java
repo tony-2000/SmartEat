@@ -99,6 +99,24 @@ public class Check
             result.setMessage("Data di nascita non valida");
             return result;
         }
+        int anno= Integer.parseInt((data.toString().substring(0,4)));
+        String mese=(data.toString().substring(5,7));
+        String giorno=(data.toString().substring(8,10));
+        if(mese.equals("02") && giorno.compareTo("29")>0)
+        {
+            result.setMessage("Data di nascita non valida");
+            return result;
+        }
+        if(mese.equals("02") && anno%4!=0 && giorno.compareTo("29")>=0)
+        {
+            result.setMessage("Data di nascita non valida");
+            return result;
+        }
+        if((mese.equals("04") || mese.equals("06") || mese.equals("09") || mese.equals("11") && giorno.compareTo("30")>0))
+        {
+            result.setMessage("Data di nascita non valida");
+            return result;
+        }
         result.setValido(true);
         return result;
     }
