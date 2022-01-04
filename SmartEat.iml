@@ -46,7 +46,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/src/main/webapp/WEB-INF/lib/tomcat-jdbc.jar!/" />
@@ -102,6 +102,7 @@
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-analysis:9.1" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm-tree:9.1" level="project" />
     <orderEntry type="library" name="Maven: org.jacoco:org.jacoco.report:0.8.7" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-juli:9.0.56" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-juli:9.0.43" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-jdbc:9.0.43" level="project" />
   </component>
 </module>
