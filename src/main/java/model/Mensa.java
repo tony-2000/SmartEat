@@ -135,25 +135,6 @@ public class Mensa
     public static ArrayList<String> getListUpdateMensa() {return listUpdateMensa;}
 
 
-
-    /** Verifica se la mensa e' aperta.
-     * @return true se la mensa e' aperta, altrimenti false
-     */
-    public static boolean isMensaAperta()
-    {
-        MensaDAOInterface mensadao=new MensaDAO();
-        ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
-        Time apertura= Time.valueOf(mensa.get(2));
-        Time chiusura= Time.valueOf(mensa.get(3));
-        Time attuale= new Time(System.currentTimeMillis());
-
-        String chiusuraString=chiusura.toString();
-        String aperturaString=apertura.toString();
-        String attualeString=attuale.toString();
-
-        return attualeString.compareTo(aperturaString)>0 && attualeString.compareTo(chiusuraString)<0;
-    }
-
     /** Verifica se e' possibile effettuare modifiche al sistema.
      * @return true se e' possibile modificare il sistema, altrimenti false
      */

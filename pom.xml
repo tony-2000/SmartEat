@@ -95,7 +95,7 @@
                 <configuration>
                     <excludes>
                         <exclude>controller/**/FileServlet.*</exclude>
-                        <exclude>controller/**/ConPool.*</exclude>
+                        <exclude>model/**/ConPool.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

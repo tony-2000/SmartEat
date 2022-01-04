@@ -2,10 +2,13 @@ import model.Menu;
 import model.MenuDAO;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.verify;
 
 public class MenuDAOTest
 {
@@ -32,6 +35,7 @@ public class MenuDAOTest
         menuDAO.doSave(menu);
 
         Menu menu2;
+
         menu2=menuDAO.doRetrieveMenuByKey(5);
 
         assertEquals(menu.getPrimo(),menu2.getPrimo());
@@ -53,8 +57,6 @@ public class MenuDAOTest
             assertNotEquals(x.getCodiceMenu(),0);
     }
 
-
-
     @Test
     public void doRetrieveMenuByKeyTest()
     {
@@ -63,7 +65,6 @@ public class MenuDAOTest
         menu= menuDAO.doRetrieveMenuByKey(codiceMenu);
         assertEquals(codiceMenu,menu.getCodiceMenu());
     }
-
 
     @Test
     public void doUpdateAvailableTest()
