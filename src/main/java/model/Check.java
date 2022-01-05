@@ -95,7 +95,7 @@ public class Check
     {
         Esito result = new Esito();
         result.setValido(false);
-        if (data.compareTo(new Date(System.currentTimeMillis())) >= 0) {
+        if (data.compareTo(new Date(System.currentTimeMillis())) > 0) {
             result.setMessage("Data di nascita non valida");
             return result;
         }
@@ -211,7 +211,7 @@ public class Check
         result.setValido(false);
         if (res.length() > 35)
         {
-            result.setMessage("Il campo residenza ncontiene più di 35 caratteri");
+            result.setMessage("Il campo residenza contiene più di 35 caratteri");
             return result;
         }
         if (res.length() == 0)
