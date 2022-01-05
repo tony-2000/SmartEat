@@ -36,15 +36,15 @@ public class CheckTest
         assertEquals(esito.getMessage(),"Il CF può contenere solo lettere o numeri");
     }
 
-    /*
+
     @Test
     public void CFIsValidStillUsed()
     {
-        String CF="aaaaaaaaaa.aaaaa";
+        String CF="RSSMRA74D22A0010";
         Esito esito=Check.CFIsValid(CF);
         assertFalse(esito.isValido());
         assertEquals(esito.getMessage(),"Il CF è già presente in database");
-    }*/
+    }
 
     @Test
     public void CFIsValidTrue()
@@ -261,16 +261,16 @@ public class CheckTest
         assertEquals(esito.getMessage(),"Il campo mail contiene più di 35 caratteri");
     }
 
-/*
+
     @Test
     public void mailIsValidRegStillUsed()
     {
-        String mail = "iaaaaaaaaaaaaaaaaaaaa@osssssssssssssssss.mccccc";
+        String mail = "mario.rossi@gmail.com";
         Esito esito=Check.mailIsValidReg(mail);
         assertFalse(esito.isValido());
-        assertEquals(esito.getMessage(),"Il campo mail contiene più di 35 caratteri");
+        assertEquals(esito.getMessage(),"Il campo mail è già presente nel database");
     }
-    */
+
 
     @Test
     public void mailIsValidRegTrue()
