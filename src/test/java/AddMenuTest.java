@@ -76,13 +76,16 @@ public class AddMenuTest
         HttpServletResponse response= mock(HttpServletResponse.class);
         HttpServletRequest request= mock(HttpServletRequest.class);
 
+        Utente user=new Utente();
+        user.setAmministratore(new RuoloStandard());
+
         when(request.getSession()).thenReturn(session);
-        when(session.getAttribute("utenteSessione")).thenReturn(null);
+        when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(request.getContextPath()).thenReturn("context");
 
         addMenu.doGet(request,response);
 
-        verify(response, atLeastOnce()).sendRedirect("context/index.jsp");
+        verify(response, atLeastOnce()).sendRedirect("context/toHome");
         mensa.close();
     }
 

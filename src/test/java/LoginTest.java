@@ -143,7 +143,7 @@ public class LoginTest {
 
         when(udao.doRetrieveUtenteByEmailPassword(anyString(), anyString())).thenReturn(user);
         when(request.getParameter("mail")).thenReturn("pippo@mail.it");
-        when(request.getParameter("password")).thenReturn("P4ssword!");
+        when(request.getParameter("password")).thenReturn("P4ssword");
         when(request.getSession()).thenReturn(session);
         when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
 
@@ -152,6 +152,7 @@ public class LoginTest {
         verify(request, atLeastOnce()).setAttribute(eq("logError"), anyString());
         verify(request, never()).setAttribute(eq("logError"), eq("L'amministratore non ha ancora accettato la tua richiesta di registrazione."));
     }
+
 
     @Test
     public void doPostTestNullCFNotAccepted() throws ServletException, IOException {
