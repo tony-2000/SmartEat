@@ -11,6 +11,71 @@
 <html>
 <head>
     <title>Gestione mensa</title>
+
+    <script>
+        function validatePosti() {
+            let posti = document.forms["updateMensa"]["postiDisponibili"];
+            let postiAlert = document.getElementById("postiAlert");
+            let pattern = /^\d+$/;
+            if (posti.length < 1) {
+                postiAlert.innerHTML = "Il campo posti disponibili non può essere vuoto.";
+                return false;
+            } else if (posti.length > 4) {
+                postiAlert.innerHTML = "Il campo posti disponibili non può avere una lunghezza superiore alle 4 cifre.";
+                return false;
+            } else if (!pattern.test(posti)) {
+                postiAlert.innerHTML = "Il campo posti disponibili non rispetta il formato.";
+                return false;
+            } else {
+                postiAlert.innerHTML = "";
+                return true;
+            }
+        }
+
+        function validateApertura() {
+            let apertura = document.forms["updateMensa"]["orarioApertura"];
+            let aperturaAlert = document.getElementById("aperturaAlert");
+            let pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+            if (apertura.length < 1) {
+                aperturaAlert.innerHTML = "Il campo orario di apertura non può essere vuoto.";
+                return false;
+            } else if (apertura.length > 5) {
+                aperturaAlert.innerHTML = "Il campo orario di apertura non può avere una lunghezza superiore alle 5 cifre.";
+                return false;
+            } else if (!pattern.test(apertura)) {
+                aperturaAlert.innerHTML = "Il campo orario di apertura non rispetta il formato.";
+                return false;
+            } else {
+                aperturaAlert.innerHTML = "";
+                return true;
+            }
+        }
+
+        function validateChiusura() {
+            let chiusura = document.forms["updateMensa"]["orarioChiusura"];
+            let chiusuraAlert = document.getElementById("chiusuraAlert");
+            let pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+            if (chiusura.length < 1) {
+                chiusuraAlert.innerHTML = "Il campo orario di chiusura non può essere vuoto.";
+                return false;
+            } else if (chiusura.length > 5) {
+                chiusuraAlert.innerHTML = "Il campo orario di chiusura non può avere una lunghezza superiore alle 5 cifre.";
+                return false;
+            } else if (!pattern.test(chiusura)) {
+                chiusuraAlert.innerHTML = "Il campo orario di chiusura non rispetta il formato.";
+                return false;
+            } else {
+                chiusuraAlert.innerHTML = "";
+                return true;
+            }
+        }
+
+        function validateForm() {
+            return (validatePosti() &&
+                validateApertura() &&
+                validateChiusura());
+        }
+    </script>
 </head>
 <body>
     <%
@@ -27,17 +92,20 @@
     </header>
 
     <main class="field">
-        <form action="UpdateMensa" method="post">
+        <form action="UpdateMensa" onsubmit="return validateForm()" id="updateMensa" method="post">
             <h2><%=mensa.get(0)%></h2><hr>
 
             <label for="postiDisponibili">Numero posti disponibili</label>
-            <input type="number" id="postiDisponibili" name="postiDisponibili" value="<%=mensa.get(1)%>"><br>
+            <input type="number" id="postiDisponibili" name="postiDisponibili" value="<%=mensa.get(1)%>">
+            <a id="postiAlert" style="color: red"></a><br>
 
             <label for="orarioApertura">Orario di apertura</label>
-            <input type="time" id="orarioApertura" step="1" name="orarioApertura" value="<%=mensa.get(2)%>"><br>
+            <input type="time" id="orarioApertura" step="1" name="orarioApertura" value="<%=mensa.get(2)%>">
+            <a id="aperturaAlert" style="color: red"></a><br>
 
             <label for="orarioChiusura">Orario di chiusura</label>
-            <input type="time" id="orarioChiusura" step="1" name="orarioChiusura" value="<%=mensa.get(3)%>"><br>
+            <input type="time" id="orarioChiusura" step="1" name="orarioChiusura" value="<%=mensa.get(3)%>">
+            <a id="chiusuraAlert" style="color: red"></a><br>
 
             <input type="submit" value="Conferma modifiche"><hr>
         </form>
