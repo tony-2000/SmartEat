@@ -23,13 +23,11 @@ public class SignUpTest
 {
     private UtenteDAOInterface udao;
     private SignUp signup;
-    private HttpSession session;
 
     @Before
     public void setup()
     {
         udao = mock(UtenteDAO.class);
-        session = mock(HttpSession.class);
         signup=new SignUp(udao);
     }
 
@@ -241,32 +239,32 @@ public class SignUpTest
 
     @Test
     public void doPostTestErrore() throws ServletException, IOException {
+
         HttpServletRequest request = mock(HttpServletRequest.class);
-        when(request.getSession()).thenReturn(session);
         HttpServletResponse response = mock(HttpServletResponse.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
 
-        when(request.getParameter("CF")).thenReturn("AAAAAAAAAAAAAAAA");
+        when(request.getParameter("CF")).thenReturn("");
         when(request.getParameter("nome_utente")).thenReturn("antonio");
         when(request.getParameter("cognome")).thenReturn("Aschettino");
         when(request.getParameter("gender")).thenReturn("M");
-        when(request.getParameter("dataDiNacita")).thenReturn("2000-06-24");
+        when(request.getParameter("dataDiNascita")).thenReturn("2000-06-24");
         when(request.getParameter("luogoDiNascita")).thenReturn("Nola");
         when(request.getParameter("mail")).thenReturn("antonio@gmail.com");
         when(request.getParameter("residenza")).thenReturn("Lauro");
         when(request.getParameter("password")).thenReturn("P4ssword!");
         when(request.getParameter("passwordCheck")).thenReturn("P4ssword!");
-
-        when(signup.registrazione(anyString(),anyString(),anyString(),anyString(),any(Date.class),anyString(),anyString(),anyString(),anyString(),anyString())).thenReturn("errore");
-
         when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
+
+        signup.doPost(request,response);
+
+        verify(request, atLeastOnce()).getRequestDispatcher("signUp.jsp");
         verify(dispatcher, atLeastOnce()).forward(request, response);
     }
 
     @Test
     public void doPostTestCorretto() throws ServletException, IOException {
         HttpServletRequest request = mock(HttpServletRequest.class);
-        when(request.getSession()).thenReturn(session);
         HttpServletResponse response = mock(HttpServletResponse.class);
         RequestDispatcher dispatcher = mock(RequestDispatcher.class);
 
@@ -274,16 +272,17 @@ public class SignUpTest
         when(request.getParameter("nome_utente")).thenReturn("antonio");
         when(request.getParameter("cognome")).thenReturn("Aschettino");
         when(request.getParameter("gender")).thenReturn("M");
-        when(request.getParameter("dataDiNacita")).thenReturn("2000-06-24");
+        when(request.getParameter("dataDiNascita")).thenReturn("2000-06-24");
         when(request.getParameter("luogoDiNascita")).thenReturn("Nola");
         when(request.getParameter("mail")).thenReturn("antonio@gmail.com");
         when(request.getParameter("residenza")).thenReturn("Lauro");
         when(request.getParameter("password")).thenReturn("P4ssword!");
         when(request.getParameter("passwordCheck")).thenReturn("P4ssword!");
-
-        when(signup.registrazione(anyString(), anyString(), anyString(), anyString(), any(Date.class), anyString(), anyString(), anyString(), anyString(), anyString())).thenReturn("");
-
         when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
+
+        signup.doPost(request,response);
+
+        verify(request, atLeastOnce()).getRequestDispatcher("login.jsp");
         verify(dispatcher, atLeastOnce()).forward(request, response);
     }
 }
