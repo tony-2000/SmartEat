@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class CheckTest
 {
     @Test
-    public void CFIsValidTooShort()
+    public void CFIsValidTooShortTest()
     {
         String CF="aaaaa";
         Esito esito=Check.CFIsValid(CF);
@@ -19,7 +19,7 @@ public class CheckTest
 
 
     @Test
-    public void CFIsValidTooLong()
+    public void CFIsValidTooLongTest()
     {
         String CF="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
         Esito esito=Check.CFIsValid(CF);
@@ -28,7 +28,7 @@ public class CheckTest
     }
 
     @Test
-    public void CFIsValidNotLetterOrDigit()
+    public void CFIsValidNotLetterOrDigitTest()
     {
         String CF="aaaaaaaaaa.aaaaa";
         Esito esito=Check.CFIsValid(CF);
@@ -36,18 +36,18 @@ public class CheckTest
         assertEquals(esito.getMessage(),"Il CF può contenere solo lettere o numeri");
     }
 
-    /*
+
     @Test
-    public void CFIsValidStillUsed()
+    public void CFIsValidStillUsedTest()
     {
-        String CF="aaaaaaaaaa.aaaaa";
+        String CF="RSSMRA74D22A0010";
         Esito esito=Check.CFIsValid(CF);
         assertFalse(esito.isValido());
         assertEquals(esito.getMessage(),"Il CF è già presente in database");
-    }*/
+    }
 
     @Test
-    public void CFIsValidTrue()
+    public void CFIsValidTrueTest()
     {
         String CF="aaaaaaaaaaaaaaaa";
         Esito esito=Check.CFIsValid(CF);
@@ -58,7 +58,7 @@ public class CheckTest
 
 
     @Test
-    public void nomeIsValidTooLong()
+    public void nomeIsValidTooLongTest()
     {
         String nome="aaaaaaaaaaaaaaaaaaaaaaaaaa";
         Esito esito=Check.nomeIsValid(nome);
@@ -67,7 +67,7 @@ public class CheckTest
     }
 
     @Test
-    public void nomeIsValidIsEmpty()
+    public void nomeIsValidIsEmptyTest()
     {
         String nome="";
         Esito esito=Check.nomeIsValid(nome);
@@ -76,7 +76,7 @@ public class CheckTest
     }
 
     @Test
-    public void nomeIsValidTrue()
+    public void nomeIsValidTrueTest()
     {
         String nome="aaaaaaaa";
         Esito esito=Check.nomeIsValid(nome);
@@ -90,7 +90,7 @@ public class CheckTest
 
 
     @Test
-    public void cognomeIsValidTooLong()
+    public void cognomeIsValidTooLongTest()
     {
         String cognome="aaaaaaaaaaaaaaaaaaaaaaaaaa";
         Esito esito=Check.cognomeIsValid(cognome);
@@ -99,7 +99,7 @@ public class CheckTest
     }
 
     @Test
-    public void cognomeIsValidIsEmpty()
+    public void cognomeIsValidIsEmptyTest()
     {
         String cognome="";
         Esito esito=Check.cognomeIsValid(cognome);
@@ -108,7 +108,7 @@ public class CheckTest
     }
 
     @Test
-    public void cognomeIsValidTrue()
+    public void cognomeIsValidTrueTest()
     {
         String cognome="aaaaaaaa";
         Esito esito=Check.cognomeIsValid(cognome);
@@ -119,7 +119,7 @@ public class CheckTest
 
 
     @Test
-    public void sessoIsValidIsEmpty()
+    public void sessoIsValidIsEmptyTest()
     {
         String sesso = "";
         Esito esito=Check.sessoIsValid(sesso);
@@ -129,16 +129,16 @@ public class CheckTest
 
 
     @Test
-    public void sessoIsValidInvalidFormat()
+    public void sessoIsValidInvalidFormatTest()
     {
-        String sesso = "P";
+        String sesso = "2";
         Esito esito=Check.sessoIsValid(sesso);
         assertFalse(esito.isValido());
         assertEquals(esito.getMessage(),"Formato non valido, inserire uno tra i seguenti caratteri: M, F, N");
     }
 
     @Test
-    public void sessoIsValidTrue()
+    public void sessoIsValidTrueTest()
     {
         String sesso = "M";
         Esito esito=Check.sessoIsValid(sesso);
@@ -146,10 +146,8 @@ public class CheckTest
         assertNull(esito.getMessage());
     }
 
-
-
     @Test
-    public void nascitaIsValidToday()
+    public void nascitaIsValidTodayTest()
     {
         Date nascita =new Date(System.currentTimeMillis()+1000);
         Esito esito=Check.nascitaIsValid(nascita);
@@ -158,19 +156,8 @@ public class CheckTest
     }
 
 
-    /*Non testabile
     @Test
-    public void nascitaIsValidFormatInvalid()
-    {
-        Date nascita = Date.valueOf("2002-02-30");
-        Esito esito=Check.nascitaIsValid(nascita);
-        assertFalse(esito.isValido());
-        assertEquals(esito.getMessage(),"Data di nascita non valida");
-    }
-    */
-
-    @Test
-    public void nascitaIsValid()
+    public void nascitaIsValidTest()
     {
         Date nascita = Date.valueOf("2002-05-20");
         Esito esito=Check.nascitaIsValid(nascita);
@@ -182,7 +169,7 @@ public class CheckTest
 
 
     @Test
-    public void luogoDNIsValidTooLong()
+    public void luogoDNIsValidTooLongTest()
     {
         String luogo = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
         Esito esito=Check.luogoDNIsValid(luogo);
@@ -192,7 +179,7 @@ public class CheckTest
 
 
     @Test
-    public void luogoDNIsValidIsEmpty()
+    public void luogoDNIsValidIsEmptyTest()
     {
         String luogo = "";
         Esito esito=Check.luogoDNIsValid(luogo);
@@ -202,7 +189,7 @@ public class CheckTest
 
 
     @Test
-    public void luogoDNIsValidTrue()
+    public void luogoDNIsValidTrueTest()
     {
         String luogo = "aaaaaaaaa";
         Esito esito=Check.luogoDNIsValid(luogo);
@@ -212,7 +199,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidRegIsEmpty()
+    public void mailIsValidRegIsEmptyTest()
     {
         String mail = "";
         Esito esito=Check.mailIsValidReg(mail);
@@ -222,7 +209,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidRegNotATSIGN()
+    public void mailIsValidRegNotATSIGNTest()
     {
         String mail = "aaaaaaa.iiiii.com";
         Esito esito=Check.mailIsValidReg(mail);
@@ -232,7 +219,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidRegNotDot()
+    public void mailIsValidRegNotDotTest()
     {
         String mail = "aaaaaaaiiiii@com";
         Esito esito=Check.mailIsValidReg(mail);
@@ -243,7 +230,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidRegTooShort()
+    public void mailIsValidRegTooShortTest()
     {
         String mail = "i@o.m";
         Esito esito=Check.mailIsValidReg(mail);
@@ -253,7 +240,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidRegTooLong()
+    public void mailIsValidRegTooLongTest()
     {
         String mail = "iaaaaaaaaaaaaaaaaaaaa@osssssssssssssssss.mccccc";
         Esito esito=Check.mailIsValidReg(mail);
@@ -261,19 +248,19 @@ public class CheckTest
         assertEquals(esito.getMessage(),"Il campo mail contiene più di 35 caratteri");
     }
 
-/*
-    @Test
-    public void mailIsValidRegStillUsed()
-    {
-        String mail = "iaaaaaaaaaaaaaaaaaaaa@osssssssssssssssss.mccccc";
-        Esito esito=Check.mailIsValidReg(mail);
-        assertFalse(esito.isValido());
-        assertEquals(esito.getMessage(),"Il campo mail contiene più di 35 caratteri");
-    }
-    */
 
     @Test
-    public void mailIsValidRegTrue()
+    public void mailIsValidRegStillUsedTest()
+    {
+        String mail = "mario.rossi@gmail.com";
+        Esito esito=Check.mailIsValidReg(mail);
+        assertFalse(esito.isValido());
+        assertEquals(esito.getMessage(),"Il campo mail è già presente nel database");
+    }
+
+
+    @Test
+    public void mailIsValidRegTrueTest()
     {
         String mail = "aaaaa@aaaa.com";
         Esito esito=Check.mailIsValidReg(mail);
@@ -283,7 +270,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidLoginIsEmpty()
+    public void mailIsValidLoginIsEmptyTest()
     {
         String mail = "";
         Esito esito=Check.mailIsValidLogin(mail);
@@ -293,7 +280,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidLoginNotATSIGN()
+    public void mailIsValidLoginNotATSIGNTest()
     {
         String mail = "aaaaaaa.iiiii.com";
         Esito esito=Check.mailIsValidLogin(mail);
@@ -303,7 +290,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidLoginNotDot()
+    public void mailIsValidLoginNotDotTest()
     {
         String mail = "aaaaaaaiiiii@com";
         Esito esito=Check.mailIsValidLogin(mail);
@@ -314,7 +301,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidLoginTooShort()
+    public void mailIsValidLoginTooShortTest()
     {
         String mail = "i@o.m";
         Esito esito=Check.mailIsValidLogin(mail);
@@ -324,7 +311,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidLoginTooLong()
+    public void mailIsValidLoginTooLongTest()
     {
         String mail = "iaaaaaaaaaaaaaaaaaaaa@osssssssssssssssss.mccccc";
         Esito esito=Check.mailIsValidLogin(mail);
@@ -334,7 +321,7 @@ public class CheckTest
 
 
     @Test
-    public void mailIsValidLoginTrue()
+    public void mailIsValidLoginTrueTest()
     {
         String mail = "aaaaa@aaaa.com";
         Esito esito=Check.mailIsValidLogin(mail);
@@ -344,7 +331,7 @@ public class CheckTest
 
 
     @Test
-    public void residenzaIsValidTooLong()
+    public void residenzaIsValidTooLongTest()
     {
         String res = "icssssssssssssssssssssssssssssssssssssssssssssssssssssssssss";
         Esito esito=Check.residenzaIsValid(res);
@@ -353,7 +340,7 @@ public class CheckTest
     }
 
     @Test
-    public void residenzaIsValidIsEmpty()
+    public void residenzaIsValidIsEmptyTest()
     {
         String res = "";
         Esito esito=Check.residenzaIsValid(res);
@@ -363,7 +350,7 @@ public class CheckTest
 
 
     @Test
-    public void residenzaIsValidTrue()
+    public void residenzaIsValidTrueTest()
     {
         String res = "aaaaa";
         Esito esito=Check.residenzaIsValid(res);
@@ -372,7 +359,7 @@ public class CheckTest
     }
 
     @Test
-    public void passwordIsValidNotEquals()
+    public void passwordIsValidNotEqualsTest()
     {
         String password1 = "aaaaaa";
         String password2 = "bbbbbbb";
@@ -383,7 +370,7 @@ public class CheckTest
 
 
     @Test
-    public void passwordIsValidIsEmpty()
+    public void passwordIsValidIsEmptyTest()
     {
         String password1 = "";
         String password2 = "";
@@ -394,7 +381,7 @@ public class CheckTest
 
 
     @Test
-    public void passwordIsValidTooShort()
+    public void passwordIsValidTooShortTest()
     {
         String password1 = "aaaaa";
         String password2 = "aaaaa";
@@ -405,7 +392,7 @@ public class CheckTest
 
 
     @Test
-    public void passwordIsValidTooLong()
+    public void passwordIsValidTooLongTest()
     {
         String password1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
         String password2 = "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
@@ -416,7 +403,7 @@ public class CheckTest
 
 
     @Test
-    public void passwordIsValidNotUppercase()
+    public void passwordIsValidNotUppercaseTest()
     {
         String password1 = "aaaaaaaaaa";
         String password2 = "aaaaaaaaaa";
@@ -427,7 +414,7 @@ public class CheckTest
 
 
     @Test
-    public void passwordIsValidNotLowercase()
+    public void passwordIsValidNotLowercaseTest()
     {
         String password1 = "AAAAAAAAAA";
         String password2 = "AAAAAAAAAA";
@@ -438,7 +425,7 @@ public class CheckTest
 
 
     @Test
-    public void passwordIsValidNotNumber()
+    public void passwordIsValidNotNumberTest()
     {
         String password1 = "aaaaaAAAAA";
         String password2 = "aaaaaAAAAA";
@@ -449,7 +436,7 @@ public class CheckTest
 
 
     @Test
-    public void passwordIsValidNotSpecialCharacter()
+    public void passwordIsValidNotSpecialCharacterTest()
     {
         String password1 = "aaaaaAAAAA55";
         String password2 = "aaaaaAAAAA55";
@@ -460,7 +447,7 @@ public class CheckTest
 
 
     @Test
-    public void passwordIsValidTrue()
+    public void passwordIsValidTrueTest()
     {
         String password1 = "aaaaaAAAAA55..";
         String password2 = "aaaaaAAAAA55..";

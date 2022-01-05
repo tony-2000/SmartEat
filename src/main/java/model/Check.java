@@ -112,9 +112,9 @@ public class Check
             result.setMessage("Data di nascita non valida");
             return result;
         }
-        if((mese.equals("04") || mese.equals("06") || mese.equals("09") || mese.equals("11") && giorno.compareTo("30")>0))
+        if(((mese.equals("04") || mese.equals("06") || mese.equals("09") || mese.equals("11")) && giorno.compareTo("30")>0))
         {
-            result.setMessage("Data di nascita non valida");
+            result.setMessage("Data di nascita non valida3");
             return result;
         }
         result.setValido(true);
