@@ -7,6 +7,7 @@ import org.junit.Test;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.mock;
 
@@ -38,7 +39,7 @@ public class SignUpTest
         String password="Aschettino1.";
         String passwordCheck="Aschettino1.";
 
-        String res="";
+        String res;
 
         res=signup.registrazione(CF,nome,cognome,gender,data,luogoDN,mail,residenza,password,passwordCheck);
         assertNotEquals("",res);
@@ -58,7 +59,7 @@ public class SignUpTest
         String password="Aschettino1.";
         String passwordCheck="Aschettino1.";
 
-        String res="";
+        String res;
 
         res=signup.registrazione(CF,nome,cognome,gender,data,luogoDN,mail,residenza,password,passwordCheck);
         assertNotEquals("",res);
@@ -78,7 +79,7 @@ public class SignUpTest
         String password="Aschettino1.";
         String passwordCheck="Aschettino1.";
 
-        String res="";
+        String res;
 
         res=signup.registrazione(CF,nome,cognome,gender,data,luogoDN,mail,residenza,password,passwordCheck);
         assertNotEquals("",res);
@@ -98,7 +99,7 @@ public class SignUpTest
         String password="Aschettino1.";
         String passwordCheck="Aschettino1.";
 
-        String res="";
+        String res;
 
         res=signup.registrazione(CF,nome,cognome,gender,data,luogoDN,mail,residenza,password,passwordCheck);
         assertNotEquals("",res);
@@ -119,7 +120,7 @@ public class SignUpTest
         String password="Aschettino1.";
         String passwordCheck="Aschettino1.";
 
-        String res="";
+        String res;
 
         res=signup.registrazione(CF,nome,cognome,gender,data,luogoDN,mail,residenza,password,passwordCheck);
         assertNotEquals("",res);
@@ -139,7 +140,7 @@ public class SignUpTest
         String password="Aschettino1.";
         String passwordCheck="Aschettino1.";
 
-        String res="";
+        String res;
 
         res=signup.registrazione(CF,nome,cognome,gender,data,luogoDN,mail,residenza,password,passwordCheck);
         assertNotEquals("",res);
@@ -161,7 +162,7 @@ public class SignUpTest
         String password="Aschettino1.";
         String passwordCheck="Aschettino1.";
 
-        String res="";
+        String res;
 
         res=signup.registrazione(CF,nome,cognome,gender,data,luogoDN,mail,residenza,password,passwordCheck);
         assertNotEquals("",res);
@@ -182,7 +183,7 @@ public class SignUpTest
         String password="Aschettino1.";
         String passwordCheck="Aschettino1.";
 
-        String res="";
+        String res;
 
         res=signup.registrazione(CF,nome,cognome,gender,data,luogoDN,mail,residenza,password,passwordCheck);
         assertNotEquals("",res);
@@ -203,7 +204,7 @@ public class SignUpTest
         String password="Asche";
         String passwordCheck="Asche";
 
-        String res="";
+        String res;
 
         res=signup.registrazione(CF,nome,cognome,gender,data,luogoDN,mail,residenza,password,passwordCheck);
         assertNotEquals("",res);
@@ -223,10 +224,10 @@ public class SignUpTest
         String password="Aschettino1.";
         String passwordCheck="Aschettino1.";
 
-        String res="";
+        String res;
 
         res=signup.registrazione(CF,nome,cognome,gender,data,luogoDN,mail,residenza,password,passwordCheck);
-        assertNotEquals("",res);
+        assertEquals("",res);
     }
 
 
