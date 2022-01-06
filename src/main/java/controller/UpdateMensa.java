@@ -41,7 +41,7 @@ public class UpdateMensa extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");
@@ -63,7 +63,7 @@ public class UpdateMensa extends HttpServlet {
                 message="L'orario di apertura deve essere precedente a quello di chiusura";
                 request.setAttribute("message",message);
                 request.setAttribute("mensa",mensa);
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMensaArea");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminMensaArea");
                 dispatcher.forward(request, response);
             }
             else if(apertura.toString().compareTo("01:00:00")<=0)
@@ -71,7 +71,7 @@ public class UpdateMensa extends HttpServlet {
                 message="L'orario di apertura non può essere precedente alle ore 01:00";
                 request.setAttribute("message",message);
                 request.setAttribute("mensa",mensa);
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMensaArea");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminMensaArea");
                 dispatcher.forward(request, response);
             }
             else if(chiusura.toString().compareTo("23:00:00")>=0)
@@ -79,7 +79,7 @@ public class UpdateMensa extends HttpServlet {
                 message="L'orario di chiusura non può essere successivo alle ore 23:00";
                 request.setAttribute("message",message);
                 request.setAttribute("mensa",mensa);
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMensaArea");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminMensaArea");
                 dispatcher.forward(request, response);
             }
             else {
@@ -91,7 +91,7 @@ public class UpdateMensa extends HttpServlet {
                     message = "Le informazioni della mensa verranno modificate dopo l'orario di chiusura";
                 request.setAttribute("message", message);
                 request.setAttribute("mensa", mensa);
-                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminMensaArea");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminMensaArea");
                 dispatcher.forward(request, response);
             }
             }
@@ -122,8 +122,8 @@ public class UpdateMensa extends HttpServlet {
         }
         ArrayList<String> listupdateMensa= Mensa.getListUpdateMensa();
         listupdateMensa.add(0,String.valueOf(posti));
-        listupdateMensa.add(1,String.valueOf(posti));
-        listupdateMensa.add(2,String.valueOf(posti));
+        listupdateMensa.add(1,apertura.toString());
+        listupdateMensa.add(2,chiusura.toString());
         return false;
     }
 }
