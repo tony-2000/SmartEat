@@ -13,6 +13,7 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -24,11 +25,13 @@ public class AddMenuTest
     private MenuDAOInterface mdao;
     private HttpSession session;
     private MockedStatic<Mensa> mensa;
+    private  MockedStatic<Menu> menuStatic;
 
     @Before
     public void setup()
     {
         mensa = mockStatic(Mensa.class);
+        menuStatic = mockStatic(Menu.class);
         mdao = mock(MenuDAO.class);
         session = mock(HttpSession.class);
         addMenu = new AddMenu(mdao);
@@ -43,6 +46,7 @@ public class AddMenuTest
 
         assertTrue(addMenu.addMenu(menu));
         mensa.close();
+        menuStatic.close();
     }
 
     @Test
@@ -51,9 +55,13 @@ public class AddMenuTest
         mensa.when(Mensa::isMensaConfig).thenReturn(false);
 
         Menu menu=new Menu();
+        ArrayList<Menu> menus = new ArrayList<>();
+
+        menuStatic.when(Menu::getListAddMenu).thenReturn(menus);
 
         assertFalse(addMenu.addMenu(menu));
         mensa.close();
+        menuStatic.close();
     }
 
     @Test
@@ -69,6 +77,7 @@ public class AddMenuTest
 
         verify(response, atLeastOnce()).sendRedirect("context/index.jsp");
         mensa.close();
+        menuStatic.close();
     }
 
     @Test
@@ -87,6 +96,7 @@ public class AddMenuTest
 
         verify(response, atLeastOnce()).sendRedirect("context/toHome");
         mensa.close();
+        menuStatic.close();
     }
 
     @Test
@@ -97,7 +107,6 @@ public class AddMenuTest
         Part part = mock(Part.class);
         InputStream inputStream = mock(InputStream.class);
         MockedStatic<Files> file = mockStatic(Files.class);
-
         Utente user = new Utente();
         user.setAmministratore(new RuoloAdmin());
 
@@ -120,6 +129,7 @@ public class AddMenuTest
         verify(request, atLeastOnce()).setAttribute(anyString(), eq("Il menu è stato aggiunto correttamente"));
         mensa.close();
         file.close();
+        menuStatic.close();
     }
 
     @Test
@@ -130,7 +140,9 @@ public class AddMenuTest
         Part part = mock(Part.class);
         InputStream inputStream = mock(InputStream.class);
         MockedStatic<Files> file = mockStatic(Files.class);
+        ArrayList<Menu> menus = new ArrayList<>();
 
+        menuStatic.when(Menu::getListAddMenu).thenReturn(menus);
         Utente user = new Utente();
         user.setAmministratore(new RuoloAdmin());
 
@@ -153,5 +165,6 @@ public class AddMenuTest
         verify(request, atLeastOnce()).setAttribute(anyString(), eq("Il menu verrà aggiunto dopo l'orario di chiusura"));
         mensa.close();
         file.close();
+        menuStatic.close();
     }
 }
