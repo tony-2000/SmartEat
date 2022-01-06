@@ -21,10 +21,10 @@ public class UpdateMensaTest {
     private UpdateMensa updateMensa;
     private MensaDAOInterface mendao;
     private MockedStatic<Mensa> mensa;
-    HttpSession session;
-    HttpServletRequest request;
-    HttpServletResponse response;
-    RequestDispatcher dispatcher;
+    private HttpSession session;
+    private HttpServletRequest request;
+    private HttpServletResponse response;
+    private RequestDispatcher dispatcher;
 
     @Before
     public void setup() {
