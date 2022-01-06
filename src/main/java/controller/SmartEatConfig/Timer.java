@@ -52,9 +52,6 @@ public class Timer extends TimerTask {
      */
     public void run(){
 
-        System.out.println("run Timer");
-        System.out.println(Mensa.isMensaConfig());
-
         if(Mensa.isMensaConfig())
         {
             ArrayList<Menu> listAddMenu=Menu.getListAddMenu();

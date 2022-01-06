@@ -36,9 +36,9 @@ public class BuyMenuTest {
     public void setup() {
         float prezzo = 2.5F;
 
-        request=mock(HttpServletRequest.class);
-        response=mock(HttpServletResponse.class);
-        session=mock(HttpSession.class);
+        request = mock(HttpServletRequest.class);
+        response = mock(HttpServletResponse.class);
+        session = mock(HttpSession.class);
         tdao = mock(TesseraDAO.class);
         acquistodao = mock(AcquistoDAO.class);
         menudao = mock(MenuDAO.class);
@@ -199,9 +199,9 @@ public class BuyMenuTest {
         when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
 
-        buyMenu.doGet(request,response);
+        buyMenu.doGet(request, response);
 
-        verify(request, atLeastOnce()).setAttribute("message","Il periodo per effettuare acquisti è terminato, ritorni nella fascia d'orario consentita.");
+        verify(request, atLeastOnce()).setAttribute("message", "Il periodo per effettuare acquisti è terminato, ritorni nella fascia d'orario consentita.");
 
         mensa.close();
     }
@@ -241,9 +241,9 @@ public class BuyMenuTest {
         when(pdao.doRetrievePietanzaByKey("Carne")).thenReturn(secondo);
         when(pdao.doRetrievePietanzaByKey("Torta")).thenReturn(dessert);
 
-        buyMenu.doGet(request,response);
+        buyMenu.doGet(request, response);
 
-        verify(request, atLeastOnce()).setAttribute("message","Operazione di acquisto completata con successo.");
+        verify(request, atLeastOnce()).setAttribute("message", "Operazione di acquisto completata con successo.");
 
         mensa.close();
     }
