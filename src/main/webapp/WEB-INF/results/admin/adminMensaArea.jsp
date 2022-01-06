@@ -36,13 +36,7 @@
             let apertura = document.forms["updateMensa"]["orarioApertura"].value;
             let aperturaAlert = document.getElementById("aperturaAlert");
             let pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
-            if (apertura.length < 1) {
-                aperturaAlert.innerHTML = "Il campo orario di apertura non può essere vuoto.";
-                return false;
-            } else if (apertura.length > 8) {
-                aperturaAlert.innerHTML = "Il campo orario di apertura non può avere una lunghezza superiore alle 8 cifre.";
-                return false;
-            } else if (!pattern.test(apertura)) {
+            if (!pattern.test(apertura)) {
                 aperturaAlert.innerHTML = "Il campo orario di apertura non rispetta il formato.";
                 return false;
             } else {
@@ -55,13 +49,7 @@
             let chiusura = document.forms["updateMensa"]["orarioChiusura"].value;
             let chiusuraAlert = document.getElementById("chiusuraAlert");
             let pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
-            if (chiusura.length < 1) {
-                chiusuraAlert.innerHTML = "Il campo orario di chiusura non può essere vuoto.";
-                return false;
-            } else if (chiusura.length > 8) {
-                chiusuraAlert.innerHTML = "Il campo orario di chiusura non può avere una lunghezza superiore alle 8 cifre.";
-                return false;
-            } else if (!pattern.test(chiusura)) {
+            if (!pattern.test(chiusura)) {
                 chiusuraAlert.innerHTML = "Il campo orario di chiusura non rispetta il formato.";
                 return false;
             } else {
@@ -96,15 +84,15 @@
             <h2><%=mensa.get(0)%></h2><hr>
 
             <label for="postiDisponibili">Numero posti disponibili</label>
-            <input type="number" id="postiDisponibili" name="postiDisponibili" value="<%=mensa.get(1)%>">
+            <input type="number" id="postiDisponibili" name="postiDisponibili">
             <a id="postiAlert" style="color: red"></a><br>
 
             <label for="orarioApertura">Orario di apertura</label>
-            <input type="time" id="orarioApertura" step="1" name="orarioApertura" value="<%=mensa.get(2)%>">
+            <input type="time" id="orarioApertura" step="1" name="orarioApertura">
             <a id="aperturaAlert" style="color: red"></a><br>
 
             <label for="orarioChiusura">Orario di chiusura</label>
-            <input type="time" id="orarioChiusura" step="1" name="orarioChiusura" value="<%=mensa.get(3)%>">
+            <input type="time" id="orarioChiusura" step="1" name="orarioChiusura">
             <a id="chiusuraAlert" style="color: red"></a><br>
 
             <input type="submit" value="Conferma modifiche"><hr>
