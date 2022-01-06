@@ -50,7 +50,7 @@
             let tipoAlert = document.getElementById("tipoAlert");
             let pattern = /^[PSD]$/;
             if (tipo.length !== 1) {
-                tipoAlert.innerHTML = "Il tipo non può essere nullo.";
+                tipoAlert.innerHTML = "Il tipo non può avere lunghezza diversa da 1.";
                 return false;
             } else if (!pattern.test(tipo)) {
                 tipoAlert.innerHTML = "Il tipo non rispetta il formato."
@@ -107,8 +107,7 @@
 
             <label for="descrizione">Descrizione</label>
             <textarea name="descrizione" id="descrizione"
-                      rows="5" cols="30" style="resize: none"
-                      maxlength="300"></textarea>
+                      rows="5" cols="30" style="resize: none"></textarea>
             <a id="descrizioneAlert" style="color: red"></a><br>
 
             <label for="tipo">Tipo</label>
@@ -121,8 +120,7 @@
 
             <label for="ingredienti">Ingredienti</label>
             <textarea name="ingredienti" id="ingredienti"
-                      rows="5" cols="30" style="resize: none"
-                      maxlength="300"></textarea>
+                      rows="5" cols="30" style="resize: none"></textarea>
             <a id="ingredientiAlert" style="color: red"></a><br>
 
             <label for="image">Immagine</label>
