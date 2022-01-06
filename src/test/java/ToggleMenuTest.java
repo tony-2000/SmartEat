@@ -1,18 +1,16 @@
 import controller.ToggleMenu;
-import model.Mensa;
-import model.Menu;
-import model.MenuDAO;
-import model.MenuDAOInterface;
+import model.*;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.MockedStatic;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertFalse;
@@ -68,7 +66,7 @@ public class ToggleMenuTest {
         boolean result;
 
         Menu menu = new Menu();
-        menu.setAvailable(true);
+        menu.setAvailable(false);
         ArrayList<Menu> menus = new ArrayList<>();
 
         menuStatic.when(Menu::getListToggleMenu).thenReturn(menus);
@@ -79,6 +77,83 @@ public class ToggleMenuTest {
         result = toggleMenu.toggleMenu(5);
 
         assertFalse(result);
+
+        mensa.close();
+        menuStatic.close();
+    }
+
+    @Test
+    public void ToggleMenuNonInSessioneTest() throws ServletException, IOException {
+        when(request.getSession()).thenReturn(session);
+        when(session.getAttribute("utenteSessione")).thenReturn(null);
+        when(request.getContextPath()).thenReturn("context");
+
+        toggleMenu.doGet(request, response);
+
+        verify(response, atLeastOnce()).sendRedirect("context/index.jsp");
+
+        mensa.close();
+        menuStatic.close();
+    }
+
+    @Test
+    public void ToggleMenuNonAdminTest() throws ServletException, IOException {
+        when(request.getSession()).thenReturn(session);
+        Utente user = new Utente();
+        user.setAmministratore(new RuoloStandard());
+
+        when(session.getAttribute("utenteSessione")).thenReturn(user);
+        when(request.getContextPath()).thenReturn("context");
+
+        toggleMenu.doGet(request, response);
+
+        verify(response, atLeastOnce()).sendRedirect("context/toHome");
+
+        mensa.close();
+        menuStatic.close();
+    }
+
+    @Test
+    public void ToggleMenuCorrettoOraTest() throws ServletException, IOException {
+        Utente user = new Utente();
+        user.setAmministratore(new RuoloAdmin());
+        Menu menu = new Menu();
+        menu.setAvailable(true);
+
+        mensa.when(Mensa::isMensaConfig).thenReturn(true);
+        when(session.getAttribute("utenteSessione")).thenReturn(user);
+        when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
+        when(request.getParameter("codiceMenu")).thenReturn("5");
+        when(mdao.doRetrieveMenuByKey(anyInt())).thenReturn(menu);
+        when(request.getSession()).thenReturn(session);
+
+        toggleMenu.doGet(request, response);
+
+        verify(request, atLeastOnce()).setAttribute("message", "La disponibilita' del menu è stata cambiata");
+
+        mensa.close();
+        menuStatic.close();
+    }
+
+    @Test
+    public void ToggleMenuCorrettoDopoTest() throws ServletException, IOException {
+        Utente user = new Utente();
+        user.setAmministratore(new RuoloAdmin());
+        Menu menu = new Menu();
+        menu.setAvailable(true);
+        ArrayList<Menu> menus = new ArrayList<>();
+
+        menuStatic.when(Menu::getListToggleMenu).thenReturn(menus);
+        mensa.when(Mensa::isMensaConfig).thenReturn(false);
+        when(session.getAttribute("utenteSessione")).thenReturn(user);
+        when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
+        when(request.getParameter("codiceMenu")).thenReturn("5");
+        when(mdao.doRetrieveMenuByKey(anyInt())).thenReturn(menu);
+        when(request.getSession()).thenReturn(session);
+
+        toggleMenu.doGet(request, response);
+
+        verify(request, atLeastOnce()).setAttribute("message", "La disponibilita' del menu verra' aggiornata dopo l'orario di chiusura");
 
         mensa.close();
         menuStatic.close();

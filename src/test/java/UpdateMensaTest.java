@@ -120,7 +120,6 @@ public class UpdateMensaTest {
         strings.add("14:00:00");
 
         when(session.getAttribute("utenteSessione")).thenReturn(user);
-        when(request.getContextPath()).thenReturn("context");
         when(mendao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
         when(request.getParameter("postiDisponibili")).thenReturn("500");
         when(request.getParameter("orarioApertura")).thenReturn("14:30:00");
@@ -148,7 +147,6 @@ public class UpdateMensaTest {
         strings.add("14:00:00");
 
         when(session.getAttribute("utenteSessione")).thenReturn(user);
-        when(request.getContextPath()).thenReturn("context");
         when(mendao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
         when(request.getParameter("postiDisponibili")).thenReturn("500");
         when(request.getParameter("orarioApertura")).thenReturn("00:30:00");
@@ -176,7 +174,6 @@ public class UpdateMensaTest {
         strings.add("14:00:00");
 
         when(session.getAttribute("utenteSessione")).thenReturn(user);
-        when(request.getContextPath()).thenReturn("context");
         when(mendao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
         when(request.getParameter("postiDisponibili")).thenReturn("500");
         when(request.getParameter("orarioApertura")).thenReturn("12:30:00");
@@ -205,7 +202,6 @@ public class UpdateMensaTest {
 
         mensa.when(Mensa::isMensaConfig).thenReturn(true);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
-        when(request.getContextPath()).thenReturn("context");
         when(mendao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
         when(request.getParameter("postiDisponibili")).thenReturn("500");
         when(request.getParameter("orarioApertura")).thenReturn("12:30:00");
@@ -234,7 +230,6 @@ public class UpdateMensaTest {
 
         mensa.when(Mensa::isMensaConfig).thenReturn(false);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
-        when(request.getContextPath()).thenReturn("context");
         when(mendao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
         when(request.getParameter("postiDisponibili")).thenReturn("500");
         when(request.getParameter("orarioApertura")).thenReturn("12:30:00");
