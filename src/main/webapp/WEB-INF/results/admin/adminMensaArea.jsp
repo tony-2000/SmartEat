@@ -14,7 +14,7 @@
 
     <script>
         function validatePosti() {
-            let posti = document.forms["updateMensa"]["postiDisponibili"];
+            let posti = document.forms["updateMensa"]["postiDisponibili"].value;
             let postiAlert = document.getElementById("postiAlert");
             let pattern = /^\d+$/;
             if (posti.length < 1) {
@@ -33,7 +33,7 @@
         }
 
         function validateApertura() {
-            let apertura = document.forms["updateMensa"]["orarioApertura"];
+            let apertura = document.forms["updateMensa"]["orarioApertura"].value;
             let aperturaAlert = document.getElementById("aperturaAlert");
             let pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
             if (apertura.length < 1) {
@@ -52,7 +52,7 @@
         }
 
         function validateChiusura() {
-            let chiusura = document.forms["updateMensa"]["orarioChiusura"];
+            let chiusura = document.forms["updateMensa"]["orarioChiusura"].value;
             let chiusuraAlert = document.getElementById("chiusuraAlert");
             let pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
             if (chiusura.length < 1) {
@@ -92,7 +92,7 @@
     </header>
 
     <main class="field">
-        <form action="UpdateMensa" onsubmit="return validateForm()" id="updateMensa" method="post">
+        <form name="updateMensa" action="UpdateMensa" onsubmit="return validateForm()" method="post">
             <h2><%=mensa.get(0)%></h2><hr>
 
             <label for="postiDisponibili">Numero posti disponibili</label>

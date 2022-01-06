@@ -14,7 +14,7 @@
 
     <script>
         function validateNome() {
-            let nome = document.forms["addMenu"]["nome"];
+            let nome = document.forms["addMenu"]["nome"].value;
             let nomeAlert = document.getElementById("nomeAlert");
             let pattern = /^[a-zàèéìòù\d ]+/gi;
             if (nome.length < 1) {
@@ -33,7 +33,7 @@
         }
 
         function validatePrimo() {
-            let primo = document.forms["addMenu"]["primo"];
+            let primo = document.forms["addMenu"]["primo"].value;
             let primoAlert = document.getElementById("primoAlert");
             let pattern = /^[a-zàèéìòù ]+/gi;
             if (primo.length < 1) {
@@ -52,7 +52,7 @@
         }
 
         function validateSecondo() {
-            let secondo = document.forms["addMenu"]["secondo"];
+            let secondo = document.forms["addMenu"]["secondo"].value;
             let secondoAlert = document.getElementById("secondoAlert");
             let pattern = /^[a-zàèéìòù ]+/gi;
             if (secondo.length < 1) {
@@ -71,7 +71,7 @@
         }
 
         function validateDessert() {
-            let dessert = document.forms["addMenu"]["dessert"];
+            let dessert = document.forms["addMenu"]["dessert"].value;
             let dessertAlert = document.getElementById("dessertAlert");
             let pattern = /^[a-zàèéìòù ]+/gi;
             if (dessert.length < 1) {
@@ -90,7 +90,7 @@
         }
 
         function validateDescrizione() {
-            let descrizione = document.forms["addMenu"]["descrizione"];
+            let descrizione = document.forms["addMenu"]["descrizione"].value;
             let descrizioneAlert = document.getElementById("descrizioneAlert");
             if (descrizione.length < 1) {
                 descrizioneAlert.innerHTML = "La descrizione non può essere nulla.";
@@ -105,7 +105,7 @@
         }
 
         function validatePrezzo() {
-            let prezzo = document.forms["addMenu"]["prezzo"];
+            let prezzo = document.forms["addMenu"]["prezzo"].value;
             let prezzoAlert = document.getElementById("prezzoAlert");
             let pattern = /^\d{1,3}\.\d{1,2}$/;
             if (prezzo.length < 3) {
@@ -149,7 +149,7 @@
     </header>
 
     <main class="field">
-        <form action="AddMenu" onsubmit="return validateForm()" id="addMenu" method="post" enctype="multipart/form-data">
+        <form name="addMenu" action="AddMenu" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
             <h2>Aggiungi un menù</h2><hr>
             <%
                 if (pietanze == null || pietanze.isEmpty()) {

@@ -12,7 +12,7 @@
 
     <script>
         function validateNome() {
-            let nome = document.forms["addPietanza"]["nome"];
+            let nome = document.forms["addPietanza"]["nome"].value;
             let nomeAlert = document.getElementById("nomeAlert");
             let pattern = /^[a-zàèéìòù\d ]+/gi;
             if (nome.length < 1) {
@@ -31,7 +31,7 @@
         }
 
         function validateDescrizione() {
-            let descrizione = document.forms["addPietanza"]["descrizione"];
+            let descrizione = document.forms["addPietanza"]["descrizione"].value;
             let descrizioneAlert = document.getElementById("descrizioneAlert");
             if (descrizione.length < 1) {
                 descrizioneAlert.innerHTML = "La descrizione non può essere nulla.";
@@ -46,7 +46,7 @@
         }
 
         function validateTipo() {
-            let tipo = document.forms["addPietanza"]["tipo"];
+            let tipo = document.forms["addPietanza"]["tipo"].value;
             let tipoAlert = document.getElementById("tipoAlert");
             let pattern = /^[PSD]$/;
             if (tipo.length !== 1) {
@@ -62,7 +62,7 @@
         }
 
         function validateIngredienti() {
-            let ingredienti = document.forms["addPietanza"]["ingredienti"];
+            let ingredienti = document.forms["addPietanza"]["ingredienti"].value;
             let ingredientiAlert = document.getElementById("ingredientiAlert");
             if (ingredienti.length < 1) {
                 ingredientiAlert.innerHTML = "L'elenco degli ingredienti non può essere nullo.";
@@ -98,7 +98,7 @@
     </header>
 
     <main class="field">
-        <form action="AddPietanza" onsubmit="return validateForm()" id="addPietanza" method="post" enctype="multipart/form-data">
+        <form name="addPietanza" action="AddPietanza" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
             <h2>Aggiungi una pietanza</h2><hr>
 
             <label for="nome">Nome</label>
@@ -126,7 +126,7 @@
             <a id="ingredientiAlert" style="color: red"></a><br>
 
             <label for="image">Immagine</label>
-            <input type="file" name="image" id="image" required>
+            <input type="file" name="image" id="image">
 
             <input type="submit" value="Aggiungi"><hr>
         </form>
