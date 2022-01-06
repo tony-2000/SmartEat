@@ -14,12 +14,12 @@
         function validateNome() {
             let nome = document.forms["addPietanza"]["nome"].value;
             let nomeAlert = document.getElementById("nomeAlert");
-            let pattern = /^[a-zàèéìòù\d ]+/gi;
+            let pattern = /^[a-zàèéìòù\d ]+$/gi;
             if (nome.length < 1) {
                 nomeAlert.innerHTML = "Il nome non può essere nullo.";
                 return false;
-            } else if (nome.length > 25) {
-                nomeAlert.innerHTML = "Il nome non può avere una lunghezza superiore ai 25 caratteri.";
+            } else if (nome.length > 20) {
+                nomeAlert.innerHTML = "Il nome non può avere una lunghezza superiore ai 20 caratteri.";
                 return false;
             } else if (!pattern.test(nome)) {
                 nomeAlert.innerHTML = "Il nome non rispetta il formato.";

@@ -16,7 +16,7 @@
         function validateNome() {
             let nome = document.forms["addMenu"]["nome"].value;
             let nomeAlert = document.getElementById("nomeAlert");
-            let pattern = /^[a-zàèéìòù\d ]+/gi;
+            let pattern = /^[a-zàèéìòù\d ]+$/gi;
             if (nome.length < 1) {
                 nomeAlert.innerHTML = "Il nome non può essere nullo.";
                 return false;
@@ -35,12 +35,12 @@
         function validatePrimo() {
             let primo = document.forms["addMenu"]["primo"].value;
             let primoAlert = document.getElementById("primoAlert");
-            let pattern = /^[a-zàèéìòù ]+/gi;
+            let pattern = /^[a-zàèéìòù ]+$/gi;
             if (primo.length < 1) {
                 primoAlert.innerHTML = "Il primo non può essere nullo.";
                 return false;
-            } else if (primo.length > 25) {
-                primoAlert.innerHTML = "Il primo non può avere una lunghezza superiore ai 25 caratteri.";
+            } else if (primo.length > 20) {
+                primoAlert.innerHTML = "Il primo non può avere una lunghezza superiore ai 20 caratteri.";
                 return false;
             } else if (!pattern.test(primo)) {
                 primoAlert.innerHTML = "Il primo non rispetta il formato.";
@@ -54,12 +54,12 @@
         function validateSecondo() {
             let secondo = document.forms["addMenu"]["secondo"].value;
             let secondoAlert = document.getElementById("secondoAlert");
-            let pattern = /^[a-zàèéìòù ]+/gi;
+            let pattern = /^[a-zàèéìòù ]+$/gi;
             if (secondo.length < 1) {
                 secondoAlert.innerHTML = "Il secondo non può essere nullo.";
                 return false;
-            } else if (secondo.length > 25) {
-                secondoAlert.innerHTML = "Il secondo non può avere una lunghezza superiore ai 25 caratteri.";
+            } else if (secondo.length > 20) {
+                secondoAlert.innerHTML = "Il secondo non può avere una lunghezza superiore ai 20 caratteri.";
                 return false;
             } else if (!pattern.test(secondo)) {
                 secondoAlert.innerHTML = "Il secondo non rispetta il formato.";
@@ -73,12 +73,12 @@
         function validateDessert() {
             let dessert = document.forms["addMenu"]["dessert"].value;
             let dessertAlert = document.getElementById("dessertAlert");
-            let pattern = /^[a-zàèéìòù ]+/gi;
+            let pattern = /^[a-zàèéìòù ]+$/gi;
             if (dessert.length < 1) {
                 dessertAlert.innerHTML = "Il dessert non può essere nullo.";
                 return false;
-            } else if (dessert.length > 25) {
-                dessertAlert.innerHTML = "Il dessert non può avere una lunghezza superiore ai 25 caratteri.";
+            } else if (dessert.length > 20) {
+                dessertAlert.innerHTML = "Il dessert non può avere una lunghezza superiore ai 20 caratteri.";
                 return false;
             } else if (!pattern.test(dessert)) {
                 dessertAlert.innerHTML = "Il dessert non rispetta il formato.";
