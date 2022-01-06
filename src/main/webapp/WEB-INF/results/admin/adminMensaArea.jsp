@@ -35,12 +35,12 @@
         function validateApertura() {
             let apertura = document.forms["updateMensa"]["orarioApertura"].value;
             let aperturaAlert = document.getElementById("aperturaAlert");
-            let pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+            let pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
             if (apertura.length < 1) {
                 aperturaAlert.innerHTML = "Il campo orario di apertura non può essere vuoto.";
                 return false;
-            } else if (apertura.length > 5) {
-                aperturaAlert.innerHTML = "Il campo orario di apertura non può avere una lunghezza superiore alle 5 cifre.";
+            } else if (apertura.length > 8) {
+                aperturaAlert.innerHTML = "Il campo orario di apertura non può avere una lunghezza superiore alle 8 cifre.";
                 return false;
             } else if (!pattern.test(apertura)) {
                 aperturaAlert.innerHTML = "Il campo orario di apertura non rispetta il formato.";
@@ -54,12 +54,12 @@
         function validateChiusura() {
             let chiusura = document.forms["updateMensa"]["orarioChiusura"].value;
             let chiusuraAlert = document.getElementById("chiusuraAlert");
-            let pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+            let pattern = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
             if (chiusura.length < 1) {
                 chiusuraAlert.innerHTML = "Il campo orario di chiusura non può essere vuoto.";
                 return false;
-            } else if (chiusura.length > 5) {
-                chiusuraAlert.innerHTML = "Il campo orario di chiusura non può avere una lunghezza superiore alle 5 cifre.";
+            } else if (chiusura.length > 8) {
+                chiusuraAlert.innerHTML = "Il campo orario di chiusura non può avere una lunghezza superiore alle 8 cifre.";
                 return false;
             } else if (!pattern.test(chiusura)) {
                 chiusuraAlert.innerHTML = "Il campo orario di chiusura non rispetta il formato.";
