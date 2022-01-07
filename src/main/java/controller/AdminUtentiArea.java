@@ -42,7 +42,7 @@ public class AdminUtentiArea extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session=request.getSession();
         Utente u= (Utente) session.getAttribute("utenteSessione");

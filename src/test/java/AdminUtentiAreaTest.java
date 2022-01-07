@@ -1,4 +1,4 @@
-import controller.toAcceptUtente;
+import controller.AdminUtentiArea;
 import model.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -15,16 +16,24 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.atLeastOnce;
 
-public class toAcceptUtenteTest
-{
-    private UtenteDAOInterface udao;
-    private toAcceptUtente toAcceptUtente;
+public class AdminUtentiAreaTest {
 
+    private HttpSession session;
+    private HttpServletRequest request;
+    private HttpServletResponse response;
+    private RequestDispatcher dispatcher;
+    private UtenteDAOInterface udao;
+    private AdminUtentiArea adminUtentiArea;
 
     @Before
     public void setup() {
+        session = mock(HttpSession.class);
+        request = mock(HttpServletRequest.class);
+        response = mock(HttpServletResponse.class);
+        dispatcher = mock(RequestDispatcher.class);
         udao = mock(UtenteDAO.class);
-        toAcceptUtente = new toAcceptUtente(udao);
+
+        adminUtentiArea = new AdminUtentiArea(udao);
     }
 
     @Test
@@ -37,59 +46,46 @@ public class toAcceptUtenteTest
         user2.setCF("BBBBBBBBBBBBBBBB");
         user3.setCF("CCCCCCCCCCCCCCCC");
         user1.setAccepted(false);
-        user2.setAccepted(false);
+        user2.setAccepted(true);
         user3.setAccepted(true);
         ArrayList<Utente> users=new ArrayList<>();
         users.add(user1);
         users.add(user2);
         users.add(user3);
         when(udao.doRetrieveAllUtente()).thenReturn(users);
-        ArrayList<Utente> listUser=toAcceptUtente.ShowAllUsersToAccept();
+        ArrayList<Utente> listUser=adminUtentiArea.ShowAllUsers();
         assertNotNull(listUser);
     }
 
-
     @Test
-    public void toAcceptUtenteTestNonInSessione() throws ServletException, IOException {
-        HttpServletResponse response= mock(HttpServletResponse.class);
-        HttpServletRequest request= mock(HttpServletRequest.class);
-        HttpSession session=mock(HttpSession.class);
-
+    public void AdminUtentiAreaNonInSessioneTest() throws ServletException, IOException {
         when(request.getSession()).thenReturn(session);
         when(session.getAttribute("utenteSessione")).thenReturn(null);
         when(request.getContextPath()).thenReturn("context");
 
-        toAcceptUtente.doGet(request,response);
+        adminUtentiArea.doGet(request, response);
 
         verify(response, atLeastOnce()).sendRedirect("context/index.jsp");
     }
 
-
     @Test
-    public void toAcceptUtenteTestNonAdmin() throws ServletException, IOException {
-        HttpServletResponse response= mock(HttpServletResponse.class);
-        HttpServletRequest request= mock(HttpServletRequest.class);
-        HttpSession session=mock(HttpSession.class);
-        when(request.getSession()).thenReturn(session);
-
+    public void AdminUtentiAreaNonAdminTest() throws ServletException, IOException {
         Utente user = new Utente();
         user.setAmministratore(new RuoloStandard());
 
+        when(request.getSession()).thenReturn(session);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(request.getContextPath()).thenReturn("context");
 
-        toAcceptUtente.doGet(request,response);
+        adminUtentiArea.doGet(request, response);
 
         verify(response, atLeastOnce()).sendRedirect("context/toHome");
     }
 
-
     @Test
-    public void toAcceptUtenteTestValid() throws ServletException, IOException {
-        HttpServletResponse response= mock(HttpServletResponse.class);
-        HttpServletRequest request= mock(HttpServletRequest.class);
-        RequestDispatcher dispatcher = mock(RequestDispatcher.class);
-        HttpSession session=mock(HttpSession.class);
+    public void AdminUtentiAreaOk() throws ServletException, IOException {
+        Utente user = new Utente();
+        user.setAmministratore(new RuoloAdmin());
 
         Utente user1=new Utente();
         Utente user2=new Utente();
@@ -98,28 +94,20 @@ public class toAcceptUtenteTest
         user2.setCF("BBBBBBBBBBBBBBBB");
         user3.setCF("CCCCCCCCCCCCCCCC");
         user1.setAccepted(false);
-        user2.setAccepted(false);
+        user2.setAccepted(true);
         user3.setAccepted(true);
         ArrayList<Utente> users=new ArrayList<>();
         users.add(user1);
         users.add(user2);
         users.add(user3);
 
-        Utente user = new Utente();
-        user.setCF("1234567890ABCDEF");
-        user.setAmministratore(new RuoloAdmin());
-
+        when(udao.doRetrieveAllUtente()).thenReturn(users);
         when(request.getSession()).thenReturn(session);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
-        when(udao.doRetrieveAllUtente()).thenReturn(users);
 
-        toAcceptUtente.doGet(request,response);
+        adminUtentiArea.doGet(request, response);
 
         verify(dispatcher, atLeastOnce()).forward(request, response);
     }
-
-
-
-
 }
