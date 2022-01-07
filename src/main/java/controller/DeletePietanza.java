@@ -64,7 +64,7 @@ public class DeletePietanza extends HttpServlet {
             else
                 message = "La pietanza verrà eliminata dopo l'orario di chiusura";
             request.setAttribute("message", message);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AdminPietanzeArea");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/AdminPietanzeArea");
             dispatcher.forward(request, response);
         }
         }

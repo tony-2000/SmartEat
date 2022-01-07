@@ -93,10 +93,10 @@ public class UpdateMensaTest {
 
     @Test
     public void updateMensaNonAdminTest() throws ServletException, IOException {
-        when(request.getSession()).thenReturn(session);
         Utente user = new Utente();
         user.setAmministratore(new RuoloStandard());
 
+        when(request.getSession()).thenReturn(session);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(request.getContextPath()).thenReturn("context");
 
@@ -109,7 +109,6 @@ public class UpdateMensaTest {
 
     @Test
     public void updateMensaAperturaScorretta1Test() throws ServletException, IOException {
-        when(request.getSession()).thenReturn(session);
         Utente user = new Utente();
         user.setAmministratore(new RuoloAdmin());
 
@@ -119,6 +118,7 @@ public class UpdateMensaTest {
         strings.add("12:00:00");
         strings.add("14:00:00");
 
+        when(request.getSession()).thenReturn(session);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(mendao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
         when(request.getParameter("postiDisponibili")).thenReturn("500");
@@ -129,14 +129,13 @@ public class UpdateMensaTest {
         updateMensa.doGet(request, response);
 
         verify(request, atLeastOnce()).setAttribute("message", "L'orario di apertura deve essere precedente a quello di chiusura");
-        verify(dispatcher,atLeastOnce()).forward(request,response);
+        verify(dispatcher, atLeastOnce()).forward(request, response);
 
         mensa.close();
     }
 
     @Test
     public void updateMensaAperturaScorretta2Test() throws ServletException, IOException {
-        when(request.getSession()).thenReturn(session);
         Utente user = new Utente();
         user.setAmministratore(new RuoloAdmin());
 
@@ -146,6 +145,7 @@ public class UpdateMensaTest {
         strings.add("12:00:00");
         strings.add("14:00:00");
 
+        when(request.getSession()).thenReturn(session);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(mendao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
         when(request.getParameter("postiDisponibili")).thenReturn("500");
@@ -156,14 +156,13 @@ public class UpdateMensaTest {
         updateMensa.doGet(request, response);
 
         verify(request, atLeastOnce()).setAttribute("message", "L'orario di apertura non può essere precedente alle ore 01:00");
-        verify(dispatcher,atLeastOnce()).forward(request,response);
+        verify(dispatcher, atLeastOnce()).forward(request, response);
 
         mensa.close();
     }
 
     @Test
     public void updateMensaChiusuraScorrettaTest() throws ServletException, IOException {
-        when(request.getSession()).thenReturn(session);
         Utente user = new Utente();
         user.setAmministratore(new RuoloAdmin());
 
@@ -173,6 +172,7 @@ public class UpdateMensaTest {
         strings.add("12:00:00");
         strings.add("14:00:00");
 
+        when(request.getSession()).thenReturn(session);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(mendao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
         when(request.getParameter("postiDisponibili")).thenReturn("500");
@@ -183,14 +183,13 @@ public class UpdateMensaTest {
         updateMensa.doGet(request, response);
 
         verify(request, atLeastOnce()).setAttribute("message", "L'orario di chiusura non può essere successivo alle ore 23:00");
-        verify(dispatcher,atLeastOnce()).forward(request,response);
+        verify(dispatcher, atLeastOnce()).forward(request, response);
 
         mensa.close();
     }
 
     @Test
     public void updateMensaCorrettaOraTest() throws ServletException, IOException {
-        when(request.getSession()).thenReturn(session);
         Utente user = new Utente();
         user.setAmministratore(new RuoloAdmin());
 
@@ -200,6 +199,7 @@ public class UpdateMensaTest {
         strings.add("12:00:00");
         strings.add("14:00:00");
 
+        when(request.getSession()).thenReturn(session);
         mensa.when(Mensa::isMensaConfig).thenReturn(true);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(mendao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
@@ -211,14 +211,13 @@ public class UpdateMensaTest {
         updateMensa.doGet(request, response);
 
         verify(request, atLeastOnce()).setAttribute("message", "Le informazioni della mensa sono state modificate correttamente");
-        verify(dispatcher,atLeastOnce()).forward(request,response);
+        verify(dispatcher, atLeastOnce()).forward(request, response);
 
         mensa.close();
     }
 
     @Test
     public void updateMensaCorrettaDopoTest() throws ServletException, IOException {
-        when(request.getSession()).thenReturn(session);
         Utente user = new Utente();
         user.setAmministratore(new RuoloAdmin());
 
@@ -228,6 +227,7 @@ public class UpdateMensaTest {
         strings.add("12:00:00");
         strings.add("14:00:00");
 
+        when(request.getSession()).thenReturn(session);
         mensa.when(Mensa::isMensaConfig).thenReturn(false);
         when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(mendao.doRetrieveMensaByKey(anyString())).thenReturn(strings);
@@ -239,7 +239,7 @@ public class UpdateMensaTest {
         updateMensa.doGet(request, response);
 
         verify(request, atLeastOnce()).setAttribute("message", "Le informazioni della mensa verranno modificate dopo l'orario di chiusura");
-        verify(dispatcher,atLeastOnce()).forward(request,response);
+        verify(dispatcher, atLeastOnce()).forward(request, response);
 
         mensa.close();
     }
