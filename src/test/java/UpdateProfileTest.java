@@ -271,7 +271,7 @@ public class UpdateProfileTest
         tessera.setSaldo(100);
 
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter("utenteSessione")).thenReturn(String.valueOf(user));
+        when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(request.getParameter("nome_utente")).thenReturn("");
         when(request.getParameter("cognome")).thenReturn("Aschettino");
         when(request.getParameter("gender")).thenReturn("M");
@@ -311,7 +311,7 @@ public class UpdateProfileTest
         tessera.setSaldo(100);
 
         when(request.getSession()).thenReturn(session);
-        when(request.getParameter("utenteSessione")).thenReturn(String.valueOf(user));
+        when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(request.getParameter("nome_utente")).thenReturn("antonio");
         when(request.getParameter("cognome")).thenReturn("Aschettino");
         when(request.getParameter("gender")).thenReturn("M");
