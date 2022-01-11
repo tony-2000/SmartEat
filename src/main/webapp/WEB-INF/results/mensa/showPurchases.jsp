@@ -1,8 +1,8 @@
-<%@ page import="model.Utente" %>
+<%@ page import="model.utente.Utente" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Acquisto" %>
+<%@ page import="model.acquisto.Acquisto" %>
 <%@ page import="java.util.Collections" %>
-<%@ page import="model.Menu" %>
+<%@ page import="model.menu.Menu" %>
 
 <%--
   Created by IntelliJ IDEA.

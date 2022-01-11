@@ -1,5 +1,7 @@
-import controller.UpdateProfile;
-import model.*;
+import controller.GestioneProfilo.UpdateProfile;
+import model.tessera.Tessera;
+import model.tessera.TesseraDAO;
+import model.utente.*;
 import org.junit.Before;
 import org.junit.Test;
 

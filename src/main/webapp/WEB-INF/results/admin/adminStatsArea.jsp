@@ -1,6 +1,6 @@
-<%@ page import="model.Utente" %>
+<%@ page import="model.utente.Utente" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Pietanza" %><%--
+<%@ page import="model.pietanza.Pietanza" %><%--
   Created by IntelliJ IDEA.
   User: simon
   Date: 26/12/2021

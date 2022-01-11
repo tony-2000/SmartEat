@@ -1,7 +1,7 @@
-import controller.Login;
-import model.Utente;
-import model.UtenteDAO;
-import model.UtenteDAOInterface;
+import controller.GestioneAutenticazione.Login;
+import model.utente.Utente;
+import model.utente.UtenteDAO;
+import model.utente.UtenteDAOInterface;
 import org.junit.Before;
 import org.junit.Test;
 

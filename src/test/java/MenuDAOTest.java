@@ -1,13 +1,11 @@
-import model.Menu;
-import model.MenuDAO;
+import model.menu.Menu;
+import model.menu.MenuDAO;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 
 public class MenuDAOTest

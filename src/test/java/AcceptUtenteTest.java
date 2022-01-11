@@ -1,5 +1,8 @@
-import controller.AcceptUtente;
-import model.*;
+import controller.GestioneUtenti.AcceptUtente;
+import model.tessera.Tessera;
+import model.tessera.TesseraDAO;
+import model.tessera.TesseraDAOInterface;
+import model.utente.*;
 import org.junit.Before;
 import org.junit.Test;
 

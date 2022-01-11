@@ -1,4 +1,4 @@
-<%@ page import="model.Utente" %>
+<%@ page import="model.utente.Utente" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: simon

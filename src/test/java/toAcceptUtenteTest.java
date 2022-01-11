@@ -1,5 +1,5 @@
-import controller.toAcceptUtente;
-import model.*;
+import controller.GestioneUtenti.toAcceptUtente;
+import model.utente.*;
 import org.junit.Before;
 import org.junit.Test;
 

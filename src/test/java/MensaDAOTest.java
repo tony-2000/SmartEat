@@ -1,4 +1,4 @@
-import model.MensaDAO;
+import model.mensa.MensaDAO;
 import org.junit.Before;
 import org.junit.Test;
 import java.sql.Time;

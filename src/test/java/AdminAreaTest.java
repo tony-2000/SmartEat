@@ -1,7 +1,7 @@
-import controller.AdminArea;
-import model.RuoloAdmin;
-import model.RuoloStandard;
-import model.Utente;
+import controller.AreaAdmin.AdminArea;
+import model.utente.RuoloAdmin;
+import model.utente.RuoloStandard;
+import model.utente.Utente;
 import org.junit.Before;
 import org.junit.Test;
 

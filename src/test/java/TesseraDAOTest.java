@@ -1,5 +1,5 @@
-import model.Tessera;
-import model.TesseraDAO;
+import model.tessera.Tessera;
+import model.tessera.TesseraDAO;
 import org.junit.Before;
 import org.junit.Test;
 

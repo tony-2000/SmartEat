@@ -1,5 +1,5 @@
-<%@ page import="model.Utente" %>
-<%@ page import="model.Mensa" %><%--
+<%@ page import="model.utente.Utente" %>
+<%@ page import="model.mensa.Mensa" %><%--
   Created by IntelliJ IDEA.
   User: simon
   Date: 21/12/2021

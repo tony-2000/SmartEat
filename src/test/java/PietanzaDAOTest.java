@@ -1,5 +1,5 @@
-import model.Pietanza;
-import model.PietanzaDAO;
+import model.pietanza.Pietanza;
+import model.pietanza.PietanzaDAO;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,5 +1,5 @@
-import model.Acquisto;
-import model.AcquistoDAO;
+import model.acquisto.Acquisto;
+import model.acquisto.AcquistoDAO;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-import model.*;
+import model.utente.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -59,7 +59,7 @@ public class UtenteDAOTest
         user.setEmail(mail);
         user.setResidenza(residenza);
         user.setPasswordHash(password);
-        RuoloUtente standard = new RuoloStandard();
+        model.utente.RuoloUtente standard = new RuoloStandard();
         user.setAmministratore(standard);
         user.setAccepted(false);
         utenteDAO.doSave(user);

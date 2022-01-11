@@ -1,6 +1,6 @@
-<%@ page import="model.Utente" %>
-<%@ page import="model.Menu" %>
-<%@ page import="model.Acquisto" %><%--
+<%@ page import="model.utente.Utente" %>
+<%@ page import="model.menu.Menu" %>
+<%@ page import="model.acquisto.Acquisto" %><%--
   Created by IntelliJ IDEA.
   User: simon
   Date: 23/12/2021

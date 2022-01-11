@@ -1,6 +1,6 @@
 package controller.SmartEatConfig;
 
-import model.*;
+import model.mensa.Mensa;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

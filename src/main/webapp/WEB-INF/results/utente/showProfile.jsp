@@ -1,5 +1,5 @@
-<%@ page import="model.Utente" %>
-<%@ page import="model.Tessera" %><%--
+<%@ page import="model.utente.Utente" %>
+<%@ page import="model.tessera.Tessera" %><%--
   Created by IntelpJ IDEA.
   User: simon
   Date: 21/12/2021

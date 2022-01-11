@@ -1,6 +1,14 @@
 package controller.SmartEatConfig;
 
-import model.*;
+import model.mensa.Mensa;
+import model.mensa.MensaDAO;
+import model.mensa.MensaDAOInterface;
+import model.menu.Menu;
+import model.menu.MenuDAO;
+import model.menu.MenuDAOInterface;
+import model.pietanza.Pietanza;
+import model.pietanza.PietanzaDAO;
+import model.pietanza.PietanzaDAOInterface;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -57,7 +65,7 @@ public class Timer extends TimerTask {
             ArrayList<Menu> listAddMenu=Menu.getListAddMenu();
             ArrayList<Integer> listToggleMenu=Menu.getListToggleMenu();
             ArrayList<Integer> listDeleteMenu=Menu.getListDeleteMenu();
-            ArrayList<String> listDeletePietanza=Pietanza.getListDeletePietanza();
+            ArrayList<String> listDeletePietanza= Pietanza.getListDeletePietanza();
             ArrayList<String> listUpdateMensa=Mensa.getListUpdateMensa();
             Mensa.setPostiVuoti(Mensa.mensa.getPostiDisponibili());
             System.out.println("Aggiornamento posti");
