@@ -250,7 +250,7 @@ public class UtenteDAO implements UtenteDAOInterface
 
     /** Accetta un utente.
      * @pre {@literal codiceFiscale!=null && utente->exists(u|u.codiceFiscale==codiceFiscale)}
-     * @post {utente->exists(u|u.codiceFiscale==codiceFiscale && u.accepted==true)}
+     * @post {@literal utente->exists(u|u.codiceFiscale==codiceFiscale && u.accepted==true)}
      * @param codiceFiscale codice fiscale dell'utente da accettare.
      */
     public void doAccept(String codiceFiscale)
