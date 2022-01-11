@@ -1,6 +1,6 @@
 package model.acquisto;
 
-import model.supporto.ConPool;
+import model.utils.ConPool;
 
 import java.sql.*;
 import java.util.ArrayList;

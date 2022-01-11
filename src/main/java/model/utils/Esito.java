@@ -1,4 +1,4 @@
-package model.supporto;
+package model.utils;
 
 /**
  * Questa classe di servizio realizza la convalida degli input tramite un valore di validita' ed

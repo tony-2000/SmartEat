@@ -1,7 +1,7 @@
 package controller.GestioneProfilo;
 
-import model.supporto.Check;
-import model.supporto.Esito;
+import model.utils.Check;
+import model.utils.Esito;
 import model.tessera.Tessera;
 import model.tessera.TesseraDAO;
 import model.tessera.TesseraDAOInterface;

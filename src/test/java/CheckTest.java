@@ -1,5 +1,5 @@
-import model.supporto.Check;
-import model.supporto.Esito;
+import model.utils.Check;
+import model.utils.Esito;
 import org.junit.Test;
 
 import java.sql.Date;

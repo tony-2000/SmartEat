@@ -1,4 +1,4 @@
-package model.supporto;
+package model.utils;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;

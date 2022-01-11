@@ -1,4 +1,4 @@
-package model.supporto;
+package model.utils;
 
 import model.utente.Utente;
 import model.utente.UtenteDAO;

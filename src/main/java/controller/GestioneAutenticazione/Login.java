@@ -1,8 +1,8 @@
 package controller.GestioneAutenticazione;
 
 import model.mensa.Mensa;
-import model.supporto.Check;
-import model.supporto.Esito;
+import model.utils.Check;
+import model.utils.Esito;
 import model.utente.Utente;
 import model.utente.UtenteDAO;
 import model.utente.UtenteDAOInterface;
