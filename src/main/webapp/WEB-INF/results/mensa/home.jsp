@@ -26,7 +26,7 @@
 
     <main style="display: flex; flex-direction: row; justify-content: center; align-items: center">
         <div style="display: flex; flex-direction: row; justify-content: center; width: 100%">
-            <img src="${pageContext.request.contextPath}/images/food-svgrepo-com.svg" alt="icon"
+            <img src="${pageContext.request.contextPath}/images/food-svgrepo-com.png" alt="icon"
                  style="max-width: 20rem; margin-right: 1rem">
             <div style="align-self: center; margin-left: 1rem">
                 <h1><%=(String) session.getAttribute("nomeMensa")%></h1>
