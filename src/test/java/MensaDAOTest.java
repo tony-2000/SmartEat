@@ -20,7 +20,7 @@ public class MensaDAOTest
     @Test
     public void doRetrieveMensaByKey()
     {
-        String nome="Mensa1";
+        String nome="SmartEat";
         ArrayList<String> mensa;
         mensa=mensaDAO.doRetrieveMensaByKey(nome);
         assertEquals(nome,mensa.get(0));
@@ -30,7 +30,7 @@ public class MensaDAOTest
     @Test
     public void doUpdateTest()
     {
-        ArrayList<String> mensa= mensaDAO.doRetrieveMensaByKey("Mensa1");
+        ArrayList<String> mensa= mensaDAO.doRetrieveMensaByKey("SmartEat");
         String nome=mensa.get(0);
         int postiDisponibili= Integer.parseInt(mensa.get(1));
         Time orarioApertura= Time.valueOf(mensa.get(2));
@@ -44,7 +44,7 @@ public class MensaDAOTest
 
         mensaDAO.doUpdate(nome,postiDisponibiliAggiornati,orarioAperturaAggiornato,orarioChiusuraAggiornato);
 
-        ArrayList<String> mensaAggiornata= mensaDAO.doRetrieveMensaByKey("Mensa1");
+        ArrayList<String> mensaAggiornata= mensaDAO.doRetrieveMensaByKey("SmartEat");
 
         assertEquals(mensaAggiornata.get(0),mensa.get(0));
         assertNotEquals(mensaAggiornata.get(1),mensa.get(1));

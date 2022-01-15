@@ -45,7 +45,7 @@ public class UpdateMensaTest {
 
     @Test
     public void updateMensaOraTest() {
-        String nome = "mensa1";
+        String nome = "SmartEat";
         int posti = 5;
         Time ap = Time.valueOf("12:12:00");
         Time ch = Time.valueOf("14:12:00");
@@ -63,7 +63,7 @@ public class UpdateMensaTest {
 
     @Test
     public void updateMensaDopoTest() {
-        String nome = "mensa1";
+        String nome = "SmartEat";
         int posti = 5;
         Time ap = Time.valueOf("12:12:00");
         Time ch = Time.valueOf("14:12:00");
@@ -118,7 +118,7 @@ public class UpdateMensaTest {
         user.setAmministratore(new RuoloAdmin());
 
         ArrayList<String> strings = new ArrayList<>();
-        strings.add("mensa1");
+        strings.add("SmartEat");
         strings.add("500");
         strings.add("12:00:00");
         strings.add("14:00:00");
@@ -145,7 +145,7 @@ public class UpdateMensaTest {
         user.setAmministratore(new RuoloAdmin());
 
         ArrayList<String> strings = new ArrayList<>();
-        strings.add("mensa1");
+        strings.add("SmartEat");
         strings.add("500");
         strings.add("12:00:00");
         strings.add("14:00:00");
@@ -172,7 +172,7 @@ public class UpdateMensaTest {
         user.setAmministratore(new RuoloAdmin());
 
         ArrayList<String> strings = new ArrayList<>();
-        strings.add("mensa1");
+        strings.add("SmartEat");
         strings.add("500");
         strings.add("12:00:00");
         strings.add("14:00:00");
@@ -199,7 +199,7 @@ public class UpdateMensaTest {
         user.setAmministratore(new RuoloAdmin());
 
         ArrayList<String> strings = new ArrayList<>();
-        strings.add("mensa1");
+        strings.add("SmartEat");
         strings.add("500");
         strings.add("12:00:00");
         strings.add("14:00:00");
@@ -227,7 +227,7 @@ public class UpdateMensaTest {
         user.setAmministratore(new RuoloAdmin());
 
         ArrayList<String> strings = new ArrayList<>();
-        strings.add("mensa1");
+        strings.add("SmartEat");
         strings.add("500");
         strings.add("12:00:00");
         strings.add("14:00:00");

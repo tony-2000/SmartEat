@@ -74,6 +74,6 @@ public class AdminMensaArea extends HttpServlet {
      */
     public ArrayList<String> adminMensa()
     {
-        return mensadao.doRetrieveMensaByKey("mensa1");
+        return mensadao.doRetrieveMensaByKey("SmartEat");
     }
 }

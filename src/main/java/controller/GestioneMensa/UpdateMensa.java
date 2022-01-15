@@ -58,7 +58,7 @@ public class UpdateMensa extends HttpServlet {
         else
         {
             String message;
-            ArrayList<String> mensa= mensaDao.doRetrieveMensaByKey("mensa1");
+            ArrayList<String> mensa= mensaDao.doRetrieveMensaByKey("SmartEat");
             int posti = Integer.parseInt(request.getParameter("postiDisponibili"));
             Time apertura = Time.valueOf(request.getParameter("orarioApertura"));
             Time chiusura = Time.valueOf(request.getParameter("orarioChiusura"));
@@ -88,7 +88,7 @@ public class UpdateMensa extends HttpServlet {
             }
             else {
                 boolean result = this.updateMensa(posti, apertura, chiusura);
-                mensa = mensaDao.doRetrieveMensaByKey("mensa1");
+                mensa = mensaDao.doRetrieveMensaByKey("SmartEat");
                 if (result)
                     message = "Le informazioni della mensa sono state modificate correttamente";
                 else
@@ -121,7 +121,7 @@ public class UpdateMensa extends HttpServlet {
     {
         if (Mensa.isMensaConfig())
         {
-            mensaDao.doUpdate("mensa1",posti,apertura,chiusura);
+            mensaDao.doUpdate("SmartEat",posti,apertura,chiusura);
             return  true;
         }
         ArrayList<String> listupdateMensa= Mensa.getListUpdateMensa();

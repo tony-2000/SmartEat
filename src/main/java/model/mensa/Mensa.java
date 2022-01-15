@@ -41,7 +41,7 @@ public class Mensa
     private Mensa()
     {
         MensaDAOInterface dao= new MensaDAO();
-        ArrayList<String> strings=dao.doRetrieveMensaByKey("mensa1");
+        ArrayList<String> strings=dao.doRetrieveMensaByKey("SmartEat");
         this.setNome(strings.get(0));
         this.setPostiDisponibili(Integer.parseInt(strings.get(1)));
         this.setOrarioApertura(Time.valueOf(strings.get(2)));
@@ -141,7 +141,7 @@ public class Mensa
     public static boolean isMensaConfig()
     {
         MensaDAOInterface mensadao=new MensaDAO();
-        ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
+        ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("SmartEat");
         Time chiusura= Time.valueOf(mensa.get(3));
         Time config=Time.valueOf("23:59:59");
         Time attuale= new Time(System.currentTimeMillis());
@@ -159,7 +159,7 @@ public class Mensa
     public static boolean isMensaPurchase()
     {
         MensaDAOInterface mensadao=new MensaDAO();
-        ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("mensa1");
+        ArrayList<String> mensa=mensadao.doRetrieveMensaByKey("SmartEat");
         Time apertura= Time.valueOf(mensa.get(2));
         Time attuale= new Time(System.currentTimeMillis());
 

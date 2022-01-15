@@ -37,7 +37,7 @@ public class AdminMensaAreaTest
     public void AdminMensaTest()
     {
         ArrayList<String> mensa=new ArrayList<>();
-        mensa.add("mensa1");
+        mensa.add("SmartEat");
         mensa.add("40");
         mensa.add("14:40:50");
         mensa.add("15:56:45");
@@ -88,7 +88,7 @@ public class AdminMensaAreaTest
         user.setCF("1234567890ABCDEF");
         user.setAmministratore(new RuoloAdmin());
         ArrayList<String> mensa=new ArrayList<>();
-        mensa.add("mensa1");
+        mensa.add("SmartEat");
 
         when(session.getAttribute("utenteSessione")).thenReturn(user);
         when(request.getRequestDispatcher(anyString())).thenReturn(dispatcher);
