@@ -106,6 +106,11 @@ public class Timer extends TimerTask {
                 String apertura=listUpdateMensa.get(1);
                 String chiusura=listUpdateMensa.get(2);
                 dao.doUpdate("SmartEat",Integer.parseInt(posti), Time.valueOf(apertura),Time.valueOf(chiusura));
+                int temp = Mensa.mensa.getPostiDisponibili()-Mensa.getPostiVuoti();
+                Mensa.mensa.setPostiDisponibili(Integer.parseInt(posti));
+                Mensa.setPostiVuoti(Mensa.mensa.getPostiDisponibili()-temp);
+                Mensa.mensa.setOrarioApertura(Time.valueOf(apertura));
+                Mensa.mensa.setOrarioChiusura(Time.valueOf(chiusura));
                 listUpdateMensa.clear();
             }
         }

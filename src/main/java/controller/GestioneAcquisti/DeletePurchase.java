@@ -136,6 +136,7 @@ public class DeletePurchase extends HttpServlet
             primo.setNumeroAcquisti(primo.getNumeroAcquisti()-1);
             secondo.setNumeroAcquisti(primo.getNumeroAcquisti()-1);
             dessert.setNumeroAcquisti(primo.getNumeroAcquisti()-1);
+            Mensa.setPostiVuoti(Mensa.getPostiVuoti()+1);
             pdao.doUpdate(primo);
             pdao.doUpdate(secondo);
             pdao.doUpdate(dessert);

@@ -122,6 +122,11 @@ public class UpdateMensa extends HttpServlet {
         if (Mensa.isMensaConfig())
         {
             mensaDao.doUpdate("SmartEat",posti,apertura,chiusura);
+            int temp = Mensa.mensa.getPostiDisponibili()-Mensa.getPostiVuoti();
+            Mensa.mensa.setPostiDisponibili(posti);
+            Mensa.setPostiVuoti(Mensa.mensa.getPostiDisponibili()-temp);
+            Mensa.mensa.setOrarioApertura(apertura);
+            Mensa.mensa.setOrarioChiusura(chiusura);
             return  true;
         }
         ArrayList<String> listupdateMensa= Mensa.getListUpdateMensa();
